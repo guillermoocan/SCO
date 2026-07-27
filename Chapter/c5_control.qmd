@@ -1,0 +1,3702 @@
+::: {.chapter-slide}
+
+# Capítulo 5
+
+::: {.text-center}
+
+<div class="chapter-line"></div>
+
+::: {.large}
+
+Control
+
+<div class="menu-title" style="display:none;"> Control </div>
+
+:::
+
+:::
+
+:::
+
+##
+
+![](Figures/c1/closeloop.svg){width=100% width=100% fig-align="center"}
+
+
+
+---
+
+## Control
+
+::: {.definition-block}
+
+**Definición general**
+
+El control es el proceso mediante el cual se influye sobre el comportamiento de un sistema dinámico para que este evolucione de acuerdo con un objetivo deseado.
+:::
+
+
+
+- En ingeniería, el control automático consiste en diseñar un mecanismo o algoritmo que modifique las entradas de un sistema de manera automática para que la salida siga una referencia o permanezca dentro de un rango especificado.
+- Una forma intuitiva de entender que controlar significa que las cosas se comporten como queremos, ajustando sus acciones continuamente según cómo se están comportando en realidad.
+
+Existen dos enfoque principales para el control:
+
+- **Lazo abierto**: La acción de control no depende de la salida del sistema. No existe medición ni corrección del error.
+- **Lazo cerrado**: La salida se mide y se compara con la referencia. El control ajusta la entrada del sistema en función del error.
+
+
+
+---
+
+##
+
+El **control automático** se encuentra presente en la mayoría de los sistemas modernos, desde aplicaciones domésticas hasta sistemas espaciales.
+Su objetivo común es *mantener una variable física en un valor deseado*.
+
+**Ejemplos:**
+
+- **Termostato doméstico.**
+- **Regulador de velocidad de un automóvil.**
+- **Control de nivel en un tanque de agua.**
+- **Regulación de voltaje en sistemas eléctricos.**
+- **Control de un brazo robótico.**
+- **Control de glucosa en la sangre.**
+- **Control financiero.**
+
+Cada uno de estos sistemas compara una **variable medida** con una **referencia** y actúa para reducir el error.
+
+---
+
+##
+
+**Componentes principales:**
+
+- **Referencia** $x^{\tref}$: Valor deseado de la variable controlada.
+- **Error** $\tilde{x}\td$ Diferencia entre la referencia y el valor actual de la variable controlada. Esta señal representa la desviación del sistema respecto al comportamiento deseado.
+- **Ley de control:** Algoritmo  encargada de generar la señal de control $u^{\tref\td }$ a partir del error.
+- **Actuador:** Elemento físico que transforma la señal de control en una acción de control $u\td$ sobre la planta.
+- **Planta:** Sistema físico cuyo comportamiento se desea regular o controlar.
+- **Perturbaciones**:  Señales o efectos externos no deseados que alteran el comportamiento nominal del sistema.
+
+Estos elementos se relacionan mediante un **lazo de realimentación negativa**, que ajusta la acción de control de forma continua para reducir el error.
+
+![](Figures/control.svg){width=70% fig-align="center"}
+
+---
+
+## Control de orientación
+
+Para controlar la orientación del satélite, las variables a controlar son aquellas sobre las cuales está definido el modelo rotacional del satélite, *i.e.*, la velocidad angular $\vec{\omega}\td$ y el parámetro que utilizamos para representar la orientación $q\td$. Con ello, podemos construir el vector de estados como:
+
+$$
+x\td  =
+\begin{bmatrix}
+\vec{\omega}\td \\
+q\td
+\end{bmatrix}
+$$
+
+En ese sentido, el problema del control de orientación puede ser formulado de la siguiente manera:
+
+::: {.definition-block}
+**Problema de control de orientación**
+
+Diseñar una ley de control $\vec{u}\td$ tal que
+
+$$
+x\td  \to x^{\tref}\td
+$$
+
+donde $x^{\tref}\td$ es la referencia de $x\td$ que describe el comportamiento deseado del satélite.
+:::
+
+- La referencia $x^{\tref}\td$ es la variable que indica el comportamiento rotacional total del satélite. Para definir la referencia, tenemos que difinir los **modos de control**.
+- El par $\vec{u}\td$ es la entrada de control de nuestro sistema. Este par puede ser generado utilizando diferentes fenómenos externos o internos del satélite. A los dispositivos que se encargan de generar esta acción se les conoce como:
+
+---
+
+::: {.center-vertical}
+
+::: {.chapter-title}
+
+Control
+
+:::
+
+<div class="chapter-line"></div>
+
+::: {.chapter-subtitle}
+
+Actuadores
+
+<div class="menu-title" style="display:none;"> ▸ Actuadores </div>
+
+:::
+
+:::
+
+
+
+---
+
+## Actuadores
+::: {.columns}
+
+::: {.column width="55%"}
+
+- Un **actuador** es un elemento físico encargado de convertir una **señal de control** en una **acción de control** que influye en el comportamiento de un sistema dinámico.
+- Constituye el vínculo entre el dominio del **control** $u\ls{\tref}\td$ (señales e información) y el dominio de la **dinámica física** $u\td$ (fuerzas y momentos).
+- La naturaleza del actuador determina:
+  - El tipo de energía que emplea o transforma.
+  - El rango, la resolución y la direccionalidad de la acción.
+  - Su dinámica interna (tiempo de respuesta, no linealidades, saturación).
+- Su modelado es esencial para el diseño de sistemas de control.
+
+:::
+
+::: {.column width="40%"}
+
+![](Figures/actuator.svg){width=50% fig-align="center"}
+
+:::
+
+:::
+
+---
+
+##
+- Según la **fuente de energía** que sustenta su acción, los actuadores se clasifican en:
+  1. **Pasivos:** Modifican el comportamiento del sistema utilizando únicamente propiedades físicas inherentes y sin un suministro de energía externo.
+    - No introducen energía neta. Pueden almacenar o disipar.
+    - Aportan estabilidad o amortiguamiento natural.
+  2. **Activos:** Generan pares mediante un suministro de energía externo.
+    - Consumen energía neta.
+    - Su desempeño depende de la eficiencia de conversión energética.
+- Ambos tipos suelen combinarse: los pasivos contribuyen a la estabilidad estructural, mientras que los activos permiten el control preciso de la dinámica.
+
+---
+
+##
+- En el ADCS del satélite, los actuadores generan los **pares de control** necesarios para modificar o mantener la orientación del satélite. Estos pares de control pueden tener varios canales de entrada.
+
+$$
+\begin{split}
+    I_b\ls{b}\dot{\vec{\omega}}_{h,b}\td = & -S(\ls{b}R_i \td \ls{i}\vec{\omega}_{i,h}\td +\ls{b}\vec{\omega}_{h,b}\td )\left(I_b(\ls{b}R_i \td \ls{i}\vec{\omega}_{i,h}\td +\ls{b}\vec{\omega}_{h,b}\td )+\textcolor{teal}{\sum_{j=1}^{a}\ls{b}R_j\td I_j\ls{j}\vec{\omega}_{b,j}\td }\right) \\
+                                            & -I_b\ls{b}R_i \td \ls{i}\dot{\vec{\omega}}_{i,h}\td -I_bS(\ls{b}R_i \td \ls{i}\vec{\omega}_{i,h}\td )\ls{b}\vec{\omega}_{h,b}\td +\textcolor{red}{\ls{b}\vec{\uptau}_c\td }-\ls{b}\vec{r}_c\td \times\ls{b}\vec{f}_{c}\td                         \\
+                                            & \textcolor{blue}{-\sum_{j=1}^{a}\ls{b}R_j\td S(\ls{j}\vec{\omega}_{b,j}\td )I_j\ls{j}\vec{\omega}_{b,j}\td -\sum_{j=1}^{a} \ls{b}R_j\td I_j\ls{j}\dot{\vec{\omega}}_{b,j}\td }.
+\end{split}
+$$
+
+
+- La acción del actuador se modela como un par $\vec{u}$ resultante de todas las entradas de control. Para ello, se requiere la capacidad de convertir una señal de mando $^b\vec{u}^{\tref}\td$ en una acción física.
+- Los actuadores en satélites pueden clasificarse según su procedencia del par generado:
+  - <span style="color:#003399">**Internos:**</span> almacenan y modifican la distribución del momento angular.
+  - <span style="color:red">**Externos:**</span> intercambian momento agular con el entorno.
+- En particular, debido al almacenamiento de momento angular, los actuadores internos también generar un <span style="color:teal">**efecto residual**</span> en el par giroscópico total del satélite.
+
+---
+
+## Actuadores pasivos
+- Los **actuadores pasivos** no requieren una fuente de energía externa para operar; su acción deriva de propiedades físicas o interacciones naturales con el entorno.
+- En el contexto del ADCS, su función principal es proporcionar:
+  - Estabilización natural o amortiguamiento del movimiento rotacional.
+  - Reducción del momento angular inicial (*detumbling*).
+  - Apuntamiento aproximado hacia una dirección preferida (nadir o campo magnético terrestre).
+- Su efecto puede modelarse como un par que depende del estado dinámico o de campos externos.
+- Son comunes en misiones de bajo costo o en etapas iniciales de estabilización, donde la precisión fina no es prioritaria.
+- Los más comunes son:
+  - Boom por gradiente gravitatorio.
+  - Yo-yo's.
+  - Imán permanente.
+
+---
+
+## Boom por gradiente gravitatorio
+
+::: {.columns}
+
+::: {.column width="60%"}
+
+- El **boom de gradiente gravitatorio** desplaza el centro de masa del satélite sobre el eje de mayor inercia.
+- Esto genera un par debido a la variación del campo gravitacional a lo largo del cuerpo, análogo al par de perturbación por gradiente gravitatorio.
+- El par $\:^{b}\vec{\uptau}_{\text{bg}}$ puede aproximarse mediante 
+
+$$
+\begin{split}
+    \:^{b}\vec{\uptau}_{\text{bg}}
+    =\frac{3\mu}{\|\:^{b}\vec{r}_c\|^5}\;
+    \:^{b}\vec{r}_c \times I_b\td \:^{b}\vec{r}_c
+\end{split}
+$$
+
+donde:
+
+  - $\:^{b}\vec{r}_c$ es el vector de posición del <span style="color:red">nuevo centro de masa</span> relativo al origen del marco inercial $i$, representado en el marco $b$.
+  - $I_b\td$ es el <span style="color:red">nuevo tensor de inercia</span> del satélite en el marco $b$.
+  - $\mu = 3.986\times 10^{14}\,\text{m}^3\text{s}^{-2}$ es el parámetro gravitacional estándar.
+
+:::
+
+::: {.column width="35%"}
+
+![](Figures/c1/intro_transit4b.jpg){width=100% fig-align="center"}
+
+:::
+
+:::
+
+---
+
+##
+
+::: {.columns}
+
+::: {.column width="60%"}
+
+- **Canal de entrada:** par de entrada externa $\:^{b}\vec{\uptau}_{\delta}$ (Es un fenómeno que sale de la hipótesis de cuerpo rígido).
+- **Principio de funcionamiento:** despliegue o extensión de una masa auxiliar a lo largo del eje principal para aumentar la diferencia de inercia.
+- **Efecto:** alinea el eje de mayor inercia con la dirección nadir, dado que esto implica el mínimo potencial gravitacional total del satélite.
+- **Ventajas:** operación pasiva, sin consumo energético.
+- **Limitaciones:** baja velocidad de respuesta y sensibilidad a variaciones orbitales. Adicionalmente, durante la fase de despliegue, se produce un par adicional en el modelo dinámico debido a cambios en el tensor de inercia, *i.e.*, $\frac{\text{d}}{\text{d}t}I_b\td$. Sin embargo, este fenómeno puede ser despreciado sin consideramos que la fase de despliegue es suficientemente lenta.
+
+:::
+
+::: {.column width="35%"}
+
+![](Figures/c1/intro_quakesat.jpg){width=70% fig-align="center"}
+
+:::
+
+:::
+
+---
+
+## Yo-yo Despin
+
+::: {.columns}
+
+::: {.column width="60%"}
+
+- Son dispositivos que utilizan dos masas conectadas mediante cables que se extienden desde el cuerpo del satélite, incrementando el momento de inercia sobre el eje principal.
+- El principio de funcionamiento se basa en la conservación del momento angular total:
+$$
+h = I_b\td \,\omega\td  = \text{cte.}
+$$ 
+
+De modo que, al aumentar $I_b\td$, la velocidad angular disminuye: 
+$$
+\dot{\omega}\td= -I_b^{-1}\td \dot{I}_b\td \omega\td
+$$
+- Durante el despliegue, el cambio temporal en $I_b\td$ introduce un **par pasivo de frenado**: 
+  
+$$
+^{b}\vec{\uptau}_{\text{yy}}\td = -\dot{I}_b\td \,^{b}\vec{\omega}_{h,b}\td
+$$
+
+:::
+
+::: {.column width="35%"}
+
+![](Figures/c1/intro_transit1a.jpg){width=90% fig-align="center"}
+
+:::
+
+:::
+
+---
+
+##
+
+::: {.columns}
+
+::: {.column width="60%"}
+
+- **Canal de entrada:** par de entradas externas $\:^{b}\vec{\uptau}_{\delta}$. Sin embargo, realmente el par generado por este dispositivo forma parte de la mecánica rotacional del satélite considerando que su cuerpo es **flexible**.
+- **Efecto:** reducción rápida de la velocidad inicial hasta alcanzar una rotación lenta.
+- **Ventajas:**
+  - Reducción rápida de la velocidad angular sin consumo de energía.
+  - Mecanismo simple y confiable.
+- **Limitaciones:**
+  - Solo puede activarse una vez (no reversible).
+  - El desprendimiento puede inducir pequeños pares residuales.
+- Se utiliza principalmente en misiones sin control activo durante el despliegue o en etapas iniciales de estabilización.
+- **Ejemplos:**
+  - [Animación](https://www.youtube.com/watch?v=uMQnXig2hrg)
+  - [Animación](https://commons.wikimedia.org/wiki/File:PAM-D_1920x1080.ogv)
+  - [Experimento](https://www.youtube.com/watch?v=YDQs4hnBUcg)
+  - [Cohete](https://www.reddit.com/r/space/comments/4cn6u0/yoyo_despin_of_a_sounding_rocket/)
+
+
+:::
+
+::: {.column width="35%"}
+
+![](Figures/c1/intro_transit1a.jpg){width=90% fig-align="center"}
+
+:::
+
+:::
+
+---
+
+## Imanes permanentes
+
+::: {.columns}
+
+::: {.column width="60%"}
+
+- Un **imán permanente** (dipolo) integrado al satélite genera un **momento magnético constante** $\:^{b}\vec{m}_\text{pm}$ en el marco del cuerpo.
+- Este momento interactúa con el campo magnético terrestre $\:^{b}\vec{B}\td$ produciendo un par que tiende a alinear el eje asociado al dipolo con las líneas del campo local: 
+
+$$
+^{b}\vec{\uptau}_{\text{pm}}\td  = \:^{b}\vec{m}_{\text{pm}} \times \:^{b}\vec{B}\td
+$$
+
+donde:
+
+  - $\:^{b}\vec{m}_{\text{pm}}$ es el momento dipolar magnético fijo debido al imán permanente.
+  - $\:^{b}\vec{B}\td$ es el campo magnético terrestre representado en el marco $\mathcal{F}^b$.
+
+:::
+
+::: {.column width="35%"}
+
+![](Figures/pm.png){width=90% fig-align="center"}
+
+:::
+
+:::
+
+---
+
+##
+
+::: {.columns}
+
+::: {.column width="60%"}
+
+- **Canal de entrada:** par de entradas externas $\:^{b}\vec{\uptau}_{\delta}$.
+- **Principio de funcionamiento:** alineación del dipolo magnético del satélite con las líneas del campo terrestre.
+- **Efecto:** estabilización a lo largo del vector del campo geomagnético local (sin control activo).
+- **Ventajas:**
+  - Simplicidad mecánica y bajo costo.
+  - No requiere energía ni electrónica adicional.
+  - Funciona de forma continua en órbitas bajas.
+- **Limitaciones:**
+  - Par de baja magnitud.
+  - Sensible a variaciones locales del campo magnético debido a elementos internos del satélite.
+  - Apuntamiento delimitado por la dirección de la lineas del campo magnético terrestre. El diseño de la misión debe considerar este aspecto.
+
+:::
+
+::: {.column width="35%"}
+
+![](Figures/pm_aling.png){width=100% fig-align="center"}
+
+:::
+
+:::
+
+---
+
+## Actuadores activos
+
+- Los actuadores activos requieren una fuente de energía para generar los pares de control necesarios para modificar la orientación del satélite.
+- Su principio general es: 
+
+$$
+\:^{b}\vec{\uptau}_{ctrl}\td
+= f\big(u_{\tref}\td , E\td \big),
+$$
+
+donde $E\td$ representa la energía o potencia suministrada.
+
+- Según su principio de operación, pueden dividirse en:
+  - **Magnéticos:** magnetopares.
+  - **Propulsión:** propulsores de gas frío o eléctricos.
+  - **Mecánicos:** ruedas de reacción, ruedas de momento, CMG.
+
+---
+
+## Magnetopares
+::: {.columns}
+
+::: {.column width="49%"}
+
+- Los magnetopares generan par mediante la interacción del campo magnético terrestre $\:^{b}\vec{B}\td$ y el momento magnético inducido por bobinas montadas en el cuerpo del satélite.
+- El par generado se modela como: 
+
+$$
+^{b}\vec{\uptau}_{\text{mt}}\td = \:^{b}\vec{m}_{\text{mt}}\td  \times \:^{b}\vec{B}\td
+$$
+
+donde:
+
+  - $\:^{b}\vec{m}_{\text{mt}}\td  = [\,^{b}m_x\td ,\,^{b}m_y\td ,\,^{b}m_z\td \,]^\top$ es el momento magnético generado por las bobinas.
+  - $\:^{b}m_n = h(N,I_n\td ,A,\mu_r)$, donde $N$ es el número de espiras, $A$ transversal de la bobina, $\mu_r$ es la permeabilidad magnética del núcleo y $I_n\td$ es la corriente en la bobina en el eje $n$.
+  - $\:^{b}\vec{B}\td$ es el campo magnético local en el marco del cuerpo.
+
+:::
+
+::: {.column width="50%"}
+
+![](Figures/magnetorquer.svg){width=100% fig-align="center"}
+
+:::
+
+:::
+
+---
+
+##
+
+::: {.columns}
+
+::: {.column width="50%"}
+
+- Los magnetopares presentan la siguiente restricción: 
+  
+$$
+^{b}\vec{\uptau}_{\text{mt}}\td  \perp \:^{b}\vec{B}\td 
+$$
+
+es decir, únicamente puedo generar par en el plano normal a $\:^{b}\vec{B}\td$.
+- Considere que la ley de control define una señal de control $\:u^{\tref}\td$. El par físicamente realizable es la componente **perpendicular** de $u\td$ con respecto campo magnético local:
+
+$$
+\:^{b}\vec{\uptau}_{\text{mt}}= \:u^{\tref}_\perp =u^{\tref}-u^{\tref}_\parallel = u^{\tref} - \frac{u^{\tref}\cdot\:^{b}\vec{B}}{\|\:^{b}\vec{B}\|^2}\:^{b}\vec{B}
+$$
+
+- Ahora, el par se maximiza cuando $\:^{b}\vec{m}_{\text{mt}} \perp \:^{b}\vec{B}$: 
+
+$$
+\|\:^{b}\vec{\uptau}_{\text{mt}}\|= \|\:^{b}\vec{m}_{\text{mt}}\|\,\|\:^{b}\vec{B}\|\sin(\alpha),
+$$
+
+
+Para maximizar la eficiencia energética del magnetopar, el momento magnético requerido se obtiene de:
+
+$$
+\:^{b}\vec{m}_{\text{mt}}= \frac{\:^{b}\vec{B}\times\:^{b}\vec{\uptau}_{\text{mt}}}{\|\:^{b}\vec{B}\|^2}
+$$
+
+:::
+
+::: {.column width="49%"}
+
+![](Figures/magnetorquer_field.svg){width=100% fig-align="center"}
+
+:::
+
+:::
+
+---
+
+## Magnetopares
+
+::: {.columns}
+
+::: {.column width="50%"}
+
+- **Banco de pruebas:** Simulador de campo magnético terrestre (Jaula Helmholtz).
+- **Canal de entrada:** Pares externos $\:^{b}\vec{\uptau}_{\delta}$.
+- **Ventajas:**
+  - Bajo consumo y masa reducida.
+  - Sin partes móviles ni desgaste mecánico.
+  - Ideal para desaturación de ruedas o control en LEO.
+- **Limitaciones:**
+  - Par limitado y dependiente de la dirección y la magnitud de $\:^{b}\vec{B}$.
+  - No controlable en la dirección de $\:^{b}\vec{B}$, dado que $sin(\alpha) = 0$.
+- **Ejemplos:**
+  - [Animación Jaula Helmholtz](https://www.youtube.com/watch?v=qNnLpcTvuaU)
+  - [Demostración 1 eje](https://www.youtube.com/watch?v=6paT0i_Jhkg)
+  - [Demostración 3 ejes](https://www.youtube.com/watch?v=0tzgIkksKuo)
+  - [Módulos comerciales](https://tensortech.co/product/category/mtq)
+  - [Concepto](https://www.semanticscholar.org/paper/Design-of-attitude-determination-and-control-system-Haryadi-Wijanto/c224d489ed6047b23114e65ba8cf2ecdd26d267c)
+
+:::
+
+::: {.column width="49%"}
+
+![](Figures/mt_physic.png){fig-align="center"}
+
+:::
+
+:::
+
+---
+
+## Propulsores
+::: {.columns}
+
+::: {.column width="50%"}
+
+![](Figures/thrusters.svg){width=100% fig-align="center"}
+
+:::
+
+::: {.column width="49%"}
+
+Utilizan la expulsión de masa para generar fuerza y momento sobre la plataforma.
+
+$$
+\begin{aligned}
+\:^{b}\vec{f}_{n}\td              & = \dot{m}_n\td \:^b\vec{v}_{e,n}\td  + \big(P_{e,n}\td -P_0\big)\:^b\vec{A}_n,                  \\[4pt]
+\:^{b}\vec{\uptau}_{\text{th}}\td & = \:^{b}\vec{r}_{1}\times \:^{b}\vec{f}_{1}\td + \:^{b}\vec{r}_{2}\times \:^{b}\vec{f}_{2}\td .
+\end{aligned}
+$$
+
+donde:
+
+- $\dot{m}_n$: flujo másico de la tobera.
+- $\:^b\vec{v}_{e,n}$: velocidad de eyección relativa de la tobera $n$ expresada en marco cuerpo.
+- $P_{e,n}$ es la presión interna del propelente.
+- $P_0$ es la presión del ambiente.
+- $\:^b\vec{A}_n$: vector normal al área de salida .
+- $\:^b\vec{r}_{\text{th}}$: vector de brazo de palanca desde el centro de masa del satélite al punto de aplicación.
+
+:::
+
+:::
+
+---
+
+##
+::: {.columns}
+
+::: {.column width="50%"}
+
+![](Figures/thrusters.svg){width=100% fig-align="center"}
+
+:::
+
+::: {.column width="49%"}
+
+- **Canal de entrada:** Par de entradas externas $\:^{b}\vec{\uptau}_{\delta}$.
+- **Principio de funcionamiento:** Convierte energía almacenada (química o eléctrica) en una fuerza expulsando masa a alta velocidad.
+- Tiene que aplicarse dos fuerza con la misma magnitud pero dirección contraria sobre el plano normal al vector de giro del satélite. Esto para evitar desplazamientos translacionales debido al empuje.
+
+:::
+
+:::
+
+---
+
+##
+::: {.columns}
+
+::: {.column width="50%"}
+
+![](Figures/service_module_orion.jpg){width=70% fig-align="center"}
+
+:::
+
+::: {.column width="49%"}
+
+- **Control:**
+  - *Continuo:* variación del flujo másico (propulsores iónicos).
+  - *Discreto:* activación de toberas mediante pulsos(gas frío).
+- **Ventajas:**
+  - Es el actuador con mayor capacidad de par que puede tener un satélite.
+  - Aplicables en maniobras de desaturación o de traslación orbital.
+- **Limitaciones:**
+  - Consumo de propelente → vida útil finita.
+  - Requieren sistemas presurizados o de almacenamiento energético.
+  - Alta complejidad.
+- **Ejemplos:**
+  - [Demostración SpaceX](https://www.youtube.com/shorts/z85pLRFXj2k)
+  - [Concepto para CubeSat](https://www.youtube.com/watch?v=zP72l08yD3Q)
+  - [Propulsor iónico DIY](https://www.youtube.com/watch?v=mnCmvxt2jn8)
+  - [Módulos comerciales](https://www.cubesatshop.com/product-category/propulsion-pressurisation/)
+  - [Animación Artemis II ICPS Separation](https://www.binary-space.com/spacemissions/?Mission=ARTEMIS%20I)
+
+:::
+
+:::
+
+---
+
+## Actuadores internos
+
+Los **actuadores internos** generan pares sobre el satélite mediante la *variación del momento angular interno* del sistema. Recordando que el momento angular total del satélite está dado por
+$$
+h\td =h_0\td +h_s\td +h_w\td =h_{\text{sat}}\td +h_{\text{int}}\td \equiv \text{constante}
+$$
+
+donde $h_{\text{sat}}\td=h_0\td+h_s\td$ y $h_{\text{int}}=h_w\td$. Dado el principio del momento angular, **si el momento angular $h_{\text{int}}$ incremente, el momento angular $h_{\text{sat}}$ tiene que disminuir**, y viceversa. La reducción de $h_{\text{sat}}$ implica también una reducción en la velocidad angular del satélite. Su comportamiento dentro del satélite se expresa mediante las siguientes ecuaciones:
+
+$$
+\begin{split}
+\ls{b}\vec{\uptau}_{\text{int}}\td & = \,\ls{b}\dot{\vec{h}}_{\text{int}}\td =\ls{b}\vec{\uptau}_{\text{p}}\td  +\ls{b}\vec{\uptau}_{\text{q}}\td  ,
+\end{split}
+$$
+
+donde:
+
+$$
+\begin{split}
+\ls{b}\vec{h}_{\text{int}}\td    & = \displaystyle\sum_{j=1}^{a} \ls{b}R_j\td  I_j \ls{j}\vec{\omega}_{b,j}\td ,               \\
+\ls{b}\vec{\uptau}_{\text{p}}\td & =\sum_{j=1}^{a}\ls{b}R_j\td S(\ls{j}\vec{\omega}_{b,j}\td )I_j\ls{j}\vec{\omega}_{b,j}\td , \\
+\ls{b}\vec{\uptau}_{\text{q}}\td & =\sum_{j=1}^{a} \ls{b}R_j\td I_j\ls{j}\dot{\vec{\omega}}_{b,j}\td .
+\end{split}
+$$
+
+---
+
+##
+
+::: {.definition-block}
+**Suposición**
+
+El cuerpo $j$ satisface las siguientes suposiciones:
+
+- Tiene cuerpo símetrico con densidad constante y uniforme, *i.e*, $I_j=\text{diag}(\text{I}_{xx,j},\text{I}_{yy,j},\text{I}_{zz,j})$.
+- Sólo gira alrededor del eje $^{b}\hat{z}_j$, *i.e*, $\ls{j}\vec{\omega}_{b,j}\td =[0\quad 0\quad \omega_{z,j}\td ]^{\top}$.
+
+:::
+
+Bajo la anterior suposición, se obtiene que:
+
+$$
+\begin{split}
+\ls{b}\vec{h}_{\text{int}}\td & = \displaystyle\sum_{j=1}^{a} \ls{b}R_j\td  I_j \ls{j}\vec{\omega}_{b,j}\td , \\
+& =\displaystyle\sum_{j=1}^{a}\begin{bmatrix}
+^{b}\hat{x}_j & ^{b}\hat{y}_j & ^{b}\hat{z}_j
+\end{bmatrix}\begin{bmatrix}
+I_{xx,j} & 0        & 0        \\
+0        & I_{yy,j} & 0        \\
+0        & 0        & I_{zz,j}
+\end{bmatrix}
+\begin{bmatrix}
+0 \\
+0 \\
+\omega_{z,j}\td
+\end{bmatrix},                                                                                               \\
+& =\displaystyle\sum_{j=1}^{a}I_{zz,j}\omega_{z,j}\td \ls{b}\hat{z}_j,          \\
+\end{split}
+$$
+
+---
+
+## Ruedas de momento
+
+::: {.columns}
+
+::: {.column width="47%"}
+
+![](Figures/momentum_wheel.svg){width=100% fig-align="center"}
+
+:::
+
+::: {.column width="50%"}
+
+Dispositivo rotativo conformado por un volante de inercia que almacena un **momento angular constante** mediante un motor que lo hace girar a alta velocidad.
+
+$$
+^{b}\vec{h}_{\text{mw}}=I_w\,^{b}\vec{\omega}_{\text{mw}}
+$$
+
+donde:
+
+- $I_w$ es el momento de inercia del volante con respecto a su eje de rotación.
+- $^{b}\vec{\omega}_{\text{mw}}=\omega_{\text{mw}}\ls{b}\hat{e}$, donde $\omega_{\text{mw}}$ es la velocidad angular y $\hat{e}$ es el eje de giro.
+
+El principio de funcionamiento se basa en la conservación del momento angular. En este dispositivo, **la orientación del eje de rotación es fija, y la velocidad angular se mantiene constante**. Esto implica que $\ls{b}\vec{\tau}_{\text{mw}}\td =0$.
+
+:::
+
+:::
+
+---
+
+## Estructura
+
+![](Figures/mt_rw_structure.svg){width=75% fig-align="center"}
+
+---
+
+## Volante de inercia
+
+- El volante de inercia es un dispositivo mecánico rotativo diseñado para almacenar energía cinética mediante su momento de inercia.
+- En esencia, es un disco que gira a alta velocidad y resiste cambios en su movimiento angular.
+- Para optimizar el uso de la masa del voltante, se suele concentrar la mayor parte de esta fuera de su eje de rotación. Con ello, se puede aumentar el momento de inercia del volante.
+
+![](Figures/mt_flywheel.svg){width=60% fig-align="center"}
+
+$$
+\begin{split}
+I_w=\frac{1}{2}\pi\rho\left[h_o(r_o^4-r_i^4)+h_i(r_i^4-r_m^4)+h_o(r_m^4-r_j^4)\right]
+\end{split}
+$$
+
+---
+
+## Motor
+
+Debido a la necesidad de tener una velocidad angular considerablemente alta, se prefiere el uso de motores DC sin escobillas (BLDC, por sus siglas en inglés). Tal como lo dice su nombre, estos motores no tienen las escobillas de los motores DC convencionales.
+
+::: {.columns}
+
+::: {.column width="34%"}
+
+- La ventaja de esto es que la fricción es prácticamente nula, lo cual permite una mayor velocidad angular.
+- De igual manera, el mantenimiento es escaso. Ideal para sistemas espaciales.
+- Sin embargo, esto implica la implementación de un sistema de control especial conocido como controlador electrónica de velocidad (ESC, por sus siglas en inglés).
+
+:::
+
+::: {.column width="65%"}
+
+![](Figures/esc.svg){width=110% fig-align="center"}
+
+:::
+
+:::
+
+---
+
+##
+
+::: {.columns}
+
+::: {.column width="60%"}
+
+- **Canal de entrada:** No genera par por sí mismo, pero la cantidad de momento angular almacenado por el volante se ve reflejado en el par giroscópico total $\vec{\uptau}_{\alpha}$.
+- **Ventajas:**
+  - Estabilización pasiva sin consumo energético desde el momento que se alcanza la velocidad de giro.
+  - Aumenta la rigidez giroscópica del satélite. Utilizado para misiones cuyo modo de control buscan un momento angular constante.
+  - Configuración mecánica sencilla y robusta.
+- **Limitaciones:**
+  - Difícil de reorientar (orientación única).
+  - Desgaste mecánico de los rodamientos.
+
+No obstante, la principal aplicación de estos dispositivos surge en el análisis de:
+
+- Cambios en la magnitud de la velocidad angular.
+- Variaciones en la orientación del eje de rotación.
+
+:::
+
+::: {.column width="35%"}
+
+![](Figures/mw_real.jpg){width=90% fig-align="center"}
+
+:::
+
+:::
+
+---
+
+##
+
+::: {.definition-block}
+**Suposición**
+
+El cuerpo $j$ satisface las siguientes suposiciones:
+- Tiene cuerpo símetrico con densidad constante y uniforme, *i.e*, $I_j=\text{diag}(\text{I}_{xx,j},\text{I}_{yy,j},\text{I}_{zz,j})$.
+- Sólo gira al redor del eje $^{b}\hat{z}_j$, *i.e*, $\ls{j}\vec{\omega}_{b,j}\td =[0\quad 0\quad \omega_{z,j}\td ]^{\top}$.
+
+:::
+
+Bajo la anterior suposición, se obtiene que:
+
+$$
+\begin{split}
+\ls{b}\vec{\uptau}_{\text{q}}\td & = \displaystyle\sum_{j=1}^{a} \ls{b}R_j\td  I_j \ls{j}\dot{\vec{\omega}}_{b,j}\td , \\
+& =\displaystyle\sum_{j=1}^{a}\begin{bmatrix}
+^{b}\hat{x}_j & ^{b}\hat{y}_j & ^{b}\hat{z}_j
+\end{bmatrix}\begin{bmatrix}
+I_{xx,j} & 0        & 0        \\
+0        & I_{yy,j} & 0        \\
+0        & 0        & I_{zz,j}
+\end{bmatrix}
+\begin{bmatrix}
+0 \\
+0 \\
+\dot{\omega}_{z,j}\td
+\end{bmatrix},                                                                                                  \\
+& =\displaystyle\sum_{j=1}^{a}I_{zz,j}\dot{\omega}_{z,j}\td \ls{b}\hat{z}_j,          \\
+& =\begin{bmatrix}
+\ls{b}\hat{z}_1 & \ls{b}\hat{z}_2 & \cdots & \ls{b}\hat{z}_a
+\end{bmatrix}\begin{bmatrix}
+I_{zz,1}\dot{\omega}_{z,1}\td \\
+I_{zz,2}\dot{\omega}_{z,2}\td \\
+\vdots                        \\
+I_{zz,a}\dot{\omega}_{z,a}\td
+\end{bmatrix}=D \begin{bmatrix}
+\vec{\uptau}_{1}\td \\
+\vec{\uptau}_{2}\td \\
+\vdots              \\
+\vec{\uptau}_{a}\td
+\end{bmatrix}
+\end{split}
+$$
+
+---
+
+## Ruedas de reacción
+
+::: {.columns}
+
+::: {.column width="57%"}
+
+![](Figures/reaction_wheels.svg){width=100% fig-align="center"}
+
+:::
+
+::: {.column width="41%"}
+
+Dispositivo rotativo similar a la rueda de momento, pero donde el **par de control** se obtiene al acelerar o desacelerar el rotor.
+
+$$
+\uptau_{n} = I_{w,n}\,\dot{\omega}_{n}
+$$
+
+donde:
+
+- $I_{w,n}$: momento de inercia del volante.
+- $^{b}\omega_{n}$: rapidez angular de la rueda $n$ en el marco del cuerpo.
+
+El par total de un arreglo es la combinación de los pares de cada rueda:
+
+$$
+^{b}\vec{\uptau}_{\text{rw}} = D\,\begin{bmatrix}
+\uptau_{1}\td \\
+\uptau_{2}\td \\
+\vdots        \\
+\uptau_{n}\td
+\end{bmatrix}
+$$
+
+donde $D$ es la matriz de distribución del arreglo.
+
+:::
+
+:::
+
+---
+
+##
+::: {.columns}
+
+::: {.column width="49%"}
+
+**Arreglo ortogonal**
+
+![](Figures/mt_rw_d1.svg){fig-align="center"}
+
+$$
+\begin{split}
+D=\left[\begin{matrix}
+1 & 0 & 0 \\
+0 & 1 & 0 \\
+0 & 0 & 1
+\end{matrix}\right]
+\end{split}
+$$
+
+:::
+
+::: {.column width="49%"}
+
+**Arreglo ortogonal redundante**
+
+![](Figures/mt_rw_d2.svg){fig-align="center"}
+
+$$
+\begin{split}
+D=\left[\begin{matrix}
+1 & 0 & 0 & \frac{1}{\sqrt{3}} \\
+0 & 1 & 0 & \frac{1}{\sqrt{3}} \\
+0 & 0 & 1 & \frac{1}{\sqrt{3}}
+\end{matrix}\right]
+\end{split}
+$$
+
+:::
+
+:::
+
+---
+
+##
+::: {.columns}
+
+::: {.column width="49%"}
+
+**Arreglo tetraédrico**
+
+![](Figures/mt_rw_d3.svg){fig-align="center"}
+
+$$
+\begin{split}
+D=\left[\begin{matrix}
+0  & 0                    & \frac{1}{3}\sqrt{6} & -\frac{1}{3}\sqrt{6} \\
+0  & -\frac{2}{3}\sqrt{2} & \frac{1}{3}\sqrt{2} & \frac{1}{3}\sqrt{2}  \\
+-1 & \frac{1}{3}          & \frac{1}{3}         & \frac{1}{3}
+\end{matrix}\right]
+\end{split}
+$$
+
+:::
+
+::: {.column width="49%"}
+
+**Arreglo piramidal**
+
+![](Figures/mt_rw_d4.svg){fig-align="center"}
+
+$$
+\begin{split}
+D=\left[\begin{matrix}
+\cos(\beta) & 0           & -\cos(\beta) & 0            \\
+0           & \cos(\beta) & 0            & -\cos(\beta) \\
+\sin(\beta) & \sin(\beta) & \sin(\beta)  & \sin(\beta)
+\end{matrix}\right]
+\end{split}
+$$
+
+:::
+
+:::
+
+---
+
+##
+
+|**Arreglo** | **Ventajas** | **Desventajas** |
+|:---:|:---:|:---:|
+| Ortogonal | Diseño simple. Desacoplamiento directo por eje. Fácil control y asignación de par. | Sin redundancia. La falla de un actuador compromete el control completo. |
+| Ortogonal redundante | Mantiene simplicidad del arreglo ortogonal con tolerancia a fallas. Permite redistribución de par. | Mayor masa, volumen y consumo. La asignación de control se vuelve más compleja. |
+| Tetraédrico | Redundancia uniforme en los tres ejes. Buena distribución geométrica del par. | Integración mecánica más compleja. Mayor volumen interno. Acoplamiento entre ejes más fuerte. |
+| Piramidal | Buena redundancia tridimensional. Mejor aprovechamiento de volumen. Configuración ampliamente utilizada en satélites. | Requiere selección adecuada del ángulo $\beta$. Asignación de par más compleja que el arreglo ortogonal. |
+
+Debido a sus ventajas, hay una tendencia al uso de arreglos piramidales. Un valor típico es $\beta=26.565 ^\circ$. Con ello el par máximo proyectado en los tres ejes del satélite se iguala.
+
+**Ejemplo:**
+
+Considere un arreglo de ruedas de reacción en arreglo piramidal con $\beta=26.565 ^\circ$. Considere que el par máximo de cada rueda de reacción es $|\uptau|_{\max}.$
+
+$$
+\uptau_{\text{rw}}=\begin{bmatrix}
+\uptau_x \\
+\uptau_y \\
+\uptau_z
+\end{bmatrix}=\frac{1}{\sqrt{5}}\begin{bmatrix}
+2 & 0 & -2 & 0  \\
+0 & 2 & 0  & -2 \\
+1 & 1 & 1  & 1
+\end{bmatrix}\begin{bmatrix}
+\uptau_1 \\
+\uptau_2 \\
+\uptau_3 \\
+\uptau_4
+\end{bmatrix}=\frac{1}{\sqrt{5}}\begin{bmatrix}
+2\uptau_1-2\uptau_3                 \\
+2\uptau_2-2\uptau_4                 \\
+\uptau_1+\uptau_2+\uptau_3+\uptau_4 \\
+\end{bmatrix}
+$$
+
+de ello, observamos que $\max{|\uptau_x|}=\max{|\uptau_x|}=\max{|\uptau_x|}=\frac{4}{\sqrt{5}}|\uptau|_{\max}$.
+
+---
+
+##
+
+::: {.columns}
+
+::: {.column width="60%"}
+
+- **Canal de entrada:** Par $\vec{\uptau}_\eta \td$.
+- **Ventajas:**
+  - Son lo actuadores más utilizados dada su relación entre costo y rendimiento.
+  - Sin consumo de propelente.
+- **Limitaciones:**
+  - El motor alcanza una velocidad máxima. Esto implica que el volante de inercia no puede acelerar más $(\dot{\omega}_{n}=0)$. A este fenómeno se le llama **saturación**. Si desacelaramos después de conseguir el apuntamiento, perdemos el mismo debido a que se genera par sobre el satélite definido por la propia desaceleración. Por ello, requieren sistemas de desaturación (magnetopares o propulsores).
+  - Desgaste mecánico en los rodamientos.
+- **Ejemplos:**
+  - [Demostración](https://www.youtube.com/watch?v=_UnAryf8r5Q)
+  - [RW + Propulsores: Satélite ROMA](https://www.youtube.com/watch?v=F4Mgt2iwYgY)
+  - [NanoAvionics 4RW](https://nanoavionics.com/cubesat-components/cubesat-reaction-wheels-control-system-satbus-4rw/)
+  - [Sputnix RW](https://sputnix.ru/en/devices/cubesat-devices/reaction-wheels-unit)
+  - [GOMspace](https://gomspace.com/product/reaction-wheels/)
+  - [Cardán](https://www.youtube.com/shorts/MF9slybiN6I)
+  - [Cubo](https://www.youtube.com/watch?v=TbQVrqj0i38)
+
+:::
+
+::: {.column width="35%"}
+
+![](Figures/rw_real.jpg){width=150% fig-align="center"}
+
+:::
+
+:::
+
+---
+
+##
+
+::: {.definition-block}
+**Suposición**
+
+El cuerpo $j$ satisface las siguientes suposiciones:
+
+- Tiene cuerpo símetrico con densidad constante y uniforme, *i.e*, $I_j=\text{diag}(\text{I}_{xx,j},\text{I}_{yy,j},\text{I}_{zz,j})$.
+- Sólo gira al redor del eje $^{b}\hat{z}_j$, *i.e*, $\ls{j}\vec{\omega}_{b,j}\td =[0\quad 0\quad \omega_{z,j}\td ]^{\top}$.
+
+:::
+
+Bajo la anterior suposición, se obtiene que:
+
+$$
+\begin{split}
+\ls{b}\vec{\uptau}_{\text{p}}\td & =\sum_{j=1}^{a}\ls{b}R_j\td S(\ls{j}\vec{\omega}_{b,j}\td )I_j\ls{j}\vec{\omega}_{b,j}\td , \\
+& =\sum_{j=1}^{a}\ls{b}R_j\td S(\ls{j}\vec{\omega}_{b,j}\td )\ls{j}\vec{h}_{\text{w}},        \\
+& =\sum_{j=1}^{a}S(\ls{b}\vec{\omega}_{b,j}\td )\ls{b}\vec{h}_{\text{w}},                     \\
+& =\sum_{j=1}^{a} \ls{b}\vec{\omega}_{b,j}\td  \times \ls{b}\vec{h}_{\text{w}},               \\
+\end{split}
+$$
+
+---
+
+## Giroscopio de momento controlado (CMG)
+
+::: {.columns}
+
+::: {.column width="57%"}
+
+![](Figures/cmg.svg){fig-align="center"}
+
+:::
+
+::: {.column width="40%"}
+
+Dispositivo formado por una **rueda de momento** montada sobre un cardán móvil.
+
+El par se genera al cambiar la orientación del eje de rotación del volante:
+
+$$
+^{b}\vec{\uptau}_{\text{cmg}} = \,^{b}\vec{\omega}_g \times \,^{b}\vec{h}_{\text{w}}(\theta_g)
+$$
+
+donde:
+
+- $\:^{b}\vec{h}_{\text{w}}(\theta_g) = I_w\,^{b}\vec{\omega}_w(\theta_g)$ es el momento angular del volante en función del ángulo del cardán.
+- $\:^{b}\vec{\omega}_g$ es la velocidad angular del cardán (gimbal).
+- $\theta_g$ es el ángulo de rotación del cardán respecto a su eje.
+
+:::
+
+:::
+
+---
+
+##
+
+::: {.columns}
+
+::: {.column width="60%"}
+
+- **Principio de funcionamiento:**
+  - El volante mantiene un momento angular almacenado $\:^{b}h_w$ constante.
+  - Al girar el cardán, la dirección de $\:^{b}h_w$ cambia, generando un **par giroscópico** sobre el cuerpo.
+  - El efecto es análogo a la precesión.
+- **Canal de entrada:** par $\:^{b}\vec{\uptau}_{\zeta}$.
+- **Ventajas:**
+  - Gran capacidad de generar par sin variar la velocidad del volante.
+  - Bajo consumo energético (sólo movimiento del cardán) en comparación a RW.
+  - Alta precisión y capacidad de maniobra.
+- **Limitaciones:**
+  - Complejidad mecánica y de control, presencia de singularidades similar a RPY, lo cual se puede evitar incluyendo más CMG.
+  - Alto costo y masa.
+- **Ejemplos:**
+  - [Spinning Chair](https://www.youtube.com/watch?v=5cRb0xvPJ2M&t=2s)
+  - [Control 1 eje](https://www.youtube.com/watch?v=bhoPg4noT3Y)
+  - [Control 3 ejes – 4 CMG](https://www.youtube.com/watch?v=6fBu1FptkSM&t=4s)
+  - [Sistemas comerciales](https://satsearch.co/products/search/cmg)
+  - [TensorTech](https://www.youtube.com/watch?v=bKzFnFjaNOg)
+  - [TensorTech: Explicación](https://www.youtube.com/watch?v=jZI27h5h3Jo)
+
+:::
+
+::: {.column width="35%"}
+
+![](Figures/CMG_real.png){fig-align="center"}
+
+:::
+
+:::
+
+---
+
+##
+
+| **Actuador** | **CMG** | **Ruedas de reacción** | **Magnetopares** | **Propulsores** |
+|:---:|:---:|:---:|:---:|:---:|
+| **Rango de par** | $10^{-1}$–$10^{2}$ N·m | $10^{-4}$–$10^{-1}$ N·m | $10^{-6}$–$10^{-3}$ N·m | $10^{-2}$–$10^{3}$ N·m |
+| **Precisión típica de apuntamiento** | $<0.001^\circ$–$0.05^\circ$ | $0.01^\circ$–$0.1^\circ$ | $1^\circ$–$5^\circ$ | $0.01^\circ$–$0.1^\circ$ |
+| **Consumo de energía** | Alto | Moderado | Muy bajo | Muy alto |
+| **Masa / Volumen** | Altos | Moderados | Muy bajos | Altos |
+| **Vida útil** | Alta | Alta | Muy alta | Baja |
+| **Tipo de misión típica** | Maniobras grandes / telescopios | Observación / apuntado fino | Detumbling / control LEO | Reorientación rápida / órbita |
+
+---
+
+##
+
+| **Actuador** | **Ventajas** | **Desventajas** |
+|:---|:---|:---|
+| **Magnetopares** | - Muy bajo consumo energético.<br>- Sin partes móviles.<br>- Capaces de desaturar actuadores internos.<br>- Bajo costo y masa mínima. | - Par limitado ($10^{-6}$–$10^{-3}$ N·m).<br>- Solo útil en órbitas bajas (LEO).<br>- Baja precisión ($>1^\circ$). |
+| **Ruedas de reacción** | - Control fino ($\sim0.01^\circ$).<br>- Sin consumo de propelente.<br>- Amplio rango de par ($10^{-4}$–$10^{-1}$ N·m). | - Saturación del momento angular.<br>- Desgaste mecánico y térmico. |
+| **CMG** | - Alto par ($10^{-1}$–$10^{2}$ N·m).<br>- Alta precisión ($<0.01^\circ$).<br>- Ideal para grandes plataformas. | - Complejidad mecánica.<br>- Singularidades y mantenimiento.<br>- Mayor masa y consumo de energía. |
+| **Propulsores** | - Gran par y empuje (hasta $10^3$ N·m).<br>- Capaces de desaturar actuadores internos.<br>- Reorientación y maniobras orbitales. | - Vida útil limitada por propelente.<br>- Alto consumo energético y masa.<br>- Requieren un subsistema de propulsión completo. |
+
+---
+
+::: {.center-vertical}
+
+::: {.chapter-title}
+
+Control
+
+:::
+
+<div class="chapter-line"></div>
+
+::: {.chapter-subtitle}
+
+Conceptos de control
+
+<div class="menu-title" style="display:none;"> ▸ Conceptos de control </div>
+
+:::
+
+:::
+
+---
+
+## Objetivos del control
+
+El propósito fundamental del control automático es lograr que la **salida del sistema** siga un comportamiento deseado, pese a perturbaciones o incertidumbres.
+
+Un sistema de control bien diseñado debe cumplir con los siguientes **objetivos:**
+
+- **Estabilidad:** la respuesta del sistema permanece acotada ante perturbaciones o cambios en las condiciones iniciales.
+- **Desempeño:** mantiene un desempeño aceptable ante variaciones de parámetros o modelos inexactos.
+
+El diseño de control busca un equilibrio entre estos criterios según los requerimientos del sistema y de su respuesta.
+
+---
+
+## Planteamiento matemático general
+
+Todo sistema físico puede representarse mediante un conjunto de ecuaciones que describen su comportamiento dinámico. Dicho conjunto se denomina **ecuaciones de estado**, y se puede representar de la siguiente manera:
+
+$$
+\dot{x}\td  = f(x\td , u\td , d\td , t)
+$${#eq-state_equations}
+
+$$
+y\td  = g(x\td , u\td , t)
+$$
+
+donde:
+
+- $x\td  \in \mathbb{R}^{n}$: vector de **estados** (variables internas del sistema).
+- $u\td  \in \mathbb{R}^{r}$: **entrada de control** o señal aplicada por el actuador.
+- $d\td  \in \mathbb{R}^{p}$ : **perturbaciones** externas no deseadas.
+- $y\td  \in \mathbb{R}^{m}$: **salida** o variable medida.
+- $f(\cdot), g(\cdot)$: funciones (posiblemente no lineales) que describen la dinámica.
+
+El **problema de control** consiste en diseñar una **ley de control**:
+
+$$
+u\td  = K(x\td , t)
+$$
+
+tal que la salida $y\td$ siga una referencia $r\td$ y el sistema mantenga **estabilidad y desempeño** deseado.
+
+---
+
+## Concepto general de estabilidad
+
+El análisis de **estabilidad** en sistemas dinámicos se realiza con respecto a un
+**punto de equilibrio** del sistema, y no sobre cualquier trayectoria arbitraria o el sistema en general.
+
+**Definición de punto de equilibrio:**
+
+Un punto $x^\star$ se denomina **punto de equilibrio** si:
+
+$$
+f(x^\star,0,0,t) = 0 \qquad \forall t
+$$
+
+es decir, si el sistema permanece constante en $x^\star$ cuando parte de esa condición inicial.
+
+- El estudio de estabilidad busca determinar cómo se comporta el sistema cuando se perturba ligeramente de $x^\star$.
+- Si las trayectorias cercanas regresan o permanecen próximas a $x^\star$, el equilibrio se considera **estable**.
+- Si las trayectorias se alejan de $x^\star$, el equilibrio se considera **instable**.
+- Dependiento del comportamiento de las trayectorias del sistema cerca de $x^\star$, se puede determinar el **tipo de estabilidad**.
+
+## Estabilidad
+
+::: {.columns}
+
+::: {.column width="55%"}
+
+Definición: Un punto de equilibrio $x^\star$ es **estable** si, ante perturbaciones pequeñas, las trayectorias del sistema permanecen dentro de una vecindad acotada de $x^\star$.
+
+ **Condición:**
+
+$$
+\forall \varepsilon > 0,\, \exists \delta > 0:\;
+\|x(0)-x^\star\|<\delta \Rightarrow \|x\td -x^\star\|<\varepsilon, \;\forall t\ge0
+$$
+
+El sistema no diverge ante perturbaciones pequeñas, pero no necesariamente converge al equilibrio. A este tipo de estabilidad se le conoce como **estabilidad de Lyapunov**. 
+
+:::
+
+::: {.column width="43%"}
+
+![](Figures/stability.svg){width=100% fig-align="center"} 
+
+:::
+
+:::
+
+
+
+---
+
+## Estabilidad asintótica
+
+::: {.columns}
+
+::: {.column width="55%"}
+
+**Definición:**
+El punto de equilibrio $x^\star$ es **asintóticamente estable** si es estable y, además,
+
+$$
+\lim_{t \to t_f} \|x\td -x^\star\| = 0
+$$
+
+El sistema no solo permanece cerca del equilibrio, sino que **converge gradualmente** hacia él con el tiempo.
+
+Este tipo de estabilidad es deseable en sistemas físicos que deben regresar a su estado de equilibrio después de una perturbación.
+
+:::
+
+::: {.column width="43%"}
+
+![](Figures/stability.svg){width=100% fig-align="center"}
+
+:::
+
+:::
+
+---
+
+## Estabilidad exponencial
+
+::: {.columns}
+
+::: {.column width="55%"}
+
+**Definición:**
+El equilibrio $x^\star$ es **exponencialmente estable** si existe $k,\alpha>0$ tal que:
+
+$$
+\|x\td -x^\star\| \le k\,\|x(0)-x^\star\| e^{-\alpha t}
+$$
+
+- La convergencia es asintótica con una tasa exponencial.
+- La rapidez de convergencia depende del valor de $\alpha$.
+
+:::
+
+::: {.column width="43%"}
+
+![](Figures/stability.svg){width=100% fig-align="center"}
+
+:::
+
+:::
+
+---
+
+## Estabilidad en tiempo finito
+
+::: {.columns}
+
+::: {.column width="55%"}
+
+**Definición:**
+El sistema es **estable en tiempo finito** si alcanza exactamente el equilibrio $x^\star$ en un tiempo finito $T(x_0)$:
+
+$$
+x\td  = x^\star, \quad \forall t \ge T(x_0)
+$$
+
+- El error desaparece completamente después de un tiempo finito.
+- Se logra con leyes de control no lineales discontinuas y de alta complejidad.
+- Ideal en sistemas que requieren respuesta rápida y robusta.
+
+:::
+
+::: {.column width="43%"}
+
+![](Figures/stability.svg){width=100% fig-align="center"}
+
+:::
+
+:::
+
+--- 
+
+##
+
+Las propiedades de estabilidad pueden clasificarse según la **región del espacio de estados** donde se cumplen:
+
+- **Estabilidad local:** la condición de estabilidad se cumple sólo para trayectorias que inician en una vecindad pequeña alrededor del equilibrio $x^\star$.
+- **Estabilidad global:** el sistema permanece estable para cualquier condición inicial $x(0)\in\mathbb{R}^n$.
+
+**En la práctica:**
+
+- En sistemas físicos reales (con ruido, incertidumbres y saturaciones), la única propiedad que puede **garantizarse experimentalmente** es la **estabilidad**. Por ello también se le conoce como **estabilidad práctica**.
+- Este tipo de estabilidad asegura que el sistema se mantendrá dentro de una región segura de operación, aunque no necesariamente converja al equilibrio exacto.
+- Lograr tipos de estabilidad más estrictas (asintótica, exponencial o en tiempo finito) puede ofrecer ventajas como:
+  - Convergencia más rápida.
+  - Mayor rechazo a perturbaciones.
+  - Mejor precisión o desempeño transitorio.
+- Para probar si un punto de equilibrio es estable se utiliza:
+  - Estabilidad en el sentido de Lyapunov
+  - Criterio de Routh-Hurwitz.
+  - Criterio de Nyquist.
+
+---
+
+## Estabilidad entrada–salida
+
+Es común que en la práctica no se cuente con las mediciones de los estados internos. Es por ello que es conveniente definir la estabilidad mediante la entrada y la salida del sistema. La **estabilidad entrada–salida** analiza la relación entre las señales externas del sistema.
+
+**Definición:**
+Un sistema de la forma @eq-state_equations es **estable E/S** si:
+
+$$
+\|u\td \| < \infty \Rightarrow \|y\td \| < \infty
+$$
+
+es decir, toda entrada acotada produce una salida acotada (propiedad **BIBO**(Bounded Input-Bounded Output)).
+
+**Interpretación:**
+
+- Evalúa la respuesta del sistema sin necesidad de conocer los estados internos.
+- Garantiza que el sistema no amplifique señales limitadas hasta valores infinitos.
+
+La estabilidad E/S se complementa con la **estabilidad interna**.
+
+---
+
+::: {.center-vertical}
+
+::: {.chapter-title}
+
+Control
+
+:::
+
+<div class="chapter-line"></div>
+
+::: {.chapter-subtitle}
+
+Perfil de orientación 
+
+<div class="menu-title" style="display:none;"> ▸ Perfil de orientación </div>
+
+:::
+
+:::
+
+
+---
+
+## Perfil de orientación
+
+::: {.definition-block}
+**Definición**
+
+El perfil de orientación de una misión espacial es el conjunto de fases operacionales del satélite relacionadas con el control de orientación, definidas de acuerdo con el estado actual de la misión y los objetivos del vehículo.
+:::
+
+
+:::{.columns}
+
+:::{.column width=49%}
+
+Cada fase establece:
+
+- el objetivo de orientación,
+- la referencia de apuntamiento,
+- la estrategia de estabilización,
+- la gestión del momento angular,
+- y la configuración del sistema ADCS.
+
+:::
+
+:::{.column width=49%}
+
+**Conceptos asociados**
+
+- **Tipos de apuntamiento** .
+- **Tipos de estabilización**.
+- **Gestión del momento angular**.
+- **Modos de control**.
+:::
+
+:::
+
+El control asociado a cada fase debe satisfacer el problema de control de orientación.
+
+::: {.definition-block}
+**Problema de control de orientación**
+
+Diseñar una ley de control $\vec{u}\td$ tal que
+
+$$
+x\td  \to x^{\tref}\td
+$$
+
+donde $x^{\tref}\td$ es la referencia de $x\td$ que describe el comportamiento deseado del satélite.
+:::
+
+---
+
+## Tipos de apuntamiento
+
+El **tipo de apuntamiento** define la orientación que debe mantener el satélite
+según la misión o tarea que realiza. El tipo de apuntamiento seleccionado define sobre qué marco de referencia vamos a definir nuestras referencias.
+
+::: {.columns}
+
+::: {.column width="55%"}
+
+**Tipos de apuntamiento:**
+
+- **Inercial:** fija respecto a un marco inercial.
+  $$
+  ^{b}q_i^\tref \equiv \text{constante}, \ls{b}\vec{\omega}_{i,b}^\tref=0
+  $$
+
+- **Nadir:** eje principal apuntando hacia el centro de la Tierra.
+  $$
+  ^{b}q_h^\tref \equiv \text{constante}, \ls{b}\vec{\omega}_{h,b}^\tref=0 \Rightarrow \ls{b}\vec{\omega}_{i,b}^\tref=\ls{b}\vec{\omega}_{i,h}
+  $$
+
+- **Seguimiento:** orientación variable siguiendo un objetivo o trayectoria.
+  $$
+  ^{b}q_i^\tref\td , \ls{b}\vec{\omega}_{i,b}^\tref\td \quad \text{o} \quad \:^{b}q_h^\tref\td , \ls{b}\vec{\omega}_{h,b}^\tref\td,
+  $$
+
+  dependiendo en qué marco sea más práctico definir el objetivo.
+
+:::
+
+::: {.column width="40%"}
+
+![](Figures/pointing2.png){width=100% fig-align="center"}
+
+:::
+
+:::
+
+---
+
+## Tipos de estabilización
+
+El **tipo de estabilización** define la estrategia física utilizada para mantener la orientación del satélite frente a perturbaciones externas.
+
+::: {.columns}
+
+::: {.column width="60%"}
+
+- **Gravity-gradient stabilization:** la orientación se estabiliza pasivamente mediante el gradiente gravitacional terrestre.
+- **Spin stabilization:** el satélite rota alrededor de un eje principal para generar rigidez giroscópica. Esto implica que todo el satélite gira al rededor de su eje principal.
+- **Dual-spin stabilization:** una parte del vehículo rota para generar rigidez giroscópica mientras otra permanece desacoplada para carga útil o antenas.
+- **Three-axis stabilization:** la orientación se controla activamente sobre los tres ejes mediante actuadores.
+
+La elección del tipo de estabilización define los siguiente aspectos de los actuadores:
+
+- Tipo.
+- Cantidad.
+- Capacidad.
+- Disposición física dentro del satélite.
+
+:::
+
+::: {.column width="35%"}
+
+![](Figures/momentum_mode.svg){width=90% fig-align="center"}
+
+:::
+
+:::
+
+---
+
+## Gestión del momento angular
+
+La **gestión del momento angular** define la estrategia utilizada para almacenar, redistribuir y descargar el **momento angular interno** generado por los actuadores del ADCS. Recordando que el momento angular total del satélite es
+
+$$
+\vec{h}=h_{\text{sat}}\td +h_{\text{int}}\td ,
+$$
+
+- **Momentum-bias:** existe un momento dominante almacenado sobre un eje preferente. 
+
+$$
+\|\vec{h}_{\text{int}}\|\gg 0
+$$
+
+La rigidez giroscópica contribuye parcialmente mantener la orientación el vehículo ante perturbaciones (similar a Dual-Spin Stabilization). Sin embargo, esto implica consumo constante de energía y desgaste mecánico de los actuadores.
+
+- **Zero-momentum:** las ruedas almacenan poco momento promedio.
+
+$$
+\vec{h}_{\text{int}} \approx 0
+$$
+
+El control depende principalmente de acción activa de los actuadores pero con una reducción bastante importante del consumo de energía y del desgaste mecánico. No obstante, los actuadores no aportan tiene rigidez giroscópica al vehículo.
+
+La elección entre estas estrategias define los siguientes aspectos de los actuadores internos
+
+- Consumo energético.
+- Capacidad.
+- Actuadores auxiliares dedicados a la gestión de momento angular (*e.g.* magnetopares o propulsores).
+
+---
+
+## Modos de control
+
+Los **modos de control** definen la configuración operacional del sistema ADCS durante una fase específica de la misión. Cada modo de control establece el objetivo de control, los sensores y actuadores operativos, la precisión requerida, y la estrategia de control utilizada.
+
+**Detumbling mode**
+
+- Primer modo de control después del despliegue.
+- Objetivo principal:
+
+$$
+\|\vec{\omega}\|\rightarrow 0
+$$
+
+- No busca una orientación precisa, únicamente busca frenar el satélite.
+- Sensores típicos: magnetómetros, sensores solares gruesos, giroscopios.
+- Actuadores típicos: magnetopares.
+
+**Safe mode**
+
+- Modo de supervivencia ante fallas o perdidas de estabilidad.
+- Objetivo principal: mantener potencia, comunicaciones y estabilidad básica.
+- Generalmente utiliza apuntamiento solar para maximizar generación eléctrica.
+- No busca máxima precisión de orientación.
+- Sensores típicos: magnetómetros, sensores solares gruesos, giroscopios.
+- Actuadores típicos: magnetopares y ruedas de reacción.
+
+---
+
+##
+
+**Acquisition mode**
+
+- Objetivo principal:
+$$
+\hat{q} \rightarrow q
+$$
+es decir, obtener la primer estimación de la orientación del vehículo antes de la operación nominal.
+- Sensores típicos: todos.
+- Actuadores típicos: magnetopares o ruedas de reacción, únicamente para mejorar la calidad de la determinación.
+
+**Slew mode**
+
+- Reorientación controlada desde la orientación actual hasta una orientación deseada.
+- Objetivo principal: 
+$$
+q \rightarrow q^\tref\td
+$$
+- Utilizado durante la comunicación con un objetivo, maniobras de observación y seguimiento de trayectorias.
+- La referencia de orientación varía continuamente durante la maniobra.
+- Sensores típicos: todos.
+- Actuadores típicos: ruedas de reacción, CMG y propulsores.
+
+---
+
+##
+
+**Pointing mode**
+
+- Modo nominal de alta precisión utilizado durante la operación de la carga útil.
+- Objetivo principal: 
+$$
+q \rightarrow q^\tref,
+                  \qquad
+                  \vec{\omega} \rightarrow \vec{\omega}^\tref 
+$$
+dependiendo el tipo de apuntamiento.
+
+- Busca minimizar errores de orientación y vibraciones durante la misión.
+- Utilizado en observación terrestre, astronomía, instrumentos ópticos o experimentos que requieran una alta estabilidad.
+- Requiere estimación precisa de orientación y velocidad angular.
+- Sensores típicos: todos.
+- Actuadores típicos: ruedas de reacción y CMG.
+
+**Momentum dumping mode**
+
+- Modo utilizado para descargar momento acumulado en ruedas de reacción o CMGs.
+- Objetivo principal:
+$$
+\|\vec{h}_w\| \rightarrow 0.
+$$
+- Las perturbaciones externas y las maniobras provocan acumulación progresiva de momento en los actuadores internos.
+- Busca **evitar saturación y recuperar capacidad de control**.
+- Es el puente entre las dos estrategias de gestión de momento angular.
+- Sensores típicos: todos.
+- Actuadores típicos: magnetopares y propulsores.
+
+---
+
+## Perfil de orientación: Satélite de observación terrestre
+
+|**Fase** | **Modo de control** | **Apuntamiento** | **Objetivo principal** |
+|:---:|:---:|:---:|:---:|
+| Despliegue | Detumbling | Libre | Reducir velocidades angulares iniciales. |
+| Supervivencia inicial | Safe mode | Apuntamiento al sol | Garantizar potencia y comunicaciones básicas. |
+| Inicialización | Acquisition mode | Libre | Estimar la orientación. |
+| Operación nominal | Pointing mode | Apuntamiento a nadir | Mantener precisión durante adquisición de imágenes. |
+| Comunicación | Slew mode | Seguimiento | Reoriención del satélite en dirección a la estación terrena. |
+| Desaturación | Momentum dumping mode | Libre | Descargar momento acumulado en ruedas de reacción. |
+
+![](Figures/attitude_profile_1.png){width=75% fig-align="center"}
+
+---
+
+##
+
+![](Figures/attitude_profile_1_flow.png){width=80% fig-align="center"}
+
+---
+
+::: {.center-vertical}
+
+::: {.chapter-title}
+
+Control
+
+:::
+
+<div class="chapter-line"></div>
+
+::: {.chapter-subtitle}
+
+Controlador
+
+<div class="menu-title" style="display:none;"> ▸ Controlador </div>
+
+:::
+
+:::
+
+
+---
+
+## Controlador
+- Un **controlador** es un dispositivo que ajusta el comportamiento de un sistema dinámico con el objetivo de alcanzar un **estado deseado** $\xref$.
+- Procesa el **error de orientación** $\tx \td$ mediante una **ley de control** que genera la señal $u^{\tref}\td$ aplicada a los actuadores:
+- En un sistema de control de orientación, el controlador determina los pares de control $u\td$ necesarios para compensar perturbaciones y alcanzar la orientación de referencia.
+- La implementación puede ser:
+  - **Centralizada:** ejecutada por la OBC.
+  - **Descentralizada:** mediante una unidad de procesamiento dedicada al ADCS.
+
+![](Figures/control.svg){width=80% fig-align="center"}
+
+---
+
+## Error de apuntamiento
+El **error de apuntamiento** cuantifica la desviación entre la orientación actual y la orientación deseada del satélite.
+
+:::: {.columns}
+
+::: {.column width="33%"}
+
+### Roll-Pitch-Yaw
+
+$$
+\begin{aligned}
+\tw\td &= \bwib^{\tref}\td-\bwib\td,\\
+\begin{bmatrix}
+\tphi\td\\
+\ttheta\td\\
+\tpsi\td
+\end{bmatrix}
+&=
+\begin{bmatrix}
+\phi^{\tref}\td\\
+\theta^{\tref}\td\\
+\psi^{\tref}\td
+\end{bmatrix}
+-
+\begin{bmatrix}
+\phi\td\\
+\theta\td\\
+\psi\td
+\end{bmatrix}
+\end{aligned}
+$$
+
+**Objetivo**
+
+$$
+\tx\td=
+\begin{bmatrix}
+\tw\td\\
+\tphi\td\\
+\ttheta\td\\
+\tpsi\td
+\end{bmatrix}
+\rightarrow 0
+$$
+
+:::
+
+::: {.column width="33%"}
+
+### Matrices de rotación
+
+$$
+\begin{aligned}
+\tw\td &= \bwib^{\tref}\td-\bwib\td,\\
+\tR\td &= \bRi^{\tref}\td\bRi^\T\td,\\
+\ttheta\td &= \cos^{-1}\left(\frac{\operatorname{tr}(\tR\td)-1}{2}\right)
+\end{aligned}
+$$
+
+**Objetivo**
+
+$$
+\tx\td=
+\begin{bmatrix}
+\tw\td\\
+\ttheta\td
+\end{bmatrix}
+\rightarrow 0
+$$
+
+:::
+
+::: {.column width="33%"}
+
+### Cuaterniones
+
+$$
+\begin{aligned}
+\tw\td &= \bwib^{\tref}\td-\bwib\td,\\
+\tq\td &= \bqi^\tref\td \otimes \bqi^{\star}\td
+\end{aligned}
+$$
+
+**Objetivo**
+
+$$
+\begin{aligned}
+\tw\td &\rightarrow 0,\\
+\tq\td &\rightarrow
+\begin{bmatrix}
+1\\
+0\\
+0\\
+0
+\end{bmatrix},\\
+&\Leftrightarrow\\
+\tx(t) &=
+\begin{bmatrix}
+\tw\td\\
+\tqv\td
+\end{bmatrix}
+\rightarrow 0
+\end{aligned}
+$$
+
+donde $\tqv\td$ es la parte vectorial de $\tq\td$.
+
+:::
+
+::::
+
+Es importante enfatizar que estamos asumiendo que conocemos exactamente las variables del sistema $x\td$ para definir el error. En la práctica (y como vimos en la sección de determinación), el mejor caso posible es conocer un estimado $\hx\td$, y con ella construir el error $\tx\td=\xref\td - \hx\td$
+
+---
+
+## Ley de control
+- Una **ley de control** es una expresión matemática que define cómo debe generarse la señal de control $\uref \td$ a partir del error para lograr el objetivo de control.
+
+::: {.columns}
+
+::: {.column width="49%"}
+
+- Si podemos medir el error: 
+$$ 
+u\td = f(\tx\td)
+$$
+- Cada enfoque requiere condiciones específicas sobre el sistema para ser implementadas. Es decir, no todos los enfoques funcionan para cualquier sistema dinámico, sólo para alguna familia de sistemas dinámicos.
+- Dado que la ley de control depende del error, es común que se analice la estabilidad de la dinámica del error y no del sistema dinámico en el que se implementa la ley de control.
+- Por tal motivo, vamos a empezar desglosando la dinámica del error de apuntamiento.
+
+:::
+
+::: {.column width="50%"}
+
+![](Figures/Enfoques.svg){width=100% fig-align="center"}
+
+:::
+
+:::
+
+---
+
+## Dinámica del error de apuntamiento en el caso inercial
+
+Considere el modelo rotacional del satélite en coordenadas inerciales:
+
+$$
+\begin{split}
+\J\dvw\td & =-S(\vw)(\J\vw\td+\h_{\inte}\td)+\uptau_{\inte}\td+\uptau_{\ext}\td, \\
+\dq\td    & =-\frac{1}{2}\mathbf{\w}\td \otimes \q\td,
+\end{split}
+$$
+
+donde $\vw=\bwib$, $\q=\bqi$, $\vtau_{\inte}=\dot{\h}_{\inte}$ son los pares asociados a los actuadores internos (ruedas de reacción o CMG), $\vtau_{\ext}=\vtau_\act+\vtau_{\per}$, $\vtau_{\per}$ son los pares asociados a perturbaciones y $\vtau_{\act}$ son los pares asociados a actuadores externos (magnetopares o propulsores). Despreciamos el término asociado al centro de masas $\s{b}{\vec{r}}{c}\times\s{b}{\vec{f}}{c},$ debido a que asumimos un único cuerpo central.
+
+Definimos el error de velocidad angular y orientación como
+
+$$
+\begin{split}
+\tw & =\vwref-\vw,         \\
+\tq & =\qref\otimes\q^{*}.
+\end{split}
+$$
+
+---
+
+##
+
+La dinámica de $\tw\td$ es
+
+$$
+\begin{split}
+\J\dtw\td & =\J\dvwref\td-\J\dvw\td                                                                                             \\
+& =S(\vw\td)\left(\J\vw\td+\h_{\inte}\td\right)-\uptau_{\inte}\td-\uptau_{\ext}\td+\J\dvwref\td                       \\
+& =S(\vwref\td-\tw\td)\left(\J(\vwref\td-\tw\td)+\h_{\inte}\td\right)-\uptau_{\inte}\td-\uptau_{\ext}\td+\J\dvwref\td \\
+& =S(\tw\td)\left(\J\tw\td-\h_{\inte}\td-\J\vwref\td\right)-\uptau_{\inte}\td-\uptau_{\ext}\td+\uptau_{\feed}\td,
+\end{split}
+$$
+
+donde
+
+$$
+\uptau_{\feed}\td=S(\vwref\td)\left(\J\vw\td+\h_{\inte}\td\right)+\J\dvwref\td.
+$$
+
+La dinámica de $\tq\td$ es
+
+$$
+\begin{split}
+\dq\td
+& =
+\dqref\td\otimes\q^{*}\td
++
+\qref\td\otimes\dot{\q}^{*}\td                    \\
+& =
+-\frac{1}{2}\vwref\td\otimes\qref\td\otimes\q^{*}\td
++\frac{1}{2}\qref\td\otimes\q^{*}\td\otimes\vw\td \\
+& =
+-\frac{1}{2}\vwref\td\otimes\tq\td
++\frac{1}{2}\tq\td\otimes\vw\td                   \\
+& =
+-\frac{1}{2}\vwref\td\otimes\tq\td
++\frac{1}{2}\tq\td\otimes(\vwref\td-\tw\td)       \\
+& =
+-\frac{1}{2}\tw\td\otimes\tq\td
++\frac{1}{2}\left(\tq\td\otimes\vwref\td-\vwref\td\otimes\tq\td\right).
+\end{split}
+$$
+
+---
+
+##
+
+Si descomponemos $\tq\td$ en su parte escalar $\tqc\td$ y vectorial $\tqv\td$, la dinámica de $\tq\td$ se puede escribir como
+
+$$
+\tq\td=
+\begin{bmatrix}
+\tqc\td \\
+\tqv\td
+\end{bmatrix},
+\qquad
+\tw\td\equiv
+\begin{bmatrix}
+0 \\
+\tw\td
+\end{bmatrix},
+\qquad
+\vwref\td\equiv
+\begin{bmatrix}
+0 \\
+\vwref\td
+\end{bmatrix}.
+$$
+
+$$
+\begin{split}
+\dtqc\td & =\frac{1}{2}\tqv^{\top}\td\tw\td,                                           \\
+\dtqv\td & =-\frac{1}{2}\tqc\td\tw\td-\frac{1}{2}S(\tqv\td)\tw\td+S(\tqv\td)\vwref\td.
+\end{split}
+$$
+
+::: {.definition-block}
+**Dinámica del error de apuntamiento en el marco inercial**
+
+$$
+\begin{split}
+\J\dtw\td & =S(\tw\td)\left(\J\tw\td-\h_{\inte}\td-\J\vwref\td\right)-\uptau_{\inte}\td-\uptau_{\ext}\td+\uptau_{\feed}\td, \\
+\dtqc\td  & =\frac{1}{2}\tqv^{\top}\td\tw\td,                                                                               \\
+\dtqv\td  & =-\frac{1}{2}\tqc\td\tw\td-\frac{1}{2}S(\tqv\td)\tw\td+S(\tqv\td)\vwref\td.
+\end{split}
+$${#eq-dyn_error_iner}
+
+$$
+\uptau_{\feed}\td=S(\vwref\td)\left(\J\vw\td+\h_{\inte}\td\right)+\J\dvwref\td.
+$$
+
+:::
+
+---
+
+## Dinámica del error de apuntamiento en el caso orbital
+
+Considere el modelo rotacional del satélite en coordenadas orbitales:
+
+$$
+\begin{split}
+\J\dvw\td & =-S(\vw\td+\vwh\td)\left(\J(\vw\td+\vwh\td)+\h_{\inte}\td\right)+\J S(\vwh\td)\vw\td+\uptau_{\inte}\td+\uptau_{\ext}\td, \\
+\dq\td    & =-\frac{1}{2}\mathbf{\w}\td \otimes \q\td,
+\end{split}
+$$
+
+donde $\vw=\bwhb$, $\q=\bqh$, $\vwh=\bwih$, $\vtau_{\inte}=\dot{\h}_{\inte}$ y $\vtau_{\ext}=\vtau_\act+\vtau_{\per}$.
+
+Despreciamos el término asociado al centro de masas  $\s{b}{\vec{r}}{c}\times\s{b}{\vec{f}}{c}$, debido a que asumimos un único cuerpo central. Además, despreciamos el término $-\J\dvwh\td$, debido a su baja influencia en la dinámica.
+
+Definimos el error de velocidad angular y orientación como
+
+$$
+\begin{split}
+\tw & =\vwref-\vw,         \\
+\tq & =\qref\otimes\q^{*}.
+\end{split}
+$$
+
+---
+
+##
+
+La dinámica de $\tw\td$ es
+
+$$
+\begin{split}
+\J\dtw\td
+& =
+\J\dvwref\td-\J\dvw\td                           \\
+& =
+S(\vw\td+\vwh\td)\left(\J(\vw\td+\vwh\td)+\h_{\inte}\td\right)
+-\J S(\vwh\td)\vw\td                             \\
+& \quad
+-\uptau_{\inte}\td-\uptau_{\ext}\td+\J\dvwref\td \\
+& =
+S(\vwref\td+\vwh\td-\tw\td)
+\left(
+\J(\vwref\td+\vwh\td-\tw\td)+\h_{\inte}\td
+\right)                                          \\
+& \quad
+-\J S(\vwh\td)(\vwref\td-\tw\td)
+-\uptau_{\inte}\td-\uptau_{\ext}\td+\J\dvwref\td \\
+& =
+S(\tw\td)
+\left(
+\J\tw\td-\h_{\inte}\td-\J(\vwref\td+\vwh\td)
+\right)                                          \\
+& \quad
+-\J S(\vwh\td)\tw\td
+-\uptau_{\inte}\td-\uptau_{\ext}\td+\uptau_{\feed}\td,
+\end{split}
+$$
+
+donde
+
+$$
+\uptau_{\feed}\td=
+S(\vwref\td+\vwh\td)
+\left(
+\J(\vw\td+\vwh\td)+\h_{\inte}\td
+\right)
+-\J S(\vwh\td)\vwref\td
++\J\dvwref\td.
+$$
+
+---
+
+##
+
+La dinámica de $\tq\td$ es idéntica al caso inercial:
+
+$$
+\begin{split}
+\dtqc\td & =\frac{1}{2}\tqv^{\top}\td\tw\td,                                           \\
+\dtqv\td & =-\frac{1}{2}\tqc\td\tw\td-\frac{1}{2}S(\tqv\td)\tw\td+S(\tqv\td)\vwref\td.
+\end{split}
+$$
+
+::: {.definition-block}
+**Dinámica del error de apuntamiento en el marco orbital**
+
+$$
+\begin{split}
+\J\dtw\td
+& =
+S(\tw\td)
+\left(
+\J\tw\td-\h_{\inte}\td-\J(\vwref\td+\vwh\td)
+\right)                                                                                \\
+& \quad
+-\J S(\vwh\td)\tw\td
+-\uptau_{\inte}\td-\uptau_{\ext}\td+\uptau_{\feed}\td,                                 \\
+\dtqc\td & =\frac{1}{2}\tqv^{\top}\td\tw\td,                                           \\
+\dtqv\td & =-\frac{1}{2}\tqc\td\tw\td-\frac{1}{2}S(\tqv\td)\tw\td+S(\tqv\td)\vwref\td.
+\end{split}
+$${#eq-dyn_error_orb}
+
+$$
+\uptau_{\feed}\td=
+S(\vwref\td+\vwh\td)
+\left(
+\J(\vw\td+\vwh\td)+\h_{\inte}\td
+\right)
+-\J S(\vwh\td)\vwref\td
++\J\dvwref\td.
+$$
+
+:::
+
+---
+
+## Objetivo de control
+
+A partir de las dinámicas de error desarrolladas previamente, buscamos diseñar una ley de control tal que el error de apuntamiento converja al origen.
+
+Definimos el estado de error como
+
+$$
+\tx\td=
+\begin{bmatrix}
+\tw^{\top}\td &
+\tqv^{\top}\td
+\end{bmatrix}^{\top}.
+$$
+
+Dependiendo del modo de control utilizado, se empleará la dinámica de error correspondiente. El objetivo es garantizar que
+
+$$
+\tx=0
+$$
+
+sea un punto de equilibrio estable del sistema en lazo cerrado. Para lograr lo anterior, debemos encontrar una entrada de control
+
+$$
+u\td=\uptau_{\inte}\td+\uptau_{\act}\td,
+$$
+
+tal que la dinámica del error satisfaga propiedades adecuadas de estabilidad. En general, la ley de control deberá:
+
+- estabilizar el error angular $\tw\td$,
+- estabilizar el error de orientación $\tqv\td$,
+- rechazar perturbaciones externas $\uptau_{\per}\td$,
+- y compensar los términos de acoplamiento no lineal $\uptau_{\feed}\td$.
+
+---
+
+## Análisis de estabilidad
+
+Las dinámicas de error obtenidas previamente corresponden a sistemas no lineales acoplados.
+
+Debido a la presencia de:
+
+- productos cruz,
+- términos de acoplamiento giroscópico,
+- cinemática basada en cuaterniones,
+- y perturbaciones externas,
+
+no es posible analizar la estabilidad utilizando directamente herramientas lineales clásicas.
+
+En consecuencia, necesitamos una herramienta que permita analizar estabilidad directamente sobre la dinámica no lineal del sistema.
+
+Los teoremas de estabilidad de Lyapunov proporcionan precisamente este marco de análisis.
+
+---
+
+## Idea fundamental de Lyapunov
+
+La idea central del método de Lyapunov consiste en construir una función escalar
+
+$$
+V(\tx):\mathbb{R}^{n}\rightarrow\mathbb{R},
+$$
+
+denominada **función de Lyapunov**, que represente una medida de energía o error del sistema.
+
+Si $V(\tx)$ satisface:
+
+- $V(\tx)>0$ para todo $\tx\neq0$,
+- $V(0)=0$,
+- $\dot{V}(\tx)=\frac{\partial V}{\partial \tx}\dot{\tx}\leq0$,
+
+entonces el origen $\tx=0$ es un punto de equilibrio estable localmente.
+
+Además, si
+
+$$
+\dot{V}(\tx)<0,
+\qquad
+\forall \tx\neq0,
+$$
+
+entonces el origen es asintóticamente estable localmente.
+
+Por tanto, el diseño del controlador consistirá en forzar que $\dot{V}(\tx)$ sea semidefinida negativa o definida negativa.
+
+---
+
+## Estrategia de diseño
+
+La metodología que seguiremos será:
+
+1. proponer una función candidata de Lyapunov $V(\tx)$, donde $\tx=[\tw^{\top},\tqv^{\top}]^{\T}$,
+2. calcular $\dot{V}(\tx)$ utilizando la dinámica del error,
+3. diseñar la entrada de control $u\td$ para garantizar que $\dot{V}(\tx)\leq0$,
+4. concluir estabilidad mediante los teoremas de Lyapunov y teoremas adicionales.
+
+::: {.definition-block}
+**Observación**
+
+La función de Lyapunov no necesariamente debe corresponder a una energía física real del sistema. En principio, cualquier función escalar que satisfaga las propiedades de positividad y decrecimiento temporal puede utilizarse para demostrar estabilidad.
+
+Sin embargo, en sistemas mecánicos es común construir funciones de Lyapunov utilizando términos asociados a la energía cinética, potencial o medidas geométricas del error, ya que esto suele simplificar el análisis y el diseño del controlador.
+:::
+
+---
+
+## Ejemplo: Sistema rotacional de un eje
+
+Considere la dinámica rotacional de un sistema de un solo eje:
+
+$$
+J\dot{\omega}\td=u\td,\qquad \dot{\theta}\td=\omega\td,
+$$
+
+donde $\theta\td$ representa la orientación angular, $\omega\td$ representa la velocidad angular, $J>0$ es el momento de inercia y $u\td$ es la entrada de control.
+
+Definimos los errores de orientación y velocidad angular como
+
+$$
+\tilde{\theta}\td=\theta^\tref\td-\theta\td,
+\qquad
+\tilde{\omega}\td=\omega^\tref\td-\omega\td.
+$$
+
+Para una referencias constante,
+
+$$
+\omega^\tref\td=0,
+\qquad
+\dot{\omega}^\tref\td=0,
+$$
+
+la dinámica del error queda
+
+$$
+J\dot{\tilde{\omega}}\td=-u\td, \qquad \dot{\tilde{\theta}}\td=\tilde{\omega}\td.
+$$
+
+Considere la siguiente ley de control
+
+$$
+u\td=\gamma_{1}\tilde{\theta}\td+\gamma_{2}\tilde{\omega}\td,
+$$
+
+donde $\gamma_{1}, \gamma_{2} \in \mathbb{R}$ , con $\gamma_{2}>0$ y $\gamma_{1}>0$.
+
+---
+
+##
+
+Proponga la siguiente función candidata de Lyapunov:
+
+$$
+V(\tx)=\frac{1}{2}J\tilde{\omega}^{2}\td+\frac{1}{2}\gamma_{1}\tilde{\theta}^{2}\td.
+$$
+
+Claramente,
+
+$$
+V(\tx)>0,
+\qquad
+\forall \tx\neq0,
+$$
+
+y
+
+$$
+V(\mathbf{0})=0.
+$$
+
+Derivando respecto al tiempo:
+
+$$
+\begin{split}
+\dot{V}(\tx)
+& =
+J\tilde{\omega}\td\dot{\tilde{\omega}}\td
++
+\gamma_{1}\tilde{\theta}\td\dot{\tilde{\theta}}\td \\
+& =
+\tilde{\omega}\td(-u\td)
++
+\gamma_{1}\tilde{\theta}\td\tilde{\omega}\td       \\
+& =
+-\tilde{\omega}\td
+\left(
+\gamma_{1}\tilde{\theta}\td
++
+\gamma_{2}\tilde{\omega}\td
+\right)
++
+\gamma_{1}\tilde{\theta}\td\tilde{\omega}\td       \\
+& =
+-\gamma_{2}\tilde{\omega}^{2}\td
+\leq0.
+\end{split}
+$$
+
+Por tanto, el origen es estable localmente. Sin embargo, este resultado únicamente garantiza que $\dot{V}(\tx)\leq0$, es decir, que la energía del sistema no incrementa con el tiempo y no nos da información sobre la estabilidad de $\ttheta\td$.
+
+---
+
+##
+
+Observe que
+
+$$
+\dot{V}(\tx)=0
+$$
+
+ocurre únicamente cuando
+
+$$
+\tilde{\omega}\td=0.
+$$
+
+Sin embargo, si $\tilde{\omega}\td=0$, entonces $\dot{\tilde{\omega}}\td=0$. Con ello, la dinámica del sistema implica
+
+$$
+0=-u\td.
+$$
+
+Sustituyendo la ley de control:
+
+$$
+0=
+-\gamma_{1}\tilde{\theta}\td
+-\gamma_{2}\tilde{\omega}\td.
+$$
+
+Como $\tilde{\omega}\td=0$ y $\gamma_{1}>0$,
+
+$$
+\tilde{\theta}\td=0.
+$$
+
+Por tanto, el único punto en el que $\dot{V}(\tx)=0$ es el origen del espacio de estados:
+
+$$
+\tilde{\theta}\td=0,
+\qquad
+\tilde{\omega}\td=0,
+$$
+
+y con ello, podemos concluir que el origen es asintóticamente estable. Este análisis esta generalizado en el **teorema de invariancia de LaSalle**.
+
+---
+
+## Análisis de estabilidad: caso inercial
+
+Considere la siguiente función candidata de Lyapunov:
+
+$$
+V(\tx)=\frac{1}{2}\tw^{\top}\td\J\tw\td+\gamma_{1}\tqv^{\top}\td\tqv\td+\gamma_{1}(1-\tqc\td)^{2}.
+$$
+
+Debido a que $\J=\J^{\top}>0$:
+
+$$
+V(\tx)>0,\qquad \forall\tx\neq\mathbf{0}.
+$$
+
+Derivando con respecto al tiempo:
+
+$$
+\dot{V}(\tx) =\frac{1}{2}\dot{\tw}^{\top}\td\J\tw\td+\frac{1}{2}\tw^{\top}\td\J\dtw\td+\gamma_{1}\dtqv^{\top}\td\tqv\td+\gamma_{1}\tqv^{\top}\td\dtqv\td-2\gamma_{1}(1-\tqc\td)\dtqc\td.
+$$
+
+Como cada término es escalar:
+
+$$
+a=a^{\top},
+$$
+
+entonces
+
+$$
+\dot{V}(\tx)=\tw^{\top}\td\J\dtw\td+2\gamma_{1}\tqv^{\top}\td\dtqv\td-2\gamma_{1}(1-\tqc\td)\dtqc\td.
+$$
+
+---
+
+##
+
+Sustituyendo la dinámica de $\tqv\td$ y $\tqc\td$ de la @eq-dyn_error_iner:
+
+$$
+\dot{V}(\tx)  =\tw^{\top}\td\J\dtw\td+2\gamma_{1}\tqv^{\top}\td\left(-\frac{1}{2}\tqc\td\tw\td-\frac{1}{2}S(\tqv\td)\tw\td+S(\tqv\td)\vwref\td\right)-2\gamma_{1}(1-\tqc\td)\left(\frac{1}{2}\tqv^{\top}\td\tw\td\right).
+$$
+
+Entonces,
+
+$$
+\dot{V}(\tx)  =\tw^{\top}\td\J\dtw\td-\gamma_{1}\tqc\td\tqv^{\top}\td\tw\td-\gamma_{1}\tqv^{\top}\td S(\tqv\td)\tw\td+2\gamma_{1}\tqv^{\top}\td S(\tqv\td)\vwref\td-\gamma_{1}\tqv^{\top}\td\tw\td+\gamma_{1}\tqc\td\tqv^{\top}\td\tw\td.
+$$
+
+De aquí, $x^{\top}S(x)=\mathbf{0}$ (producto cruz), entonces:
+
+$$
+\dot{V}(\tx)=\tw^{\top}\td\J\dtw\td-\gamma_{1}\tqv^{\top}\td\tw\td.
+$$
+
+Sustituyendo la dinámica de $\J\tw\td$ de la @eq-dyn_error_iner:
+
+$$
+\dot{V}(\tx)  =\tw^{\top}\td\left[S(\tw\td)\left(\J\tw\td-\h_{\inte}\td-\J\vwref\td\right)-\uptau_{\inte}\td-\uptau_{\ext}\td+\uptau_{\feed}\td\right]-\gamma_{1}\tqv^{\top}\td\tw\td.
+$$
+
+Como $\tw^{\top}\td S(\tw\td)=\mathbf{0}$:
+
+$$
+\dot{V}(\tx)=-\tw^{\top}\td\left(\uptau_{\inte}\td+\uptau_{\ext}\td-\uptau_{\feed}\td+\gamma_{1}\tqv\td\right).
+$$
+
+---
+
+##
+
+Como
+
+$$
+\uptau_{\ext}\td=\uptau_{\act}\td+\uptau_{\per}\td,
+$$
+
+entonces
+
+$$
+\dot{V}(\tx) =-\tw^{\top}\td\left(u\td+\uptau_{\per}\td-\uptau_{\feed}\td+\gamma_{1}\tqv\td\right).
+$$
+
+donde
+
+$$
+u\td=\uptau_{\inte}\td+\uptau_{\act}\td,
+$$
+
+y considere la ley de control
+
+$$
+u\td=\gamma_{2}\tw\td-\gamma_{1}\tqv\td+\uptau_{\feed}\td.
+$$
+
+donde $\gamma_{1}, \gamma_{2} \in \mathbb{R}$ , con $\gamma_{2}>0$ y $\gamma_{1}>0$. Entonces
+
+$$
+\begin{split}
+\dot{V}(\tx) & =-\tw^{\top}\td\left(\gamma_{2}\tw\td-\gamma_{1}\tqv\td+\uptau_{\feed}\td+\uptau_{\per}\td-\uptau_{\feed}\td+\gamma_{1}\tqv\td\right) \\
+& =-\tw^{\top}\td\left(\gamma_{2}\tw\td+\uptau_{\per}\td\right)
+\end{split}
+$$
+
+Finalmente,
+
+$$
+\dot{V}(\tx)=-\gamma_{2}\|\tw\td\|^{2}-\tw^{\top}\td\uptau_{\per}\td.
+$${#eq-dV_iner}
+
+---
+
+## Análisis de estabilidad: caso orbital
+
+Considere la misma función candidata de Lyapunov:
+
+$$
+V(\tx)=\frac{1}{2}\tw^{\top}\td\J\tw\td+\gamma_{1}\tqv^{\top}\td\tqv\td+\gamma_{1}(1-\tqc\td)^{2}.
+$$
+
+Derivando con respecto al tiempo:
+
+$$
+\dot{V}(\tx)=\tw^{\top}\td\J\dtw\td+2\gamma_{1}\tqv^{\top}\td\dtqv\td-2\gamma_{1}(1-\tqc\td)\dtqc\td.
+$$
+
+Sustituyendo la dinámica de $\tqv\td$ y $\tqc\td$ de la @eq-dyn_error_orb:
+
+$$
+\dot{V}(\tx) =\tw^{\top}\td\J\dtw\td+2\gamma_{1}\tqv^{\top}\td\left(-\frac{1}{2}\tqc\td\tw\td-\frac{1}{2}S(\tqv\td)\tw\td+S(\tqv\td)\vwref\td\right)-2\gamma_{1}(1-\tqc\td)\left(\frac{1}{2}\tqv^{\top}\td\tw\td\right).
+$$
+
+Entonces,
+
+$$
+\dot{V}(\tx) =\tw^{\top}\td\J\dtw\td-\gamma_{1}\tqc\td\tqv^{\top}\td\tw\td-\gamma_{1}\tqv^{\top}\td S(\tqv\td)\tw\td+2\gamma_{1}\tqv^{\top}\td S(\tqv\td)\vwref\td-\gamma_{1}\tqv^{\top}\td\tw\td+\gamma_{1}\tqc\td\tqv^{\top}\td\tw\td.
+$$
+
+De aquí, $x^{\top}S(x)=\mathbf{0}$, entonces:
+
+$$
+\dot{V}(\tx)=\tw^{\top}\td\J\dtw\td-\gamma_{1}\tqv^{\top}\td\tw\td.
+$$
+
+---
+
+##
+
+Sustituyendo la dinámica de $\tw\td$ de la @eq-dyn_error_orb:
+
+$$
+\dot{V}(\tx) =\tw^{\top}\td\Big[S(\tw\td)\left(\J\tw\td-\h_{\inte}\td-\J(\vwref\td+\vwh\td)\right)-\J S(\vwh\td)\tw\td-\uptau_{\inte}\td-\uptau_{\ext}\td+\uptau_{\feed}\td\Big]-\gamma_{1}\tqv^{\top}\td\tw\td.
+$$
+
+Como $\tw^{\top}\td S(\tw\td)=\mathbf{0}$:
+
+$$
+\dot{V}(\tx)=-\tw^{\top}\td\left(\J S(\vwh\td)\tw\td+\uptau_{\inte}\td+\uptau_{\ext}\td-\uptau_{\feed}\td+\gamma_{1}\tqv\td\right).
+$$
+
+Como
+
+$$
+\uptau_{\ext}\td=\uptau_{\act}\td+\uptau_{\per}\td,
+$$
+
+entonces
+
+$$
+\dot{V}(\tx)=-\tw^{\top}\td\left(\J S(\vwh\td)\tw\td+u\td+\uptau_{\per}\td-\uptau_{\feed}\td+\gamma_{1}\tqv\td\right),
+$$
+
+donde
+
+$$
+u\td=\uptau_{\inte}\td+\uptau_{\act}\td.
+$$
+
+---
+
+##
+
+Considere la ley de control
+
+$$
+u\td=\gamma_{2}\tw\td-\gamma_{1}\tqv\td+\uptau_{\feed}\td.
+$$
+
+Entonces
+
+$$
+\begin{split}
+\dot{V}(\tx) & =-\tw^{\top}\td\left(\J S(\vwh\td)\tw\td+\gamma_{2}\tw\td-\gamma_{1}\tqv\td+\uptau_{\feed}\td+\uptau_{\per}\td-\uptau_{\feed}\td+\gamma_{1}\tqv\td\right) \\
+& =-\tw^{\top}\td\left(\left[\gamma_{2}I+\J S(\vwh\td)\right]\tw\td+\uptau_{\per}\td\right).
+\end{split}
+$$
+
+Finalmente,
+
+$$
+\dot{V}(\tx)=-\tw^{\top}\td\Gamma\tw\td-\tw^{\top}\td\uptau_{\per}\td.
+$${#eq-dV_orb}
+
+donde
+
+$$
+\Gamma=\left[\gamma_{2}I+\J S(\vwh\td)\right]
+$$
+
+---
+
+## Apuntamiento en el caso inercial
+
+Considere las siguientes condiciones:
+
+$$
+\qref=\text{constante},
+\qquad
+\vwref\td=\mathbf{0},
+\qquad
+\dvwref\td=\mathbf{0},
+\qquad
+\uptau_{\per}\td=\mathbf{0}.
+$$
+
+Entonces,
+
+$$
+\tw\td=-\vw\td,
+\qquad
+\tq\td=\qref\otimes\q^{*}\td,
+\qquad
+\uptau_{\feed}\td=\mathbf{0}.
+$$
+
+Considere la ley de control
+
+$$
+u\td=\gamma_{2}\tw\td-\gamma_{1}\tqv\td.
+$$
+
+Sustituyendo en la @eq-dV_iner:
+
+$$
+\dot{V}(\tx)=-\gamma_{2}\|\tw\td\|^{2}.
+$$
+
+Como $\gamma_{2}>0$:
+
+$$
+\dot{V}(\tx)\leq0,
+\qquad
+\forall\tx\neq\mathbf{0}.
+$$
+
+Por el teorema de Lyapunov, el origen es estable. Para analizar estabilidad asintótica, considere
+
+$$
+\dot{V}(\tx)=0.
+$$
+
+Esto ocurre únicamente cuando
+
+$$
+\tw\td=\mathbf{0}.
+$$
+
+---
+
+##
+
+Para que el sistema permanezca en este conjunto, debe cumplirse además
+
+$$
+\dtw\td=\mathbf{0}.
+$$
+
+Sustituyendo en la dinámica del error:
+
+$$
+\mathbf{0}=-u\td.
+$$
+
+Como
+
+$$
+u\td=\gamma_{2}\tw\td-\gamma_{1}\tqv\td,
+$$
+
+y $\tw\td=\mathbf{0}$:
+
+$$
+\gamma_{1}\tqv\td=\mathbf{0}.
+$$
+
+Debido a que $\gamma_{1}>0$:
+
+$$
+\tqv\td=\mathbf{0}.
+$$
+
+Por tanto, el origen:
+
+$$
+\tw\td=\mathbf{0},
+\qquad
+\tqv\td=\mathbf{0},
+$$
+
+es **un punto de equilibrio asintóticamente estable**. Esto nos permite concluir que la ley de control
+
+$$
+u\td=\gamma_{2}\tw\td-\gamma_{1}\tqv\td,
+$$
+
+es suficiente para lograr el **apuntamiento inercial**. Esto el útil, por ejemplo, en el safe mode, ya que podemos definir el apuntamiento al sol en coordenadas inerciales.
+
+---
+
+##
+
+Considere ahora
+
+$$
+\uptau_{\per}\td\neq\mathbf{0}.
+$$
+
+En este caso, la derivada de Lyapunov queda
+
+$$
+\dot{V}(\tx)=-\gamma_{2}\|\tw\td\|^{2}-\tw^{\top}\td\uptau_{\per}\td.
+$$
+
+Utilizando Cauchy-Schwarz:
+
+$$
+|\tw^{\top}\td\uptau_{\per}\td|
+\leq
+\|\tw\td\|\,\|\uptau_{\per}\td\|.
+$$
+
+Entonces,
+
+$$
+\dot{V}(\tx)\leq-\gamma_{2}\|\tw\td\|^{2}+\|\tw\td\|\,\|\uptau_{\per}\td\|.
+$$
+
+Factorizando:
+
+$$
+\dot{V}(\tx)\leq-\|\tw\td\|\left(\gamma_{2}\|\tw\td\|-\|\uptau_{\per}\td\|\right).
+$$
+
+Por lo tanto:
+
+$$
+\dot{V}(\tx)<0
+\qquad
+\text{si}
+\qquad
+\|\tw\td\|>\frac{\|\uptau_{\per}\td\|}{\gamma_{2}}.
+$$
+
+De manera equivalente,
+
+$$
+\dot{V}(\tx)=0
+\qquad
+\text{si}
+\qquad
+\|\tw\td\|=\frac{\|\uptau_{\per}\td\|}{\gamma_{2}}.
+$$
+
+---
+
+##
+
+Esto define una región alrededor del origen donde el análisis de Lyapunov no permite concluir estabilidad asintótica.  Sin embargo, **aumentando $\gamma_{2}$**, dicha región puede hacerse arbitrariamente pequeña. En consecuencia, el origen presenta estabilidad práctica.
+
+::: {.definition-block}
+
+**Dimensionamiento de $\gamma_{2}$**
+
+Si se conoce una cota superior para las perturbaciones externas,
+
+$$
+\|\uptau_{\per}\td\|\leq\tau_{\max},
+$$
+
+y además se especifica un **slew rate máximo** permitido por la carga útil,
+
+$$
+\|\tw\td\|\leq\omega_{\max},
+$$
+
+entonces puede obtenerse una estimación mínima para $\gamma_{2}$ a partir de
+
+$$
+\gamma_{2}>\frac{\tau_{\max}}{\omega_{\max}}.
+$$
+
+Esto permite relacionar directamente el diseño del controlador con los requerimientos de misión y las capacidades de rechazo de perturbaciones del sistema.
+
+:::
+
+---
+
+## Apuntamiento en el caso orbital
+
+Considere las siguientes condiciones:
+
+$$
+\qref=\text{constante},
+\qquad
+\vwref\td=\mathbf{0},
+\qquad
+\dvwref\td=\mathbf{0},
+\qquad
+\uptau_{\per}\td=\mathbf{0}.
+$$
+
+Con ello:
+
+$$
+\tw\td=-\vw\td,
+\qquad
+\tq\td=\qref\otimes\q^{*}\td,
+\qquad
+\uptau_{\feed}\td=\mathbf{0}.
+$$
+
+Entonces, la derivada de Lyapunov @eq-dV_orb queda
+
+$$
+\dot{V}(\tx)=-\tw^{\top}\td\Gamma\tw\td,
+$$
+
+donde
+
+$$
+\Gamma=\left[\gamma_{2}I+\J S(\vwh\td)\right].
+$$
+
+Para garantizar que
+
+$$
+\dot{V}(\tx)<0,
+\qquad
+\forall\tw\neq\mathbf{0},
+$$
+
+la matriz $\Gamma$ debe ser definida positiva. Esto puede resolverse arbitrariamente utilizando programación lineal. Pero, analicemos un caso particular.
+
+---
+
+##
+
+Considere el caso particular de una órbita circular:
+
+$$
+\vwh=
+\begin{bmatrix}
+0           \\
+-\omega_{0} \\
+0
+\end{bmatrix},
+$$
+
+donde $\omega_{0}=\sqrt{\frac{\mu}{a^3}}$ es el movimiento angular medio y un tensor de inercia diagonal
+
+$$
+\J=\text{diag}(I_{xx},I_{yy},I_{zz}).
+$$
+
+Entonces,
+
+$$
+\Gamma=
+\begin{bmatrix}
+\gamma_{2}       & 0          & -\omega_{0}I_{xx} \\
+0                & \gamma_{2} & 0                 \\
+\omega_{0}I_{zz} & 0          & \gamma_{2}
+\end{bmatrix}.
+$$
+
+Debido a que $\Gamma$ no es simétrica, utilizamos el **criterio de Sylvester** sobre su parte simétrica. Recordando que toda matriz puede separarse en una parte simétrica y una parte antisimétrica,
+
+$$
+\Gamma=\Gamma_{s}+\Gamma_{a}=\frac{1}{2}\left(\Gamma+\Gamma^{\top}\right)+\frac{1}{2}\left(\Gamma-\Gamma^{\top}\right),
+$$
+
+donde
+
+$$
+\Gamma_{s}=\frac{1}{2}\left(\Gamma+\Gamma^{\top}\right).
+$$
+
+es la parte simétrica de $\Gamma$, y es igual a
+
+$$
+\Gamma_{s}=
+\begin{bmatrix}
+\gamma_{2}                          & 0          & \frac{\omega_{0}}{2}(I_{zz}-I_{xx}) \\
+0                                   & \gamma_{2} & 0                                   \\
+\frac{\omega_{0}}{2}(I_{zz}-I_{xx}) & 0          & \gamma_{2}
+\end{bmatrix}.
+$$
+
+---
+
+##
+
+::: {.definition-block}
+**Criterio de Sylvester**
+
+Sea $A=A^{\top}\in\mathbb{R}^{n\times n}$ una matriz simétrica. Entonces, $A$ es definida positiva si y solo si todos sus menores principales son positivos:
+
+$$
+\det(A_{1})>0,\qquad
+\det(A_{2})>0,\qquad
+\ldots,\qquad
+\det(A_{n})>0,
+$$
+
+donde $A_{i}$ corresponde a la submatriz principal de dimensión $i\times i$.
+:::
+
+$$
+\det(\Gamma_{1})=\det \left|\gamma_{2}\right|=\gamma_{2}>0, \qquad \det(\Gamma_{2})=\det \left|\begin{matrix} \gamma_{2} & 0\\ 0 & \gamma_{2}\end{matrix}\right| \gamma_{2}^{2}>0,
+$$
+
+y
+
+$$
+\det(\Gamma_{3})=\det (\Gamma_s) = \gamma_{2}\left(\gamma_{2}^{2}-\frac{\omega_{0}^{2}}{4}(I_{zz}-I_{xx})^{2}\right).
+$$
+
+Por tanto, una condición suficiente para estabilidad es
+
+$$
+\gamma_{2}>
+\frac{\omega_{0}}{2}|I_{zz}-I_{xx}|.
+$$
+
+Entonces, si $\gamma_{2}$ es suficientemente grande, la matriz $\Gamma$ es definida positiva y en consecuencia, junto con el teorema de invarianza de LaSalle, el **origen presenta estabilidad asintótica**.
+
+---
+
+## Apuntamiento orbital
+
+Considere ahora
+
+$$
+\uptau_{\per}\td\neq\mathbf{0}.
+$$
+
+Entonces,
+
+$$
+\dot{V}(\tx)=-\tw^{\top}\td\Gamma\tw\td-\tw^{\top}\td\uptau_{\per}\td.
+$$
+
+Si $\Gamma>0$, existe un $\lambda_{\min}(\Gamma)>0$ tal que
+
+$$
+\tw^{\top}\td\Gamma\tw\td\geq\lambda_{\min}(\Gamma)\|\tw\td\|^{2}.
+$$
+
+Entonces,
+
+$$
+\dot{V}(\tx)\leq-\lambda_{\min}(\Gamma)\|\tw\td\|^{2}+\|\tw\td\|\,\|\uptau_{\per}\td\|.
+$$
+
+Factorizando:
+
+$$
+\dot{V}(\tx)\leq-\|\tw\td\|\left(\lambda_{\min}(\Gamma)\|\tw\td\|-\|\uptau_{\per}\td\|\right).
+$$
+
+---
+
+##
+
+Por tanto,
+
+$$
+\dot{V}(\tx)<0
+\qquad
+\text{si}
+\qquad
+\|\tw\td\|>\frac{\|\uptau_{\per}\td\|}{\lambda_{\min}(\Gamma)}.
+$$
+
+Esto define una región alrededor del origen donde el análisis de Lyapunov no permite concluir estabilidad asintótica. Sin embargo, aumentando $\gamma_{2}$, el valor de $\lambda_{\min}(\Gamma)$ incrementa y dicha región puede hacerse arbitrariamente pequeña. En consecuencia, **el origen presenta estabilidad práctica**.
+
+::: {.definition-block}
+**Apuntamiento a nadir**
+
+Un caso particular de este tipo de apuntamiento es cuando la referencia de apuntamiento es
+
+$$
+\qref=\begin{bmatrix} 1&0&0&0 \end{bmatrix}^\T.
+$$
+
+Si aplicamos la ley de control
+
+$$
+u\td=\gamma_{2}\tw\td-\gamma_{1}\tqv\td,
+$$
+
+donde $\gamma_2$ satisface
+
+$$
+\Gamma \succ 0, \qquad \lambda_{\min}(\Gamma)>\frac{\tau_{\max}}{\omega_{\max}}
+$$
+
+con $\tau_{\max}$ es una cota superior para las perturbaciones externas y $\omega_{\max}$ es un *slew rate* permitido por la carga útil, entonces los marco de referencia $^{h}\mathcal{F}$ y $^{b}\mathcal{F}$ se acoplan, y con ello, se logra el apuntamiento a nadir.
+
+:::
+
+---
+
+## Seguimiento de trayectorias
+
+En los casos anteriores se asumió
+
+$$
+\vwref\td=\mathbf{0},
+\qquad
+\dvwref\td=\mathbf{0}, \qquad \Rightarrow
+\uptau_{\feed}\td=\mathbf{0}.
+$$
+
+Sin embargo, en problemas de seguimiento de trayectorias:
+
+$$
+\vwref\td\neq\mathbf{0} \qquad \dvwref\td\neq\mathbf{0},\qquad \Rightarrow \uptau_{\feed}\td \neq \mathbf{0}.
+$$
+
+Observe que este término contiene los acoplamientos dinámicos asociados a la trayectoria de referencia, pero que puede ser construida debido a que podemos medir cada uno de los términos con los conforman.
+Entonces, para lograr seguimiento, es suficiente compensar dicho término mediante la ley de control:
+
+$$
+u\td=\gamma_{2}\tw\td-\gamma_{1}\tqv\td+\uptau_{\feed}\td.
+$$
+
+Bajo esta elección, la dinámica de Lyapunov conserva la misma estructura obtenida para los casos de apuntamiento.
+
+---
+
+## Interpretación de la ley de control
+
+La ley de control propuesta para los casos inercial y orbital está dada por
+
+$$
+u\td=\gamma_{2}\tw\td-\gamma_{1}\tqv\td+\uptau_{\feed}\td.
+$$
+
+Observe que:
+
+- El término $-\gamma_{1}\tqv\td$ es proporcional al error de orientación.
+- El término $\gamma_{2}\tw\td$ es proporcional al error de velocidad angular.
+- El término $\uptau_{\feed}\td$ compensa los acoplamientos dinámicos no lineales.
+
+Por tanto, la estructura del controlador corresponde a un **controlador proporcional-derivativo (PD) con compensación dinámica, donde $\gamma_1=k_p$ es la ganancia proporcional y $\gamma_2=k_d$ es la ganancia derivativa**.
+Una extensión de este controlador ocurre cuando también compensamos la perturbación por gradiente gravitatorio. A este controlador se le llama **controlador PD**+.
+
+Ahora, si bien encontramos cotas para $k_d$, esto no garantiza que las trayectorias satisfagan algún criterio de desempeño. Para ello, podemos utilizar un controlador LQR. Desafortunadamente, ya no me da tiempo de explicarlo.
+
+---
+
+::: {.center-vertical}
+
+::: {.chapter-title}
+
+Control
+
+:::
+
+<div class="chapter-line"></div>
+
+::: {.chapter-subtitle}
+
+Control B-dot
+
+<div class="menu-title" style="display:none;"> ▸ Control B-dot</div>
+
+:::
+
+:::
+
+
+---
+
+## Control *B-dot*
+
+El **control B-dot** es una estrategia simple para realizar el
+*detumbling* (reducir la velocidada angular) inicial de un satélite usando únicamente magnetopares y las
+lecturas del magnetómetro. El control B-dot consiste en generar un par de amortiguamiento de la siguiente forma:
+
+**Ley de control:**
+
+$$
+\ls{b}\vec{m}_{\text{mt}}\td  = k_b\,\ls{b}\dot{\vec{B}}_{\text{mf}}\td
+$$
+
+donde $k_b > 0$ es una ganancia de amortiguamiento.
+
+- Si el satélite gira, el vector del campo magnético medido cambia en el tiempo.
+- La derivada $\ls{b}\dot{\vec{B}}_{\text{mf}}$ es proporcional a la velocidad angular.
+- Generar un dipolo opuesto a esa variación produce un par que disipa energía.
+
+**¿Por qué decimos que se genera un par de amortiguamiento?**
+
+---
+
+##
+
+El campo magnético terrestre puede considerarse casi constante en un intervalo de tiempo suficientemente corto, dado que su variación debida al movimiento orbital es mucho más lenta que la dinámica rotacional del satélite. Por lo tanto, en el marco inercial se cumple:
+
+$$
+\left(\frac{d}{dt}\right) \ls{i}\vec{B}_{\text{mf}}\approx 0
+$$
+
+No obstante, la derivada en el marco del cuerpo viene dada por (recordando la derivada de un vector en un marco en rotación):
+
+$$
+\ls{b}\dot{\vec{B}}_{\text{mf}}\td = -\ls{b}\vec{\omega}_{i,b}\td  \times \ls{b}\vec{B}_{\text{mf}}\td
+$$
+
+Sustituyendo en la ley de control:
+
+$$
+\ls{b}\vec{m}_{\text{mt}}\td  = - k_b\,\ls{b}\vec{\omega}_{i,b}\td  \times \ls{b}\vec{B}_{\text{mf}}\td
+$$
+
+El par magnético generado es:
+
+$$
+\ls{b}\vec{\uptau}_{\text{mt}}\td
+= \ls{b}\vec{m}_{\text{mt}}\td  \times \ls{b}\vec{B}_{\text{mf}}\td
+$$
+
+Dado que el par depende de la velocidad angular, podemos asegurar que genera amortiguamiento.
+
+---
+
+##
+
+**Características principales:**
+
+- Método no lineal, simple y robusto.
+- No requiere modelo dinámico del satélite.
+- Utiliza únicamente el magnetómetro y los magnetopares.
+
+**Apuntamiento final:**
+
+- **No impone** una orientación deseada ni depende del error de orientación.
+- Sólo reduce la velocidad angular; la orientación final es arbitraria.
+- Puede permanecer una ligera rotación alrededor del vector $\ls{b}\vec{B}_{\text{mf}}$.
+
+**Limitaciones:**
+
+- No sirve para apuntamiento fino dado a que sólo es un término proporcional.
+- Depende del ruido del magnetómetro y del algoritmo para determinar la derivada del campo magnético.
+- No genera par cuando $\ls{b}\vec{\omega}_{i,b} \parallel \ls{b}\vec{B}_{\text{mf}}$.
+
+---
+
+::: {.center-vertical}
+
+::: {.chapter-title}
+
+Control
+
+:::
+
+<div class="chapter-line"></div>
+
+::: {.chapter-subtitle}
+
+Generación de par
+
+<div class="menu-title" style="display:none;"> ▸ Generación de par </div>
+
+:::
+
+:::
+
+
+---
+
+##
+
+- Hasta el momento hemos visto dos estrategias de control para el apuntamiento de satélites:
+  - Control PID $\vec{u}^{\tref}\td =-k_p\,\tqv\td  -k_d\,\tw\td +\uptau_{\text{feed}}$.
+  - Control B-dot $\vec{u}^{\tref}\td =(k_b\,\ls{b}\dot{\vec{B}}_{\text{mf}})\times \ls{b}\vec{B}_{\text{mf}}$.
+- Ambas estrategias generan un par de control $\vec{u}^{\tref}\td$ que es aplicado al satélite mediante los actuadores disponibles.
+- Sin embargo, no hemos analizado a detalle cómo se genera ese par de control con los actuadores físicos.
+- Dependiendo del tipo, la generación de par depende directamente o indirectamente de una variable física del propio actuador.
+  - Magnetopares: el par generado depende de la corriente que fluye en las bobinas $I_{\text{mt}}\td$.
+  - Ruedas de reacción: el par generado depende de la velocidad angular de las ruedas $\omega_{\text{rw}}\td$.
+  - Propulsores: el par generado depende de la fuerza de empuje $f_{\text{th}}\td$.
+  - CMG: el par generado depende de la velocidad angular del cardán $\ls{b}\vec{\omega}_{g}\td$.
+- Esto implica tener un lazo de control adicional capaz de regular la variable física del actuador para generar el par de control deseado.
+
+---
+
+## Magnetopares: generación de par
+
+- Un magnetopar es una bobina que genera un **dipolo magnético** proporcional a la corriente que circula:
+
+  $$
+  \ls{b}\vec{m}_{\text{mt}}\td = N A\, I_{\text{mt}}\td \, \hat{n}.
+  $$
+
+- Este dipolo interactúa con el campo magnético terrestre:
+
+  $$
+  \ls{b}\vec{\uptau}_{\text{mt}}\td
+  =
+  \ls{b}\vec{m}_{\text{mt}}\td
+  \times
+  \ls{b}\vec{B}_{\text{mf}}\td,
+  $$
+
+  generando un par sobre el cuerpo del satélite.
+
+- Por lo tanto, la **variable física que controla el par es la corriente** en la bobina:
+
+  $$
+  I_{\text{mt}}\td
+  \quad\Rightarrow\quad
+  \ls{b}\vec{m}\td
+  \quad\Rightarrow\quad
+  \ls{b}\vec{\uptau}_{\text{mt}}\td.
+  $$
+
+- El actuador no controla directamente el par, sino el **dipolo magnético** que puede inducir, el cual depende de:
+
+  - número de vueltas $N$,
+  - área transversal $A$,
+  - orientación fija de la bobina $\hat{n}$,
+  - corriente aplicada $I_{\text{mt}}\td$.
+
+---
+
+::: {.algorithm}
+
+<div class="algorithm-title">
+<strong>Algoritmo:</strong> Generación de las referencias de corriente
+</div>
+
+<div class="algorithm-io">
+<strong>Entrada:</strong> $\vec{u}_{\text{mt}}^{\tref}\td$
+</div>
+
+<div class="algorithm-io">
+<strong>Salida:</strong> $\ls{b}\vec{I}_{\text{mt}}^{\tref}\td$
+</div>
+
+1. Calcular el par máximo que puede generar el magnetopar en la orientación actual del campo magnético terrestre:
+
+$$
+\:^{b}\vec{\uptau}_{\text{mt}}^{\tref}
+=
+\vec{u}_{\text{mt}}^{\tref}
+-
+\frac{\vec{u}_{\text{mt}}^{\tref}\cdot\:^{b}\vec{B}}
+    {\|\:^{b}\vec{B}\|^2}
+\:^{b}\vec{B}
+$$
+
+2. Calcular el momento magnético requerido:
+
+$$
+\:^{b}\vec{m}_{\text{mt}}^{\tref}
+=
+\frac{\:^{b}\vec{B}\times\:^{b}\vec{\uptau}_{\text{mt}}^{\tref}}
+    {\|\:^{b}\vec{B}\|^2}
+$$
+
+3. Calcular la corriente requerida:
+
+$$
+\ls{b}\vec{I}_{\text{mt}}^{\tref}\td
+=
+(\vec{N}\vec{A})^{-1}
+\:^{b}\vec{m}_{\text{mt}}^{\tref}
+$$
+
+donde
+
+$$
+\vec{N}=\operatorname{diag}(N_x,N_y,N_z),
+\qquad
+\vec{A}=\operatorname{diag}(A_x,A_y,A_z),
+$$
+
+son matrices diagonales con el número de vueltas y el área transversal de cada magnetopar, respectivamente.
+
+:::
+
+---
+
+- Ahora que ya conocemos la corriente requerida para generar el par deseado en cada eje,
+
+  $$
+  \ls{b}\vec{I}_{\text{mt}}^{\tref}\td=
+  \begin{bmatrix}
+  I_x^{\tref} &
+  I_y^{\tref} &
+  I_z^{\tref}
+  \end{bmatrix}^{\T},
+  $$
+
+  es necesario implementar un lazo de control que regule la corriente en cada magnetopar.
+
+- Primero, se modela la dinámica eléctrica de la bobina. Cada bobina puede representarse mediante un circuito RL en serie:
+
+  $$
+  \frac{\mathrm{d}}{\mathrm{d}t}I_n\td
+  =
+  \frac{1}{L_n}V_n\td
+  -
+  \frac{R_n}{L_n}I_n\td,
+  \qquad
+  n=x,y,z.
+  $$
+
+  donde $L_n$ y $R_n$ son la inductancia y la resistencia de la bobina en el eje $n$, respectivamente, y $V_n\td$ es el voltaje aplicado.
+
+- La inductancia $L_n$ depende de la geometría de la bobina y del material del núcleo (si existe), mientras que la resistencia $R_n$ depende del material del conductor, de su longitud y de su sección transversal.
+
+- La resistencia puede calcularse como
+
+  $$
+  R_n
+  =
+  \rho
+  \frac{l_{\text{wire}}}{A_{\text{wire}}},
+  $$
+
+  donde $\rho$ es la resistividad del material del alambre, $l_{\text{wire}}$ es la longitud total del conductor y $A_{\text{wire}}$ es el área de su sección transversal.
+
+---
+
+- La inductancia de una bobina cuadrada puede aproximarse mediante
+
+  $$
+  L_n
+  =
+  \frac{\mu_0\mu_rN_n^2l_{\text{side}}}{2}
+  \left(
+  \ln\left(\frac{1.27\,l_{\text{side}}}{r_{\text{wire}}}\right)-1
+  \right),
+  $$
+
+  donde $\mu_0$ es la permeabilidad del vacío, $\mu_r$ es la permeabilidad relativa del núcleo (si existe), $N_n$ es el número de vueltas, $l_{\text{side}}$ es la longitud de un lado de la bobina cuadrada y $r_{\text{wire}}$ es el radio del alambre.
+
+- La inductancia de un solenoide puede aproximarse mediante
+
+  $$
+  L_n
+  =
+  \mu_0\mu_r
+  \frac{N_n^2A}{l_{\text{coil}}},
+  $$
+
+  donde $A$ es el área de la sección transversal del solenoide y $l_{\text{coil}}$ es su longitud.
+
+- Para generar la corriente deseada $I_n^{\tref}\td$, puede implementarse un controlador PID para cada eje:
+
+  $$
+  V_n\td
+  =
+  k_p\,e_{I_n}\td
+  +
+  k_i\int e_{I_n}\td\,\mathrm{d}t
+  +
+  k_d\frac{\mathrm{d}}{\mathrm{d}t}e_{I_n}\td,
+  $$
+
+  donde
+
+  $$
+  e_{I_n}\td
+  =
+  I_n^{\tref}\td
+  -
+  I_n\td
+  $$
+
+  es el error de corriente en el eje $n$.
+
+---
+
+##
+- Finalmente, el voltaje $V_{n}$ puede aplicarse físicamente mediante una fuente de voltaje controlada. Dicho circuito puede implementarse con un convertidor boost o un puente H. El voltaje aplicado comunmente se controla mediante señales PWM (señales cuadradas de ciclo de trabajo variable).
+- La limitante física es la corrinte máxima que puede soportar la bobina sin dañarse y el voltaje máximo que puede aplicarse.
+
+![](Figures/coil_driver.png){fig-align="center"}
+
+---
+
+## Ruedas de reacción: generación de par
+
+- Una rueda de reacción genera par sobre el satélite por **conservación del momento angular**.
+
+- El momento angular de la rueda es
+
+  $$
+  h_{\text{rw},n}\td
+  =
+  I_{\text{rw},n}\,\omega_{\text{rw},n}\td,
+  $$
+
+  donde $I_{\text{rw},n}$ es el momento de inercia de la rueda en el eje $n$ y $\omega_{\text{rw},n}\td$ su velocidad angular.
+
+- El par ejercido sobre el cuerpo del satélite es
+
+  $$
+  \ls{b}\vec{\uptau}_{\text{rw}}\td
+  =
+  \ls{b}\dot{\vec{h}}_{\text{rw}}\td
+  =
+  I_{\text{rw}}
+  \ls{b}\dot{\vec{\omega}}_{\text{rw}}\td.
+  $$
+
+- Por lo tanto, la **variable física que controla el par es la aceleración de la rueda**:
+
+  $$
+  \dot{\omega}_{\text{rw},n}\td
+  \quad\Rightarrow\quad
+  \uptau_{\text{rw},n}\td.
+  $$
+
+- El actuador no controla directamente el par, sino la **velocidad angular** $\omega_{\text{rw},n}\td$ mediante el voltaje aplicado al motor.
+  
+---
+
+##
+
+- Para un conjunto de $N_{\text{rw}}$ ruedas, el par que generan se relaciona con el par requerido mediante
+
+  $$
+  \vec{u}_{\text{rw}}^{\tref}\td
+  =
+  D\,\vec{\uptau}_{\text{rw}}\td,
+  $$
+
+  donde $D\in\mathbb{R}^{3\times N_{\text{rw}}}$ es la **matriz de distribución**.
+
+- Para obtener el par requerido de cada rueda,
+
+  $$
+  \ls{b}\vec{\uptau}_{\text{rw}}^{\tref}\td
+  =
+  D^{\dagger}\,
+  \vec{u}_{\text{rw}}^{\tref}\td,
+  $$
+
+  donde $D^{\dagger}$ es la pseudoinversa de Moore–Penrose de $D$,
+
+  $$
+  D^{\dagger}
+  =
+  (D^{\top}D)^{-1}D^{\top}.
+  $$
+
+- La pseudoinversa de Moore–Penrose proporciona la solución de mínimos cuadrados al sistema sobredeterminado o subdeterminado; es decir, minimiza la norma del par total aplicado:
+
+  $$
+  \min_{\ls{b}\vec{\uptau}_{\text{rw}}\td}
+  \|\vec{\uptau}_{\text{rw}}\td\|^2
+  \quad
+  \text{sujeto a}
+  \quad
+  \vec{u}_{\text{rw}}^{\tref}\td
+  =
+  D\,\ls{b}\vec{\uptau}_{\text{rw}}\td.
+  $$
+
+- Con ello se obtiene el par individual requerido para cada rueda:
+
+  $$
+  \ls{b}\vec{\uptau}_{\text{rw}}^{\tref}\td
+  =
+  \begin{bmatrix}
+  \uptau_{\text{rw},1}^{\tref}\td &
+  \uptau_{\text{rw},2}^{\tref}\td &
+  \cdots &
+  \uptau_{\text{rw},N_{\text{rw}}}^{\tref}\td
+  \end{bmatrix}^{\top}.
+  $$
+
+---
+
+##
+
+- Una vez obtenido el par requerido en cada rueda,
+
+  $$
+  \ls{b}\vec{\uptau}_{\text{rw}}^{\tref}\td
+  =
+  \begin{bmatrix}
+  \uptau_{\text{rw},1}^{\tref}\td &
+  \uptau_{\text{rw},2}^{\tref}\td &
+  \cdots &
+  \uptau_{\text{rw},N_{\text{rw}}}^{\tref}\td
+  \end{bmatrix}^{\top},
+  $$
+
+  es necesario convertir ese par en una referencia de velocidad angular.
+
+- La relación entre el par y la aceleración de la rueda es
+
+  $$
+  \dot{\omega}_{\text{rw},n}\td
+  =
+  \frac{\uptau_{\text{rw},n}^{\tref}\td}{I_{\text{rw},n}},
+  $$
+
+  donde $I_{\text{rw},n}$ es el momento de inercia del volante de inercia en el eje $n$.
+
+- La velocidad angular de referencia se obtiene integrando la aceleración:
+
+  $$
+  \omega_{\text{rw},n}^{\tref}\td
+  =
+  \omega_{\text{rw},n}(t_0)
+  +
+  \int_{t_0}^{t}
+  \dot{\omega}_{\text{rw},n}(\tau)\,
+  \mathrm{d}\tau,
+  $$
+
+  donde $\omega_{\text{rw},n}(t_0)$ es la velocidad angular inicial de la rueda en el instante $t_0$.
+
+---
+
+##
+
+- Para fines de control de una rueda de reacción, un motor BLDC puede modelarse como un **motor de corriente directa equivalente**, donde la conmutación electrónica se promedia en el tiempo.
+
+- **Ecuación eléctrica (modelo RL con fuerza contraelectromotriz):**
+
+  $$
+  L_{\text{rw}}
+  \frac{\mathrm{d}I_{\text{rw}}\td}{\mathrm{d}t}
+  =
+  V_{\text{rw}}\td
+  -
+  R_{\text{rw}}I_{\text{rw}}\td
+  -
+  K_e\omega_{\text{rw}}\td,
+  $$
+
+  donde:
+
+  - $L_{\text{rw}}$ es la inductancia equivalente del devanado.
+  - $R_{\text{rw}}$ es la resistencia del devanado.
+  - $V_{\text{rw}}\td$ es el voltaje aplicado (controlado mediante PWM).
+  - $I_{\text{rw}}\td$ es la corriente del motor.
+  - $K_e$ es la constante de fuerza contraelectromotriz.
+
+- **Ecuación mecánica del volante de inercia:**
+
+  $$
+  I_{\text{rw}}
+  \dot{\omega}_{\text{rw}}\td
+  =
+  K_tI_{\text{rw}}\td
+  -
+  b_{\text{rw}}\omega_{\text{rw}}\td,
+  $$
+
+  donde:
+
+  - $I_{\text{rw}}$ es el momento de inercia del volante.
+  - $K_t$ es la constante de torque del motor.
+  - $b_{\text{rw}}$ es el coeficiente de fricción viscosa.
+
+---
+
+##
+
+- El objetivo del controlador es regular la velocidad de la rueda:
+
+  $$
+  e_{\omega_{\text{rw},n}}\td
+  =
+  \omega_{\text{rw},n}^{\tref}\td
+  -
+  \omega_{\text{rw},n}\td.
+  $$
+
+- El voltaje de control aplicado al motor BLDC se calcula mediante un controlador PID. En la práctica, el controlador más utilizado es un PI, ya que el término derivativo puede amplificar el ruido en la medición de velocidad:
+
+  $$
+  V_{\text{rw},n}\td
+  =
+  k_p\,e_{\omega_{\text{rw},n}}\td
+  +
+  k_i
+  \int_{0}^{t}
+  e_{\omega_{\text{rw},n}}(\tau)\,
+  \mathrm{d}\tau.
+  $$
+
+- El voltaje $V_{\text{rw},n}\td$ se implementa físicamente mediante modulación PWM sobre los drivers del puente completo (*full bridge*), entregando un voltaje promedio proporcional al ciclo de trabajo aplicado.
+
+- La velocidad angular puede medirse mediante las lecturas de los sensores Hall integrados en el motor BLDC:
+
+  $$
+  \theta_{\text{rw},n}\td
+  =
+  f(h_a,h_b,h_c),
+  \qquad
+  \omega_{\text{rw},n}\td
+  =
+  \dot{\theta}_{\text{rw},n}\td.
+  $$
+
+- Límites impuestos por el hardware:
+
+  - $|V_{\text{rw},n}\td| \le V_{\max}$.
+  - $|\omega_{\text{rw},n}\td| \in \{0\}\cup[\omega_{\min},\omega_{\max}]$ (las ruedas no pueden operar de forma continua a velocidades muy bajas).
+  - $|I_{\text{rw}}\td| \le I_{\max}$.
+
+---
+
+##
+
+![](Figures/esc.svg){width=100% fig-align="center"}
+
+---
+
+## Saturación de las ruedas de reacción
+
+- Las ruedas de reacción almacenan momento angular:
+
+  $$
+  h_{\text{rw},n}\td
+  =
+  I_{\text{rw},n}\,
+  \omega_{\text{rw},n}\td.
+  $$
+
+- La velocidad tiene un límite físico:
+
+  $$
+  |\omega_{\text{rw},n}\td|
+  \le
+  \omega_{\text{rw},\max},
+  $$
+
+  impuesto por las limitaciones mecánicas del motor, el calentamiento del devanado y la capacidad del driver de potencia.
+
+- Cuando
+
+  $$
+  \omega_{\text{rw},n}\td
+  \rightarrow
+  \omega_{\text{rw},\max},
+  $$
+
+  la rueda ya no puede aumentar su momento angular:
+
+  $$
+  \dot{h}_{\text{rw},n}\td
+  =
+  0
+  \quad\Rightarrow\quad
+  \uptau_{\text{rw},n}\td
+  =
+  0.
+  $$
+
+- Esto implica que la rueda deja de ser capaz de generar par y el satélite pierde capacidad de control en esa dirección. Este fenómeno se conoce como **saturación de las ruedas de reacción**:
+
+  $$
+  \ls{b}\vec{h}_{\text{rw}}\td
+  =
+  \begin{bmatrix}
+  h_{\text{rw},1}\td &
+  h_{\text{rw},2}\td &
+  \cdots &
+  h_{\text{rw},N_{\text{rw}}}\td
+  \end{bmatrix}^{\top}
+  \rightarrow
+  \vec{h}_{\text{rw},\max}.
+  $$
+
+- Para recuperar la capacidad de control es necesario **descargar el momento angular** utilizando actuadores no saturables, como los magnetopares.
+
+---
+
+##
+
+- La desaturación consiste en extraer el momento angular acumulado en las ruedas y transferirlo al ambiente mediante magnetopares.
+
+- Para desaturar, los magnetopares generan un par que actúa en sentido contrario al momento almacenado en las ruedas:
+
+  $$
+  \dot{\vec{h}}_{\text{rw}}\td
+  =
+  \ls{b}\vec{\uptau}_{\text{rw}}\td
+  =
+  -\ls{b}\vec{\uptau}_{\text{mt}}\td.
+  $$
+
+- El objetivo del algoritmo es
+
+  $$
+  \lim_{t\to t_f}
+  \vec{h}_{\text{rw}}\td
+  =
+  \vec{0}
+  \qquad
+  \text{o}
+  \qquad
+  \vec{h}_{\text{rw}}\td
+  =
+  \vec{h}_{\text{rw},\text{nom}}.
+  $$
+
+- La referencia del dipolo magnético para la desaturación suele calcularse como
+
+  $$
+  \ls{b}\vec{m}_{\text{mt}}^{\tref}\td
+  =
+  -k_d\,
+  D\,
+  \ls{b}\vec{h}_{\text{rw}}\td,
+  $$
+
+  donde $k_d>0$ es la ganancia de desaturación.
+
+- De esta forma, el par magnético transfiere el momento angular acumulado al campo magnético terrestre, restaurando la capacidad de control del satélite.
+  
+---
+
+Aquí se termina el curso.
+
+![](Figures/yop.png){width=70% fig-align="center"}
+
+<span style="color:#003399"> ¡Gracias por todo su esfuerzo!</span>
+
+

@@ -1,0 +1,43 @@
+project:
+  type: default
+  output-dir: Build
+
+lang: es
+
+language:
+  crossref-fig-title: "Figura"
+  crossref-tbl-title: "Tabla"
+  crossref-lst-title: "Listado"
+  crossref-sec-prefix: "Sección"
+  crossref-eq-prefix: "Ecuación"
+  
+format:
+  revealjs:
+    menu:
+      side: right
+      titleSelector: '.menu-title, .menu-subtitle'
+      useTextContentForMissingTitles: false
+      hideMissingTitles: true
+        
+    include-after-body:
+      - Assets/footer.html
+      - Assets/background.html
+    
+    include-in-header:
+      - Assets/footer-script.html
+      - Assets/Math/macros.html
+
+    theme:
+      - default
+      - Assets/theme.scss
+
+    html-math-method:
+      method: mathjax
+      url: https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js
+
+    width: 1920
+    height: 1080
+
+    slide-number: true
+    transition: fade
+    toc: false

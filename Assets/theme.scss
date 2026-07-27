@@ -1,0 +1,525 @@
+/*-- scss:uses --*/
+
+@import url("https://fonts.cdnfonts.com/css/latin-modern-roman");
+
+/*-- scss:defaults --*/
+
+$font-main: "Latin Modern Roman", serif;
+
+$primary-color: #003399;
+//$primary-color: #a00200;
+
+$text-color: #444c5c;
+$text-accent-color: #123b9d;
+$background-color: #ffffff;
+
+/*-- scss:rules --*/
+
+/*==================================================
+  ESTILOS GLOBALES
+==================================================*/
+
+.reveal,
+#footer,
+.reveal h1,
+.reveal h2 {
+    font-family: $font-main;
+}
+
+.reveal {
+    font-size: 32px;
+}
+
+.reveal h1,
+.reveal h2 {
+    color: $primary-color;
+}
+
+.text-primary {
+    color: $primary-color;
+}
+
+.small  { font-size: .8em; }
+.large  { font-size: 1.3em; }
+.xlarge { font-size: 1.7em; }
+
+/*==================================================
+  LISTAS
+==================================================*/
+
+.reveal ul,
+.reveal ul ul,
+.reveal ul ul ul {
+    list-style: none;
+    padding-left: 1.3em;
+}
+
+.reveal ul li {
+    position: relative;
+}
+
+.reveal ul li::before {
+    content: "➤";
+    color: $primary-color;
+    position: absolute;
+    left: -1.2em;
+}
+
+.reveal ul ul li::before {
+    content: "⨳";
+}
+
+.reveal ul ul ul li::before {
+    content: "⧎";
+}
+
+/*==================================================
+  FOOTER
+==================================================*/
+
+#footer {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 30px;
+    box-sizing: border-box;
+}
+
+.footer-left,
+.footer-right {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.footer-course {
+    color: $primary-color;
+    font-weight: 600;
+}
+
+.footer-logo,
+.footer-page {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    background: $primary-color;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.footer-logo {
+    cursor: pointer;
+}
+
+.footer-logo img {
+    width: 24px;
+    height: 24px;
+}
+
+.footer-page {
+    color: white;
+    font-weight: 600;
+}
+
+/*==================================================
+  IMAGEN DE FONDO
+==================================================*/
+
+#background-image {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 45vw;
+    height: 100vh;
+    opacity: 0.08;
+    pointer-events: none;
+    z-index: -1;
+}
+
+#background-image img {
+    width: 110%;
+    height: 110%;
+    object-fit: contain;
+    object-position: right center;
+}
+
+/*==================================================
+  CONFIGURACIÓN DE REVEAL.JS
+==================================================*/
+
+.reveal .slide-number,
+.slide-menu-button {
+    display: none !important;
+}
+
+.reveal .slides section:first-child.present ~ #footer {
+    display: none;
+}
+
+.reveal .slides section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+/*==================================================
+  PORTADA
+==================================================*/
+
+.cover {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-left: 120px;
+    box-sizing: border-box;
+    text-align: left;
+}
+
+.cover-logo img {
+    width: 240px;
+    margin-bottom: 40px;
+    filter: invert(1);
+}
+
+.cover-title {
+    max-width: 900px;
+    font-size: 72px;
+    font-weight: 700;
+    line-height: 1.05;
+    color: $primary-color;
+}
+
+.cover-line {
+    width: 700px;
+    height: 3px;
+    margin: 15px 0;
+    background: #d4a017;
+}
+
+.cover-subtitle {
+    margin-bottom: 30px;
+    font-size: 36px;
+    color: #555;
+}
+
+.cover-author {
+    margin-bottom: 25px;
+    font-size: 32px;
+    font-weight: 600;
+    color: $primary-color;
+}
+
+.cover-affiliation {
+    font-size: 24px;
+    line-height: 1.4;
+    color: #555;
+}
+
+
+
+/*==================================================
+  DIAPOSITIVAS DE CAPÍTULO
+==================================================*/
+
+.chapter-slide,
+.center-vertical {
+    position: relative;
+    overflow: hidden;
+}
+
+/*--------------------------------------------------
+  Capítulos
+--------------------------------------------------*/
+
+.chapter-slide {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.chapter-slide h1 {
+    margin: 0;
+    font-size: 7rem;
+    font-weight: 700;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    color: $primary-color;
+}
+
+.chapter-slide .large {
+    margin-top: 1rem;
+    font-size: 3rem;
+    font-weight: 300;
+    color: #666;
+}
+
+/*--------------------------------------------------
+  Subcapítulos
+--------------------------------------------------*/
+
+.center-vertical,
+.v-center {
+    display: flex;
+    flex-direction: column;
+}
+
+.center-vertical {
+    height: 80vh;
+    justify-content: center;
+}
+
+.v-center {
+    height: 80vh;
+    justify-content: space-between;
+}
+
+.chapter-title {
+    text-align: center;
+    font-size: 5.2rem;
+    font-weight: 700;
+    line-height: 1.05;
+    color: $primary-color;
+}
+
+.chapter-subtitle {
+    margin-top: 1.4rem;
+    text-align: center;
+    font-size: 2.5rem;
+    font-weight: 300;
+    color: #555;
+}
+
+/*--------------------------------------------------
+  Línea
+--------------------------------------------------*/
+
+.chapter-line {
+    width: min(750px,55%);
+    height: 4px;
+    margin: 2rem auto;
+    background: linear-gradient(
+        90deg,
+        transparent 0%,
+        #d4a017 20%,
+        #d4a017 80%,
+        transparent 100%
+    );
+    border-radius: 2px;
+}
+
+/*--------------------------------------------------
+  Marca de agua
+--------------------------------------------------*/
+
+.chapter-slide::before,
+.center-vertical::before {
+
+    content: "";
+
+    position: absolute;
+
+    right: -40px;
+    bottom: -80px;
+
+    width: 520px;
+    height: 520px;
+
+    border-radius: 50%;
+
+    background: radial-gradient(
+        circle,
+        rgba($primary-color,.06) 0%,
+        rgba($primary-color,.03) 45%,
+        transparent 75%
+    );
+
+    pointer-events: none;
+}
+
+
+// /*==================================================
+//   DIAPOSITIVAS DE CAPÍTULO
+// ==================================================*/
+
+// .chapter-slide {
+//     height: 85vh;
+//     display: flex;
+//     flex-direction: column;
+//     justify-content: center;
+//     align-items: center;
+//     text-align: center;
+// }
+
+// .chapter-slide h1 {
+//     margin: 0;
+//     font-size: 4.5rem;
+//     font-weight: 700;
+//     color: $primary-color;
+// }
+
+// .chapter-slide h2 {
+//     margin-top: .5rem;
+//     font-size: 2rem;
+//     font-weight: 400;
+//     color: #666;
+// }
+
+// .chapter-title {
+//     text-align: center;
+//     font-size: 5.6rem;
+//     font-weight: 700;
+//     color: $primary-color;
+// }
+
+// .chapter-subtitle {
+//     margin-top: 1rem;
+//     text-align: center;
+//     font-size: 3.8rem;
+// }
+
+// .center-vertical,
+// .v-center {
+//     display: flex;
+//     flex-direction: column;
+// }
+
+// .center-vertical {
+//     height: 80vh;
+//     justify-content: center;
+// }
+
+// .v-center {
+//     height: 80vh;
+//     justify-content: space-between;
+//}
+
+/*==================================================
+  BLOQUES
+==================================================*/
+
+.definition-block {
+    margin: 1em 0em 0em 0px;
+    padding: 0em 0.2em 0.2em 0.2em;
+    background: rgba(#f5f7fb, 0.6);
+    border-left: 7px solid $primary-color;
+    border-radius: 0px;
+}
+
+.definition-block strong:first-child {
+    font-size: 1em;
+    background: $primary-color;
+    margin: -10px -0.2em 0em -0.2em;
+    padding: 0em -0.2em 0em -0.2em;
+    color: white;
+    display: block;
+    border-radius: 0px;
+}
+
+/*==================================================
+  ALGORITMOS
+==================================================*/
+
+.algorithm {
+    margin: 1em 0;
+    padding: 0 1em .6em 1em;
+    background: rgba(#f5f7fb, 0.5);
+    border-left: 7px solid $primary-color;
+    border-radius: 0;
+    line-height: 1.15;
+}
+
+.algorithm-title {
+    display: block;
+    margin: -10px -1em 0 -1em;
+    padding: .35em .9em;
+    background: $primary-color;
+    color: white;
+    font-weight: 600;
+    font-size: 1em;
+}
+
+.algorithm-io {
+    margin: 0 -1em;
+    padding: .18em .9em;
+    background: rgba($primary-color, .05);
+    border-bottom: 1px solid rgba($primary-color, .15);
+}
+
+.algorithm-io strong {
+    color: $primary-color;
+}
+
+.algorithm ol {
+    margin: .5em 0 0 1.6em;
+    padding: 0;
+}
+
+.algorithm li {
+    margin: .35em 0;
+}
+
+.algorithm ol li::marker {
+    color: $primary-color;
+    font-weight: 600;
+}
+
+.algorithm p {
+    margin: .2em 0;
+}
+
+.algorithm .math.display {
+    margin: .35em 0;
+}
+
+/*==================================================
+  TABLAS
+==================================================*/
+
+.reveal table {
+    width: auto;
+    margin: auto;
+    border-collapse: collapse;
+    font-size: .9em;
+}
+
+.reveal th,
+.reveal td {
+    padding: .45em .8em;
+}
+
+.reveal th {
+    color: white;
+    text-align: center;
+    font-weight: 600;
+    background: $primary-color;
+    border-bottom: 2px solid $primary-color;
+}
+
+.reveal tbody tr:nth-child(even) {
+    background: #f5f7fb;
+}
+
+.reveal tbody tr:hover {
+    background: #e7eefc;
+}
+
+/* Separadores */
+
+.vspace-1 { height: .5em; }
+.vspace-2 { height: 1em; }
+.vspace-3 { height: 1.5em; }
+.vspace-4 { height: 2em; }

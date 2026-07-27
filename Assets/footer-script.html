@@ -1,0 +1,31 @@
+<script>
+
+window.addEventListener("load", () => {
+
+    const logo = document.querySelector(".footer-logo");
+
+    if (logo) {
+
+        logo.style.cursor = "pointer";
+
+        logo.addEventListener("click", () =>
+            document.querySelector(".slide-menu-button").click()
+        );
+
+    }
+
+    function updateSlideNumber() {
+
+        const current = document.getElementById("slide-number-custom");
+
+        if (!current) return;
+
+        current.textContent = Reveal.getSlidePastCount() + 1;
+    }
+
+    Reveal.on("ready", updateSlideNumber);
+    Reveal.on("slidechanged", updateSlideNumber);
+
+});
+
+</script>

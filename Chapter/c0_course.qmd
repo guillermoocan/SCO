@@ -1,0 +1,174 @@
+
+## Información general
+
+- Curso: Sistemas de Control de Orientación
+- Optativa de elección para Ingeniería Espacial
+- Clave: 1277
+- Semestre: 10
+- Créditos: 6
+- Horas por semana: 3
+- Modalidad: Teórica
+- Seriación: Ninguna
+
+::: {.fragment}
+
+::: {.definition-block}
+**Objetivo del curso**
+
+El alumno analizará el funcionamiento de los sistemas de control de orientación para sistemas espaciales y sus aplicaciones.
+
+:::
+
+:::
+
+---
+
+## ¿Sistema de Control de Orientación? {transition="fade"} 
+
+::: {.columns}
+
+::: {.column width="50%"}
+![](/Figures/c0/catch.png){.fragment fragment-index=1 width=65% fig-align="center"}
+:::
+
+::: {.column width="50%"}
+![](/Figures/c0/map.png){.fragment width=70% fig-align="center"}
+:::
+
+:::
+
+## ¿Sistema de Control de Orientación? {transition="fade"}
+
+![](/Figures/c0/adcs_animation.mp4){width=86% fig-align="center" data-autoplay=true}
+
+## Presentación
+
+::: {.columns}
+
+::: {.column width="30%"}
+
+- Intereses académicos
+- Intereses profesionales
+- Método de titulación
+- Aficiones personales
+
+:::
+
+::: {.column width="70%"}
+
+![](/Figures/c0/people.png){width=75% fig-align="right"}
+
+:::
+
+:::
+
+## Sobre mí
+
+::: {.columns}
+
+::: {.column width="70%"}
+
+- Laboratorio de Instrumentación Electrónica de Sistemas Espaciales (LIESE)
+- Instituto de Ingeniería, UNAM
+- Grupo de Modos Deslizantes
+
+**Formación académica**
+
+- Ingeniero Eléctrico Electrónico
+- Maestría en Ingeniería Eléctrica – Control
+
+**Información de contacto**
+
+- Correo: guillermoocaan@gmail.com
+- LIESE, Edificio P, Facultad de Ingeniería, UNAM
+
+:::
+
+::: {.column width="30%"}
+
+![](/Figures/c0/Foto.jpeg)
+
+:::
+
+:::
+
+## Contenido del curso
+
+:::{.columns .center-vertical}
+
+::: {.column width="50%"}
+- **Introducción**
+    - Conceptos generales
+    - Revisión histórica
+- **Preliminares**
+    - Marcos de referencia
+    - Mecánica orbital
+- **Modelo rotacional**
+    - Modelo cinemático
+    - Modelo dinámico
+    - Perturbaciones
+:::
+
+::: {.column width="50%"}
+- **Determinación**
+    - Sensores
+    - Estimadores estáticos
+    - Estimadores dinámicos
+- **Control**
+    - Actuadores
+    - Error
+    - Algoritmos de control.
+    - Generación de par
+
+:::
+:::
+
+## Antecedentes
+
+::: {.columns}
+
+::: {.column}
+- Álgebra lineal
+- Cálculo vectorial
+- Ecuaciones diferenciales
+- Análisis numérico
+- Matemáticas avanzadas
+- Probabilidad y estadística
+- Análisis de sistemas y señales
+- Modelado de sistemas físicos
+- Diseño digital
+- Control automático
+- Medio ambiente espacial
+- Modelado basado en diseño
+- <span class="text-primary"> Mecánica orbital </span>
+
+:::
+
+::: {.column .fragment}
+
+::: {.callout-tip}
+
+## Recomendaciones
+
+- Conocimientos básicos de programación, especialmente en MATLAB/Simulink.
+- Conocimientos sobre electrónica básica y manejo de tarjetas de desarrollo distintas a Arduino y ESP32.
+- Creación de documentos en LaTeX
+
+:::
+
+:::
+
+:::
+
+## Classroom
+
+![](/Figures/c0/classroom_sco.png){fig-align="center"}
+
+## Formato de entrega
+
+- Los documentos deberán ser entregados en formato PDF mediante Classroom.
+- El nombre del archivo deberá seguir el siguiente formato: *Tipo\_Número\_ApellidoNombre.pdf*, *e.g.*,  *Tarea\_1\_OcanaGuillermo.pdf*
+- La entrega es individual, incluso si el trabajo es en equipo.
+- Es **obligatorio** utilizar la plantilla en LaTeX que será proporcionada en cada actividad.
+
+![](/Figures/c0/formato.png){fig-align="center"}

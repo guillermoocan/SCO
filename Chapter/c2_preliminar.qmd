@@ -1,0 +1,3059 @@
+
+::: {.chapter-slide}
+
+# Capítulo 2
+
+::: {.text-center}
+
+<div class="chapter-line"></div>
+
+::: {.large}
+
+Preliminares
+<div class="menu-title" style="display:none;"> Preliminares </div>
+
+:::
+
+:::
+
+:::
+
+## Vectores
+
+<div class="menu-title" style="display:none;"> ▸ Repaso de álgebra </div>
+
+::: {.columns}
+::: {.column width="70%"}
+
+Un **vector** (columna) es una $n$-tupla ordenada de números reales:
+
+$$
+    \vec{v}=
+    \begin{bmatrix}
+        v_1\\
+        v_2\\
+        \vdots\\
+        v_n
+    \end{bmatrix} \in\mathbb{R}^n ,
+    \qquad v_i\in\mathbb{R}
+$$
+
+o de forma equivalente,
+
+$$
+    \vec{v}\equiv
+    [v_1\quad v_2\quad \dots\quad v_n]^\top.
+$$
+
+donde $n\in\mathbb{N}$ y $\top$ denota transposición. El conjunto de todos los vectores de dimensión $n$ es el espacio $\mathbb{R}^n$.
+
+Físicamente nos permiten representar **magnitudes vectoriales**, *e.g.*, la posición y la velocidad.
+
+Pueden clasificarse como libres o fijos, dependiendo si origen es invariante.
+
+:::
+::: {.column width="30%"}
+
+:::{.small}
+
+$v_x$
+```{ojs}
+viewof vx = Inputs.range([-5, 5], {value: 1, step: 0.1})
+```
+$v_y$
+```{ojs}
+viewof vy = Inputs.range([-5, 5], {value: 1, step: 0.1})
+```
+
+$o_x$
+```{ojs}
+viewof ox = Inputs.range([-5, 5], {value: 0, step: 0.1})
+```
+$v_y$
+```{ojs}
+viewof oy = Inputs.range([-5, 5], {value: 0, step: 0.1})
+```
+
+:::
+
+```{ojs}
+Plot.plot({
+  width: 500,
+  height: 500,
+  x: {domain: [-5, 5], grid: true},
+  y: {domain: [-5, 5], grid: true},
+  marks: [
+    Plot.arrow(
+      [{x1: ox, y1: oy, x2: vx+ox, y2: vy+oy}],
+      {
+        x1: "x1",
+        y1: "y1",
+        x2: "x2",
+        y2: "y2"
+      }
+    )
+  ]
+})
+```
+:::
+
+:::
+
+---
+
+## Operaciones típicas entre vectores
+
+Sean $\vec{u},\vec{v}\in\mathbb{R}^n$ y $\alpha\in\mathbb{R}$:
+
+- **Suma:** $\vec{u}+\vec{v}=[u_1+v_1,\dots,u_n+v_n]^\top$
+
+- **Producto por escalar:** $\alpha\vec{u}=[\alpha u_1,\dots,\alpha u_n]^\top$
+
+- **Producto punto:**
+
+$$
+    \begin{aligned}
+        \vec{u}\cdot\vec{v}&=\sum_{i=1}^{n}u_iv_i\\
+        &=\vec{u}^{\top}\vec{v}\\
+        &=\|\vec{u}\|\,\|\vec{v}\|\cos\theta
+    \end{aligned}
+$$
+
+donde $\theta$ es el ángulo comprendido entre $\vec{u}$ y $\vec{v}$ al hacer coincidir sus orígenes.
+
+- **Norma Euclidiana:** $\|\vec{u}\|=\sqrt{\vec{u}\cdot\vec{u}}$
+
+---
+
+## Producto cruz (definición por componentes)
+
+En $\mathbb{R}^3$, el **producto cruz** de dos vectores $\vec{u},\vec{v}\in\mathbb{R}^3$ se define como
+
+$$
+    \vec{u}\times\vec{v}=
+    \begin{bmatrix}
+        u_2v_3-u_3v_2\\
+        u_3v_1-u_1v_3\\
+        u_1v_2-u_2v_1
+    \end{bmatrix}=
+    \begin{vmatrix}
+        \vec{i} & \vec{j} & \vec{k}\\
+        u_1 & u_2 & u_3\\
+        v_1 & v_2 & v_3
+    \end{vmatrix},
+$$
+
+donde $\{\vec{i},\vec{j},\vec{k}\}$ es la base canónica de $\mathbb{R}^3$.
+
+::: {.fragment}
+
+**Propiedades**:
+
+- $\vec{u}\times\vec{v}=-(\vec{v}\times\vec{u})$
+- $\vec{u}\times\vec{u}=\vec{0}$
+- $\vec{u}\cdot(\vec{u}\times\vec{v})=0$
+- $\vec{u}\times\vec{v}$ es ortogonal (perpendicular) a $\vec{u}$ y $\vec{v}$.
+- Si $\vec{u}$ y $\vec{v}$ son colineales, entonces $\vec{u}\times\vec{v}=\vec{0}$.
+- $\|\vec{u}\times\vec{v}\|=\|\vec{u}\|\,\|\vec{v}\|\sin\theta.$
+
+:::
+
+---
+
+## Espacio vectorial (real)
+
+Un **espacio vectorial real** es una tupla
+
+$$
+(\mathcal{V},+,\cdot)
+$$
+
+donde $\mathcal{V}$ es un conjunto de vectores reales, $+:\mathcal{V}\times\mathcal{V}\rightarrow\mathcal{V}$ y $\cdot:\mathbb{R}\times\mathcal{V}\rightarrow\mathcal{V}$ satisfacen, para todo $\vec{u},\vec{v},\vec{w}\in\mathcal{V}$ y $\alpha,\beta\in\mathbb{R}$:
+
+- $\alpha(\vec{u}+\vec{v})=\alpha\vec{u}+\alpha\vec{v}$.
+- $(\alpha+\beta)\vec{u}=\alpha\vec{u}+\beta\vec{u}$.
+- $(\alpha\beta)\vec{u}=\alpha(\beta\vec{u})$.
+- $1\cdot\vec{u}=\vec{u}$.
+
+---
+
+## Base
+
+Sea $\mathcal{V}$ un espacio vectorial real de dimensión $n$. Un conjunto ordenado
+
+$$
+\mathcal{B}=\{\vec{v}_1,\vec{v}_2,\dots,\vec{v}_n\}\subset\mathcal{V}
+$$
+
+es una **base** de $\mathcal{V}$ si:
+
+1. **Independencia lineal**
+
+$$
+    \alpha_1\vec{v}_1+\cdots+\alpha_n\vec{v}_n=\vec{0}
+    \;\Rightarrow\;
+    \alpha_1=\cdots=\alpha_n=0.
+$$
+
+
+::: {.fragment}
+
+1. **Generación**
+
+Todo $\vec{u}\in\mathcal{V}$ se escribe de forma *única* como
+
+$$
+    \vec{u}=\alpha_1\vec{v}_1+\cdots+\alpha_n\vec{v}_n,
+    \qquad \alpha_i\in\mathbb{R}.
+$$
+
+:::
+
+
+
+::: {.callout-note .fragment}
+### Nota:
+
+ Una *combinación lineal* es toda expresión
+
+$$
+\alpha_1\vec{v}_1+\cdots+\alpha_n\vec{v}_n
+$$
+
+con $\alpha_i\in\mathbb{R}$. La independencia lineal de la base implica que ningún vector se expresa como combinación lineal de los demás.
+
+:::
+
+---
+
+## Matrices
+
+Una **matriz** $A\in\mathbb{R}^{m\times n}$ es un arreglo rectangular:
+
+$$
+    A=
+    \begin{bmatrix}
+        a_{11} & \cdots & a_{1n}\\
+        \vdots & \ddots & \vdots\\
+        a_{m1} & \cdots & a_{mn}
+    \end{bmatrix}.
+$$
+
+::: {.fragment}
+
+**Operaciones con matrices**
+
+Sean $A,B\in\mathbb{R}^{m\times n}$ y $\alpha\in\mathbb{R}$:
+
+- **Suma:** $(A+B)_{ij}=a_{ij}+b_{ij}$.
+- **Producto por escalar:** $(\alpha A)_{ij}=\alpha a_{ij}$.
+- **Producto matricial:** Si $A\in\mathbb{R}^{m\times p}$ y $B\in\mathbb{R}^{p\times n}$,
+
+$$
+    (AB)_{ij}=\sum_{k=1}^{p}a_{ik}b_{kj},
+    \qquad
+    AB\in\mathbb{R}^{m\times n}.
+$$
+
+- **Transpuesta:** $(A^\top)_{ij}=a_{ji}$.
+
+**Nota:** La notación $(A)_{ij}$ denota el elemento de $A$ en la fila $i$ y columna $j$.
+
+:::
+
+
+## Inversa de una matriz
+
+Sea $A\in\mathbb{R}^{n\times n}$ (matriz cuadrada). Se dice que $A$ es **invertible** si existe $B\in\mathbb{R}^{n\times n}$ tal que
+
+$$
+AB=BA=I_n.
+$$
+
+Dicha $B$ es única y se denota $A^{-1}$.
+
+Equivalencias:
+
+- $A$ invertible $\iff \det(A)\neq0 \iff$ las columnas de $A$ son linealmente independientes.
+- $A$ invertible $\iff \operatorname{rank}(A)=n$.
+
+::: {.callout-note}
+### Nota:
+
+El determinante de una matriz cuadrada es un escalar asociado que puede interpretarse como una combinación alternada de todos los posibles productos de sus elementos. Por otro lado, el rango de una matriz es el número de sus columnas linealmente independientes. En el caso de matrices cuadradas, el rango de $A$ es $n$ si y solo si $\det(A)\neq0$.
+
+:::
+
+---
+
+## Matrices simétricas y antisimétricas
+
+Sea $A\in\mathbb{R}^{n\times n}$.
+
+- $A$ es **simétrica** si
+
+$$
+A^\top=A.
+$$
+
+Ejemplo:
+
+$$
+    A=
+    \begin{bmatrix}
+        a & b\\
+        b & c
+    \end{bmatrix}.
+$$
+
+- $A$ es **antisimétrica** si
+
+$$
+A^\top=-A.
+$$
+
+Ejemplo:
+
+$$
+    A=
+    \begin{bmatrix}
+        0 & -a\\
+        a & 0
+    \end{bmatrix}.
+$$
+
+---
+
+## Producto cruz: matriz antisimétrica
+
+Dado $\vec{u}=[u_1,u_2,u_3]^\top$, se define la matriz antisimétrica
+
+$$
+    S(\vec{u})=
+    \begin{bmatrix}
+        0 & -u_3 & u_2\\
+        u_3 & 0 & -u_1\\
+        -u_2 & u_1 & 0
+    \end{bmatrix}.
+$$
+
+Entonces,
+
+$$
+\vec{u}\times\vec{v}=S(\vec{u})\vec{v}.
+$$
+
+---
+
+## Matrices ortonormales
+
+Sea $Q\in\mathbb{R}^{n\times n}$.
+
+Decimos que $Q$ es **ortonormal** si
+
+$$
+Q^\top Q=QQ^\top=I_n.
+$$
+
+Esto implica:
+
+- Las columnas $\{\vec{q}_1,\dots,\vec{q}_n\}$ de $Q$ forman una **base ortonormal** de $\mathbb{R}^n$:
+
+$$
+    \vec{q}_i^\top\vec{q}_j=
+    \begin{cases}
+        1,&\text{si }i=j,\\
+        0,&\text{si }i\neq j.
+    \end{cases}
+$$
+
+- Cada columna tiene norma $1$ y distintas columnas son perpendiculares entre sí; en consecuencia, $|\det(Q)|=1$.
+- Consecuencia algebraica: $Q^{-1}=Q^\top$.
+
+---
+
+## Valores propios
+
+Sea $A\in\mathbb{R}^{n\times n}$.
+
+Un escalar $\lambda\in\mathbb{R}$ es un **valor propio** de $A$ si existe un vector no nulo $\vec{v}\in\mathbb{R}^n$ tal que
+
+$$
+A\vec{v}=\lambda\vec{v}.
+$$
+
+**Condición equivalente:**
+
+$$
+\det(A-\lambda I_n)=0.
+$$
+
+donde $\det(A-\lambda I_n)$ es el polinomio característico de $A$.
+
+---
+
+## Vectores propios
+
+Sea $A\in\mathbb{R}^{n\times n}$.
+
+Si $\lambda$ es un valor propio de $A$, entonces todo vector no nulo $\vec{v}\in\mathbb{R}^n$ que cumple
+
+$$
+A\vec{v}=\lambda\vec{v}
+$$
+
+se denomina **vector propio** asociado a $\lambda$.
+
+El conjunto de todos los vectores propios asociados a un mismo $\lambda$, junto con el vector cero, forma el **espacio propio**:
+
+$$
+E_\lambda=\ker(A-\lambda I_n).
+$$
+
+
+
+##
+
+::: {.center-vertical}
+
+::: {.chapter-title}
+
+Preliminares
+
+:::
+
+<div class="chapter-line"></div>
+
+::: {.chapter-subtitle}
+
+Marcos de referencia
+
+
+<div class="menu-title" style="display:none;"> ▸ Marcos de referencia </div>
+
+:::
+
+:::
+
+##
+
+![](Figures/c1/closeloop.svg){width=100% fig-align="center"}
+
+## Marco de referencia
+
+El **marco de referencia** $i$ en $\mathbb{R}^3$ es la tupla
+
+$$
+\ls{i}{\mathcal{F}}=\left(\ls{i}{O},\;\ls{i}{\mathcal{B}}\right),
+$$
+
+donde:
+
+- $\ls{i}{O}\in\mathbb{R}^3$ es el **origen**.
+- $\ls{i}{\mathcal{B}}=\{\ls{i}{\vec{x}},\ls{i}{\vec{y}},\ls{i}{\vec{z}}\}$ es una **base ortonormal derecha** de $\mathbb{R}^3$:
+
+$$
+    \ls{i}{\vec{x}}\cdot\ls{i}{\vec{y}}=0,
+    \qquad
+    \|\ls{i}{\vec{x}}\|=\|\ls{i}{\vec{y}}\|=\|\ls{i}{\vec{z}}\|=1,
+    \qquad
+    \ls{i}{\vec{x}}\times\ls{i}{\vec{y}}=\ls{i}{\vec{z}}.
+$$
+
+**Equivalente matricial:**
+
+Si
+
+$$
+R=\left[\,\ls{i}{\vec{x}}\;\;\ls{i}{\vec{y}}\;\;\ls{i}{\vec{z}}\,\right],
+$$
+
+entonces
+
+$$
+    R^\top R=I_3,
+    \qquad
+    \det(R)=1.
+$$
+
+## Marcos de referencia para satélites
+
+Un marco de referencia provee un sistema cartesiano para expresar coordenadas de vectores en el espacio. Mediante estos, es posible describir la orientación de un cuerpo.
+
+En general, es necesario definir:
+
+- Un **marco inercial**.
+- Un **marco sujeto al cuerpo**.
+- Marcos **auxiliares**.
+
+Con ello, podemos cuantificar la orientación mediante un parámetro que describa qué tan inclinado está el marco sujeto al cuerpo con respecto a otro marco.
+
+Para un satélite, es común definir los siguientes marcos de referencia:
+
+##
+
+![](/Figures/c2/frame_empty.svg){width=100% fig-align="center"}
+
+## Marco inercial geocéntrico $\ls{i}{\mathcal{F}}$
+
+**Centro:** $\ls{i}{O}$ (centro de la Tierra).
+
+**Ejes:**
+
+- $\ls{i}{\vec{x}}$: apunta al equinoccio vernal.
+- $\ls{i}{\vec{y}}$: completa la regla de la mano derecha.
+- $\ls{i}{\vec{z}}$: apunta al eje de rotación terrestre.
+
+El adjetivo **inercial** indica que es un marco de referencia **no acelerado** (velocidad constante). Este marco inercial es una referencia constante que nos permite medir de forma absoluta la posición y velocidad angular del satélite. Es necesario para aplicar las leyes de la mecánica clásica y describir el movimiento orbital.
+
+## Marco perifocal (PQW) $\ls{p}{\mathcal{F}}$
+
+**Centro:** $\ls{p}{O}$ (centro de la Tierra).
+
+**Ejes:**
+
+- $\ls{p}{\vec{x}}$: apunta al perigeo.
+- $\ls{p}{\vec{y}}$: apunta perpendicular a $\ls{p}{\vec{x}}$ en el plano orbital.
+- $\ls{p}{\vec{z}}$: apunta normal al plano orbital (dirección del momento angular orbital).
+
+Es el marco fundamental de la órbita, directamente relacionado con los elementos orbitales. Se usa para describir trayectorias elípticas y la geometría de la órbita en su plano. También es un marco de referencia inercial.
+
+---
+
+## Marco RSW $\ls{r}{\mathcal{F}}$
+
+**Centro:** $\ls{r}{O}$ (centro de masa del satélite).
+
+**Ejes:**
+
+- $\ls{r}{\vec{x}}$: apunta al cenit (radial, de la Tierra al satélite).
+- $\ls{r}{\vec{y}}$: apunta ortogonal a $\ls{r}{\vec{x}}$, en dirección de la velocidad $\vec{v}$ (no necesariamente colineal salvo en órbitas circulares).
+- $\ls{r}{\vec{z}}$: apunta normal al plano orbital.
+
+Su origen está ligado a la posición orbital del satélite; *i.e.*, **cambia con el tiempo**.
+
+---
+
+## Marco orbital (Local Vertical Local Horizontal) $\ls{h}{\mathcal{F}}$
+
+**Centro:** $\ls{h}{O}$ (centro de masa del satélite).
+
+**Ejes:**
+
+- $\ls{h}{\vec{x}}$: apunta en dirección de la velocidad $\vec{v}$.
+- $\ls{h}{\vec{y}}$: apunta normal al plano orbital (opuesto al momento angular orbital).
+- $\ls{h}{\vec{z}}$: apunta a nadir (hacia el centro de la Tierra).
+
+También llamado **LVLH**, es el marco natural para misiones que requieren apuntar instrumentos hacia la Tierra. Sirve como marco de referencia local desde la perspectiva del satélite en órbita.
+
+---
+
+## Marco sujeto al cuerpo $\ls{b}{\mathcal{F}}$
+
+**Centro:** $\ls{b}{O}$ (centro de masa del satélite).
+
+**Ejes:**
+
+- $\ls{b}{\vec{x}}$: definido por la geometría o estructura del satélite.
+- $\ls{b}{\vec{y}}$: definido por la geometría o estructura del satélite.
+- $\ls{b}{\vec{z}}$: definido por la geometría o estructura del satélite.
+
+Es el marco en el que se montan sensores y actuadores. Todos los algoritmos de control de orientación se implementan en este marco porque representa la orientación física real del vehículo espacial.
+
+---
+
+##
+
+![](/Figures/c2/frame_b.svg){width=70% fig-align="center"}
+
+---
+
+::: {.center-vertical}
+
+::: {.chapter-title}
+
+Preliminares
+
+:::
+
+<div class="chapter-line"></div>
+
+::: {.chapter-subtitle}
+
+Matrices de rotación
+<div class="menu-title" style="display:none;"> ▸ Matrices de rotación </div>
+
+:::
+
+:::
+
+## Matrices de rotación en dos dimensiones
+
+::: {.columns}
+
+::: {.column width="45%"}
+
+Sea el marco de referencia $\ls{1}{\mathcal{F}}$ y el marco de referencia $\ls{2}{\mathcal{F}}$, el cual puede obtenerse al girar el sistema $\ls{1}{\mathcal{F}}$ sobre el eje $\ls{1}{\vec{z}}$ en un ángulo $\theta_1$. Las coordenadas del punto $p$ en el marco $\ls{1}{\mathcal{F}}$ son
+
+$$
+    \ls{1}\vec{p}=
+    \begin{bmatrix}
+        \ls{1}p_x\\
+        \ls{1}p_y\\
+        \ls{1}p_z
+    \end{bmatrix}
+    =
+    \begin{bmatrix}
+        r\cos(\theta_2)\\
+        r\sin(\theta_2)\\
+        0
+    \end{bmatrix}
+$$ {#eq-1p}
+
+y en el marco $\ls{2}{\mathcal{F}}$ son
+
+$$
+    \ls{2}\vec{p}=
+    \begin{bmatrix}
+        \ls{2}p_x\\
+        \ls{2}p_y\\
+        \ls{2}p_z
+    \end{bmatrix}
+    =
+    \begin{bmatrix}
+        r\cos(\theta_2-\theta_1)\\
+        r\sin(\theta_2-\theta_1)\\
+        0
+    \end{bmatrix}
+$$
+
+:::
+
+::: {.column width="55%"}
+
+![](/Figures/c2/2drm.svg){width=100%}
+
+:::
+
+:::
+
+---
+
+## Matrices de rotación en dos dimensiones
+
+::: {.columns}
+
+::: {.column width="45%"}
+
+$$
+    \ls{2}\vec{p}=
+    \begin{bmatrix}
+        r(\cos\theta_2\cos\theta_1+\sin\theta_2\sin\theta_1)\\
+        r(\sin\theta_2\cos\theta_1-\cos\theta_2\sin\theta_1)\\
+        0
+    \end{bmatrix}
+$$ {#eq-2p}
+
+Sustituyendo la expresión anterior se obtiene
+
+$$
+    \ls{2}\vec{p}=
+    \begin{bmatrix}
+        \ls{1}p_x\cos\theta_1+\ls{1}p_y\sin\theta_1\\
+        \ls{1}p_y\cos\theta_1-\ls{1}p_x\sin\theta_1\\
+        0
+    \end{bmatrix}
+$$
+
+La relación entre las coordenadas del punto $p$ en los marcos $\ls{1}{\mathcal{F}}$ y $\ls{2}{\mathcal{F}}$ puede escribirse matricialmente como
+
+$$
+    \ls{2}\vec{p}=
+    \begin{bmatrix}
+        \cos\theta_1 & \sin\theta_1 & 0\\
+        -\sin\theta_1 & \cos\theta_1 & 0\\
+        0 & 0 & 1
+    \end{bmatrix}
+    \ls{1}\vec{p}
+$$
+
+:::
+
+::: {.column width="55%"}
+
+![](/Figures/c2/2drm.svg){width=100%}
+
+:::
+
+:::
+
+---
+
+##
+
+$$
+    \ls{2}\vec{p}
+    =
+    \ls{2}R_{1}
+    \ls{1}\vec{p}
+$$
+
+donde
+
+$$
+    \ls{2}R_{1}=
+    \begin{bmatrix}
+        \cos\theta_1 & \sin\theta_1 & 0\\
+        -\sin\theta_1 & \cos\theta_1 & 0\\
+        0 & 0 & 1
+    \end{bmatrix}
+$$
+
+es la **matriz de rotación** del marco de referencia $\ls{1}{\mathcal{F}}$ al marco de referencia $\ls{2}{\mathcal{F}}$.
+
+- La herramienta subyacente para encontrar las componentes de esta matriz es la proyección de vectores en el espacio $\mathbb{R}^3$.
+
+$$
+    \ls{2}R_{1}=
+    \begin{bmatrix}
+        \ls{1}\vec{x}\cdot\ls{2}\vec{x} & \ls{1}\vec{y}\cdot\ls{2}\vec{x} & \ls{1}\vec{z}\cdot\ls{2}\vec{x}\\
+        \ls{1}\vec{x}\cdot\ls{2}\vec{y} & \ls{1}\vec{y}\cdot\ls{2}\vec{y} & \ls{1}\vec{z}\cdot\ls{2}\vec{y}\\
+        \ls{1}\vec{x}\cdot\ls{2}\vec{z} & \ls{1}\vec{y}\cdot\ls{2}\vec{z} & \ls{1}\vec{z}\cdot\ls{2}\vec{z}
+    \end{bmatrix}
+$$
+
+---
+
+- Dado que estamos considerando marcos de referencia con bases ortonormales, la norma de los vectores de las bases es igual a $1$, es decir,
+
+$$
+    \|\ls{1}\vec{x}\|=\|\ls{1}\vec{y}\|=\|\ls{1}\vec{z}\|=
+    \|\ls{2}\vec{x}\|=\|\ls{2}\vec{y}\|=\|\ls{2}\vec{z}\|=1.
+$$
+
+- Entonces, para el ejemplo anterior,
+
+$$
+    \begin{aligned}
+        \ls{1}\vec{x}\cdot\ls{2}\vec{x} &= \|\ls{1}\vec{x}\|\,\|\ls{2}\vec{x}\|\cos(\theta)=\cos(\theta)\\
+        \ls{1}\vec{x}\cdot\ls{2}\vec{y} &= \|\ls{1}\vec{x}\|\,\|\ls{2}\vec{y}\|\cos\left(\theta+\frac{\pi}{2}\right)=-\sin(\theta)\\
+        \ls{1}\vec{x}\cdot\ls{2}\vec{z} &= \|\ls{1}\vec{x}\|\,\|\ls{2}\vec{z}\|\cos\left(\frac{\pi}{2}\right)=0\\
+        \ls{1}\vec{y}\cdot\ls{2}\vec{x} &= \|\ls{1}\vec{y}\|\,\|\ls{2}\vec{x}\|\cos\left(\theta-\frac{\pi}{2}\right)=\sin(\theta)\\
+        \ls{1}\vec{y}\cdot\ls{2}\vec{y} &= \|\ls{1}\vec{y}\|\,\|\ls{2}\vec{y}\|\cos(\theta)=\cos(\theta)\\
+        \ls{1}\vec{y}\cdot\ls{2}\vec{z} &= \|\ls{1}\vec{y}\|\,\|\ls{2}\vec{z}\|\cos\left(\frac{\pi}{2}\right)=0\\
+        \ls{1}\vec{z}\cdot\ls{2}\vec{x} &= \|\ls{1}\vec{z}\|\,\|\ls{2}\vec{x}\|\cos\left(\frac{\pi}{2}\right)=0\\
+        \ls{1}\vec{z}\cdot\ls{2}\vec{y} &= \|\ls{1}\vec{z}\|\,\|\ls{2}\vec{y}\|\cos\left(\frac{\pi}{2}\right)=0\\
+        \ls{1}\vec{z}\cdot\ls{2}\vec{z} &= \|\ls{1}\vec{z}\|\,\|\ls{2}\vec{z}\|\cos(0)=1.
+    \end{aligned}
+$$
+
+##
+
+- Las matrices de rotación forman un grupo con respecto a la multiplicación matricial. Dicho grupo es conocido como **grupo especial ortonormal de orden 3** y se denota como $SO(3)$, el cual cumple con las siguientes propiedades.
+
+  Sea $R_i\in SO(3)$:
+
+  - $\det(R)=1$.
+  - $R^{-1}=R^\top \Rightarrow RR^\top=I$.
+  - $R_1R_2\in SO(3)$.
+  - Las columnas y los renglones de $R$ tienen norma unitaria y son mutuamente ortogonales entre sí.
+
+  Es decir, las columnas de $R$ forman una base ortonormal derecha en $\mathbb{R}^3$.
+
+- Note además que para la matriz de rotación $\ls{2}R_1$, cada columna corresponde a las componentes de los vectores de la base $\ls{1}{\mathcal{F}}$ expresados en la base $\ls{2}{\mathcal{F}}$ y, viceversa, cada renglón corresponde a las componentes de los vectores de la base $\ls{2}{\mathcal{F}}$ expresados en la base $\ls{1}{\mathcal{F}}$.
+
+---
+
+## Matrices de rotación elementales
+
+Las rotaciones sobre los ejes del marco de referencia base (*e.g.* $\ls{1}{\mathcal{F}}$ en el ejemplo anterior) se pueden representar mediante las siguientes matrices de rotación elementales:
+
+- Rotación alrededor del eje $x$:
+
+$$
+    R_x(\theta)=
+    \begin{bmatrix}
+        1 & 0 & 0\\
+        0 & \cos(\theta) & \sin(\theta)\\
+        0 & -\sin(\theta) & \cos(\theta)
+    \end{bmatrix}
+$$
+
+- Rotación alrededor del eje $y$:
+
+$$
+    R_y(\theta)=
+    \begin{bmatrix}
+        \cos(\theta) & 0 & -\sin(\theta)\\
+        0 & 1 & 0\\
+        \sin(\theta) & 0 & \cos(\theta)
+    \end{bmatrix}
+$$
+
+- Rotación alrededor del eje $z$:
+
+$$
+    R_z(\theta)=
+    \begin{bmatrix}
+        \cos(\theta) & \sin(\theta) & 0\\
+        -\sin(\theta) & \cos(\theta) & 0\\
+        0 & 0 & 1
+    \end{bmatrix}
+$$
+
+---
+
+## Composición de matrices de rotación
+
+- Una **rotación general** es aquella que no necesariamente está alineada con un eje del marco de referencia. Estas pueden construirse como la composición de varias matrices de rotación.
+
+- Matemáticamente, la composición se expresa como un producto de matrices de rotación:
+
+$$
+    \ls{n}R_0
+    =
+    \ls{n}R_{n-1}
+    \ls{n-1}R_{n-2}
+    \cdots
+    \ls{2}R_1
+    \ls{1}R_0
+    =
+    \prod_{j=0}^{n-1}\ls{j+1}R_j
+$$
+
+donde cada $\ls{j+1}R_j$ corresponde a una rotación entre el marco de referencia $j+1$ y el marco de referencia $j$.
+
+- El orden de multiplicación es esencial: la composición de rotaciones no es conmutativa.
+
+- Así, cualquier orientación en el espacio puede obtenerse mediante una secuencia adecuada de rotaciones.
+
+---
+
+## Secuencias de rotaciones elementales
+
+- Toda rotación general en $\mathbb{R}^3$ puede describirse como el producto de tres rotaciones elementales.
+
+- Existen 12 posibles secuencias según el orden de los ejes:
+
+$$
+    ZXZ,\;
+    ZYZ,\;
+    XYX,\;
+    XZX,\;
+    YXY,\;
+    YZY,\;
+    XYZ,\;
+    XZY,\;
+    YXZ,\;
+    YZX,\;
+    ZXY,\;
+    ZYX.
+$$
+
+- Estas secuencias definen diferentes **convenciones de parametrización** de la rotación, *e.g.* ángulos de Euler y ángulos de Tait-Bryan (*roll-pitch-yaw*).
+
+---
+
+## Relación entre $\ls{i}{\mathcal{F}}$ y $\ls{p}{\mathcal{F}}$
+
+![](/Figures/c2/frame_ip.svg){width=100% fig-align="center"}
+
+---
+
+## Relación entre $\ls{i}{\mathcal{F}}$ y $\ls{p}{\mathcal{F}}$
+
+![](/Figures/c2/i2p1.svg){width=100% fig-align="center"}
+
+---
+
+## Relación entre $\ls{i}{\mathcal{F}}$ y $\ls{p}{\mathcal{F}}$
+
+![](/Figures/c2/i2p2.svg){width=100% fig-align="center"}
+
+---
+
+## Relación entre $\ls{i}{\mathcal{F}}$ y $\ls{p}{\mathcal{F}}$
+
+![](/Figures/c2/i2p3.svg){width=100% fig-align="center"}
+
+---
+
+## Relación entre $\ls{i}{\mathcal{F}}$ y $\ls{p}{\mathcal{F}}$
+
+![](/Figures/c2/i2p4.svg){width=100% fig-align="center"}
+
+---
+
+::: {.center-vertical}
+
+::: {.chapter-title}
+
+Preliminares
+
+:::
+
+<div class="chapter-line"></div>
+
+::: {.chapter-subtitle}
+
+Elementos orbitales
+
+<div class="menu-title" style="display:none;"> ▸ Elementos orbitales</div>
+:::
+
+:::
+
+##
+
+::: {.columns}
+
+::: {.column width="60%"}
+
+- Los **elementos orbitales** (o parámetros keplerianos) son seis variables que permiten describir de manera única la trayectoria de un satélite orbitando alrededor de un cuerpo central.
+
+- En particular, los elementos orbitales permiten definir:
+
+  1. La **<span style="color:red">forma y tamaño</span>** de la órbita.
+  2. La **<span style="color:teal">orientación</span>** de la órbita.
+  3. La **<span style="color:blue">posición instantánea</span>** del cuerpo en su trayectoria.
+
+- Estos seis parámetros son la base del análisis orbital.
+
+:::
+
+::: {.column width="40%"}
+
+::: {.text-center .xlarge}
+
+<span style="color:red">$a,e$</span>
+
+<span style="color:teal">$i,\Omega,\omega$</span>
+
+<span style="color:blue">$\nu(t)$</span>
+
+:::
+
+:::
+
+:::
+
+---
+
+##
+
+::: {.columns}
+
+::: {.column width="60%"}
+
+La **forma** y el **tamaño** de una órbita se determinan a partir de:
+
+- La <span style="color:red">**excentricidad** $e$</span> mide el grado de deformación de una sección cónica con respecto a una circunferencia. Según el valor de $e$:
+
+  - $e=0$: órbita circular.
+  - $0<e<1$: órbita elíptica.
+  - $e=1$: parábola (caso límite de escape).
+  - $e>1$: hipérbola (órbita de escape).
+
+- En el caso de órbitas elípticas, el <span style="color:red">**semieje mayor** $a$</span> determina su tamaño.
+
+$$
+    e=\frac{c}{a},
+    \qquad
+    c=\sqrt{a^2-b^2}
+$$
+
+donde $c$ es la distancia del centro al foco y $b$ es el semieje menor.
+
+:::
+
+::: {.column width="40%"}
+
+![](/Figures/c2/ellipse.svg){width=100%}
+
+:::
+
+:::
+
+---
+
+##
+
+::: {.columns}
+
+::: {.column width="48%"}
+
+![](/Figures/c2/orientation_parameters.svg){width=120%}
+
+:::
+
+::: {.column width="52%"}
+
+La **orientación de la órbita** se determina con tres ángulos:
+
+- <span style="color:teal">**Longitud del nodo ascendente** $\Omega\in[0,2\pi)$</span>: ángulo en el plano de referencia entre la dirección de referencia y la línea de nodos.
+
+- <span style="color:teal">**Inclinación** $i\in[0,\pi]$</span>: ángulo entre el *plano orbital* y el *plano de referencia*.
+
+- <span style="color:teal">**Argumento del periapsis** $\omega\in[0,2\pi)$</span>: ángulo en el plano orbital entre el nodo ascendente y el periapsis.
+
+:::
+
+:::
+
+---
+
+##
+
+::: {.columns}
+
+::: {.column width="48%"}
+
+![](/Figures/c2/true_anomaly.svg){width=120%}
+
+:::
+
+::: {.column width="52%"}
+
+La **posición instantánea** del cuerpo en su órbita se describe con la <span style="color:blue">**anomalía verdadera** $\nu(t)$</span>.
+
+- La anomalía verdadera $\nu(t)$ es el ángulo entre el periapsis y la posición actual del satélite, medido en el plano orbital desde el foco donde se encuentra el cuerpo central.
+
+- En lugar de $\nu(t)$, también pueden emplearse otras variables para describir la posición:
+
+  - **Anomalía excéntrica** $\psi(t)$.
+  - **Anomalía media** $M(t)$.
+
+:::
+
+:::
+
+---
+
+##
+
+- La relación entre el marco de referencia inercial $\ls{i}{\mathcal{F}}$ y el marco perifocal $\ls{p}{\mathcal{F}}$ está dada por la matriz de rotación
+
+$$
+    \ls{p}R_i=R_z(\omega)\,R_x(i)\,R_z(\Omega)
+$${#eq-Ri2Rp}
+
+donde $R_x(\cdot)$ y $R_z(\cdot)$ son las matrices de rotación elementales alrededor de los ejes $x$ y $z$, respectivamente.
+
+- Mientras que la relación entre el marco perifocal $\ls{p}{\mathcal{F}}$ y el marco RSW $\ls{r}{\mathcal{F}}$ está dada por la matriz de rotación
+
+$$
+\ls{r}R_p(t)=R_z(\nu(t))
+$$
+
+<span style="color:red">**La matriz de rotación $\ls{p}R_i$ es constante en el tiempo, mientras que la matriz de rotación $\ls{r}R_p$ varía con el tiempo a medida que cambia la anomalía verdadera $\nu(t)$.**</span>
+
+::: {.text-center .xlarge}
+
+<span style="color:blue">**¿Cómo se calcula $\nu(t)$?**</span>
+
+:::
+
+##
+
+::: {.center-vertical}
+
+::: {.chapter-title}
+
+Preliminares
+
+:::
+
+<div class="chapter-line"></div>
+
+::: {.chapter-subtitle}
+
+El problema de los dos cuerpos
+
+
+<div class="menu-title" style="display:none;"> ▸ El problema de los dos cuerpos </div>
+
+
+:::
+
+:::
+
+## El problema de los dos cuerpos
+
+- El **problema de los dos cuerpos** consiste en determinar la trayectoria de dos cuerpos que interactúan únicamente entre sí bajo la influencia de la gravedad.
+
+- Se asume que ambos cuerpos son representados por masas puntuales y que no existen otras fuerzas actuando sobre ellos.
+
+- La solución proporciona las bases para el cálculo de elementos orbitales y la predicción de posiciones futuras.
+
+![](/Figures/c2/definition_of_gravity.png){width=40% fig-align="center"}
+
+---
+
+##
+
+::: {.columns}
+
+::: {.column width="50%"}
+
+![](/Figures/c2/two_body_problem_1.svg){width=100%}
+
+:::
+
+::: {.column width="50%"}
+
+Sea un marco de referencia inercial $\ls{i}{\mathcal{F}}$ con origen en el centro de masa del cuerpo central, cuyos ejes están sujetos a una estrella fija en el espacio.
+
+Considere dos partículas de masas $m_1$ y $m_2$ que interactúan únicamente entre sí bajo la influencia de la gravedad. Sean $\ls{i}\vec{r}_1$ y $\ls{i}\vec{r}_2$ los vectores de posición de los centros de masa $c_1$ y $c_2$, respectivamente.
+
+:::
+
+:::
+
+---
+
+##
+
+::: {.columns}
+
+::: {.column width="50%"}
+
+![](/Figures/c2/two_body_problem_1.svg){width=100%}
+
+:::
+
+::: {.column width="50%"}
+
+El vector de posición del baricentro $c_{12}$ (o centro de masa generalizado) del sistema de dos partículas está dado por
+
+$$
+    \begin{aligned}
+        \ls{i}\vec{r}_c
+        &=
+        \sum_{j=1}^{n}\frac{m_j}{\sum_{k=1}^{n}m_k}\ls{i}\vec{r}_j\\
+        &=
+        \frac{m_1}{m_1+m_2}\ls{i}\vec{r}_1+
+        \frac{m_2}{m_1+m_2}\ls{i}\vec{r}_2
+    \end{aligned}
+$$
+
+:::
+
+:::
+
+---
+
+##
+
+::: {.columns}
+
+::: {.column width="50%"}
+
+![](/Figures/c2/two_body_problem_1.svg){width=100%}
+
+:::
+
+::: {.column width="50%"}
+
+El vector de velocidad absoluta del baricentro $c_{12}$ está dado por
+
+$$
+    \ls{i}\vec{v}_c=
+    \frac{m_1}{m_1+m_2}\ls{i}\dot{\vec{r}}_1+
+    \frac{m_2}{m_1+m_2}\ls{i}\dot{\vec{r}}_2
+$$
+
+y, por lo tanto, la aceleración absoluta del baricentro $c_{12}$ está dada por
+
+$$
+    \ls{i}\vec{a}_c=
+    \frac{m_1}{m_1+m_2}\ls{i}\ddot{\vec{r}}_1+
+    \frac{m_2}{m_1+m_2}\ls{i}\ddot{\vec{r}}_2
+$$ {#eq-ac_tbp}
+
+[^1]: El adjetivo *absoluto* significa que las cantidades están medidas en un marco inercial.
+
+:::
+
+:::
+
+---
+
+##
+
+::: {.columns}
+
+::: {.column width="50%"}
+
+![](/Figures/c2/two_body_problem_1.svg){width=100%}
+
+:::
+
+::: {.column width="50%"}
+
+El vector de posición relativa de $m_2$ con respecto a $m_1$ está dado por
+
+$$
+    \ls{i}\vec{r}_{12}
+    =
+    \ls{i}\vec{r}_2-\ls{i}\vec{r}_1
+$$
+
+y su vector unitario es
+
+$$
+    \ls{i}\hat{r}_{12}
+    =
+    \frac{\ls{i}\vec{r}_{12}}{\|\ls{i}\vec{r}_{12}\|}
+$$
+
+:::
+
+:::
+
+---
+
+##
+
+::: {.columns}
+
+::: {.column width="50%"}
+
+![](/Figures/c2/two_body_problem_2.svg){width=100%}
+
+:::
+
+::: {.column width="50%"}
+
+La partícula $m_2$ ejerce una fuerza gravitacional sobre la partícula $m_1$ dada por la ley de gravitación universal de Newton
+
+$$
+    \ls{i}\vec{f}_{12}
+    =
+    G\frac{m_1m_2}{\|\ls{i}\vec{r}_{12}\|^2}\ls{i}\hat{r}_{12}
+$$
+
+donde
+
+$$
+G=6.67430\times10^{-11}\;\mathrm{m^3\,kg^{-1}\,s^{-2}}.
+$$
+
+Dada la tercera ley de Newton, la partícula $m_1$ ejerce una fuerza sobre la partícula $m_2$ dada por
+
+$$
+    \ls{i}\vec{f}_{21}
+    =
+    G\frac{m_1m_2}{\|\ls{i}\vec{r}_{12}\|^2}\ls{i}\hat{r}_{12}
+    =
+    -\ls{i}\vec{f}_{12}
+$$
+
+:::
+
+:::
+
+---
+
+##
+
+::: {.columns}
+
+::: {.column width="50%"}
+
+![](/Figures/c2/two_body_problem_2.svg){width=100%}
+
+:::
+
+::: {.column width="50%"}
+
+Por otro lado, la segunda ley de Newton establece que la fuerza total aplicada sobre una partícula es igual a la variación de su momento lineal, es decir,
+
+$$
+    \ls{i}\vec{f}
+    =
+    \ls{i}\dot{\vec{p}}
+$$
+
+donde
+
+$$
+    \ls{i}\vec{p}
+    =
+    m\ls{i}\dot{\vec{r}}
+$$
+
+es el momento lineal.
+
+Para una partícula con masa constante, la segunda ley de Newton se puede escribir como
+
+$$
+    \ls{i}\vec{f}
+    =
+    m\ls{i}\ddot{\vec{r}}
+    =
+    m\ls{i}\vec{a}.
+$$
+
+:::
+
+:::
+
+##
+
+::: {.columns}
+
+::: {.column width="50%"}
+
+![](/Figures/c2/two_body_problem_1.svg){width=100%}
+
+:::
+
+::: {.column width="50%"}
+
+En nuestro caso, las fuerzas totales que actúan sobre las partículas $m_1$ y $m_2$ son
+
+$$
+    \ls{i}\vec{f}_{21}=m_1\ls{i}\ddot{\vec{r}}_1,
+    \qquad
+    \ls{i}\vec{f}_{12}=m_2\ls{i}\ddot{\vec{r}}_2
+$$
+
+Sustituyendo en @eq-ac_tbp se obtiene
+
+$$
+    \begin{aligned}
+        \ls{i}\vec{a}_c
+        &=
+        \frac{1}{m_1+m_2}
+        (\ls{i}\vec{f}_{12}+\ls{i}\vec{f}_{21})\\
+        &=
+        \frac{1}{m_1+m_2}
+        (\ls{i}\vec{f}_{12}-\ls{i}\vec{f}_{12})\\
+        &=0.
+    \end{aligned}
+$$
+
+:::
+
+:::
+
+---
+
+##
+
+::: {.columns}
+
+::: {.column width="50%"}
+
+![](/Figures/c2/two_body_problem_1.svg){width=100%}
+
+:::
+
+::: {.column width="50%"}
+
+Por lo tanto, <span style="color:teal">**el baricentro $c_{12}$ no acelera**,</span> es decir, se mueve en una línea recta con velocidad constante o está en reposo.
+
+Esto implica que el movimiento de las partículas $m_1$ y $m_2$ puede analizarse en un marco de referencia inercial con <span style="color:teal">**origen en el baricentro $c_{12}$**</span>.
+
+Si ambos cuerpos se aceleran mutuamente bajo la influencia de la gravedad...
+
+<span style="color:red">**¿Por qué hemos colocado el origen de nuestro marco de referencia inercial geocéntrico en el centro de masa de la Tierra?**</span>
+
+:::
+
+:::
+
+---
+
+##
+
+::: {.columns}
+
+::: {.column width="50%"}
+
+![](/Figures/c2/two_body_problem_1.svg){width=100%}
+
+:::
+
+::: {.column width="50%"}
+
+Dado que $m_1\gg m_2$, se puede suponer que
+
+$$
+    \begin{aligned}
+        \ls{i}\vec{r}_c
+        &=
+        \frac{m_1}{m_1+m_2}\ls{i}\vec{r}_1+
+        \frac{m_2}{m_1+m_2}\ls{i}\vec{r}_2\\
+        &\approx
+        \ls{i}\vec{r}_1.
+    \end{aligned}
+$$
+
+Bajo esta suposición, el baricentro $c_{12}$ coincide con el centro de masa $c_1$. Con ello, podemos reducir el problema de los dos cuerpos a un problema de un solo cuerpo, donde la partícula $m_2$ se mueve bajo la influencia de la gravedad ejercida por la partícula $m_1$, la cual permanece en reposo en el origen del marco de referencia inercial.
+
+A este caso se le conoce como el **problema de una fuerza central**.
+
+:::
+
+:::
+
+---
+
+##
+
+![](/Figures/c2/tbp_motion.png){width=60% fig-align="center"}
+
+---
+
+##
+
+::: {.center-vertical}
+
+::: {.chapter-title}
+
+Preliminares
+
+:::
+
+<div class="chapter-line"></div>
+
+::: {.chapter-subtitle}
+
+<s> El problema de los dos cuerpos </s>
+
+El problema de una fuerza central
+
+
+<div class="menu-title" style="display:none;"> ▸ El problema de una fuerza central </div>
+
+
+:::
+
+:::
+
+---
+
+##
+
+::: {.columns}
+
+::: {.column width="50%"}
+
+![](/Figures/c2/central_force.svg){width=100%}
+
+:::
+
+::: {.column width="50%"}
+
+Considere el movimiento de la partícula $m$ bajo la influencia de la gravedad ejercida por la partícula $m_0$, la cual permanece en reposo en el origen del marco de referencia $\ls{p}\mathcal{F}$.
+
+El momento angular de la partícula $m$ con respecto al origen del marco de referencia $\ls{p}\mathcal{F}$ está dado por
+
+$$
+    \ls{p}\vec{h}
+    =
+    \ls{p}\vec{r}\times\ls{p}\vec{p}
+$$
+
+donde $\ls{p}\vec{r}$ es el vector de posición de $m$ con respecto al origen del marco de referencia $\ls{p}\mathcal{F}$ y $\ls{p}\vec{p}=m\ls{p}\dot{\vec{r}}$ es el momento lineal de $m$.
+
+:::
+
+:::
+
+---
+
+##
+
+::: {.columns}
+
+::: {.column width="50%"}
+
+![](/Figures/c2/central_force.svg){width=100%}
+
+:::
+
+::: {.column width="50%"}
+
+La variación del momento angular considerando $m$ constante está dada por
+
+$$
+    \begin{aligned}
+        \ls{p}\dot{\vec{h}}
+        &=
+        \ls{p}\dot{\vec{r}}\times\ls{p}\vec{p}
+        +
+        \ls{p}\vec{r}\times\ls{p}\dot{\vec{p}}\\
+        &=
+        \ls{p}\vec{v}\times m\ls{p}\vec{v}
+        +
+        \ls{p}\vec{r}\times\ls{p}\vec{f}\\
+        &=
+        \ls{p}\vec{r}\times\ls{p}\vec{f}\\
+        &=
+        \ls{p}\vec{\tau}.
+    \end{aligned}
+$$
+
+donde
+
+$$
+    \ls{p}\vec{\tau}
+    =
+    \ls{p}\vec{r}\times\ls{p}\vec{f}
+$$
+
+es el **par** (o momento de fuerza) aplicado sobre $m$ con respecto al origen del marco de referencia $\ls{p}\mathcal{F}$.
+
+:::
+
+:::
+
+---
+
+##
+
+::: {.columns}
+
+::: {.column width="50%"}
+
+![](/Figures/c2/central_force.svg){width=100%}
+
+:::
+
+::: {.column width="50%"}
+
+Dado que la fuerza gravitacional es una fuerza central, es decir, actúa a lo largo de la línea que une a las partículas $m$ y $m_0$, esta se puede expresar como
+
+$$
+    \ls{p}\vec{f}
+    =
+    -G\frac{m_0m}{r^2}\ls{p}\hat{r}.
+$$
+
+donde
+
+$$
+    r=\|\ls{p}\vec{r}\|,
+    \qquad
+    \ls{p}\hat{r}=\frac{\ls{p}\vec{r}}{r}.
+$$
+
+Con ello, el par aplicado sobre $m$ con respecto al origen del marco de referencia $\ls{p}\mathcal{F}$ es
+
+$$
+    \begin{aligned}
+        \ls{p}\vec{\tau}
+        &=
+        \ls{p}\vec{r}\times\ls{p}\vec{f}\\
+        &=
+        -G\frac{m_0m}{r^2}
+        \ls{p}\vec{r}\times\ls{p}\hat{r}\\
+        &=
+        0.
+    \end{aligned}
+$$
+
+:::
+
+:::
+
+##
+
+::: {.columns}
+
+::: {.column width="50%"}
+
+![](/Figures/c2/central_force.svg){width=100%}
+
+:::
+
+::: {.column width="50%"}
+
+Con ello, la variación del momento angular de $m$ con respecto al origen del marco de referencia $\ls{p}\mathcal{F}$ es nula. Es decir, <span style="color:teal">**el momento angular de $m$ es constante en el tiempo.**</span>
+
+$$
+    \begin{aligned}
+        \ls{p}\dot{\vec{h}}&=0\\
+        \Rightarrow\qquad
+        \ls{p}\vec{h}&=\text{constante}.
+    \end{aligned}
+$$
+
+Sin embargo, esto <span style="color:red">**cumple únicamente si no existen fuerzas externas no colineales**</span> (como la resistencia atmosférica o la influencia gravitacional de otros cuerpos) que actúen sobre $m$, debido a que estas fuerzas pueden generar un par neto diferente de cero ($\ls{p}\vec{\tau}\neq0$).
+
+:::
+
+:::
+
+---
+
+##
+
+::: {.columns}
+
+::: {.column width="50%"}
+
+![](/Figures/c2/central_force.svg){width=100%}
+
+:::
+
+::: {.column width="50%"}
+
+El vector unitario $\ls{r}\hat{x}$ puede representarse en coordenadas polares como
+
+$$
+    \ls{r}\hat{x}
+    =
+    \cos(\nu)\ls{p}\hat{x}
+    +
+    \sin(\nu)\ls{p}\hat{y}
+$$
+
+donde $\nu$ es el ángulo entre $\ls{p}\hat{x}$ y $\ls{r}\hat{x}$. De manera similar,
+
+$$
+    \ls{r}\hat{y}
+    =
+    -\sin(\nu)\ls{p}\hat{x}
+    +
+    \cos(\nu)\ls{p}\hat{y}.
+$$
+
+La derivada de estos vectores unitarios es
+
+$$
+    \begin{aligned}
+        \ls{r}\dot{\hat{x}}
+        &=
+        \frac{\mathrm{d}\nu}{\mathrm{d}t}\ls{r}\hat{y}\\
+        \ls{r}\dot{\hat{y}}
+        &=
+        -\frac{\mathrm{d}\nu}{\mathrm{d}t}\ls{r}\hat{x}.
+    \end{aligned}
+$$
+
+:::
+
+:::
+
+---
+
+##
+
+::: {.columns}
+
+::: {.column width="50%"}
+
+![](/Figures/c2/central_force.svg){width=100%}
+
+:::
+
+::: {.column width="50%"}
+
+Con ello, el vector de posición en el marco de referencia $\ls{p}\mathcal{F}$ está dado por
+
+$$
+    \ls{p}\vec{r}
+    =
+    r\,\ls{r}\hat{x},
+$$
+
+mientras que el vector de velocidad es
+
+$$
+    \ls{p}\vec{v}
+    =
+    \ls{p}\dot{\vec{r}}
+    =
+    \frac{\mathrm{d}r}{\mathrm{d}t}\ls{r}\hat{x}
+    +
+    r\frac{\mathrm{d}\nu}{\mathrm{d}t}\ls{r}\hat{y}.
+$$
+
+El vector de aceleración es
+
+$$
+    \begin{aligned}
+        \ls{p}\vec{a}
+        &=
+        \ls{p}\ddot{\vec{r}}\\
+        &=
+        \left(
+        \frac{\mathrm{d}^2r}{\mathrm{d}t^2}
+        -
+        r\left(\frac{\mathrm{d}\nu}{\mathrm{d}t}\right)^2
+        \right)\ls{r}\hat{x}\\
+        &\quad+
+        \left(
+        2\frac{\mathrm{d}r}{\mathrm{d}t}\frac{\mathrm{d}\nu}{\mathrm{d}t}
+        +
+        r\frac{\mathrm{d}^2\nu}{\mathrm{d}t^2}
+        \right)\ls{r}\hat{y}.
+    \end{aligned}
+$$ {#eq-acc_polar}
+
+:::
+
+:::
+
+---
+
+##
+
+::: {.columns}
+
+::: {.column width="50%"}
+
+![](/Figures/c2/central_force.svg){width=100%}
+
+:::
+
+::: {.column width="50%"}
+
+<span style="color:red">**A partir de aquí en adelante, vamos a considerar que la partícula $m$ tiene masa unitaria ($m=1$), y definiremos a las variables bajo esta consideración como *específicas*.**</span>
+
+La fuerza de atracción gravitacional bajo las anteriores suposiciones es
+
+$$
+    \begin{aligned}
+        \ls{p}\vec{f}
+        &=
+        \ls{p}\vec{a}\\
+        &=
+        -G\frac{m_0}{r^2}\ls{r}\hat{x}.
+    \end{aligned}
+$$ {#eq-gravity_force}
+
+Igualando las componentes de @eq-acc_polar y @eq-gravity_force se obtiene el sistema de ecuaciones diferenciales
+
+$$
+    \begin{aligned}
+        \frac{\mathrm{d}^2r}{\mathrm{d}t^2}
+        -r\left(\frac{\mathrm{d}\nu}{\mathrm{d}t}\right)^2
+        &=
+        -G\frac{m_0}{r^2},\\
+        2\frac{\mathrm{d}r}{\mathrm{d}t}\frac{\mathrm{d}\nu}{\mathrm{d}t}
+        +r\frac{\mathrm{d}^2\nu}{\mathrm{d}t^2}
+        &=
+        0.
+    \end{aligned}
+$$ {#eq-system_ode}
+
+:::
+
+:::
+
+---
+
+##
+
+::: {.columns}
+
+::: {.column width="50%"}
+
+![](/Figures/c2/central_force.svg){width=100%}
+
+:::
+
+::: {.column width="50%"}
+
+Por otro lado, el momento angular específico con respecto al origen del marco de referencia $\ls{p}\mathcal{F}$ es
+
+$$
+    \begin{aligned}
+        \ls{p}\vec{h}
+        &=
+        \ls{p}\vec{r}\times\ls{p}\vec{p}\\
+        &=
+        r\ls{r}\hat{x}\times
+        \left(
+        \frac{\mathrm{d}r}{\mathrm{d}t}\ls{r}\hat{x}
+        +
+        r\frac{\mathrm{d}\nu}{\mathrm{d}t}\ls{r}\hat{y}
+        \right)\\
+        &=
+        r^2\frac{\mathrm{d}\nu}{\mathrm{d}t}
+        \,
+        \ls{r}\hat{x}\times\ls{r}\hat{y}\\
+        &=
+        r^2\frac{\mathrm{d}\nu}{\mathrm{d}t}\ls{r}\hat{z}\\
+        &=
+        \|\ls{p}\vec{h}\|\ls{r}\hat{z}.
+    \end{aligned}
+$$ {#eq-angular_momentum}
+
+Retomando la segunda ecuación de @eq-system_ode, se obtiene
+
+$$
+    \frac{1}{r}
+    \frac{\mathrm{d}}{\mathrm{d}t}
+    \left(
+    r^2\frac{\mathrm{d}\nu}{\mathrm{d}t}
+    \right)
+    =
+    0.
+$$
+
+Sustituyendo @eq-angular_momentum en la ecuación anterior se obtiene
+
+$$
+    \frac{1}{r}
+    \frac{\mathrm{d}}{\mathrm{d}t}
+    \left(
+    \|\ls{p}\vec{h}\|
+    \right)
+    =
+    0.
+$$
+
+lo cual confirma que <span style="color:teal">**el momento angular es constante en el tiempo.**</span>
+
+:::
+
+:::
+
+##
+
+::: {.columns}
+
+::: {.column width="50%"}
+
+![](/Figures/c2/central_force.svg){width=100%}
+
+:::
+
+::: {.column width="50%"}
+
+Para resolver la primera ecuación de @eq-system_ode, se realiza el cambio de variable
+
+$$
+r=\frac{1}{u}.
+$$
+
+Con ello, se obtiene
+
+$$
+    \begin{aligned}
+        \frac{\mathrm{d}r}{\mathrm{d}t}
+        &=
+        -\frac{1}{u^2}\frac{\mathrm{d}u}{\mathrm{d}t}\\
+        &=
+        -\frac{1}{u^2}
+        \frac{\partial u}{\partial\nu}
+        \frac{\mathrm{d}\nu}{\mathrm{d}t}.
+    \end{aligned}
+$$
+
+Sustituyendo @eq-angular_momentum se obtiene
+
+$$
+    \begin{aligned}
+        \frac{\mathrm{d}r}{\mathrm{d}t}
+        &=
+        -\frac{1}{u^2}
+        \frac{\partial u}{\partial\nu}
+        \frac{\|\ls{p}\vec{h}\|}{r^2}\\
+        &=
+        -\|\ls{p}\vec{h}\|
+        \frac{\partial u}{\partial\nu}.
+    \end{aligned}
+$$ {#eq-drdt}
+
+:::
+
+:::
+
+---
+
+##
+
+::: {.columns}
+
+::: {.column width="50%"}
+
+![](/Figures/c2/central_force.svg){width=100%}
+
+:::
+
+::: {.column width="50%"}
+
+Derivando nuevamente con respecto al tiempo se obtiene
+
+$$
+    \begin{aligned}
+        \frac{\mathrm{d}^2r}{\mathrm{d}t^2}
+        &=
+        -\frac{\mathrm{d}\|\ls{p}\vec{h}\|}{\mathrm{d}t}
+        \frac{\partial u}{\partial\nu}
+        -
+        \|\ls{p}\vec{h}\|
+        \frac{\mathrm{d}}{\mathrm{d}t}
+        \left(
+        \frac{\partial u}{\partial\nu}
+        \right)\\
+        &=
+        -\|\ls{p}\vec{h}\|
+        \frac{\partial^2u}{\partial\nu^2}
+        \frac{\mathrm{d}\nu}{\mathrm{d}t}.
+    \end{aligned}
+$$
+
+Sustituyendo nuevamente @eq-angular_momentum se obtiene
+
+$$
+    \begin{aligned}
+        \frac{\mathrm{d}^2r}{\mathrm{d}t^2}
+        &=
+        -\frac{\|\ls{p}\vec{h}\|^2}{r^2}
+        \frac{\partial^2u}{\partial\nu^2}\\
+        &=
+        -\|\ls{p}\vec{h}\|^2u^2
+        \frac{\partial^2u}{\partial\nu^2}.
+    \end{aligned}
+$$
+
+:::
+
+:::
+
+---
+
+##
+
+::: {.columns}
+
+::: {.column width="50%"}
+
+![](/Figures/c2/central_force.svg){width=100%}
+
+:::
+
+::: {.column width="50%"}
+
+Considere a $Gm_0=\mu$ como el parámetro gravitacional estándar del cuerpo central.
+
+Sustituyendo las expresiones anteriores en la primera ecuación de @eq-system_ode se obtiene
+
+$$
+    \begin{aligned}
+        -\|\ls{p}\vec{h}\|^2u^2
+        \frac{\partial^2u}{\partial\nu^2}
+        -
+        \frac{1}{u}
+        \left(
+        \|\ls{p}\vec{h}\|u^2
+        \right)^2
+        &=
+        -\mu u^2,\\
+        \frac{\partial^2u}{\partial\nu^2}+u
+        &=
+        \frac{\mu}{\|\ls{p}\vec{h}\|^2}.
+    \end{aligned}
+$$
+
+La solución general de esta ecuación diferencial es
+
+$$
+    u=
+    \frac{\mu}{\|\ls{p}\vec{h}\|^2}
+    +
+    C\cos(\nu-\nu_0)
+$$ {#eq-u}
+
+donde $C$ y $\nu_0$ son constantes de integración que se determinan con las condiciones iniciales. Mientras que
+
+$$
+    \frac{\partial u}{\partial\nu}
+    =
+    -C\sin(\nu-\nu_0).
+$$ {#eq-dudnu}
+
+:::
+
+:::
+
+---
+
+##
+
+Sea
+
+$$
+E=E_c+E_p
+$$
+
+la energía mecánica específica de la partícula.
+
+La energía cinética específica está dada por
+
+$$
+E_c=\frac{1}{2}\|\ls{p}\vec{v}\|^2
+$$
+
+y la energía potencial específica es
+
+$$
+E_p=-\frac{\mu}{r}.
+$$
+
+La norma del vector de velocidad se obtiene de la expresión
+
+$$
+    \|\ls{p}\vec{v}\|^2=
+    \left(
+    \frac{\mathrm{d}r}{\mathrm{d}t}
+    \right)^2+
+    \left(
+    r\frac{\mathrm{d}\nu}{\mathrm{d}t}
+    \right)^2.
+$$
+
+Sustituyendo @eq-angular_momentum y @eq-drdt se obtiene
+
+$$
+    \begin{aligned}
+        \|\ls{p}\vec{v}\|^2
+        &=
+        \left(
+        -\|\ls{p}\vec{h}\|
+        \frac{\partial u}{\partial\nu}
+        \right)^2
+        +
+        \left(
+        \frac{1}{u}
+        \|\ls{p}\vec{h}\|u^2
+        \right)^2\\
+        &=
+        \|\ls{p}\vec{h}\|^2
+        \left[
+        \left(
+        \frac{\partial u}{\partial\nu}
+        \right)^2
+        +
+        u^2
+        \right].
+    \end{aligned}
+$$ {#eq-velocity_magnitude}
+
+---
+
+##
+
+Sustituyendo @eq-u y @eq-dudnu en la expresión anterior se obtiene
+
+$$
+    \begin{aligned}
+        \|\ls{p}\vec{v}\|^2
+        &=
+        \|\ls{p}\vec{h}\|^2
+        \left[
+        C^2\sin^2(\nu-\nu_0)
+        +
+        \left(
+        \frac{\mu}{\|\ls{p}\vec{h}\|^2}
+        +
+        C\cos(\nu-\nu_0)
+        \right)^2
+        \right]\\
+        &=
+        \|\ls{p}\vec{h}\|^2C^2
+        +
+        2\mu C\cos(\nu-\nu_0)
+        +
+        \frac{\mu^2}{\|\ls{p}\vec{h}\|^2}.
+    \end{aligned}
+$$
+
+Con ello, la energía mecánica específica es
+
+$$
+    \begin{aligned}
+        E
+        &=
+        E_c+E_p\\
+        &=
+        \frac{1}{2}
+        \left(
+        \|\ls{p}\vec{h}\|^2C^2
+        +
+        2\mu C\cos(\nu-\nu_0)
+        +
+        \frac{\mu^2}{\|\ls{p}\vec{h}\|^2}
+        \right)
+        -
+        \mu u\\
+        &=
+        \frac{1}{2}
+        \left(
+        \|\ls{p}\vec{h}\|^2C^2
+        +
+        2\mu C\cos(\nu-\nu_0)
+        +
+        \frac{\mu^2}{\|\ls{p}\vec{h}\|^2}
+        \right)
+        -
+        \mu
+        \left(
+        \frac{\mu}{\|\ls{p}\vec{h}\|^2}
+        +
+        C\cos(\nu-\nu_0)
+        \right)\\
+        &=
+        \frac{1}{2}\|\ls{p}\vec{h}\|^2C^2
+        -
+        \frac{\mu^2}{2\|\ls{p}\vec{h}\|^2}.
+    \end{aligned}
+$$
+
+Esto implica que <span style="color:teal">**la energía mecánica específica es constante en el tiempo**</span> para el caso de una fuerza central y no depende del ángulo $\nu$.
+
+---
+
+##
+
+De la anterior expresión se puede despejar la constante $C$ como
+
+$$
+    C=
+    \frac{\mu}{\|\ls{p}\vec{h}\|^2}
+    \sqrt{
+    1+
+    2E\frac{\|\ls{p}\vec{h}\|^2}{\mu^2}
+    }.
+$$
+
+Considerando que
+
+$$
+    e=
+    \sqrt{
+    1+
+    2E\frac{\|\ls{p}\vec{h}\|^2}{\mu^2}
+    }
+$$
+
+es la **excentricidad** de la órbita, la expresión de $u$ en @eq-u se puede escribir como
+
+$$
+    u=
+    \frac{\mu}{\|\ls{p}\vec{h}\|^2}
+    \left(
+    1+e\cos(\nu-\nu_0)
+    \right).
+$$
+
+Finalmente, la ecuación de la órbita en coordenadas polares es
+
+$$
+    \begin{aligned}
+        r
+        &=
+        \frac{1}{u}
+        =
+        \frac{\|\ls{p}\vec{h}\|^2/\mu}
+        {1+e\cos(\nu-\nu_0)}\\
+        &=
+        \frac{p}
+        {1+e\cos(\nu-\nu_0)}.
+    \end{aligned}
+$$ {#eq-orbit_equation}
+
+donde
+
+$$
+p=\frac{\|\ls{p}\vec{h}\|^2}{\mu}
+$$
+
+es el **semi-latus rectum** de la órbita.
+
+## Algunas cuestiones interesantes
+
+- ¿Qué pasa con la ley de gravitación universal si $r=0$?
+
+- ¿A qué sistema clásico recuerda la ecuación diferencial @eq-system_ode?
+
+- ¿Por qué la energía potencial es siempre negativa?
+
+- ¿Por qué decimos que la variable $e$ de la ecuación de la órbita @eq-orbit_equation es la excentricidad de la órbita?
+
+---
+
+##
+
+::: {.center-vertical}
+
+::: {.chapter-title}
+
+Preliminares
+
+:::
+
+<div class="chapter-line"></div>
+
+::: {.chapter-subtitle}
+
+Secciones cónicas
+<div class="menu-title" style="display:none;"> ▸ Secciones cónicas </div>
+
+
+:::
+
+:::
+
+
+##
+
+::: {.columns}
+
+::: {.column width="50%"}
+
+![](/Figures/c2/conic.svg){width=70% fig-align="center"}
+
+:::
+
+::: {.column width="50%"}
+
+La ecuación de la órbita @eq-orbit_equation describe una sección cónica con excentricidad $e$ en coordenadas polares $(r,\nu)$.
+
+Dependiendo del valor de $e$, la órbita puede ser:
+
+- Una circunferencia ($e=0$).
+- Una elipse ($0\le e<1$).
+- Una parábola ($e=1$).
+- Una hipérbola ($e>1$).
+
+Para este curso, nos enfocaremos únicamente en las órbitas elípticas.
+
+:::
+
+:::
+
+---
+
+## Órbitas elípticas
+
+::: {.columns}
+
+::: {.column width="45%"}
+
+La órbita elíptica es la más común en mecánica orbital.
+
+El punto de la elipse con $\nu=0$ se conoce como **perigeo** y el punto con $\nu=\pi$ como **apogeo**.
+
+La distancia desde el foco hasta el perigeo (punto <span style="color:red">A</span>) puede obtenerse de @eq-orbit_equation como
+
+$$
+r_p=\frac{p}{1+e}.
+$$
+
+Mientras que la distancia desde el foco hasta el apogeo (punto <span style="color:red">B</span>) es
+
+$$
+r_a=\frac{p}{1-e}.
+$$
+
+Con ello, el semieje mayor $a$ está dado por
+
+$$
+    a=\frac{r_p+r_a}{2}
+    =\frac{p}{1-e^2}.
+$$
+
+:::
+
+::: {.column width="55%"}
+
+![](/Figures/c2/ellipse_orbit.svg){width=120%}
+
+:::
+
+:::
+
+---
+
+##
+
+::: {.columns}
+
+::: {.column width="45%"}
+
+En este sentido, el **semi-latus rectum** $p$ puede expresarse en función del semieje mayor $a$ y la excentricidad $e$ como
+
+$$
+p=a(1-e^2).
+$$
+
+Adicionalmente, puede interpretarse geométricamente como la distancia desde el foco hasta la elipse cuando $\nu=\pm\frac{\pi}{2}$.
+
+La distancia focal $c$ en términos de $e$ y $p$ está dada por
+
+$$
+c=\frac{ep}{1-e^2},
+$$
+
+mientras que el semieje menor $b$ está dado por
+
+$$
+b=\frac{p}{\sqrt{1-e^2}}.
+$$
+
+:::
+
+::: {.column width="55%"}
+
+![](/Figures/c2/ellipse_orbit.svg){width=120%}
+
+:::
+
+:::
+
+---
+
+##
+
+::: {.columns}
+
+::: {.column width="45%"}
+
+La energía mecánica específica en una órbita elíptica está dada por
+
+$$
+    \begin{aligned}
+        E
+        &=
+        \frac{1}{2}\|\ls{p}\vec{h}\|^2C^2
+        -
+        \frac{\mu^2}{2\|\ls{p}\vec{h}\|^2}\\
+        &=
+        \frac{1}{2}\|\ls{p}\vec{h}\|^2
+        \left(
+        \frac{\mu}{\|\ls{p}\vec{h}\|^2}e
+        \right)^2
+        -
+        \frac{\mu^2}{2\|\ls{p}\vec{h}\|^2}\\
+        &=
+        -\frac{\mu^2}{2\|\ls{p}\vec{h}\|^2}(1-e^2)\\
+        &=
+        -\frac{\mu}{2a}<0.
+    \end{aligned}
+$$
+
+Esto implica que <span style="color:teal">**la energía mecánica específica es negativa en una órbita elíptica.**</span>
+
+Por consecuencia,
+
+$$
+|E_c|<|E_p|.
+$$
+
+:::
+
+::: {.column width="55%"}
+
+![](/Figures/c2/ellipse_orbit.svg){width=120%}
+
+:::
+
+:::
+
+---
+
+## Relación entre energía y secciones cónicas
+
+De forma general, la relación entre la energía mecánica específica y las diferentes secciones cónicas puede resumirse en
+
+| **Sección cónica** | $e$ | $E$ | **Energía dominante** |
+|:-------------------|:---:|:---:|:---------------------:|
+| Circunferencia | $e=0$ | $E<0$ | Potencial |
+| Elipse | $0<e<1$ | $E<0$ | Potencial |
+| Parábola | $e=1$ | $E=0$ | Igual |
+| Hipérbola | $e>1$ | $E>0$ | Cinética |
+
+Por otro lado, geométricamente puede describirse en términos de $e$ y $p$ mediante
+
+| **Sección cónica** | $e$ | $p$ | **Descripción** |
+|:-------------------|:---:|:---:|:----------------|
+| Circunferencia | $e=0$ | $p=r$ | Radio constante |
+| Elipse | $0<e<1$ | $p=a(1-e^2)$ | Órbita cerrada |
+| Parábola | $e=1$ | $p=2r_p$ | Órbita límite |
+| Hipérbola | $e>1$ | $p=a(e^2-1)$ | Órbita abierta |
+
+La conclusión de esto es que <span style="color:red">**la forma y el tamaño de la órbita están determinados únicamente por la energía mecánica específica y el momento angular específico.**</span>
+
+En otros términos, la forma y el tamaño están determinados por las condiciones iniciales de posición y velocidad, y no por la masa del cuerpo en órbita.
+
+---
+
+##
+
+::: {.center-vertical}
+
+::: {.chapter-title}
+
+Preliminares
+
+:::
+
+<div class="chapter-line"></div>
+
+::: {.chapter-subtitle}
+
+Anomalías y ????????
+
+
+<div class="menu-title" style="display:none;"> ▸ Anomalías </div>
+
+:::
+
+:::
+
+---
+
+Hasta ahora, hemos visto la descripción geométrica de las órbitas elípticas, así como su orientación en el espacio. Sin embargo, no hemos visto cómo se mueve un cuerpo a lo largo de su órbita.
+
+Para ello, es necesario introducir el concepto de **anomalía**.
+
+- Una anomalía es un ángulo que describe la posición de un cuerpo en su órbita en función del tiempo.
+- El término **anomalía** se deriva del griego *anomalos*, que significa *irregular* o *desviado*, haciendo referencia a la naturaleza no uniforme del movimiento orbital.
+
+---
+
+::: {.columns}
+
+::: {.column width="45%"}
+
+- La **anomalía verdadera** $\nu\in[0,2\pi)$ es el ángulo entre el perigeo y la posición actual del cuerpo en su órbita, medido desde el foco de la elipse.
+
+- Para calcularla, es necesario introducir un ángulo auxiliar conocido como **anomalía excéntrica** $\psi\in[0,2\pi)$.
+
+- Para ello, se define un círculo auxiliar de radio $a$ con centro en el centro de la elipse (línea punteada).
+
+- La anomalía excéntrica $\psi$ es el ángulo entre los segmentos $OA$ y $OC$, donde $O$ es el centro de la elipse, $A$ es el perigeo y $C$ es la proyección del cuerpo en el círculo auxiliar.
+
+- La relación entre la anomalía verdadera $\nu$ y la anomalía excéntrica $\psi$ se construye de la siguiente manera:
+
+:::
+
+::: {.column width="55%"}
+
+![](/Figures/c2/ellipse_orbit.svg){width=120% fig-align="center"}
+
+:::
+
+:::
+
+---
+
+::: {.columns}
+
+::: {.column width="45%"}
+
+Considere
+
+$$
+    \begin{aligned}
+        c &= m+n,\\
+        m &= a\cos(\psi),\\
+        n &= r\cos(\pi-\nu)=-r\cos(\nu).
+    \end{aligned}
+$$
+
+En consecuencia,
+
+$$
+c=a\cos(\psi)-r\cos(\nu)=ae,
+$$
+
+y considerando $\nu_0=0\ \mathrm{rad}$,
+
+$$
+    \begin{aligned}
+        m &= a\cos(\psi)=r\cos(\nu)+ae\\
+        &=\frac{p\cos\nu}{1+e\cos\nu}+ae\\
+        &=\frac{a(1-e^2)\cos\nu}{1+e\cos\nu}+ae\\
+        &=\frac{ae+a\cos\nu}{1+e\cos\nu}.
+    \end{aligned}
+$$
+
+:::
+
+::: {.column width="55%"}
+
+![](/Figures/c2/ellipse_orbit.svg){width=120% fig-align="center"}
+
+:::
+
+:::
+
+---
+
+::: {.columns}
+
+::: {.column width="45%"}
+
+Por lo tanto,
+
+$$ 
+    \begin{aligned}
+        \cos(\nu)&=\frac{\cos(\psi)-e}{1-e\cos(\psi)},\\
+        \sin(\nu)&=\frac{\sin(\psi)\sqrt{1-e^2}}{1-e\cos(\psi)},\\
+        \tan(\nu)&=\frac{\sin(\psi)\sqrt{1-e^2}}{\cos(\psi)-e}.
+    \end{aligned}
+$$ {#eq-cos_sin_nu}
+
+:::
+
+::: {.column width="55%"}
+
+![](/Figures/c2/ellipse_orbit.svg){width=120% fig-align="center"}
+
+:::
+
+:::
+
+---
+
+::: {.columns}
+
+::: {.column width="45%"}
+
+Adicionalmente, la distancia $r(t)$ puede expresarse en función de la anomalía excéntrica como
+
+$$ 
+    \begin{aligned}
+        r(t)&=\frac{p}{1+e\cos(\nu)}\\
+        &=\frac{a(1-e^2)}{1+e\left(\frac{\cos(\psi)-e}{1-e\cos(\psi)}\right)}\\
+        &=a(1-e\cos(\psi)).
+    \end{aligned}
+$$ {#eq-r_psi}
+
+Sin embargo, aún seguimos sin conocer cómo varía la anomalía excéntrica con el tiempo.
+
+:::
+
+::: {.column width="55%"}
+
+![](/Figures/c2/ellipse_orbit.svg){width=120% fig-align="center"}
+
+:::
+
+:::
+
+---
+
+::: {.columns}
+
+::: {.column width="45%"}
+
+Con tal propósito, considere el diferencial de área barrida por el vector de posición ${}^{p}\vec{r}$ en un intervalo de tiempo $\Delta t$. Este diferencial de área se define como
+
+$$
+\Delta A=\frac{1}{2}r^2\Delta\nu.
+$$
+
+Dividiendo entre $\Delta t$ y considerando el límite cuando $\Delta t\rightarrow0$, se obtiene
+
+$$
+    \frac{\mathrm{d}A}{\mathrm{d}t}
+    =\frac{1}{2}r^2\frac{\mathrm{d}\nu}{\mathrm{d}t}.
+$$
+
+Sustituyendo la @eq-angular_momentum se obtiene
+
+$$
+    \frac{\mathrm{d}A}{\mathrm{d}t}
+    =\frac{1}{2}\|{}^{p}\vec{h}\|.
+$$
+
+Dado que $\|{}^{p}\vec{h}\|$ es constante, al integrar se obtiene
+
+$$
+A=A_0+\frac{1}{2}\|{}^{p}\vec{h}\|t,
+$$
+
+donde $A_0$ es el área barrida en $t=0$.
+
+:::
+
+::: {.column width="55%"}
+
+![](/Figures/c2/ellipse_orbit.svg){width=120% fig-align="center"}
+
+:::
+
+:::
+
+---
+
+##
+
+::: columns
+
+::: {.column width="45%"}
+
+Considerando $A_0=0$, se tiene que
+
+$$
+\frac{A}{t}= \frac{1}{2}\|\ls{p}\vec{h}\|,
+$$ {#eq-areatime}
+
+y, dado que $\|\ls{p}\vec{h}\|$ es constante, la relación entre el área barrida y el tiempo en órbita es constante. Un resultado interesante es cuando $t=T$, donde $T$ es el periodo orbital. En este caso, el área total de la elipse está dada por
+
+$$
+A=\pi ab,
+$$
+
+y por lo tanto,
+
+$$
+    \begin{split}
+        T & =\frac{2\pi ab}{\|\ls{p}\vec{h}\|}=\frac{2\pi ab}{\sqrt{p\mu}},\\
+        & =\frac{2\pi a^2\sqrt{1-e^2}}{\sqrt{a(1-e^2)\mu}}=2\pi\sqrt{\frac{a^3}{\mu}}=\frac{2\pi}{\omega_0},
+    \end{split}
+$$
+
+donde $\omega_0=\sqrt{\mu/a^3}$ se conoce como *movimiento angular medio*.
+
+:::
+
+::: {.column width="55%"}
+
+![](/Figures/c2/ellipse_orbit.svg){width=120%}
+
+:::
+
+:::
+
+---
+
+##
+
+::: columns
+
+::: {.column width="45%"}
+
+Con ello, podemos definir la \textcolor{blue}{anomalía media $M \in [0, 2\pi)$} como
+
+$$
+M = \omega_0 (t-t_0)+M_0,
+$$ {#eq-mean_anomaly}
+
+donde $t_0$ es la *época* y $M_0$ es la *anomalía media acumulada en la época $t_0$*. Si se asume que $t_0=t_p$, donde $t_p=nT$,$n \in \mathbb{N}$, entonces $M_0=0$ (el satélite se encuentra en el perigeo).
+
+En este caso, la anomalía media es
+
+$$
+M = \omega_0 (t-t_p),
+$$
+
+Una interpretación geométrica de la anomalía media es que es el ángulo que barrería un cuerpo si se moviera con velocidad angular constante $\omega_0$ en una órbita circular de radio $a$.
+
+:::
+
+::: {.column width="55%"}
+
+![](/Figures/c2/ellipse_orbit.svg){width=120%}
+
+:::
+
+:::
+
+---
+
+##
+
+::: columns
+
+::: {.column width="45%"}
+
+Para encontrar una relación entre la anomalía media $M$ y la anomalía excéntrica $\psi$, considere lo siguiente:
+Sea $S(AFC')$ el área del sector $AFC'$, y sea $S(AFC)$ el área del sector $AFC$. Entonces, siguiendo la ecuación @eq-areatime, se tiene que
+
+$$
+    \begin{split}
+        \frac{t-t_p}{S(AFC')} & =\frac{T}{\pi ab}.
+    \end{split}
+$$ {#eq-areatime2}
+
+Por otro lado, el área del sector $AFC$ puede calcularse como
+
+$$
+    \begin{split}
+        S(AFC) & =\frac{\psi}{2\pi}(\pi a^2)-S(OFC),\\
+        & =\frac{\psi}{2}a^2-\frac{1}{2}ac\sin(\psi),\\.
+        & =\frac{a^2}{2}(\psi - e\sin(\psi)).
+    \end{split}
+$$
+
+:::
+
+::: {.column width="55%"}
+
+![](/Figures/c2/ellipse_orbit.svg){width=120%}
+
+:::
+
+:::
+
+---
+
+##
+
+::: columns
+
+::: {.column width="45%"}
+
+Considerando que
+
+$$
+    \begin{split}
+        S(AFC') & =\frac{b}{a}S(AFC),\\
+        & =\frac{b}{a}\cdot\frac{a^2}{2}(\psi - e\sin(\psi)),\\
+        & =\frac{ab}{2}(\psi - e\sin(\psi)),
+    \end{split}
+$$
+
+Sustituyendo en @eq-areatime2 se obtiene
+
+$$
+    \begin{split}
+        \frac{t-t_0}{\frac{ab}{2}(\psi - e\sin(\psi))} & =\frac{T}{\pi ab},\\
+        \Rightarrow \quad t-t_0                        & = \frac{T}{2\pi}(\psi - e\sin(\psi)),\\
+        \Rightarrow \quad M                            & = \psi - e\sin(\psi).
+    \end{split}
+$$
+
+La última ecuación se conoce como **Ecuación de Kepler**.
+
+:::
+
+::: {.column width="55%"}
+
+![](/Figures/c2/ellipse_orbit.svg){width=120%}
+
+:::
+
+:::
+
+---
+
+##
+
+::: {.center-vertical}
+
+::: {.chapter-title}
+
+Preliminares
+
+:::
+
+<div class="chapter-line"></div>
+
+::: {.chapter-subtitle}
+
+Propagación de órbita
+
+<div class="menu-title" style="display:none;"> ▸ Propagación de órbita </div>
+
+
+:::
+
+:::
+
+---
+
+## Planteamiento del problema
+
+La **propagación de órbita** es el proceso de determinar la posición y la velocidad futura (o pasada) de un cuerpo en órbita. El problema puede plantearse de forma general de la siguiente manera:
+
+::: {.definition-block .fragment #prob-orbit_propagation}
+
+**Problema 2.1**
+
+Dadas los elementos orbitales ${a(t),e(t),\omega(t),i(t),\Omega(t),M(t)}$ en el tiempo $t_0$, determinar los vectores de posición $\ls{i}\vec{r}(t)$ y velocidad $\ls{i}\vec{v}(t)$ en el tiempo $t$.
+
+:::
+
+::: {.fragment}
+
+Para resolver el Problema 2.1 para nuestro curso, haremos la siguiente suposición:
+
+:::
+
+::: {.definition-block .fragment #ass-central_force}
+
+**Suposición 2.1**
+
+La órbita es elíptica y está gobernada únicamente por la fuerza de atracción central.
+
+:::
+
+::: {.fragment}
+
+Bajo la Suposición 2.1, se entiende que
+
+- Los elementos orbitales no varían con el tiempo, excepto la anomalía media $M(t)$.
+
+:::
+
+::: {.fragment}
+
+Esto nos remite a lo visto en anteriores diapositivas.
+
+:::
+
+---
+
+El primer paso para resolver el Problema 2.1 es determinar la anomalía excéntrica $\psi(t)$ en el instante $t$. Para ello, hacemos uso de la ecuación de Kepler:
+
+$$
+M(t) = \psi(t) - e\sin(\psi(t)),
+$$ {#eq-kepler}
+
+::: incremental
+
+Sustituyendo @eq-mean_anomaly en @eq-kepler se obtiene
+
+$$
+\psi(t) - e\sin(\psi(t))-M(t) = 0,
+$$
+
+donde $\omega_0=\sqrt{\mu/a^3}$.
+
+Definiendo la función real
+
+$$
+g(\uppsi,t) = \uppsi - e\sin(\uppsi) - M(t)
+$$ {#eq-g_root}
+
+El objetivo es encontrar la raíz de la función $g(\uppsi^\star,t)$=0, que corresponde a la anomalía excéntrica $\psi(t)$ en el instante $t$ ($\uppsi^\star=\psi(t)$). Esto puede lograrse mediante métodos numéricos clásicos.
+
+:::
+
+---
+
+Para conocer las componentes del vector de posición $\ls{p}\vec{r}(t)$, partimos de su descomposición en coordenadas polares
+
+$$
+    \ls{p}\vec{r}(t) = \begin{bmatrix}
+    r(t)\cos(\nu(t)) \\
+    r(t)\sin(\nu(t)) \\
+    0
+    \end{bmatrix}.
+$$ {#eq-p_r}
+
+::: incremental
+
+Sustituyendo @eq-r_psi y @eq-cos_sin_nu se obtiene
+
+$$
+    \ls{p}\vec{r}(t) = a\begin{bmatrix}
+    \cos(\psi(t))-e \\
+    \sqrt{1-e^2}\sin(\psi(t)) \\
+    0
+    \end{bmatrix}.
+$$ {#eq-p_vec}
+
+Para calcular el vector de velocidad $\ls{p}\vec{v}(t)$, podemos derivar el vector de posición $\ls{p}\vec{r}(t)$ con respecto al tiempo
+
+$$
+\ls{p}\vec{v}(t) = \frac{\text{d}\ls{p}\vec{r}(t)}{\text{d}t} = \frac{\partial\ls{p}\vec{r}(t)}{\partial \psi(t)}\cdot\frac{\text{d}\psi(t)}{\text{d}t}.
+$$
+
+Derivando @eq-kepler se obtiene
+
+$$
+\frac{\text{d}\psi(t)}{\text{d}t} = \frac{\omega_0}{1-e\cos(\psi(t))}.
+$$
+
+:::
+
+---
+
+Derivando $\ls{p}\vec{r}(t)$ se obtiene
+
+$$
+    \frac{\partial\ls{p}\vec{r}(t)}{\partial\psi(t)} = a\begin{bmatrix}
+    -\sin(\psi(t)) \\
+    \sqrt{1-e^2}\cos(\psi(t)) \\
+    0
+    \end{bmatrix}.
+$$
+
+::: incremental
+
+Por lo tanto, el vector de velocidad es
+
+$$
+    \ls{p}\vec{v}(t) = \frac{a\omega_0}{1-e\cos(\psi(t))}\begin{bmatrix}
+    -\sin(\psi(t)) \\
+    \sqrt{1-e^2}\cos(\psi(t)) \\
+    0
+    \end{bmatrix}.
+$$ {#eq-p_v}
+
+Finalmente, para obtener los vectores de posición y velocidad en el marco de referencia inercial geocéntrico $\ls{i}\vec{r}(t)$ y $\ls{i}\vec{v}(t)$, es necesario realizar una transformación de coordenadas desde el marco $\ls{p}\mathcal{F}$ al $\ls{i}\mathcal{F}$. Esto se logra mediante la matriz de rotación $\ls{i}R_p=\ls{p}R_i^\top$ definida en @eq-Ri2Rp.
+
+$$
+    \begin{split}
+        \ls{i}\vec{r}(t) & = \ls{i}R_p\ls{p}\vec{r}(t), \\
+        \ls{i}\vec{v}(t) & = \ls{i}R_p\ls{p}\vec{v}(t).
+    \end{split}
+$$
+
+Al conjunto de vectores $\{\ls{i}\vec{r}(t),\ls{i}\vec{v}(t)\}$ para un conjunto finito de instantes de tiempo $\{t_0,t_1,\ldots,t_n\}$ se le denomina **efemérides**.
+
+:::
+
+---
+
+Los pasos para resolver el Problema 2.1 bajo la Suposición 2.1 pueden resumirse en el siguiente algoritmo:
+
+::: {.algorithm}
+
+<div class="algorithm-title">Algoritmo 1: Propagador Kepleriano</div>
+
+<div class="algorithm-io">
+<strong>Entrada:</strong>
+$a,e,\omega,i,\Omega,t_0,M_0,t$
+</div>
+
+<div class="algorithm-io">
+<strong>Salida:</strong>
+$\ls{i}\vec{r}(t),\ls{i}\vec{v}(t)$
+</div>
+
+<ol>
+<li>Calcular $\omega_0=2\pi/T$.</li>
+<li>Calcular $M(t)$ mediante @eq-mean_anomaly.</li>
+<li>Encontrar la raíz $\uppsi^\star$ de @eq-g_root y asignar $\psi(t)=\uppsi^\star$.</li>
+<li>Calcular $\ls{p}\vec{r}(t)$ mediante @eq-p_r.</li>
+<li>Calcular $\ls{p}\vec{v}(t)$ mediante @eq-p_v.</li>
+<li>Calcular $\ls{i}R_p$ mediante @eq-Ri2Rp.</li>
+<li>Calcular $\ls{i}\vec{r}(t)=\ls{i}R_p\ls{p}\vec{r}(t)$.</li>
+<li>Calcular $\ls{i}\vec{v}(t)=\ls{i}R_p\ls{p}\vec{v}(t)$.</li>
+</ol>
+
+:::
+::: incremental
+
+A este tipo de algoritmos se les conoce como **propagadores**. En específico, al propagador descrito por el Algoritmo 1 se le denomina **propagador kepleriano**.
+
+:::
+
+##
+
+::: {.center-vertical}
+
+::: {.chapter-title}
+
+Preliminares
+
+:::
+
+<div class="chapter-line"></div>
+
+::: {.chapter-subtitle}
+
+Marcos de referencia auxiliares
+
+
+<div class="menu-title" style="display:none;"> ▸ Marcos de referencia auxiliares </div>
+
+:::
+
+:::
+
+---
+
+Como se mencionó anteriormente, para relacionar el marco $\ls{p}\mathcal{F}$ y el marco $\ls{r}\mathcal{F}$ es necesario conocer la anomalía verdadera $\nu(t)$, dado que
+
+$$
+\ls{r}R_p(t)=R_z(\nu(t)).
+$$
+
+::: incremental
+
+Para conocer $\nu(t)$, es necesario calcular la anomalía excéntrica $\psi(t)$, que puede obtenerse de la misma forma que en el problema de propagación de órbita. Una vez conocida $\psi(t)$, la anomalía verdadera $\nu(t)$ puede obtenerse mediante @eq-cos_sin_nu, de tal modo que
+
+$$
+\nu(t) = \tan^{-1}\left(\frac{\sin(\psi(t))\sqrt{1-e^2}}{\cos(\psi(t))-e}\right).
+$$
+
+:::
+
+---
+
+Debido a que la función $\tan^{-1}(\cdot)$ tiene un rango de $(-\pi/2,\pi/2)$, es necesario considerar el cuadrante en el que se encuentra $\nu(t)$ para obtener el valor correcto. Por ello , es recomendable utilizar la función $\text{atan2}(y,x)$, que considera el cuadrante correcto, de modo que
+
+$$
+\nu(t) = \text{atan2}\left(\sin(\psi(t))\sqrt{1-e^2},\cos(\psi(t))-e\right).
+$$
+
+::: incremental
+
+donde $\text{atan2}(y,x)$ se define como
+
+$$
+    \text{atan2}(y,x) =
+    \begin{cases}
+        \tan^{-1}(y/x),     & x>0,\\
+        \tan^{-1}(y/x)+\pi, & x<0,y\geq 0,\\
+        \tan^{-1}(y/x)-\pi, & x<0,y<0,\\
+        +\pi/2,             & x=0,y>0,\\
+        -\pi/2,             & x=0,y<0,\\
+        \text{indefinido},  & x=0,y=0.
+    \end{cases}
+$$
+
+:::
+
+---
+
+Finalmente, para relacionar el marco $\ls{r}\mathcal{F}$ con el marco de referencia orbital $\ls{h}\mathcal{F}$, podemos construir la matriz de rotación
+
+$$
+\ls{h}R_r = R_z\left(\frac{\pi}{2}\right)R_y\left(-\frac{\pi}{2}\right).
+$$
+
+::: incremental
+
+Con ello, la matriz de rotación desde el marco $\ls{i}\mathcal{F}$ al marco $\ls{h}\mathcal{F}$ está dada por
+
+$$
+    \begin{split}
+        \ls{h}R_i(t) & = \ls{h}R_r\ls{r}R_p(t)\ls{p}R_i,\\
+        & = R_z\left(\frac{\pi}{2}\right)R_y\left(-\frac{\pi}{2}\right)R_z(\nu(t))R_z(\omega)R_x(i)R_z(\Omega).
+    \end{split}
+$$
+
+Ahora...
+
+<center>
+
+\Large \textcolor{red}{¿Cómo calculamos $\ls{b}R_h(t)$?}
+
+</center>
+
+:::
+
+---
+
+## Algunos datos antes de pasar de tema
+
+- El marco de referencia RSW debe su nombre dada la dirección de sus ejes en inglés:
+  - **R**adial: Apunta desde el centro del cuerpo central hacia el satélite.
+  - **S** (Along-track): Apunta en la dirección de la velocidad del satélite, es tangente a la órbita.
+  - **W** (Cross-track): Apunta perpendicularmente al plano orbital, siguiendo la regla de la mano derecha.
+
+  La elección de las siglas *S* y *W* puede deberse a convenciones históricas o a la necesidad de evitar confusiones con otras letras.
+
+::: incremental
+
+- El análisis que hicimos la sección de mecánica orbital se realizó bajo la suposición de los cuerpos son puntuales. En la práctica, los cuerpos tienen una distribución de masa que puede afectar la órbita. Sin embargo, para las escalas de órbita que vimos hasta este punto del curso, la suposición de cuerpos puntuales es suficientemente precisa.
+
+- Existe otra forma más de describir la órbita, y es mediante los **coeficientes de Lagrange**. Estos coeficientes permiten calcular la posición y velocidad en función de las condiciones iniciales.
+
+:::

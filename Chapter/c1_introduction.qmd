@@ -1,0 +1,841 @@
+
+::: {.chapter-slide}
+
+# Capítulo 1
+
+::: {.text-center}
+
+<div class="chapter-line"></div>
+
+::: {.large}
+
+Introducción
+<div class="menu-title" style="display:none;"> Introducción </div>
+:::
+
+:::
+
+:::
+
+## Definiciones
+
+
+<div class="menu-title" style="display:none;"> ▸ Definiciones </div>
+
+<div class="vspace-3"></div>
+
+::: {.definition-block}
+**Sistema**
+
+Es un conjunto de elementos interrelacionados que interactúan entre sí y con su entorno, con el propósito de cumplir una función u objetivo determinado.
+:::
+
+<div class="vspace-3"></div>
+
+::: {.definition-block .fragment}
+**Control**
+
+Es el proceso mediante el cual se actúa deliberadamente sobre un sistema *dinámico* para influir en su comportamiento, de modo que éste siga una evolución deseada o alcance un objetivo específico.
+:::
+
+<div class="vspace-3"></div>
+
+::: {.definition-block .fragment}
+**Orientación**
+
+La *orientación* de un cuerpo es la relación angular entre una referencia fija al cuerpo y otra referencia.
+:::
+
+
+## Sistema de Control de Orientación {auto-animate=true}
+
+::: {.definition-block}
+**Definición**
+
+Un sistema de control de orientación es un conjunto de elementos cuyo objetivo es regular la orientación de un cuerpo físico con respecto a una referencia definida, de manera que adquiera una configuración deseada.
+
+:::
+
+::: {.fragment}
+
+::: {.large}
+
+¿Qué implica su diseño en sistemas espaciales?
+
+:::
+
+![](Figures/c1/motivation.jpg){width=55% fig-align="center"}
+
+:::
+
+## {auto-animate=true}
+
+::: {.definition-block}
+**Definición**
+
+Un sistema de control de orientación es un conjunto de elementos cuyo objetivo es regular la orientación de un cuerpo físico con respecto a un sistema de referencia definido, de manera que adquiera una orientación deseada o la mantenga de manera estable.
+
+:::
+
+El diseño de este sistema puede seccionarse tres etapas fundamentales, y cada una de ellas responde una pregunta clave.
+
+::: {.fragment}
+
+<div class="vspace-2"></div>
+
+<span style="color:#003399">**Modelado** (¿Qué?)</span>
+
+El **modelado** del satélite es la representación matemática y computacional de la dinámica, la cinemática y las características físicas del cuerpo, así como de los elementos de referencia involucrados, que permite definir una orientación relativa a una referencia conocida y predecir su evolución.
+
+:::
+
+::: {.fragment}
+
+<div class="vspace-2"></div>
+
+<span style="color:#003399">**Procesamiento** (¿Cómo?)</span>
+
+El **procesamiento** es el conjunto de operaciones matemáticas, lógicas y algorítmicas que transforman las mediciones del sistema y las referencias deseadas en señales de control, de manera que el cuerpo adquiera la orientación deseada.
+
+:::
+
+## {auto-animate=true}
+
+<span style="color:#003399">**Instrumentación** (¿Con qué?)</span>
+
+La **instrumentación** comprende los dispositivos físicos encargados de adquirir información relacionada con la orientación actual del cuerpo y de ejecutar las acciones de control calculadas por el sistema de procesamiento, sirviendo como la interfaz entre el modelo teórico y el sistema físico real. 
+
+<div class="vspace-2"></div>
+
+Esta instrumentación se clasifica en tres categorías principales:
+
+::: {.incremental}
+
+- **Sensor**: Es un dispositivo que mide una magnitud física (asociada a un fenómeno físico) y la convierte en una señal proporcional que puede ser interpretada, procesada o registrada.
+
+- **Actuador**: Es un elemento físico encargado de convertir una **señal de control** en una **acción de control** que influye en el comportamiento de un sistema dinámico.
+
+- **Unidad de procesamiento**: Es un dispositivo o conjunto de dispositivos encargados de ejecutar la etapa de procesamiento.
+
+:::
+
+::: {.fragment}
+
+![](Figures/c1/adcs_cubesatshop){width=28% fig-align="center"}
+
+:::
+
+## ADCS (*Attitude Determination and Control System*){auto-animate=true}
+
+::: {.fs-sm}
+
+Sistema encargado de determinar y controlar la orientación de un vehículo espacial.
+
+:::{.incremental}
+
+- *Attitude* es la orientación tridimensional de un vehículo espacial con respecto a un marco de referencia.
+- **Su propósito es brindarle al vehículo la capacidad de conocer y modificar su orientación.**
+- Internamente está conformado en dos tareas:
+  - **Determinación**: Proceso por el cual se estima la orientación del vehículo relativa a una referencia en tiempo real.
+  - **Control**: Conjunto de técnicas dedicadas a mantener y gestionar la orientación del vehículo en una dirección deseada.
+  
+::::
+
+![](Figures/c1/adcs_cubesatshop){width=40% fig-align="center"}
+
+:::
+
+##
+
+![](Figures/c1/subsystems.svg){width=100% fig-align="center"}
+
+##
+
+![](Figures/c1/closeloop.svg){width=100% fig-align="center"}
+
+##
+
+::: {.center-vertical}
+
+::: {.chapter-title}
+
+Introducción
+
+:::
+
+<div class="chapter-line"></div>
+
+::: {.chapter-subtitle}
+
+Revisión histórica
+
+<div class="menu-title" style="display:none;"> ▸ Revisión histórica </div>
+
+:::
+
+:::
+
+## Sputnik 1 (1957)
+
+::: {.columns}
+
+::: {.column width="65%"}
+
+**Lanzamiento:** 4 oct 1957 (URSS, R-7)
+
+**Lanzado por:** Unión Soviética
+
+**Propósito/Misión:** <span style="color:red"> Primer satélite artificial para transmisión de radio. </span>
+
+**Carga útil:** Transmisores (20/40 MHz).
+
+**Órbita:** LEO, 215 × 939 km, inc. 65°.
+
+::: {.definition-block}
+
+**Instrumentación**
+
+- *Tipo de apuntamiento:* Sin control.
+- *Instrumentación para control:* Ninguna.
+- *Instrumentación para determinación:* Ninguna.
+
+:::
+
+:::
+
+::: {.column width="35%"}
+
+![](Figures/c1/intro_sputnik1.png){width=100% fig-align="center"}
+
+:::
+
+:::
+
+## Explorer 1 (1958)
+
+::: {.columns}
+
+::: {.column width="65%"}
+
+**Lanzamiento:** 31 ene 1958 (EE.UU., Juno I)
+
+**Lanzado por:** Estados Unidos
+
+**Propósito/Misión:** Ciencia espacial (Descubrimiento de los cinturones de Van Allen).
+
+**Carga útil:** Contador Geiger-Müller, sensor de temperatura.
+
+**Órbita:** LEO, 358 × 2,550 km, inc. 33.3°.
+
+::: {.definition-block}
+
+**Instrumentación**
+
+- *Tipo de apuntamiento:*<span style="color:red"> Estabilizado por giro </span>  (~750 rpm al lanzamiento).
+- *Instrumentación para control:* Ninguna.
+- *Instrumentación para determinación:* Ninguna.
+
+:::
+
+:::
+
+::: {.column width="35%"}
+
+![](Figures/c1/intro_explorer1.jpg){width=80% fig-align="center"}
+
+:::
+
+:::
+
+---
+
+## Discoverer-2 (1959)
+
+::: {.columns}
+
+::: {.column width="65%"}
+
+**Lanzamiento:** 13 abr 1959 (EE.UU., Thor-Agena A)
+
+**Lanzado por:** USAF/CIA (CORONA)
+
+**Propósito/Misión:** Pruebas de plataforma de reconocimiento óptico y cápsula de reentrada.
+
+**Carga útil:** Cápsula SRV de ensayo; Óptica.
+
+**Órbita:** LEO polar, ~239 × 346 km, inc. ~89.9°.
+
+::: {.definition-block}
+
+**Instrumentación**
+
+- *Tipo de apuntamiento:* <span style="color:red">  Control en 3 ejes </span>.
+- *Instrumentación para control:* <span style="color:red"> Propulsor de gas frío (N₂) </span>.
+- *Instrumentación para determinación:* <span style="color:red">  IMU y sensor de horizonte .</span>
+
+:::
+
+:::
+
+::: {.column width="35%"}
+
+![](Figures/c1/intro_discoverer2.jpg){width=60% fig-align="center"}
+
+:::
+
+:::
+
+## Transit 1A (1959)
+
+::: {.columns}
+::: {.column width="65%"}
+
+**Lanzamiento:** 17 sep 1959 (EE.UU., Thor-Able)
+
+**Lanzado por:** EE.UU.
+
+**Propósito/Misión:** Demostración del sistema de navegación Doppler Transit.
+
+**Carga útil:** Transmisores de navegación.
+
+**Órbita:** Fallo en inserción.
+
+::: {.definition-block}
+
+**Instrumentación**
+
+- *Tipo de apuntamiento:* Estabilizado por giro (~12 rpm).
+- *Instrumentación para control:* <span style="color:red"> *Yo-yo* </span>.
+- *Instrumentación para determinación:* Ninguno.
+
+:::
+
+:::
+
+::: {.column width="35%"}
+
+![](Figures/c1/intro_transit1a.jpg){width=100% fig-align="center"}
+
+:::
+:::
+
+---
+
+## TIROS-1 (1960)
+
+::: {.columns}
+::: {.column width="65%"}
+
+**Lanzamiento:** 1 abr 1960 (EE.UU., Thor-Able)
+
+**Lanzado por:** Estados Unidos
+
+**Propósito/Misión:** Primer satélite meteorológico operativo.
+
+**Carga útil:** 2 cámaras TV (alta/baja res.), transmisor.
+
+**Órbita:** LEO, 644 × 654 km, inc. 48°.
+
+::: {.definition-block}
+
+**Instrumentación**
+
+- *Tipo de apuntamiento:* Estabilizado por giro (~12 rpm).
+- *Instrumentación para control:* *Yo-yo*.
+- *Instrumentación para determinación:* <span style="color:red"> Sensor solar y de horizonte </span> .
+
+:::
+
+:::
+
+::: {.column width="35%"}
+
+![](Figures/c1/intro_tiros1.png){width=100% fig-align="center"}
+
+:::
+:::
+
+---
+
+##
+
+![](Figures/TIROS-1-Earth.png){width=50% fig-align="center"}
+
+---
+
+## Transit 1B (1960)
+
+::: {.columns}
+::: {.column width="65%"}
+
+**Lanzamiento:** 13 abr 1960 (EE.UU., Thor-Ablestar)
+
+**Lanzado por:** APL
+
+**Propósito/Misión:** Navegación Doppler.
+
+**Carga útil:** Transmisores de navegación, relojes.
+
+**Órbita:** LEO polar, ~600 km.
+
+::: {.definition-block}
+
+**Instrumentación**
+
+- *Tipo de apuntamiento:* Estabilizado por giro (~12 rpm).
+- *Instrumentación para control:* <span style="color:red">  Imanes permanentes </span>.
+- *Instrumentación para determinación:* Sensor solar,<span style="color:red">  magnetómetro </span>.
+
+:::
+
+:::
+
+::: {.column width="35%"}
+
+![](Figures/c1/intro_transit1b.jpg){width=100% fig-align="center"}
+
+:::
+:::
+
+## TIROS-2 (1960)
+
+::: {.columns}
+::: {.column width="65%"}
+
+**Lanzamiento:** 23 nov 1960 (EE.UU., Thor-Delta, LC-17A)
+
+**Lanzado por:** RCA
+
+**Propósito/Misión:** Meteorología.
+
+**Carga útil:** 2 cámaras TV (alta/baja res.), transmisor.
+
+**Órbita:** LEO, 374 × 394 km, inc. 48.5°.
+
+::: {.definition-block}
+
+**Instrumentación**
+
+- *Tipo de apuntamiento:* Estabilizado por giro (~12 rpm).
+- *Instrumentación para control:* <span style="color:red"> Propulsores </span>, magnetopares.
+- *Instrumentación para determinación:* Sensor solar y de horizonte.
+
+:::
+
+:::
+
+::: {.column width="35%"}
+
+![](Figures/c1/intro_tiros_2.jpg){width=100% fig-align="center"}
+
+:::
+:::
+
+---
+
+## Transit 4B (1961)
+
+::: {.columns}
+::: {.column width="65%"}
+
+**Lanzamiento:** 15 nov 1961 (EE.UU., Thor-Ablestar)
+
+**Lanzado por:** APL.
+
+**Propósito/Misión:** Navegación Doppler (NNSS).
+
+**Carga útil:** Antenas.
+
+**Órbita:** LEO polar (~1000 km).
+
+::: {.definition-block}
+
+**Instrumentación**
+
+- *Tipo de apuntamiento:* Estabilizado por giro.
+- *Instrumentación para control:*<span style="color:red">  Mástil/boom, imanes permanentes.
+- *Instrumentación para determinación:* Sensor solar, magnetómetro.
+
+:::
+
+:::
+
+::: {.column width="35%"}
+
+![](Figures/c1/intro_transit4b.jpg){width=100% fig-align="center"}
+
+:::
+:::
+
+---
+
+## Mariner 4 (1964)
+
+::: {.columns}
+::: {.column width="65%"}
+
+**Lanzamiento:** 28 nov 1964 (EE.UU., Atlas-Agena D)
+
+**Lanzado por:** JPL
+
+**Propósito/Misión:** Sobrevuelo de Marte, estudio de partículas y campos.
+
+**Carga útil:** Óptica; magnetómetro; detectores de partículas.
+
+**Órbita:** Heliocéntrica.
+
+::: {.definition-block}
+
+**Instrumentación**
+
+- *Tipo de apuntamiento:* Control en 3 ejes.
+- *Instrumentación para control:* Propulsores de gas frío N₂; <span style="color:red"> aletas de presión solar </span> auxiliares.
+- *Instrumentación para determinación:* Sensores solares; <span style="color:red">  seguidor de estrellas </span> *Canopo*; giroscopio.
+
+:::
+
+:::
+
+::: {.column width="35%"}
+
+![](Figures/c1/intro_mariner4.jpg){width=100% fig-align="center"}
+
+:::
+:::
+
+## OAO-1 (1966)
+
+::: {.columns}
+::: {.column width="65%"}
+
+**Lanzamiento:** 8 abr 1966 (EE.UU., Atlas-Agena B)
+
+**Lanzado por:** NASA
+
+**Propósito/Misión:** Astronomía ultravioleta/óptica.
+
+**Carga útil:** Telescopios UV/óptica.
+
+**Órbita:** LEO (~740 km).
+
+::: {.definition-block}
+
+**Instrumentación**
+
+- *Tipo de apuntamiento:* Control en 3 ejes.
+- *Instrumentación para control:*<span style="color:red"> ruedas de reacción </span>; propulsores de respaldo.
+- *Instrumentación para determinación:* Seguidor de estrellas, sensores solares, giroscopio.
+
+:::
+
+:::
+
+::: {.column width="35%"}
+
+![](Figures/c1/intro_oao1.jpg){width=100% fig-align="center"}
+
+:::
+:::
+
+---
+
+## Skylab (1973)
+
+::: {.columns}
+::: {.column width="65%"}
+
+**Lanzamiento:** 14 may 1973 (EE.UU., Saturn V)
+
+**Lanzado por:** NASA
+
+**Propósito/Misión:** Estación orbital para ciencia solar/terrestre y medicina espacial.
+
+**Carga útil:** Instrumentación científica.
+
+**Órbita:** LEO, ~434 × 442 km, inc. 50°.
+
+::: {.definition-block}
+
+**Instrumentación**
+
+- *Tipo de apuntamiento:* Control en 3 ejes.
+- *Instrumentación para control:* <span style="color:red">  Giroscopio de momento controlado (CMG) </span>; propulsores de respaldo.
+- *Instrumentación para determinación:* Sensores solares; giroscopio; sensores de horizonte.
+
+:::
+
+:::
+
+::: {.column width="35%"}
+
+![](Figures/c1/intro_skylab.jpg){width=100% fig-align="center"}
+
+:::
+:::
+
+---
+
+## ATS-6 (1974)
+
+::: {.columns}
+::: {.column width="65%"}
+
+**Lanzamiento:** 30 may 1974 (EE.UU., Titan III-C)
+
+**Lanzado por:** NASA
+
+**Propósito/Misión:** Telecomunicaciones y demostraciones tecnológicas.
+
+**Carga útil:** Antena parabólica 9.1 m, experimentos de comunicaciones.
+
+**Órbita:** GEO.
+
+::: {.definition-block}
+
+**Instrumentación**
+
+- *Tipo de apuntamiento:* Control en 3 ejes.
+- *Instrumentación para control:* Ruedas de reacción; <span style="color:red">  propulsores para desaturación/mantenimiento </span>.
+- *Instrumentación para determinación:* Seguidor de estrellas, sensores solares, sensores de horizonte, giroscopio.
+
+:::
+
+:::
+
+::: {.column width="35%"}
+
+![](Figures/c1/intro_ats6.jpg){width=100% fig-align="center"}
+
+:::
+:::
+
+---
+
+## Hubble Space Telescope (1990)
+
+::: {.columns}
+::: {.column width="65%"}
+
+**Lanzamiento:** 24 abr 1990 (EE.UU., STS-31)
+
+**Lanzado por:** NASA
+
+**Propósito/Misión:** Astronomía óptica/UV de alta precisión.
+
+**Carga útil:** Espejo 2.4 m.
+
+**Órbita:** LEO, ~547 km, inc. 28.5°.
+
+::: {.definition-block}
+
+**Instrumentación**
+
+- *Tipo de apuntamiento:* Control en 3 ejes de alta precisión.
+- *Instrumentación para control:* 4 ruedas de reacción; magnetopares; giroscopios.
+- *Instrumentación para determinación:* <span style="color:red">  *Fine Guidance Sensors* (FGS) </span>.
+
+:::
+
+:::
+
+::: {.column width="35%"}
+
+![](Figures/c1/intro_hubble.jpg){width=100% fig-align="center"}
+
+:::
+:::
+
+## QuakeSat (2003)
+
+::: {.columns}
+::: {.column width="65%"}
+
+**Lanzamiento:** 30 jun 2003 (Rockot/Briz-KM, Rusia)
+
+**Lanzado por:** QuakeFinder/Stanford (EE.UU.)
+
+**Propósito/Misión:** Demostrar detección de señales ULF asociadas a sismos. <span style="color:red">  Primer CubeSat 3U en órbita </span>.
+
+**Carga útil:** Magnetómetro de inducción en *boom* telescópico.
+
+**Órbita:** LEO heliosíncrona, ~821 × 833 km, inc. 98.7°.
+
+::: {.definition-block}
+
+**Instrumentación**
+
+- *Tipo de apuntamiento:* Estabilización por giro.
+- *Instrumentación para control:* Imanes permanentes, boom.
+- *Instrumentación para determinación:* Ninguno.
+
+:::
+
+:::
+
+::: {.column width="35%"}
+
+![](Figures/c1/intro_quakesat.jpg){width=70% fig-align="center"}
+
+:::
+:::
+
+---
+
+## UWE-3 (2013)
+
+::: {.columns}
+::: {.column width="65%"}
+
+**Lanzamiento:** 21 nov 2013 (Dnepr, Rusia)
+
+**Lanzado por:** Universidad de Würzburg (Alemania)
+
+**Propósito/Misión:** <span style="color:red">  Demostración de ADCS miniaturizado </span> y bus modular.
+
+**Carga útil:** Plataforma tecnológica (ADCS en tiempo real; telecomunicaciones).
+
+**Órbita:** LEO heliosíncrona, ~559 × 630 km, inc. 97.8°.
+
+::: {.definition-block}
+
+**Instrumentación**
+
+- *Tipo de apuntamiento:* Control en 3 ejes (demostración en vuelo).
+- *Instrumentación para control:* 6 magnetopares (bobinas distribuidas en paneles), 1 rueda de reacción.
+- *Instrumentación para determinación:* Magnetómetros (9 ejes totales), giroscopios MEMS (3), sensores solares.
+
+:::
+
+:::
+
+::: {.column width="35%"}
+
+![](Figures/c1/intro_uwe3.jpg){width=100% fig-align="center"}
+
+:::
+:::
+
+---
+
+## TerraSAR-X (2007)
+
+::: {.columns}
+::: {.column width="65%"}
+
+**Lanzamiento:** 15 jun 2007 (Alemania, Dnepr)
+
+**Lanzado por:** Alemania (DLR/Astrium)
+
+**Propósito/Misión:** Observación por radar X de alta resolución.
+
+**Carga útil:** Radar SAR banda X.
+
+**Órbita:** LEO heliosíncrona, ~514 km, inc. 97.44°.
+
+::: {.definition-block}
+
+**Instrumentación**
+
+- *Tipo de apuntamiento:* Control en 3 ejes.
+- *Instrumentación para control:* Ruedas de reacción, propulsores.
+- *Instrumentación para determinación:* FGS.
+
+:::
+
+:::
+
+::: {.column width="35%"}
+
+![](Figures/c1/intro_terrasarx.jpg){width=100% fig-align="center"}
+
+:::
+:::
+
+## Sentinel-2 (2015)
+
+::: {.columns}
+::: {.column width="65%"}
+
+**Lanzamiento:** 23 jun 2015 (ESA, Vega)
+
+**Lanzado por:** ESA
+
+**Propósito/Misión:** Observación multiespectral (vegetación/suelo/agua).
+
+**Carga útil:** MSI.
+
+**Órbita:** LEO heliosíncrona, 786 km, inc. 98.6°.
+
+::: {.definition-block}
+
+**Instrumentación**
+
+- *Tipo de apuntamiento:* Control en 3 ejes.
+- *Instrumentación para control:* Ruedas de reacción.
+- *Instrumentación para determinación:* FGS.
+
+:::
+
+:::
+
+::: {.column width="35%"}
+
+![](Figures/c1/intro_sentinel2.jpg){width=100% fig-align="center"}
+
+:::
+:::
+
+---
+
+## James Webb Space Telescope (JWST) (2021)
+
+::: {.columns}
+::: {.column width="65%"}
+
+**Lanzamiento:** 25 dic 2021 (Ariane 5)
+
+**Lanzado por:** NASA/ESA/CSA
+
+**Propósito/Misión:** Astronomía infrarroja de máxima sensibilidad.
+
+**Carga útil:** Espejo 6.5 m; NIRCam, FGS.
+
+**Órbita:** Halo en L2 (~1.5 millones km).
+
+::: {.definition-block}
+
+**Instrumentación**
+
+- *Tipo de apuntamiento:* Control en 3 ejes.
+- *Instrumentación para control:* Ruedas de reacción, propulsores.
+- *Instrumentación para determinación:* FGS.
+
+:::
+
+:::
+
+::: {.column width="35%"}
+
+![](Figures/c1/intro_jwst.png){width=100% fig-align="center"}
+
+:::
+:::
+
+---
+
+## Precisión de apuntamiento {auto-animate=true}
+
+::: {.center-vertical}
+
+| **Nombre** | **Año** | **Precisión (°)** |
+|:---|:---:|---:|
+| TIROS-2 | 1960 | 1–2 |
+| Mariner 4 | 1964 | ≥ 1 |
+| OAO-1 | 1966 | 2.8×10⁻⁵ |
+| Skylab | 1973 | 0.021 |
+| ATS-6 | 1974 | 0.05 |
+| Hubble Space Telescope | 1990 | 1.9×10⁻⁶ |
+| TerraSAR-X | 2007 | 0.018 |
+| James Webb Space Telescope | 2021 | 2.8×10⁻⁷ |
+
+:::
