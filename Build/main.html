@@ -97,10 +97,12 @@
     code span.vs { color: #20794d; } /* VerbatimString */
     code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </style>
-  <link rel="stylesheet" href="main_files/libs/revealjs/dist/theme/quarto-468527e0ccecdbfcc8f37ce71876a550.css">
+  <link rel="stylesheet" href="main_files/libs/revealjs/dist/theme/quarto-31e67208248b834d4ef20946be2b79c7.css">
   <link href="main_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="main_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
   <link href="main_files/libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
+  <link href="main_files/libs/revealjs/plugin/reveal-chalkboard/font-awesome/css/all.css" rel="stylesheet">
+  <link href="main_files/libs/revealjs/plugin/reveal-chalkboard/style.css" rel="stylesheet">
   <link href="main_files/libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
   <style type="text/css">
     .reveal div.sourceCode {
@@ -1594,19 +1596,46 @@ A^\top=-A.
 </section>
 <section id="producto-cruz-matriz-antisimétrica" class="slide level2">
 <h2>Producto cruz: matriz antisimétrica</h2>
-<p>Dado <span class="math inline">\(\vec{u}=[u_1,u_2,u_3]^\top\)</span>, se define la matriz antisimétrica</p>
+<p>Dado <span class="math inline">\(\vec{u}=[u_1,u_2,u_3]^\top\)</span>, se define</p>
 <p><span class="math display">\[
-    S(\vec{u})=
-    \begin{bmatrix}
-        0 &amp; -u_3 &amp; u_2\\
-        u_3 &amp; 0 &amp; -u_1\\
-        -u_2 &amp; u_1 &amp; 0
-    \end{bmatrix}.
-\]</span></p>
-<p>Entonces,</p>
-<p><span class="math display">\[
+S(\vec{u})=
+\begin{bmatrix}
+0 &amp; -u_3 &amp; u_2\\
+u_3 &amp; 0 &amp; -u_1\\
+-u_2 &amp; u_1 &amp; 0
+\end{bmatrix},
+\qquad
 \vec{u}\times\vec{v}=S(\vec{u})\vec{v}.
 \]</span></p>
+<div class="fragment">
+<p><strong>Ejemplo</strong></p>
+<p><span class="math display">\[
+\vec{u}=
+\begin{bmatrix}
+2\\-1\\3
+\end{bmatrix},
+\qquad
+\vec{v}=
+\begin{bmatrix}
+1\\4\\2
+\end{bmatrix},
+\]</span></p>
+<p><span class="math display">\[
+S(\vec{u})=
+\begin{bmatrix}
+0&amp;-3&amp;-1\\
+3&amp;0&amp;-2\\
+1&amp;2&amp;0
+\end{bmatrix},
+\qquad
+S(\vec{u})\vec{v}=
+\begin{bmatrix}
+-14\\-1\\9
+\end{bmatrix}
+=
+\vec{u}\times\vec{v}.
+\]</span></p>
+</div>
 </section>
 <section id="matrices-ortonormales" class="slide level2">
 <h2>Matrices ortonormales</h2>
@@ -1631,8 +1660,8 @@ Q^\top Q=QQ^\top=I_n.
 <li>Consecuencia algebraica: <span class="math inline">\(Q^{-1}=Q^\top\)</span>.</li>
 </ul>
 </section>
-<section id="valores-propios" class="slide level2">
-<h2>Valores propios</h2>
+<section id="valores-y-vectores-propios" class="slide level2">
+<h2>Valores y vectores propios</h2>
 <p>Sea <span class="math inline">\(A\in\mathbb{R}^{n\times n}\)</span>.</p>
 <p>Un escalar <span class="math inline">\(\lambda\in\mathbb{R}\)</span> es un <strong>valor propio</strong> de <span class="math inline">\(A\)</span> si existe un vector no nulo <span class="math inline">\(\vec{v}\in\mathbb{R}^n\)</span> tal que</p>
 <p><span class="math display">\[
@@ -1640,13 +1669,10 @@ A\vec{v}=\lambda\vec{v}.
 \]</span></p>
 <p><strong>Condición equivalente:</strong></p>
 <p><span class="math display">\[
-\det(A-\lambda I_n)=0.
+\det(\lambda I_n-A)=0.
 \]</span></p>
-<p>donde <span class="math inline">\(\det(A-\lambda I_n)\)</span> es el polinomio característico de <span class="math inline">\(A\)</span>.</p>
-</section>
-<section id="vectores-propios" class="slide level2">
-<h2>Vectores propios</h2>
-<p>Sea <span class="math inline">\(A\in\mathbb{R}^{n\times n}\)</span>.</p>
+<p>donde <span class="math inline">\(\det(\lambda I_n-A)\)</span> es el polinomio característico de <span class="math inline">\(A\)</span>.</p>
+<div class="fragment">
 <p>Si <span class="math inline">\(\lambda\)</span> es un valor propio de <span class="math inline">\(A\)</span>, entonces todo vector no nulo <span class="math inline">\(\vec{v}\in\mathbb{R}^n\)</span> que cumple</p>
 <p><span class="math display">\[
 A\vec{v}=\lambda\vec{v}
@@ -1656,9 +1682,68 @@ A\vec{v}=\lambda\vec{v}
 <p><span class="math display">\[
 E_\lambda=\ker(A-\lambda I_n).
 \]</span></p>
+</div>
 </section>
-<section id="section-7" class="slide level2">
-<h2></h2>
+<section id="ejemplo-valores-y-vectores-propios" class="slide level2">
+<h2>Ejemplo: valores y vectores propios</h2>
+<p>Sea</p>
+<p><span class="math display">\[
+A=
+\begin{bmatrix}
+2&amp;0\\
+0&amp;3
+\end{bmatrix}.
+\]</span></p>
+<p>Como</p>
+<p><span class="math display">\[
+\det(\lambda I-A)=
+\begin{vmatrix}
+\lambda-2&amp;0\\
+0&amp;\lambda-3
+\end{vmatrix}
+=(\lambda-2)(\lambda-3),
+\]</span></p>
+<p>los valores propios son</p>
+<p><span class="math display">\[
+\lambda_1=2,\qquad \lambda_2=3.
+\]</span></p>
+<div class="fragment">
+<p>Para <span class="math inline">\(\lambda_1=2\)</span>,</p>
+<p><span class="math display">\[
+(2I-A)\vec{v}=0
+\quad\Longrightarrow\quad
+\vec{v}=
+\alpha
+\begin{bmatrix}
+1\\0
+\end{bmatrix},
+\qquad
+E_2=\mathrm{span}\left\{
+\begin{bmatrix}
+1\\0
+\end{bmatrix}
+\right\}.
+\]</span></p>
+<p>Para <span class="math inline">\(\lambda_2=3\)</span>,</p>
+<p><span class="math display">\[
+(3I-A)\vec{v}=0
+\quad\Longrightarrow\quad
+\vec{v}=
+\beta
+\begin{bmatrix}
+0\\1
+\end{bmatrix},
+\qquad
+E_3=\mathrm{span}\left\{
+\begin{bmatrix}
+0\\1
+\end{bmatrix}
+\right\}.
+\]</span></p>
+</div>
+</section>
+<section class="slide level2">
+
 <div class="center-vertical">
 <div class="chapter-title">
 <p>Preliminares</p>
@@ -1674,7 +1759,7 @@ E_\lambda=\ker(A-\lambda I_n).
 </div>
 </div>
 </section>
-<section id="section-8" class="slide level2">
+<section id="section-7" class="slide level2">
 <h2></h2>
 
 <img data-src="Figures/c1/closeloop.svg" class="quarto-figure quarto-figure-center r-stretch" style="width:100.0%"></section>
@@ -1696,6 +1781,7 @@ E_\lambda=\ker(A-\lambda I_n).
     \qquad
     \ls{i}{\vec{x}}\times\ls{i}{\vec{y}}=\ls{i}{\vec{z}}.
 \]</span></p>
+<div class="fragment">
 <p><strong>Equivalente matricial:</strong></p>
 <p>Si</p>
 <p><span class="math display">\[
@@ -1707,9 +1793,12 @@ R=\left[\,\ls{i}{\vec{x}}\;\;\ls{i}{\vec{y}}\;\;\ls{i}{\vec{z}}\,\right],
     \qquad
     \det(R)=1.
 \]</span></p>
+</div>
 </section>
 <section id="marcos-de-referencia-para-satélites" class="slide level2">
 <h2>Marcos de referencia para satélites</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
 <p>Un marco de referencia provee un sistema cartesiano para expresar coordenadas de vectores en el espacio. Mediante estos, es posible describir la orientación de un cuerpo.</p>
 <p>En general, es necesario definir:</p>
 <ul>
@@ -1719,13 +1808,18 @@ R=\left[\,\ls{i}{\vec{x}}\;\;\ls{i}{\vec{y}}\;\;\ls{i}{\vec{z}}\,\right],
 </ul>
 <p>Con ello, podemos cuantificar la orientación mediante un parámetro que describa qué tan inclinado está el marco sujeto al cuerpo con respecto a otro marco.</p>
 <p>Para un satélite, es común definir los siguientes marcos de referencia:</p>
+</div><div class="column" style="width:50%;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src=".\Figures/c2/frame_empty.svg" class="quarto-figure quarto-figure-center" style="width:100.0%"></p>
+</figure>
+</div>
+</div></div>
 </section>
-<section id="section-9" class="slide level2">
-<h2></h2>
-
-<img data-src=".\Figures/c2/frame_empty.svg" class="quarto-figure quarto-figure-center r-stretch" style="width:100.0%"></section>
 <section id="marco-inercial-geocéntrico-lsimathcalf" class="slide level2">
 <h2>Marco inercial geocéntrico <span class="math inline">\(\ls{i}{\mathcal{F}}\)</span></h2>
+<div class="columns">
+<div class="column">
 <p><strong>Centro:</strong> <span class="math inline">\(\ls{i}{O}\)</span> (centro de la Tierra).</p>
 <p><strong>Ejes:</strong></p>
 <ul>
@@ -1733,10 +1827,20 @@ R=\left[\,\ls{i}{\vec{x}}\;\;\ls{i}{\vec{y}}\;\;\ls{i}{\vec{z}}\,\right],
 <li><span class="math inline">\(\ls{i}{\vec{y}}\)</span>: completa la regla de la mano derecha.</li>
 <li><span class="math inline">\(\ls{i}{\vec{z}}\)</span>: apunta al eje de rotación terrestre.</li>
 </ul>
-<p>El adjetivo <strong>inercial</strong> indica que es un marco de referencia <strong>no acelerado</strong> (velocidad constante). Este marco inercial es una referencia constante que nos permite medir de forma absoluta la posición y velocidad angular del satélite. Es necesario para aplicar las leyes de la mecánica clásica y describir el movimiento orbital.</p>
+<p>El adjetivo <strong>inercial</strong> indica que es un marco de referencia <strong>no acelerado</strong> (velocidad constante).</p>
+<p>Este marco inercial es una referencia constante que nos permite medir de forma absoluta la posición y velocidad angular del satélite. Es necesario para aplicar las leyes de la mecánica clásica y describir el movimiento orbital.</p>
+</div><div class="column">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src=".\Figures/c2/frame_i.svg" class="quarto-figure quarto-figure-center" style="width:100.0%"></p>
+</figure>
+</div>
+</div></div>
 </section>
 <section id="marco-perifocal-pqw-lspmathcalf" class="slide level2">
 <h2>Marco perifocal (PQW) <span class="math inline">\(\ls{p}{\mathcal{F}}\)</span></h2>
+<div class="columns">
+<div class="column">
 <p><strong>Centro:</strong> <span class="math inline">\(\ls{p}{O}\)</span> (centro de la Tierra).</p>
 <p><strong>Ejes:</strong></p>
 <ul>
@@ -1745,9 +1849,18 @@ R=\left[\,\ls{i}{\vec{x}}\;\;\ls{i}{\vec{y}}\;\;\ls{i}{\vec{z}}\,\right],
 <li><span class="math inline">\(\ls{p}{\vec{z}}\)</span>: apunta normal al plano orbital (dirección del momento angular orbital).</li>
 </ul>
 <p>Es el marco fundamental de la órbita, directamente relacionado con los elementos orbitales. Se usa para describir trayectorias elípticas y la geometría de la órbita en su plano. También es un marco de referencia inercial.</p>
+</div><div class="column">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src=".\Figures/c2/frame_p.svg" class="quarto-figure quarto-figure-center" style="width:100.0%"></p>
+</figure>
+</div>
+</div></div>
 </section>
 <section id="marco-rsw-lsrmathcalf" class="slide level2">
 <h2>Marco RSW <span class="math inline">\(\ls{r}{\mathcal{F}}\)</span></h2>
+<div class="columns">
+<div class="column">
 <p><strong>Centro:</strong> <span class="math inline">\(\ls{r}{O}\)</span> (centro de masa del satélite).</p>
 <p><strong>Ejes:</strong></p>
 <ul>
@@ -1756,9 +1869,18 @@ R=\left[\,\ls{i}{\vec{x}}\;\;\ls{i}{\vec{y}}\;\;\ls{i}{\vec{z}}\,\right],
 <li><span class="math inline">\(\ls{r}{\vec{z}}\)</span>: apunta normal al plano orbital.</li>
 </ul>
 <p>Su origen está ligado a la posición orbital del satélite; <em>i.e.</em>, <strong>cambia con el tiempo</strong>.</p>
+</div><div class="column">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src=".\Figures/c2/frame_r.svg" class="quarto-figure quarto-figure-center" style="width:100.0%"></p>
+</figure>
+</div>
+</div></div>
 </section>
 <section id="marco-orbital-local-vertical-local-horizontal-lshmathcalf" class="slide level2">
 <h2>Marco orbital (Local Vertical Local Horizontal) <span class="math inline">\(\ls{h}{\mathcal{F}}\)</span></h2>
+<div class="columns">
+<div class="column">
 <p><strong>Centro:</strong> <span class="math inline">\(\ls{h}{O}\)</span> (centro de masa del satélite).</p>
 <p><strong>Ejes:</strong></p>
 <ul>
@@ -1767,9 +1889,18 @@ R=\left[\,\ls{i}{\vec{x}}\;\;\ls{i}{\vec{y}}\;\;\ls{i}{\vec{z}}\,\right],
 <li><span class="math inline">\(\ls{h}{\vec{z}}\)</span>: apunta a nadir (hacia el centro de la Tierra).</li>
 </ul>
 <p>También llamado <strong>LVLH</strong>, es el marco natural para misiones que requieren apuntar instrumentos hacia la Tierra. Sirve como marco de referencia local desde la perspectiva del satélite en órbita.</p>
+</div><div class="column">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src=".\Figures/c2/frame_h.svg" class="quarto-figure quarto-figure-center" style="width:100.0%"></p>
+</figure>
+</div>
+</div></div>
 </section>
-<section id="marco-sujeto-al-cuerpo-lsbmathcalf" class="slide level2">
-<h2>Marco sujeto al cuerpo <span class="math inline">\(\ls{b}{\mathcal{F}}\)</span></h2>
+<section id="marco-sujeto-al-cuerpo-lsbmathcalf" class="slide level2" data-auto-animate="true">
+<h2 data-id="quarto-animate-title">Marco sujeto al cuerpo <span class="math inline">\(\ls{b}{\mathcal{F}}\)</span></h2>
+<div class="columns">
+<div class="column">
 <p><strong>Centro:</strong> <span class="math inline">\(\ls{b}{O}\)</span> (centro de masa del satélite).</p>
 <p><strong>Ejes:</strong></p>
 <ul>
@@ -1778,11 +1909,18 @@ R=\left[\,\ls{i}{\vec{x}}\;\;\ls{i}{\vec{y}}\;\;\ls{i}{\vec{z}}\,\right],
 <li><span class="math inline">\(\ls{b}{\vec{z}}\)</span>: definido por la geometría o estructura del satélite.</li>
 </ul>
 <p>Es el marco en el que se montan sensores y actuadores. Todos los algoritmos de control de orientación se implementan en este marco porque representa la orientación física real del vehículo espacial.</p>
+</div><div class="column">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src=".\Figures/c2/frame_b.svg" class="quarto-figure quarto-figure-center" style="width:100.0%"></p>
+</figure>
+</div>
+</div></div>
 </section>
-<section id="section-10" class="slide level2">
-<h2></h2>
+<section id="section-8" class="slide level2" data-auto-animate="true">
+<h2 data-id="quarto-animate-title"></h2>
 
-<img data-src=".\Figures/c2/frame_b.svg" class="quarto-figure quarto-figure-center r-stretch" style="width:70.0%"></section>
+<img data-src=".\Figures/c2/frames.svg" class="quarto-figure quarto-figure-center r-stretch" style="width:70.0%"></section>
 <section class="slide level2">
 
 <div class="center-vertical">
@@ -1873,7 +2011,7 @@ Matrices de rotación
 <p><img data-src=".\Figures/c2/2drm.svg" style="width:100.0%"></p>
 </div></div>
 </section>
-<section id="section-11" class="slide level2">
+<section id="section-9" class="slide level2">
 <h2></h2>
 <p><span class="math display">\[
     \ls{2}\vec{p}
@@ -1929,7 +2067,7 @@ Matrices de rotación
     \end{aligned}
 \]</span></p>
 </section>
-<section id="section-12" class="slide level2">
+<section id="section-10" class="slide level2">
 <h2></h2>
 <ul>
 <li><p>Las matrices de rotación forman un grupo con respecto a la multiplicación matricial. Dicho grupo es conocido como <strong>grupo especial ortonormal de orden 3</strong> y se denota como <span class="math inline">\(SO(3)\)</span>, el cual cumple con las siguientes propiedades.</p>
@@ -2065,7 +2203,7 @@ Matrices de rotación
 </div>
 </div>
 </section>
-<section id="section-13" class="slide level2">
+<section id="section-11" class="slide level2">
 <h2></h2>
 <div class="columns">
 <div class="column" style="width:60%;">
@@ -2087,7 +2225,7 @@ Matrices de rotación
 </div>
 </div></div>
 </section>
-<section id="section-14" class="slide level2">
+<section id="section-12" class="slide level2">
 <h2></h2>
 <div class="columns">
 <div class="column" style="width:60%;">
@@ -2112,7 +2250,7 @@ Matrices de rotación
 <p><img data-src=".\Figures/c2/ellipse.svg" style="width:100.0%"></p>
 </div></div>
 </section>
-<section id="section-15" class="slide level2">
+<section id="section-13" class="slide level2">
 <h2></h2>
 <div class="columns">
 <div class="column" style="width:48%;">
@@ -2126,7 +2264,7 @@ Matrices de rotación
 </ul>
 </div></div>
 </section>
-<section id="section-16" class="slide level2">
+<section id="section-14" class="slide level2">
 <h2></h2>
 <div class="columns">
 <div class="column" style="width:48%;">
@@ -2143,7 +2281,7 @@ Matrices de rotación
 </ul>
 </div></div>
 </section>
-<section id="section-17" class="slide level2">
+<section id="section-15" class="slide level2">
 <h2></h2>
 <ul>
 <li>La relación entre el marco de referencia inercial <span class="math inline">\(\ls{i}{\mathcal{F}}\)</span> y el marco perifocal <span class="math inline">\(\ls{p}{\mathcal{F}}\)</span> está dada por la matriz de rotación</li>
@@ -2163,7 +2301,7 @@ Matrices de rotación
 <p><span style="color:blue"><strong>¿Cómo se calcula <span class="math inline">\(\nu(t)\)</span>?</strong></span></p>
 </div>
 </section>
-<section id="section-18" class="slide level2">
+<section id="section-16" class="slide level2">
 <h2></h2>
 <div class="center-vertical">
 <div class="chapter-title">
@@ -2189,7 +2327,7 @@ Matrices de rotación
 </ul>
 
 <img data-src=".\Figures/c2/definition_of_gravity.png" class="quarto-figure quarto-figure-center r-stretch" style="width:40.0%"></section>
-<section id="section-19" class="slide level2">
+<section id="section-17" class="slide level2">
 <h2></h2>
 <div class="columns">
 <div class="column" style="width:50%;">
@@ -2199,7 +2337,7 @@ Matrices de rotación
 <p>Considere dos partículas de masas <span class="math inline">\(m_1\)</span> y <span class="math inline">\(m_2\)</span> que interactúan únicamente entre sí bajo la influencia de la gravedad. Sean <span class="math inline">\(\ls{i}\vec{r}_1\)</span> y <span class="math inline">\(\ls{i}\vec{r}_2\)</span> los vectores de posición de los centros de masa <span class="math inline">\(c_1\)</span> y <span class="math inline">\(c_2\)</span>, respectivamente.</p>
 </div></div>
 </section>
-<section id="section-20" class="slide level2">
+<section id="section-18" class="slide level2">
 <h2></h2>
 <div class="columns">
 <div class="column" style="width:50%;">
@@ -2218,7 +2356,7 @@ Matrices de rotación
 \]</span></p>
 </div></div>
 </section>
-<section id="section-21" class="slide level2">
+<section id="section-19" class="slide level2">
 <h2></h2>
 <div class="columns">
 <div class="column" style="width:50%;">
@@ -2238,7 +2376,7 @@ Matrices de rotación
 \tag{4}\]</span></span></p>
 </div></div>
 </section>
-<section id="section-22" class="slide level2">
+<section id="section-20" class="slide level2">
 <h2></h2>
 <div class="columns">
 <div class="column" style="width:50%;">
@@ -2258,7 +2396,7 @@ Matrices de rotación
 \]</span></p>
 </div></div>
 </section>
-<section id="section-23" class="slide level2">
+<section id="section-21" class="slide level2">
 <h2></h2>
 <div class="columns">
 <div class="column" style="width:50%;">
@@ -2284,7 +2422,7 @@ G=6.67430\times10^{-11}\;\mathrm{m^3\,kg^{-1}\,s^{-2}}.
 \]</span></p>
 </div></div>
 </section>
-<section id="section-24" class="slide level2">
+<section id="section-22" class="slide level2">
 <h2></h2>
 <div class="columns">
 <div class="column" style="width:50%;">
@@ -2313,7 +2451,7 @@ G=6.67430\times10^{-11}\;\mathrm{m^3\,kg^{-1}\,s^{-2}}.
 \]</span></p>
 </div></div>
 </section>
-<section id="section-25" class="slide level2">
+<section id="section-23" class="slide level2">
 <h2></h2>
 <div class="columns">
 <div class="column" style="width:50%;">
@@ -2340,7 +2478,7 @@ G=6.67430\times10^{-11}\;\mathrm{m^3\,kg^{-1}\,s^{-2}}.
 \]</span></p>
 </div></div>
 </section>
-<section id="section-26" class="slide level2">
+<section id="section-24" class="slide level2">
 <h2></h2>
 <div class="columns">
 <div class="column" style="width:50%;">
@@ -2352,7 +2490,7 @@ G=6.67430\times10^{-11}\;\mathrm{m^3\,kg^{-1}\,s^{-2}}.
 <p><span style="color:red"><strong>¿Por qué hemos colocado el origen de nuestro marco de referencia inercial geocéntrico en el centro de masa de la Tierra?</strong></span></p>
 </div></div>
 </section>
-<section id="section-27" class="slide level2">
+<section id="section-25" class="slide level2">
 <h2></h2>
 <div class="columns">
 <div class="column" style="width:50%;">
@@ -2373,11 +2511,11 @@ G=6.67430\times10^{-11}\;\mathrm{m^3\,kg^{-1}\,s^{-2}}.
 <p>A este caso se le conoce como el <strong>problema de una fuerza central</strong>.</p>
 </div></div>
 </section>
-<section id="section-28" class="slide level2">
+<section id="section-26" class="slide level2">
 <h2></h2>
 
 <img data-src=".\Figures/c2/tbp_motion.png" class="quarto-figure quarto-figure-center r-stretch" style="width:60.0%"></section>
-<section id="section-29" class="slide level2">
+<section id="section-27" class="slide level2">
 <h2></h2>
 <div class="center-vertical">
 <div class="chapter-title">
@@ -2395,7 +2533,7 @@ G=6.67430\times10^{-11}\;\mathrm{m^3\,kg^{-1}\,s^{-2}}.
 </div>
 </div>
 </section>
-<section id="section-30" class="slide level2">
+<section id="section-28" class="slide level2">
 <h2></h2>
 <div class="columns">
 <div class="column" style="width:50%;">
@@ -2411,7 +2549,7 @@ G=6.67430\times10^{-11}\;\mathrm{m^3\,kg^{-1}\,s^{-2}}.
 <p>donde <span class="math inline">\(\ls{p}\vec{r}\)</span> es el vector de posición de <span class="math inline">\(m\)</span> con respecto al origen del marco de referencia <span class="math inline">\(\ls{p}\mathcal{F}\)</span> y <span class="math inline">\(\ls{p}\vec{p}=m\ls{p}\dot{\vec{r}}\)</span> es el momento lineal de <span class="math inline">\(m\)</span>.</p>
 </div></div>
 </section>
-<section id="section-31" class="slide level2">
+<section id="section-29" class="slide level2">
 <h2></h2>
 <div class="columns">
 <div class="column" style="width:50%;">
@@ -2444,7 +2582,7 @@ G=6.67430\times10^{-11}\;\mathrm{m^3\,kg^{-1}\,s^{-2}}.
 <p>es el <strong>par</strong> (o momento de fuerza) aplicado sobre <span class="math inline">\(m\)</span> con respecto al origen del marco de referencia <span class="math inline">\(\ls{p}\mathcal{F}\)</span>.</p>
 </div></div>
 </section>
-<section id="section-32" class="slide level2">
+<section id="section-30" class="slide level2">
 <h2></h2>
 <div class="columns">
 <div class="column" style="width:50%;">
@@ -2477,7 +2615,7 @@ G=6.67430\times10^{-11}\;\mathrm{m^3\,kg^{-1}\,s^{-2}}.
 \]</span></p>
 </div></div>
 </section>
-<section id="section-33" class="slide level2">
+<section id="section-31" class="slide level2">
 <h2></h2>
 <div class="columns">
 <div class="column" style="width:50%;">
@@ -2494,7 +2632,7 @@ G=6.67430\times10^{-11}\;\mathrm{m^3\,kg^{-1}\,s^{-2}}.
 <p>Sin embargo, esto <span style="color:red"><strong>cumple únicamente si no existen fuerzas externas no colineales</strong></span> (como la resistencia atmosférica o la influencia gravitacional de otros cuerpos) que actúen sobre <span class="math inline">\(m\)</span>, debido a que estas fuerzas pueden generar un par neto diferente de cero (<span class="math inline">\(\ls{p}\vec{\tau}\neq0\)</span>).</p>
 </div></div>
 </section>
-<section id="section-34" class="slide level2">
+<section id="section-32" class="slide level2">
 <h2></h2>
 <div class="columns">
 <div class="column" style="width:50%;">
@@ -2529,7 +2667,7 @@ G=6.67430\times10^{-11}\;\mathrm{m^3\,kg^{-1}\,s^{-2}}.
 \]</span></p>
 </div></div>
 </section>
-<section id="section-35" class="slide level2">
+<section id="section-33" class="slide level2">
 <h2></h2>
 <div class="columns">
 <div class="column" style="width:50%;">
@@ -2573,7 +2711,7 @@ G=6.67430\times10^{-11}\;\mathrm{m^3\,kg^{-1}\,s^{-2}}.
 \tag{5}\]</span></span></p>
 </div></div>
 </section>
-<section id="section-36" class="slide level2">
+<section id="section-34" class="slide level2">
 <h2></h2>
 <div class="columns">
 <div class="column" style="width:50%;">
@@ -2605,7 +2743,7 @@ G=6.67430\times10^{-11}\;\mathrm{m^3\,kg^{-1}\,s^{-2}}.
 \tag{7}\]</span></span></p>
 </div></div>
 </section>
-<section id="section-37" class="slide level2">
+<section id="section-35" class="slide level2">
 <h2></h2>
 <div class="columns">
 <div class="column" style="width:50%;">
@@ -2657,7 +2795,7 @@ G=6.67430\times10^{-11}\;\mathrm{m^3\,kg^{-1}\,s^{-2}}.
 <p>lo cual confirma que <span style="color:teal"><strong>el momento angular es constante en el tiempo.</strong></span></p>
 </div></div>
 </section>
-<section id="section-38" class="slide level2">
+<section id="section-36" class="slide level2">
 <h2></h2>
 <div class="columns">
 <div class="column" style="width:50%;">
@@ -2694,7 +2832,7 @@ r=\frac{1}{u}.
 \tag{9}\]</span></span></p>
 </div></div>
 </section>
-<section id="section-39" class="slide level2">
+<section id="section-37" class="slide level2">
 <h2></h2>
 <div class="columns">
 <div class="column" style="width:50%;">
@@ -2733,7 +2871,7 @@ r=\frac{1}{u}.
 \]</span></p>
 </div></div>
 </section>
-<section id="section-40" class="slide level2">
+<section id="section-38" class="slide level2">
 <h2></h2>
 <div class="columns">
 <div class="column" style="width:50%;">
@@ -2772,7 +2910,7 @@ r=\frac{1}{u}.
 \tag{11}\]</span></span></p>
 </div></div>
 </section>
-<section id="section-41" class="slide level2">
+<section id="section-39" class="slide level2">
 <h2></h2>
 <p>Sea</p>
 <p><span class="math display">\[
@@ -2823,7 +2961,7 @@ E_p=-\frac{\mu}{r}.
     \end{aligned}
 \tag{12}\]</span></span></p>
 </section>
-<section id="section-42" class="slide level2">
+<section id="section-40" class="slide level2">
 <h2></h2>
 <p>Sustituyendo <a href="#/eq-u" class="quarto-xref">Ecuación&nbsp;10</a> y <a href="#/eq-dudnu" class="quarto-xref">Ecuación&nbsp;11</a> en la expresión anterior se obtiene</p>
 <p><span class="math display">\[
@@ -2889,7 +3027,7 @@ E_p=-\frac{\mu}{r}.
 \]</span></p>
 <p>Esto implica que <span style="color:teal"><strong>la energía mecánica específica es constante en el tiempo</strong></span> para el caso de una fuerza central y no depende del ángulo <span class="math inline">\(\nu\)</span>.</p>
 </section>
-<section id="section-43" class="slide level2">
+<section id="section-41" class="slide level2">
 <h2></h2>
 <p>De la anterior expresión se puede despejar la constante <span class="math inline">\(C\)</span> como</p>
 <p><span class="math display">\[
@@ -2945,7 +3083,7 @@ p=\frac{\|\ls{p}\vec{h}\|^2}{\mu}
 <li><p>¿Por qué decimos que la variable <span class="math inline">\(e\)</span> de la ecuación de la órbita <a href="#/eq-orbit_equation" class="quarto-xref">Ecuación&nbsp;13</a> es la excentricidad de la órbita?</p></li>
 </ul>
 </section>
-<section id="section-44" class="slide level2">
+<section id="section-42" class="slide level2">
 <h2></h2>
 <div class="center-vertical">
 <div class="chapter-title">
@@ -2962,7 +3100,7 @@ Secciones cónicas
 </div>
 </div>
 </section>
-<section id="section-45" class="slide level2">
+<section id="section-43" class="slide level2">
 <h2></h2>
 <div class="columns">
 <div class="column" style="width:50%;">
@@ -3006,7 +3144,7 @@ r_a=\frac{p}{1-e}.
 <p><img data-src=".\Figures/c2/ellipse_orbit.svg" style="width:120.0%"></p>
 </div></div>
 </section>
-<section id="section-46" class="slide level2">
+<section id="section-44" class="slide level2">
 <h2></h2>
 <div class="columns">
 <div class="column" style="width:45%;">
@@ -3027,7 +3165,7 @@ b=\frac{p}{\sqrt{1-e^2}}.
 <p><img data-src=".\Figures/c2/ellipse_orbit.svg" style="width:120.0%"></p>
 </div></div>
 </section>
-<section id="section-47" class="slide level2">
+<section id="section-45" class="slide level2">
 <h2></h2>
 <div class="columns">
 <div class="column" style="width:45%;">
@@ -3140,7 +3278,7 @@ b=\frac{p}{\sqrt{1-e^2}}.
 <p>La conclusión de esto es que <span style="color:red"><strong>la forma y el tamaño de la órbita están determinados únicamente por la energía mecánica específica y el momento angular específico.</strong></span></p>
 <p>En otros términos, la forma y el tamaño están determinados por las condiciones iniciales de posición y velocidad, y no por la masa del cuerpo en órbita.</p>
 </section>
-<section id="section-48" class="slide level2">
+<section id="section-46" class="slide level2">
 <h2></h2>
 <div class="center-vertical">
 <div class="chapter-title">
@@ -3290,7 +3428,7 @@ A=A_0+\frac{1}{2}\|{}^{p}\vec{h}\|t,
 </div>
 </div></div>
 </section>
-<section id="section-49" class="slide level2">
+<section id="section-47" class="slide level2">
 <h2></h2>
 <div class="columns">
 <div class="column" style="width:45%;">
@@ -3314,7 +3452,7 @@ A=\pi ab,
 <p><img data-src=".\Figures/c2/ellipse_orbit.svg" style="width:120.0%"></p>
 </div></div>
 </section>
-<section id="section-50" class="slide level2">
+<section id="section-48" class="slide level2">
 <h2></h2>
 <div class="columns">
 <div class="column" style="width:45%;">
@@ -3332,7 +3470,7 @@ M = \omega_0 (t-t_p),
 <p><img data-src=".\Figures/c2/ellipse_orbit.svg" style="width:120.0%"></p>
 </div></div>
 </section>
-<section id="section-51" class="slide level2">
+<section id="section-49" class="slide level2">
 <h2></h2>
 <div class="columns">
 <div class="column" style="width:45%;">
@@ -3354,7 +3492,7 @@ M = \omega_0 (t-t_p),
 <p><img data-src=".\Figures/c2/ellipse_orbit.svg" style="width:120.0%"></p>
 </div></div>
 </section>
-<section id="section-52" class="slide level2">
+<section id="section-50" class="slide level2">
 <h2></h2>
 <div class="columns">
 <div class="column" style="width:45%;">
@@ -3379,7 +3517,7 @@ M = \omega_0 (t-t_p),
 <p><img data-src=".\Figures/c2/ellipse_orbit.svg" style="width:120.0%"></p>
 </div></div>
 </section>
-<section id="section-53" class="slide level2">
+<section id="section-51" class="slide level2">
 <h2></h2>
 <div class="center-vertical">
 <div class="chapter-title">
@@ -3533,7 +3671,7 @@ Calcular <span class="math inline">\(\ls{i}\vec{v}(t)=\ls{i}R_p\ls{p}\vec{v}(t)\
 </div>
 <p>A este tipo de algoritmos se les conoce como <strong>propagadores</strong>. En específico, al propagador descrito por el Algoritmo 1 se le denomina <strong>propagador kepleriano</strong>.</p>
 </section>
-<section id="section-54" class="slide level2">
+<section id="section-52" class="slide level2">
 <h2></h2>
 <div class="center-vertical">
 <div class="chapter-title">
@@ -3712,7 +3850,7 @@ Ecuaciones de movimiento de cuerpo rígido
 <p>Considere el vector <span class="math inline">\(\ls{i}\vec{u}(t)\)</span> expresado en el marco de referencia inercial <span class="math inline">\(\ls{i}\mathcal{F}\)</span>, sujeto a un cuerpo rígido en movimiento. El cuerpo rígido es mostrado en dos instantes de tiempo diferentes. En el tiempo <span class="math inline">\(t\)</span>, el cuerpo rígido se encuentra en una orientación distinta a la del tiempo <span class="math inline">\(t+\Delta t\)</span>. Esto mismo aplica para el vector <span class="math inline">\(\ls{i}\vec{u}\)</span>, manteniendo su magnitud pero cambiando su dirección.</p>
 
 <img data-src="Figures/moving_vector.svg" class="quarto-figure quarto-figure-center r-stretch" style="width:50.0%"></section>
-<section id="section-55" class="slide level2">
+<section id="section-53" class="slide level2">
 <h2></h2>
 <div class="columns">
 <div class="column" style="width:50%;">
@@ -3732,7 +3870,7 @@ Ecuaciones de movimiento de cuerpo rígido
 \]</span></p>
 </div></div>
 </section>
-<section id="section-56" class="slide level2">
+<section id="section-54" class="slide level2">
 <h2></h2>
 <div class="columns">
 <div class="column" style="width:50%;">
@@ -3811,7 +3949,7 @@ S(\ls{h}\vec{\omega})\ls{h}\hat{x}_b &amp; S(\ls{h}\vec{\omega})\ls{h}\hat{y}_b 
 \frac{\text{d}}{\text{d}t}(\ls{h}R_b) = S(\ls{h}R_b \ls{b}\vec{\omega}_{h,b}) \ls{h}R_b.
 \]</span></p>
 </section>
-<section id="section-57" class="slide level2">
+<section id="section-55" class="slide level2">
 <h2></h2>
 <p>Utilizando la propiedad del producto cruz <span class="math inline">\(S(AB) = A S(B) A^T\)</span>, se puede reescribir la ecuación anterior como:</p>
 <p><span class="math display">\[
@@ -3845,7 +3983,7 @@ S(\ls{h}\vec{\omega})\ls{h}\hat{x}_b &amp; S(\ls{h}\vec{\omega})\ls{h}\hat{y}_b 
 </div>
 </div>
 </section>
-<section id="section-58" class="slide level2">
+<section id="section-56" class="slide level2">
 <h2></h2>
 <ul>
 <li>Hasta ahora, hemos utilizado matrices de rotación para describir la orientación de un cuerpo rígido en el espacio tridimensional. Sin embargo, existen otras formas de representar la orientación, cada una con sus propias ventajas y desventajas. La primera, y más intuitiva, es mediante el uso de ángulos de Euler.</li>
@@ -3853,7 +3991,7 @@ S(\ls{h}\vec{\omega})\ls{h}\hat{x}_b &amp; S(\ls{h}\vec{\omega})\ls{h}\hat{y}_b 
 <li>Como estudiamos anteriormente, existen 12 secuencias de rotaciones elementales que para representar cualquier rotación en el espacio tridimensional. O dicho en otras palabras, existen 12 conjuntos diferentes de ángulos de Euler.</li>
 </ul>
 </section>
-<section id="section-59" class="slide level2">
+<section id="section-57" class="slide level2">
 <h2></h2>
 <p>Sin embargo, en la práctica solo se utilizan dos de estas secuencias debido a su popularidad y aplicabilidad en diversas áreas. Estas secuencias son:</p>
 <p><strong>Convención de Euler (ZXZ):</strong></p>
@@ -3876,11 +4014,11 @@ S(\ls{h}\vec{\omega})\ls{h}\hat{x}_b &amp; S(\ls{h}\vec{\omega})\ls{h}\hat{y}_b 
 \ls{b}R_h=R_z(\psi)R_y(\theta)R_x(\phi).
 \tag{27}\]</span></span></p>
 </section>
-<section id="section-60" class="slide level2">
+<section id="section-58" class="slide level2">
 <h2></h2>
 
 <img data-src="Figures/rpy_diagram.svg" class="quarto-figure quarto-figure-center r-stretch" style="width:80.0%"></section>
-<section id="section-61" class="slide level2">
+<section id="section-59" class="slide level2">
 <h2></h2>
 <p>Debido a la aplicación que estamos estudiando, pondremos especial atención a los ángulos de Tait-Bryan a lo largo del curso. Partiendo de la <a href="#/eq-rpy" class="quarto-xref">Ecuación&nbsp;27</a>, se obtiene:</p>
 <p><span class="math display">\[
@@ -3907,7 +4045,7 @@ S(\ls{h}\vec{\omega})\ls{h}\hat{x}_b &amp; S(\ls{h}\vec{\omega})\ls{h}\hat{y}_b 
 \end{split}
 \tag{28}\]</span></span></p>
 </section>
-<section id="section-62" class="slide level2">
+<section id="section-60" class="slide level2">
 <h2></h2>
 <p>El lado derecho de la anterior ecuación puede ser reescrito mediante la <a href="#/eq-derivative_rotation_matrix" class="quarto-xref">Ecuación&nbsp;25</a> como:</p>
 <p><span class="math display">\[
@@ -3956,7 +4094,7 @@ R_z(\psi)R_y(\theta)\ls{1}x=\begin{bmatrix}
 \end{split}
 \]</span></p>
 </section>
-<section id="section-63" class="slide level2">
+<section id="section-61" class="slide level2">
 <h2></h2>
 <p>Sustituyendo las anteriores ecuaciones en la <a href="#/eq-auxiliary_rpy_dynamics" class="quarto-xref">Ecuación&nbsp;28</a> obtenemos:</p>
 <p><span class="math display">\[
@@ -4022,7 +4160,7 @@ S(\ls{b}\omega_{h,b}) &amp; =S\left(\begin{bmatrix}
 </ul>
 </div></div>
 </section>
-<section id="section-64" class="slide level2">
+<section id="section-62" class="slide level2">
 <h2></h2>
 <p>Si desarrollamos la <a href="#/eq-rpy_dynamics" class="quarto-xref">Ecuación&nbsp;29</a> obtenemos:</p>
 <p><span class="math display">\[
@@ -4059,7 +4197,7 @@ r_{31} &amp; r_{32} &amp; r_{33}
 \]</span></p>
 <p>Dependiendo el signo de la raíz cuadrada obtenemos dos soluciones para el angulo <span class="math inline">\(\theta\)</span>.</p>
 </section>
-<section id="section-65" class="slide level2">
+<section id="section-63" class="slide level2">
 <h2></h2>
 <p>En el caso de que <span class="math inline">\(\cos(\theta)&gt;0\)</span>:</p>
 <p><span class="math display">\[
@@ -4108,7 +4246,7 @@ r_{31} &amp; r_{32} &amp; r_{33}
 </div>
 </div>
 </section>
-<section id="section-66" class="slide level2">
+<section id="section-64" class="slide level2">
 <h2></h2>
 <p>Considere el número complejo</p>
 <p><span class="math display">\[
@@ -4138,7 +4276,7 @@ z=e^{\mathbf{i}\theta}.
 \]</span></p>
 <p>Por lo tanto, <span style="color:red">un número complejo es una forma de parametrizar una rotación en dos dimensiones.</span></p>
 </section>
-<section id="section-67" class="slide level2">
+<section id="section-65" class="slide level2">
 <h2></h2>
 <ul>
 <li>De hecho, la notación exponencial satisface la ley de composición de rotaciones: e<sup>{_{1}}e</sup>{i<em>{2}}=e^{(</em>{1}+_{2})}.</li>
@@ -4147,7 +4285,7 @@ z=e^{\mathbf{i}\theta}.
 </ul>
 
 <img data-src="Figures/dublin-broom-bridge04.jpg" class="quarto-figure quarto-figure-center r-stretch" style="width:50.0%"></section>
-<section id="section-68" class="slide level2">
+<section id="section-66" class="slide level2">
 <h2></h2>
 <ul>
 <li>A este tipo de números complejos se les llama <em>cuaterniones</em>, y satisfacen el siguiente conjunto de axiomas:</li>
@@ -4167,7 +4305,7 @@ z=e^{\mathbf{i}\theta}.
 <li>Bajo esta definición la base axiomática de los complejos se mantiene en cuatro dimensiones en su mayor parte. Sin embargo, el precio a pagar es la conmutatividad en su multiplicación (<em>e.g</em>, <span class="math inline">\(\mathbf{ij}\neq \mathbf{ji}\)</span>).</li>
 </ul>
 </section>
-<section id="section-69" class="slide level2">
+<section id="section-67" class="slide level2">
 <h2></h2>
 <p>El espacio de los cuaterniones se define como</p>
 <p><span class="math display">\[
@@ -4184,7 +4322,7 @@ z=e^{\mathbf{i}\theta}.
 <li>Inverso <span class="math inline">\(\mathbf{q}^{-1}=\mathbf{q}^{\star}/\|\mathbf{q}\|^2\)</span>, <span class="math inline">\(qq^{-1}=q^{-1}q=1\)</span>.</li>
 </ul>
 </section>
-<section id="section-70" class="slide level2">
+<section id="section-68" class="slide level2">
 <h2></h2>
 <p>Una forma más práctica de representar este tipo de números es retomando la idea de que un número complejo <span class="math inline">\(z\in \mathbb{C}\)</span> puede representarse como un vector en el plano, <em>i.e.</em></p>
 <p><span class="math display">\[
@@ -4207,7 +4345,7 @@ q_0 \\\vec{q}
 \]</span></p>
 <p>donde <span class="math inline">\(\vec{q}=[q_1 \quad q_2 \quad q_3]^\top\)</span> es la parte vectorial del cuaternión. En este sentido, el conjunto <span class="math inline">\(\{\mathbf{i,j,k}\}\)</span> puede interpretarse como una base <span class="math inline">\(\{\hat{i},\hat{j},\hat{k}\}\)</span> del espacio vectorial que contiene a todo <span class="math inline">\(\vec{q}\)</span> posible.</p>
 </section>
-<section id="section-71" class="slide level2">
+<section id="section-69" class="slide level2">
 <h2></h2>
 <p>Bajo esta notación, las operaciones básicas de los cuaterniones pueden definirse como</p>
 <ul>
@@ -4239,7 +4377,7 @@ q_0     &amp; -\vec{q}^{\top}             \\
 \]</span></p>
 <p><span style="color:#003399"><strong>Ahora, ¿Cómo usamos esto para representar rotaciones?</strong></span></p>
 </section>
-<section id="section-72" class="slide level2">
+<section id="section-70" class="slide level2">
 <h2></h2>
 <p>Para introducir el problema, considere una hipersuperficie en los números complejos dada por</p>
 <p><span class="math display">\[
@@ -4278,7 +4416,7 @@ r\sin(\theta_2 - \theta_1)
 \]</span></p>
 <p>Por lo tanto, el factor <span class="math inline">\(e^{-\mathbf{i}\theta_1}\)</span> es congruente con una matriz de rotación <span class="math inline">\(R(\theta_1) \in SO(2)\)</span>.</p>
 </section>
-<section id="section-73" class="slide level2">
+<section id="section-71" class="slide level2">
 <h2></h2>
 <p>De forma análoga, considere ahora la hipersuperficie en los cuaterniones:</p>
 <p><span class="math display">\[
@@ -4387,7 +4525,7 @@ q_3 &amp; = \dfrac{r_{21} - r_{12}}{4q_0}.
 \end{aligned}
 \]</span></p>
 </section>
-<section id="section-74" class="slide level2">
+<section id="section-72" class="slide level2">
 <h2></h2>
 <p><strong>Caso 2: </strong> <span class="math inline">\(t \le 0 \text{ y } r_{11} \text{ es el mayor elemento diagonal}:\)</span></p>
 <p><span class="math display">\[
@@ -4408,7 +4546,7 @@ q_3 &amp; = \dfrac{r_{23} + r_{32}}{4q_2}.
 \end{aligned}
 \]</span></p>
 </section>
-<section id="section-75" class="slide level2">
+<section id="section-73" class="slide level2">
 <h2></h2>
 <p><strong>Caso 4: </strong> <span class="math inline">\(t \le 0 \text{ y } r_{33} \text{ es el mayor elemento diagonal}:\)</span></p>
 <p><span class="math display">\[
@@ -4425,7 +4563,7 @@ q_2 &amp; = \dfrac{r_{23} + r_{32}}{4q_3}.
 \]</span></p>
 <p>Este proceso no cambia la orientación, dado que <span class="math inline">\(\mathbf{q}\)</span> y <span class="math inline">\(k\mathbf{q}, k&gt;0\)</span> representan la misma orientación.</p>
 </section>
-<section id="section-76" class="slide level2">
+<section id="section-74" class="slide level2">
 <h2></h2>
 <p>Una propiedad importante que tienen los cuaterniones frente a la parametrización por ángulos de Euler es la siguiente. Reemplace <span class="math inline">\(\mathbf{q}\)</span> por <span class="math inline">\(-\mathbf{q}\)</span> en <a href="#/eq-quaternion2rotationmatrix" class="quarto-xref">Ecuación&nbsp;32</a>:</p>
 <p><span class="math display">\[
@@ -4469,7 +4607,7 @@ q_0+\frac{\Delta \theta }{2}\hat{u}^{\top}\vec{q} \\
 \end{bmatrix}.
 \]</span></p>
 </section>
-<section id="section-77" class="slide level2">
+<section id="section-75" class="slide level2">
 <h2></h2>
 <p>Restando <span class="math inline">\(\ls{b}\mathbf{q}_h(t)\)</span> y dividiendo sobre <span class="math inline">\(\Delta t\)</span> obtenemos:</p>
 <p><span class="math display">\[
@@ -4534,7 +4672,7 @@ q_0+\frac{\Delta \theta }{2}\hat{u}^{\top}\vec{q} \\
 \ls{b}\dot{\mathbf{q}}_h(t)=-\frac{1}{2}\ls{b}\boldsymbol{\omega}_{h,b} \otimes \ls{b}\mathbf{q}_h,
 \]</span></p>
 </section>
-<section id="section-78" class="slide level2">
+<section id="section-76" class="slide level2">
 <h2></h2>
 <table class="caption-top">
 <colgroup>
@@ -4626,7 +4764,7 @@ q_0+\frac{\Delta \theta }{2}\hat{u}^{\top}\vec{q} \\
 </div>
 </div>
 </section>
-<section id="section-79" class="slide level2">
+<section id="section-77" class="slide level2">
 <h2></h2>
 <div class="columns">
 <div class="column" style="width:50%;">
@@ -4647,7 +4785,7 @@ q_0+\frac{\Delta \theta }{2}\hat{u}^{\top}\vec{q} \\
 <p>donde <span class="math inline">\(\ls{i}\vec{v}_j\)</span> es la velocidad de la partícula <span class="math inline">\(j\)</span>.</p>
 </div></div>
 </section>
-<section id="section-80" class="slide level2">
+<section id="section-78" class="slide level2">
 <h2></h2>
 <div class="columns">
 <div class="column" style="width:50%;">
@@ -4676,7 +4814,7 @@ q_0+\frac{\Delta \theta }{2}\hat{u}^{\top}\vec{q} \\
 \]</span></p>
 </div></div>
 </section>
-<section id="section-81" class="slide level2">
+<section id="section-79" class="slide level2">
 <h2></h2>
 <div class="columns">
 <div class="column" style="width:50%;">
@@ -4701,7 +4839,7 @@ q_0+\frac{\Delta \theta }{2}\hat{u}^{\top}\vec{q} \\
 \]</span></p>
 </div></div>
 </section>
-<section id="section-82" class="slide level2">
+<section id="section-80" class="slide level2">
 <h2></h2>
 <div class="columns">
 <div class="column" style="width:50%;">
@@ -4729,7 +4867,7 @@ q_0+\frac{\Delta \theta }{2}\hat{u}^{\top}\vec{q} \\
 <p>donde <span class="math inline">\(\ls{i}\vec{h}_0\)</span> es el momento angular debido al movimiento traslacional del sistema y <span class="math inline">\(\ls{i}\vec{h}_s\)</span> es el momento angular rotacional relativo a <span class="math inline">\(C\)</span>.</p>
 </div></div>
 </section>
-<section id="section-83" class="slide level2">
+<section id="section-81" class="slide level2">
 <h2></h2>
 <div class="columns">
 <div class="column" style="width:50%;">
@@ -4749,7 +4887,7 @@ q_0+\frac{\Delta \theta }{2}\hat{u}^{\top}\vec{q} \\
 <p>donde <span class="math inline">\(\ls{i}\vec{r}\)</span> es el vector de posición relativo de cada partícula y <span class="math inline">\(\ls{i}\vec{v}\)</span> es la velocidad relativa de la partícula de masa <span class="math inline">\(\text{d}m\)</span>.</p>
 </div></div>
 </section>
-<section id="section-84" class="slide level2">
+<section id="section-82" class="slide level2">
 <h2></h2>
 <div class="columns">
 <div class="column" style="width:50%;">
@@ -4785,7 +4923,7 @@ q_0+\frac{\Delta \theta }{2}\hat{u}^{\top}\vec{q} \\
 \]</span></p>
 </div></div>
 </section>
-<section id="section-85" class="slide level2">
+<section id="section-83" class="slide level2">
 <h2></h2>
 <div class="columns">
 <div class="column" style="width:50%;">
@@ -4812,7 +4950,7 @@ q_0+\frac{\Delta \theta }{2}\hat{u}^{\top}\vec{q} \\
 \]</span></p>
 </div></div>
 </section>
-<section id="section-86" class="slide level2">
+<section id="section-84" class="slide level2">
 <h2></h2>
 <div class="columns">
 <div class="column" style="width:50%;">
@@ -4867,7 +5005,7 @@ J_i(t) &amp; = \int_V \rho_i(\ls{i}\vec{r}) \left[(\ls{i}r_x^2+\ls{i}r_y^2+\ls{i
 \end{split}
 \]</span></p>
 </section>
-<section id="section-87" class="slide level2">
+<section id="section-85" class="slide level2">
 <h2></h2>
 <p><span class="math display">\[
 \begin{split}
@@ -4892,7 +5030,7 @@ J_{xy}(t) &amp; = -\int_V \rho_i(\ls{i}\vec{r}) \ls{i}r_x\ls{i}r_y \; \text{d}V,
 \]</span></p>
 <p>se les conoce como <em>productos de inercia</em>.</p>
 </section>
-<section id="section-88" class="slide level2">
+<section id="section-86" class="slide level2">
 <h2></h2>
 <p>Debido a que <span class="math inline">\(J_i(t)\)</span> depende de <span class="math inline">\(\ls{i}\vec{r}(t)\)</span>, se necesita estrictamente conocer el vector de posición de cada partícula que conforma el cuerpo rígido para calcularlo. Para simplificar esto, considere lo siguiente:</p>
 <p><span class="math display">\[
@@ -4906,7 +5044,7 @@ J_i(t) &amp; = \int_V \rho_i(\ls{i}\vec{r}(t)) \left[\|\ls{i}r(t)\|^2 \mathbb{I}
 \]</span></p>
 <p>donde <span class="math inline">\(\rho_b\)</span> representa la densidad del cuerpo en la posición <span class="math inline">\(\ls{b}\vec{r}\)</span>, <span class="math inline">\(I_b\)</span> es el tensor de inercia del cuerpo <span class="math inline">\(b\)</span> visto desde el marco de referencia <span class="math inline">\(\ls{b}\mathcal{F}\)</span>. Debido a que estamos considerando un cuerpo rígido, <span class="math inline">\(I_b\)</span> es constante con el tiempo.</p>
 </section>
-<section id="section-89" class="slide level2">
+<section id="section-87" class="slide level2">
 <h2></h2>
 <p>En el marco de referencia <span class="math inline">\(\ls{b}\mathcal{F}\)</span></p>
 <p><span class="math display">\[
@@ -4954,7 +5092,7 @@ J_{xy} &amp; = -\int_V \rho_b(\ls{b}\vec{r}) \ls{b}r_x\ls{b}r_y \; \text{d}V, \q
 \]</span></p>
 </div></div>
 </section>
-<section id="section-90" class="slide level2">
+<section id="section-88" class="slide level2">
 <h2></h2>
 <div class="columns">
 <div class="column" style="width:48%;">
@@ -5012,7 +5150,7 @@ I_b = \frac{1}{12}m \begin{bmatrix}
 \end{split}
 \]</span></p>
 </section>
-<section id="section-91" class="slide level2">
+<section id="section-89" class="slide level2">
 <h2></h2>
 <p>De aquí, el primer término <span class="math inline">\(m \ls{i}\dot{\vec{r}}_c(t)\times\ls{i}\vec{v}_c(t)=0\)</span>, mientras que</p>
 <p><span class="math display">\[
@@ -5035,7 +5173,7 @@ I_b = \frac{1}{12}m \begin{bmatrix}
 \end{split}
 \]</span></p>
 </section>
-<section id="section-92" class="slide level2">
+<section id="section-90" class="slide level2">
 <h2></h2>
 <p>Reordenando la ecuación anterior se obtiene:</p>
 <p><span id="eq-rigid_body_dynamics_general"><span class="math display">\[
@@ -5059,7 +5197,7 @@ I_b\ls{b}\dot{\vec{\omega}}_{i,b}(t) &amp; =-S(\ls{b}\vec{\omega}_{i,b}(t))I_b\l
 \]</span></p>
 <p>donde <span class="math inline">\(\ls{i}\vec{\omega}_{i,h}(t)\)</span> es la velocidad angular relativa al marco de referencia inercial y <span class="math inline">\(\ls{i}\vec{\omega}_{h,b}(t)\)</span> es la velocidad angular relativa al marco de referencia intermedio <span class="math inline">\(\ls{h}\mathcal{F}\)</span>.</p>
 </section>
-<section id="section-93" class="slide level2">
+<section id="section-91" class="slide level2">
 <h2></h2>
 <p>La derivada queda expresada como:</p>
 <p><span class="math display">\[
@@ -5089,7 +5227,7 @@ I_b\ls{b}\dot{\vec{\omega}}_{i,b}(t) &amp; =-S(\ls{b}\vec{\omega}_{i,b}(t))I_b\l
 \end{split}
 \tag{38}\]</span></span></p>
 </section>
-<section id="section-94" class="slide level2">
+<section id="section-92" class="slide level2">
 <h2></h2>
 <p>Sustituyendo <span class="math inline">\(\ls{b}\vec{\omega}_{i,b}(t)\)</span> y <span class="math inline">\(\ls{b}\dot{\vec{\omega}}_{i,b}(t)\)</span> en la <a href="#/eq-rigid_body_dynamics_general" class="quarto-xref">Ecuación&nbsp;37</a>, obtenemos:</p>
 <p><span class="math display">\[
@@ -5114,7 +5252,7 @@ I_b\ls{b}\dot{\vec{\omega}}_{h,b}(t)= &amp; -S(\ls{b}R_i (t)\ls{i}\vec{\omega}_{
 </ul></li>
 </ul>
 </section>
-<section id="section-95" class="slide level2">
+<section id="section-93" class="slide level2">
 <h2></h2>
 <p>Finalmente, lo último que nos falta es describir es la influencia que tiene el momento angular de dispositivos internos en la dinámica del cuerpo rígido. Para ello, retomemos:</p>
 <p><span class="math display">\[
@@ -5136,7 +5274,7 @@ J_{b,j}(t)                                  &amp; =\ls{b}R_j(t)I_j\ls{j}R_b(t), 
 \end{split}
 \]</span></p>
 </section>
-<section id="section-96" class="slide level2">
+<section id="section-94" class="slide level2">
 <h2></h2>
 <p>Sustituyendo y transformando al marco de referencia <span class="math inline">\(\ls{b}\mathcal{F}\)</span>:</p>
 <p><span class="math display">\[
@@ -5170,7 +5308,7 @@ I_b\ls{b}\dot{\vec{\omega}}_{h,b}(t)= &amp; -S(\ls{b}R_i (t)\ls{i}\vec{\omega}_{
 </div>
 </div>
 </section>
-<section id="section-97" class="slide level2">
+<section id="section-95" class="slide level2">
 <h2></h2>
 <p>El movimiento rotacional de un satélite puede describirse mediante dos modelos:</p>
 <ul>
@@ -5190,7 +5328,7 @@ I_b\ls{b}\dot{\vec{\omega}}_{h,b}(t)= &amp; -S(\ls{b}R_i (t)\ls{i}\vec{\omega}_{
 \]</span></p>
 <p><span style="color:red">Antes de que decidamos pasar a mejor vida, vamos a darle un sentido físico a cada termino de la <a href="#/eq-rotational_satellite_model" class="quarto-xref">Ecuación&nbsp;41</a>.</span></p>
 </section>
-<section id="section-98" class="slide level2">
+<section id="section-96" class="slide level2">
 <h2></h2>
 <table class="caption-top">
 <colgroup>
@@ -5251,7 +5389,7 @@ I_b\ls{b}\dot{\vec{\omega}}_{h,b}(t)= &amp; -S(\ls{b}R_i (t)\ls{i}\vec{\omega}_{
 </tbody>
 </table>
 </section>
-<section id="section-99" class="slide level2">
+<section id="section-97" class="slide level2">
 <h2></h2>
 <p>Ahora, para estudiar las entradas del modelo dinámico, considere la siguiente notación:</p>
 <p><span class="math display">\[
@@ -5337,7 +5475,7 @@ I_b\ls{b}\dot{\vec{\omega}}_{h,b}(t) &amp; =\vec{\tau}_\alpha(t)+\vec{\tau}_\bet
 {\|\ls{i}\vec{r}_c(t)\|^2}.
 \]</span> —</p>
 </section>
-<section id="section-100" class="slide level2">
+<section id="section-98" class="slide level2">
 <h2></h2>
 <div class="center-vertical">
 <div class="chapter-title">
@@ -5354,7 +5492,7 @@ I_b\ls{b}\dot{\vec{\omega}}_{h,b}(t) &amp; =\vec{\tau}_\alpha(t)+\vec{\tau}_\bet
 </div>
 </div>
 </section>
-<section id="section-101" class="slide level2">
+<section id="section-99" class="slide level2">
 <h2></h2>
 <p>Una perturbación es cualquier fuerza o par no deseado que altera el movimiento nominal de un sistema físico. En el contexto de un satélite, se trata de efectos externos o internos que desvían su orientación o su trayectoria con respecto a lo que se espera bajo condiciones ideales.</p>
 <ul>
@@ -5369,7 +5507,7 @@ I_b\ls{b}\dot{\vec{\omega}}_{h,b}(t) &amp; =\vec{\tau}_\alpha(t)+\vec{\tau}_\bet
 </ul></li>
 </ul>
 </section>
-<section id="section-102" class="slide level2">
+<section id="section-100" class="slide level2">
 <h2></h2>
 <div class="columns">
 <div class="column" style="width:45%;">
@@ -5443,7 +5581,7 @@ I_b\ls{b}\dot{\vec{\omega}}_{h,b}(t) &amp; =\vec{\tau}_\alpha(t)+\vec{\tau}_\bet
 \end{split}
 \]</span></p>
 </section>
-<section id="section-103" class="slide level2">
+<section id="section-101" class="slide level2">
 <h2></h2>
 <ul>
 <li>El centro de presión es el punto donde se puede considerar concentrada la resultante de todas las presiones que actúan sobre el cuerpo debidas a un fluido. En nuestro caso, ese fluido es la atmósfera. Este puede calcularse como la siguiente integral sobre la superficie del satélite:</li>
@@ -5475,7 +5613,7 @@ I_b\ls{b}\dot{\vec{\omega}}_{h,b}(t) &amp; =\vec{\tau}_\alpha(t)+\vec{\tau}_\bet
 <li><span class="math inline">\(\ls{b}\hat{r}_{rel,s}\)</span> es el vector unitario que apunta desde el Sol hacia el centro de presión solar, expresado en <span class="math inline">\(b\)</span>.</li>
 </ul>
 </section>
-<section id="section-104" class="slide level2">
+<section id="section-102" class="slide level2">
 <h2></h2>
 <p>El par generado por la fuerza de radiación solar está dado por:</p>
 <p><span class="math display">\[
@@ -5500,7 +5638,7 @@ I_b\ls{b}\dot{\vec{\omega}}_{h,b}(t) &amp; =\vec{\tau}_\alpha(t)+\vec{\tau}_\bet
 <li><span class="math inline">\(\ls{b}\vec{b}_c\)</span> es el vector del campo magnético terrestre en la posición del satélite, expresado en el marco del cuerpo.</li>
 </ul>
 </section>
-<section id="section-105" class="slide level2">
+<section id="section-103" class="slide level2">
 <h2></h2>
 <ul>
 <li>El dipolo magnético residual es un elemento magnético general que se forma de mediante el campo magnético de los elementos internos del satélite que no son utilizados para tareas de control (e.g.&nbsp;motores, baterías, etc). Este dipolo magnético tiene asociado un campo magnético residual <span class="math inline">\(\ls{b}\vec{b}_s\)</span>. Dicho campo magnético nos dice como se manifiesta el magnetismo dentro del satélite (es un simil al rol que tiene el vector de posición en la definición de par).</li>
@@ -5509,7 +5647,7 @@ I_b\ls{b}\dot{\vec{\omega}}_{h,b}(t) &amp; =\vec{\tau}_\alpha(t)+\vec{\tau}_\bet
 <li>Por otro lado, el campo magnético terrestre puede obtenerse de manera experimental mediante sensores dedicados, o mediante modelos del campo magnético terrestre, como lo son <em>Campo Geomagnético de Referencia Internacional</em> (IGRF, por sus siglas en inglés) y el <em>Modelo Magnético Mundial</em> (WMM, por sus siglas en inglés). Dichos modelos te entregan el campo magnético terrestre en la posición del satélite en el marco de referencia inercial (<span class="math inline">\(\ls{i}\vec{b}_c\)</span>).</li>
 </ul>
 </section>
-<section id="section-106" class="slide level2">
+<section id="section-104" class="slide level2">
 <h2></h2>
 
 <img data-src="Figures/mt_disturbances.png" class="quarto-figure quarto-figure-center r-stretch" style="width:50.0%"></section>
@@ -5528,7 +5666,7 @@ Determinación
 </div>
 </section>
 
-<section id="section-107" class="slide level2">
+<section id="section-105" class="slide level2">
 <h2></h2>
 
 <img data-src="Figures/c1/closeloop.svg" class="quarto-figure quarto-figure-center r-stretch" style="width:100.0%"></section>
@@ -5690,7 +5828,7 @@ x_2 \\
 <li>Muchos sistemas no lineales se aproximan localmente por uno lineal (lo veremos más adelante).</li>
 </ul>
 </section>
-<section id="section-108" class="slide level2">
+<section id="section-106" class="slide level2">
 <h2></h2>
 <p>Por ejemplo, para el sistema masa–resorte–amortiguador, el campo vectorial es lineal con</p>
 <p><span class="math display">\[
@@ -5745,7 +5883,7 @@ y\td  = Cx\td  + Du\td
 <li>La forma de <span class="math inline">\(h\)</span> depende de la instrumentación utilizada.</li>
 </ul>
 </section>
-<section id="section-109" class="slide level2">
+<section id="section-107" class="slide level2">
 <h2></h2>
 <p>Por ejemplo, para el sistema masa–resorte–amortiguador, si sólo se mide la posición $q$, entonces la ecuación de medición es:</p>
 <p><span class="math display">\[
@@ -5965,7 +6103,7 @@ n         &amp; -\sum x_i  \\
 \end{bmatrix}
 \]</span></p>
 </section>
-<section id="section-110" class="slide level2">
+<section id="section-108" class="slide level2">
 <h2></h2>
 <p>Otra forma de resolver el mismo problema es la siguiente. Agrupamos los datos en forma matricial:</p>
 <p><span class="math display">\[
@@ -6087,7 +6225,7 @@ V(x) =
 <li><span class="math inline">\(\lambda_{\max}\)</span>: mayor valor propio de <span class="math inline">\(Q\)</span></li>
 </ul>
 </section>
-<section id="section-111" class="slide level2">
+<section id="section-109" class="slide level2">
 <h2></h2>
 <p><strong>Definiciones</strong></p>
 <ul>
@@ -6157,7 +6295,7 @@ Q = A^\top A, \quad q = -2A^\top b, \quad r = b^\top b
 </div>
 </div>
 </section>
-<section id="section-112" class="slide level2">
+<section id="section-110" class="slide level2">
 <h2></h2>
 <div class="definition-block">
 <p><strong>Definición</strong></p>
@@ -6184,15 +6322,15 @@ Q = A^\top A, \quad q = -2A^\top b, \quad r = b^\top b
 </ul></li>
 </ul>
 </section>
-<section id="section-113" class="slide level2">
+<section id="section-111" class="slide level2">
 <h2></h2>
 
 <img data-src="Figures/determination_empty.svg" class="quarto-figure quarto-figure-center r-stretch" style="width:100.0%"></section>
-<section id="section-114" class="slide level2">
+<section id="section-112" class="slide level2">
 <h2></h2>
 
 <img data-src="Figures/determination.svg" class="quarto-figure quarto-figure-center r-stretch" style="width:100.0%"></section>
-<section id="section-115" class="slide level2">
+<section id="section-113" class="slide level2">
 <h2></h2>
 <p>Para el caso de satélites, los sensores más comunes para la determinación de orientación son:</p>
 <ul>
@@ -6253,7 +6391,7 @@ Q = A^\top A, \quad q = -2A^\top b, \quad r = b^\top b
 </div>
 </div></div>
 </section>
-<section id="section-116" class="slide level2">
+<section id="section-114" class="slide level2">
 <h2></h2>
 <div class="columns">
 <div class="column" style="width:45%;">
@@ -6281,7 +6419,7 @@ V_\odot(\theta_\odot) = k_\odot\,E_\odot \,\max(0,\, \cos(\theta_\odot)).
 <p>donde <span class="math inline">\(V_\odot\)</span> es el voltaje de salida del sensor, <span class="math inline">\(k_\odot\)</span> es una constante de sensibilidad en <span class="math inline">\(V m^2/W\)</span> , <span class="math inline">\(E_\odot=1361 \text{W}/\text{m}^2\)</span> es la irradiancia solar y <span class="math inline">\(\:^b\hat{n}_\odot\)</span> es el vector unitario normal a la superficie sensible del sensor.</p>
 </div></div>
 </section>
-<section id="section-117" class="slide level2">
+<section id="section-115" class="slide level2">
 <h2></h2>
 <div class="columns">
 <div class="column" style="width:50%;">
@@ -6298,7 +6436,7 @@ V_\odot(\theta_\odot) = k_\odot\,E_\odot \,\max(0,\, \cos(\theta_\odot)).
 </div>
 </div></div>
 </section>
-<section id="section-118" class="slide level2">
+<section id="section-116" class="slide level2">
 <h2></h2>
 <p>En este caso, el procedimiento para determinar la dirección del Sol es el siguiente. Considere los voltajes generados por los tras sensores solares:</p>
 <p><span class="math display">\[
@@ -6328,7 +6466,7 @@ N = \begin{bmatrix}
 \:^b\hat{r}_{\odot} = \frac{N^{-1}}{k_\odot\,E_\odot} V_\odot
 \]</span></p>
 </section>
-<section id="section-119" class="slide level2">
+<section id="section-117" class="slide level2">
 <h2></h2>
 <p><strong>Ejemplo</strong>: Considera que se tienen tres sensores solares con <span class="math inline">\(k_\odot\,E_\odot = 1\)</span>, los cuales tienen las siguientes orientaciones y voltajes medidos:</p>
 <p><span class="math display">\[
@@ -6384,7 +6522,7 @@ N^{-1}V_\odot
 \end{bmatrix}
 \]</span></p>
 </section>
-<section id="section-120" class="slide level2">
+<section id="section-118" class="slide level2">
 <h2></h2>
 <div class="columns">
 <div class="column" style="width:50%;">
@@ -6408,7 +6546,7 @@ r_x=               &amp; \frac{V_{R}-V_{L}}{V_{R}+V_{L}}, \qquad r_y= \frac{V_{U
 </div>
 </div></div>
 </section>
-<section id="section-121" class="slide level2">
+<section id="section-119" class="slide level2">
 <h2></h2>
 <ul>
 <li>Para obtener la dirección del Sol en el marco inercial, es necesario conocer la posición del Sol en dicho marco.</li>
@@ -6420,7 +6558,7 @@ r_x=               &amp; \frac{V_{R}-V_{L}}{V_{R}+V_{L}}, \qquad r_y= \frac{V_{U
 \]</span></p>
 <p>donde <span class="math inline">\(\:^i\vec{r}_{s}\)</span> es la posición del Sol desde el origen del marco de referencia inercia representado en el marco inercial y <span class="math inline">\(\:^i\vec{r}_{c}\)</span> es la posición del centro de masa del satélite en el mismo marco.</p>
 </section>
-<section id="section-122" class="slide level2">
+<section id="section-120" class="slide level2">
 <h2></h2>
 <p>Algunas consideraciones importantes sobre los sensores solares:</p>
 <ul>
@@ -6476,7 +6614,7 @@ r_x=               &amp; \frac{V_{R}-V_{L}}{V_{R}+V_{L}}, \qquad r_y= \frac{V_{U
 </div>
 </div></div>
 </section>
-<section id="section-123" class="slide level2">
+<section id="section-121" class="slide level2">
 <h2></h2>
 <div class="columns">
 <div class="column" style="width:50%;">
@@ -6518,7 +6656,7 @@ U\:^b\hat{r}_\oplus =
 </div>
 </div></div>
 </section>
-<section id="section-124" class="slide level2">
+<section id="section-122" class="slide level2">
 <h2></h2>
 <div class="columns">
 <div class="column" style="width:50%;">
@@ -6594,7 +6732,7 @@ U^\top \vec{C}_\beta =
 </div>
 </div></div>
 </section>
-<section id="section-125" class="slide level2">
+<section id="section-123" class="slide level2">
 <h2></h2>
 <p>Algunas consideraciones sobre los sensores de horizonte:</p>
 <ul>
@@ -6628,7 +6766,7 @@ U^\top \vec{C}_\beta =
 </div>
 </div></div>
 </section>
-<section id="section-126" class="slide level2">
+<section id="section-124" class="slide level2">
 <h2></h2>
 <div class="columns">
 <div class="column" style="width:50%;">
@@ -6653,7 +6791,7 @@ U^\top \vec{C}_\beta =
 </div>
 </div></div>
 </section>
-<section id="section-127" class="slide level2">
+<section id="section-125" class="slide level2">
 <h2></h2>
 <p><strong>Rendimiento y operación</strong></p>
 <ul>
@@ -6707,7 +6845,7 @@ B_z
 </div>
 </div></div>
 </section>
-<section id="section-128" class="slide level2">
+<section id="section-126" class="slide level2">
 <h2></h2>
 <div class="columns">
 <div class="column" style="width:50%;">
@@ -6742,7 +6880,7 @@ B_z
 </div>
 </div></div>
 </section>
-<section id="section-129" class="slide level2">
+<section id="section-127" class="slide level2">
 <h2></h2>
 <div class="columns">
 <div class="column" style="width:60%;">
@@ -6766,7 +6904,7 @@ B_z
 </div>
 </div></div>
 </section>
-<section id="section-130" class="slide level2">
+<section id="section-128" class="slide level2">
 <h2></h2>
 <div class="columns">
 <div class="column" style="width:57%;">
@@ -6789,7 +6927,7 @@ B_z
 </div>
 </div></div>
 </section>
-<section id="section-131" class="slide level2">
+<section id="section-129" class="slide level2">
 <h2></h2>
 <p><span style="color:#003399">¿Cómo se obtienen <span class="math inline">\(A\)</span> y <span class="math inline">\(\vec{b}\)</span>?</span></p>
 <p>Partiendo del modelo de medición</p>
@@ -6815,7 +6953,7 @@ B_0^2 &amp; = \:^{b}B^{\top} \:^{b}B = (A\: (^b\breve{B} - \vec{b}))^\top (A\: (
 \]</span></p>
 <p>Esto puede resolverse utilizando técnicas de optimización convexa, como la programación semidefinida (SDP) o métodos algebraicos como la descomposición de valores singulares (SVD).</p>
 </section>
-<section id="section-132" class="slide level2">
+<section id="section-130" class="slide level2">
 <h2></h2>
 <p><strong>Procesamiento y obtención del vector de referencia</strong></p>
 <p>En el marco del cuerpo:</p>
@@ -6840,7 +6978,7 @@ B_0^2 &amp; = \:^{b}B^{\top} \:^{b}B = (A\: (^b\breve{B} - \vec{b}))^\top (A\: (
 ^i\hat{B} = \frac{^i\vec{B}}{\|\,^i\vec{B}\|}
 \]</span></p>
 </section>
-<section id="section-133" class="slide level2">
+<section id="section-131" class="slide level2">
 <h2></h2>
 <p><strong>Salida de los modelos geomagnéticos</strong></p>
 <ul>
@@ -6889,7 +7027,7 @@ B_0^2 &amp; = \:^{b}B^{\top} \:^{b}B = (A\: (^b\breve{B} - \vec{b}))^\top (A\: (
 </div>
 </div></div>
 </section>
-<section id="section-134" class="slide level2">
+<section id="section-132" class="slide level2">
 <h2></h2>
 <div class="columns">
 <div class="column" style="width:65%;">
@@ -6919,7 +7057,7 @@ B_0^2 &amp; = \:^{b}B^{\top} \:^{b}B = (A\: (^b\breve{B} - \vec{b}))^\top (A\: (
 </div>
 </div></div>
 </section>
-<section id="section-135" class="slide level2">
+<section id="section-133" class="slide level2">
 <h2></h2>
 <div class="columns">
 <div class="column" style="width:53%;">
@@ -6943,7 +7081,7 @@ B_0^2 &amp; = \:^{b}B^{\top} \:^{b}B = (A\: (^b\breve{B} - \vec{b}))^\top (A\: (
 </div>
 </div></div>
 </section>
-<section id="section-136" class="slide level2">
+<section id="section-134" class="slide level2">
 <h2></h2>
 <p>Una forma de modelar la evolución del sesgo es mediante un proceso estocástico:</p>
 <p><span class="math display">\[
@@ -6966,7 +7104,7 @@ B_0^2 &amp; = \:^{b}B^{\top} \:^{b}B = (A\: (^b\breve{B} - \vec{b}))^\top (A\: (
 <li>Para estimar el sesgo dinámico <span class="math inline">\(\vec{b}_g\td\)</span>, podemos hacer uso de un observador de estados utilizando como modelo el modelo de caminata aleatoria.</li>
 </ul>
 </section>
-<section id="section-137" class="slide level2">
+<section id="section-135" class="slide level2">
 <h2></h2>
 <p>Algunas consideraciones adicionales:</p>
 <ul>
@@ -7021,7 +7159,7 @@ B_0^2 &amp; = \:^{b}B^{\top} \:^{b}B = (A\: (^b\breve{B} - \vec{b}))^\top (A\: (
 </tbody>
 </table>
 </section>
-<section id="section-138" class="slide level2">
+<section id="section-136" class="slide level2">
 <h2></h2>
 <ul>
 <li>En este punto, hemos visto cómo obtener mediciones de vectores de referencia en el marco del cuerpo (<span class="math inline">\(^b\hat{v}_j\)</span>) y en el marco inercial (<span class="math inline">\(^i\hat{v}_j\)</span>) mediante sensores absolutos.
@@ -7113,7 +7251,7 @@ B_0^2 &amp; = \:^{b}B^{\top} \:^{b}B = (A\: (^b\breve{B} - \vec{b}))^\top (A\: (
 \end{bmatrix}.
 \]</span></p>
 </section>
-<section id="section-139" class="slide level2">
+<section id="section-137" class="slide level2">
 <h2></h2>
 <p>Multiplicando ambos lados por la transpuesta de la base inercial:</p>
 <p><span class="math display">\[
@@ -7308,7 +7446,7 @@ J(\:^{b}\hat{R}_i) &amp; = \frac{1}{2}\sum_{j=1}^{n}a_j\|\:^b\hat{v}_j-\:^{b}\ha
 \end{split}
 \]</span></p>
 </section>
-<section id="section-140" class="slide level2">
+<section id="section-138" class="slide level2">
 <h2></h2>
 <p>Al parametrizar la matriz de rotación mediante un cuaternión unitario <span class="math inline">\(\:^{b}\hat{R}_i(^b\hat{\mathbf{q}}_i)= (q_0^2-\vec{q}^\top \vec{q})I+2q_0S(\vec{q})+2\vec{q}\vec{q}^\top\)</span> y realizar manipulaciones algebraicas (norma de Frobenius y propiedades de la traza), esta función puede reescribirse como una forma cuadrática:</p>
 <p><span class="math display">\[
@@ -7343,7 +7481,7 @@ D_{12}-D_{21}
 \end{bmatrix}
 \]</span></p>
 </section>
-<section id="section-141" class="slide level2">
+<section id="section-139" class="slide level2">
 <h2></h2>
 <p>Dado a que <span class="math inline">\(K\)</span> es una matriz simétrica definida positiva, <span class="math inline">\(g( \:^b\hat{\mathbf{q}}_i) = \:^b\hat{\mathbf{q}}_i^{\top} K \:^b\hat{\mathbf{q}}_i &gt; 0\)</span>. Con ello,</p>
 <p><span class="math display">\[
@@ -7464,7 +7602,7 @@ z
 </ol>
 </div>
 </section>
-<section id="section-142" class="slide level2">
+<section id="section-140" class="slide level2">
 <h2></h2>
 <ul>
 <li>Un detalle importante es que la raíz del polinomio característico que se obtiene mediante Newton-Rhapson puede no ser el valor propio máximo, ya que esta depende de las condiciones iniciales. Sin embargo, en la práctica, se ha observado que el valor propio máximo de <span class="math inline">\(K\)</span> suele ser cercano a 1, por lo que la elección de <span class="math inline">\(\lambda_0=1\)</span> es algo razonable.</li>
@@ -7482,7 +7620,7 @@ z
 </ul>
 </div>
 </section>
-<section id="section-143" class="slide level2">
+<section id="section-141" class="slide level2">
 <h2></h2>
 <ul>
 <li>Existen otros algoritmos estáticos para la resolución del problema de Wahba, como el método SVD o ESOQ. Sin embargo, TRIAD y QUEST son los más comunes en aplicaciones prácticas debido a su balance entre simplicidad y precisión.</li>
@@ -7582,7 +7720,7 @@ f_k(\hat{x}_{k-1}^+,u_{k-1})
 \]</span></p>
 <p>donde <span class="math inline">\(X_{lf}(s)\)</span> y <span class="math inline">\(X_{hf}(s)\)</span> son las transformadas de Laplace de las señales de baja y alta frecuencia, respectivamente.</p>
 </section>
-<section id="section-144" class="slide level2">
+<section id="section-142" class="slide level2">
 <h2></h2>
 <p>Considere que la orientación se parametriza mediante ángulos de Tait-Bryan::</p>
 <p><span class="math display">\[
@@ -7607,7 +7745,7 @@ x\td =
 <li>La variación de cada uno de los ángulos de Tait-Bryan es igual a la velocidad angular medida por el giroscopio. Esto no corresponde con el modelo cinemático de esta parametrización, pero es una aproximación común en la práctica para simplificar el diseño del filtro complementario.</li>
 </ul>
 </section>
-<section id="section-145" class="slide level2">
+<section id="section-143" class="slide level2">
 <h2></h2>
 <p>Bajo las suposiciones anteriores, podemos asumir que <span class="math inline">\(\omega\td\)</span> es una entrada del modelo cinemático. Esto nos permite propagar la orientación utilizando las velocidades angulares medidas por el giroscopio, es decir,</p>
 <p><span class="math display">\[
@@ -7626,7 +7764,7 @@ x\td =
 \hat{x}_k^+ = \alpha \hat{x}_k^- + (1-\alpha) x_{y,k}
 \]</span></p>
 </section>
-<section id="section-146" class="slide level2">
+<section id="section-144" class="slide level2">
 <h2></h2>
 <div class="algorithm">
 <div class="algorithm-title">
@@ -7669,7 +7807,7 @@ x_{y,k}
 <li>En el caso de utilizar TRIAD o QUEST como algoritmo de determinación estático, debemos de transformar su salida a los ángulos de Tait-Bryan para obtener <span class="math inline">\(x_{y,k}\)</span>.</li>
 </ul>
 </section>
-<section id="section-147" class="slide level2">
+<section id="section-145" class="slide level2">
 <h2></h2>
 <p>Una forma más precisa de implementar el filtro complementario es considerar el modelo cinemático de los ángulos de Tait-Bryan:</p>
 <p><span class="math display">\[
@@ -7710,7 +7848,7 @@ T(\hat{x}_{k-1}^+)\omega_{y,k-1}\Delta t_k
 (1-\alpha)x_{y,k}
 \]</span></p>
 </section>
-<section id="section-148" class="slide level2">
+<section id="section-146" class="slide level2">
 <h2></h2>
 <div class="algorithm">
 <div class="algorithm-title">
@@ -7754,7 +7892,7 @@ T(\hat{x}_{k-1}^{+})
 </ol>
 </div>
 </section>
-<section id="section-149" class="slide level2">
+<section id="section-147" class="slide level2">
 <h2></h2>
 <p>El filtro complementario representa una primera aproximación a los algoritmos de determinación dinámica, ya que combina propagación mediante un modelo cinemático y corrección a partir de mediciones absolutas.</p>
 <div class="definition-block">
@@ -7877,7 +8015,7 @@ E[q_3]
 \]</span></p>
 <p>Si la covarianza es positiva, ambas variables tienden a variar en el mismo sentido; si es negativa, tienden a variar en sentidos opuestos; y si es cero, no existe una relación entre ellas.</p>
 </section>
-<section id="section-150" class="slide level2">
+<section id="section-148" class="slide level2">
 <h2></h2>
 <p>La varianza de un vector aleatorio se define como:</p>
 <p><span class="math display">\[
@@ -7986,7 +8124,7 @@ P^{-1}
 \right)
 \]</span></p>
 </section>
-<section id="section-151" class="slide level2">
+<section id="section-149" class="slide level2">
 <h2></h2>
 <p>En sistemas reales, los modelos dinámicos y las mediciones no son perfectos debido a perturbaciones externas, errores de modelado e incertidumbre instrumental.</p>
 <p>El modelo dinámico puede representarse como:</p>
@@ -8027,7 +8165,7 @@ y_k=h(x_k,\xi_k)
 \]</span></p>
 <p>Las matrices <span class="math inline">\(Q \in \mathbb{R}^{n \times n}\)</span> y <span class="math inline">\(R \in \mathbb{R}^{m \times m}\)</span> son la varianza de <span class="math inline">\(\zeta_k\)</span> y <span class="math inline">\(\xi_k\)</span>, respectivamente.</p>
 </section>
-<section id="section-152" class="slide level2">
+<section id="section-150" class="slide level2">
 <h2></h2>
 <p><span style="color:#003399">¿Por qué modelar el ruido como una distribución normal?</span></p>
 <p>El <strong>teorema central del límite</strong> establece que la suma de múltiples variables aleatorias independientes con media y varianza finita tiende a seguir una distribución normal, incluso si cada una de ellas no sigue una distribución gaussiana.</p>
@@ -8113,7 +8251,7 @@ x_0\sim\mathcal{N}(\hat{x}_0,P_0), \quad \text{Cov}[x_0 \zeta_0^\top]=0, \quad \
 \]</span></p>
 <p>donde <span class="math inline">\(K_k\)</span> es la ganancia de Kalman. Al algoritmo de estimación que calcula <span class="math inline">\(K_k\)</span> e implementa esta actualización de forma recursiva se le conoce como <strong>filtro de Kalman</strong>.</p>
 </section>
-<section id="section-153" class="slide level2">
+<section id="section-151" class="slide level2">
 <h2></h2>
 <div class="algorithm">
 <div class="algorithm-title">
@@ -8188,7 +8326,7 @@ P_k^{-}
 </ol>
 </div>
 </section>
-<section id="section-154" class="slide level2">
+<section id="section-152" class="slide level2">
 <h2></h2>
 <p>Para implementar el filtro de Kalman es necesario definir los siguientes elementos:</p>
 <ul>
@@ -8251,7 +8389,7 @@ A_{k-1}=I_3,\quad B_{k-1}=T(x_{k-1})\Delta t_k,\quad C_k=I_3
 \]</span></p>
 <p>En este caso, la velocidad angular <span class="math inline">\(\omega_{k-1}\)</span> se considera como una entrada del sistema, y el estado puede propagarse mediante la medición de velocidad angular.</p>
 </section>
-<section id="section-155" class="slide level2">
+<section id="section-153" class="slide level2">
 <h2></h2>
 <div class="algorithm">
 <div class="algorithm-title">
@@ -8328,7 +8466,7 @@ P_k^{-}
 </ol>
 </div>
 </section>
-<section id="section-156" class="slide level2">
+<section id="section-154" class="slide level2">
 <h2></h2>
 <p>En el modelo anterior, la velocidad angular se consideró una entrada conocida. Para estimarla simultáneamente con la orientación, se redefine el estado como:</p>
 <p><span class="math display">\[
@@ -8369,7 +8507,7 @@ T(\phi_{k-1},\theta_{k-1},\psi_{k-1})\Delta t_k &amp; I_3
 \]</span></p>
 <p>Con ello, el filtro de Kalman estima simultáneamente la orientación y la velocidad angular, lo que permite una mejor predicción del estado y una mayor robustez frente a ruido en las mediciones.</p>
 </section>
-<section id="section-157" class="slide level2">
+<section id="section-155" class="slide level2">
 <h2></h2>
 <div class="algorithm">
 <div class="algorithm-title">
@@ -8454,7 +8592,7 @@ P_k^{-}
 </ol>
 </div>
 </section>
-<section id="section-158" class="slide level2">
+<section id="section-156" class="slide level2">
 <h2></h2>
 <p>Los filtros anteriores permiten estimar orientación y velocidad angular, pero presentan limitaciones importantes:</p>
 <ul>
@@ -8509,7 +8647,7 @@ P_k^{-}
 <p>Proceso mediante el cual se aproxima un sistema no lineal por un sistema lineal alrededor de un punto de operación específico. El comportamiento del sistema no lineal y el sistema linealizado es idéntico en las cercanías de este punto. Sin embargo, a medida que el sistema se aleja de este punto, la aproximación lineal puede volverse inexacta.</p>
 </div>
 </section>
-<section id="section-159" class="slide level2">
+<section id="section-157" class="slide level2">
 <h2></h2>
 <p>Considere el sistema no lineal discreto:</p>
 <p><span class="math display">\[
@@ -8551,7 +8689,7 @@ x_k &amp; =F_{k-1}x_{k-1}+\tilde{u}_{k-1}+\tilde{w}_{k-1}
 \end{split}
 \]</span></p>
 </section>
-<section id="section-160" class="slide level2">
+<section id="section-158" class="slide level2">
 <h2></h2>
 <p>De forma similar, el modelo de medición se linealiza alrededor de la predicción <span class="math inline">\(x_k=\hat{x}_k^{-}\)</span> y <span class="math inline">\(\xi_k=0\)</span>:</p>
 <p><span class="math display">\[
@@ -8579,7 +8717,7 @@ z_k=h_k(\hat{x}_k^{-},0)-H_k\hat{x}_k^{-},\quad \tilde{\xi}_k=M_k\xi_k,\qquad \t
 \]</span></p>
 <p>Las ecuaciones <a href="#/eq-ekf_lineal_state" class="quarto-xref">Ecuación&nbsp;44</a> y <a href="#/eq-ekf_lineal_measurement" class="quarto-xref">Ecuación&nbsp;45</a> representan un sistema lineal equivalente al sistema no lineal original. Esto permite aplicar el filtro de Kalman clásico para obtener una estimación del estado, aunque esta estimación ya no es óptima debido a las aproximaciones realizadas en la linealización.</p>
 </section>
-<section id="section-161" class="slide level2">
+<section id="section-159" class="slide level2">
 <h2></h2>
 <div class="algorithm">
 <div class="algorithm-title">
@@ -8691,7 +8829,7 @@ P_k^{-}
 </ol>
 </div>
 </section>
-<section id="section-162" class="slide level2">
+<section id="section-160" class="slide level2">
 <h2></h2>
 <p>Para empezar el diseño del EFK para la determinación de la orientación, hace falta definir varios aspectos. El primero de ellos es extender el modelo dinámico para considerar la velocidad angular como parte del estado a estimar.</p>
 <p>El modelo dinámico rotacional del satélite se puede escribir en espacio de estados como:</p>
@@ -8719,7 +8857,7 @@ I_b\ls{b}\dot{\vec{\omega}}_{i,b}(t) &amp; =-S(\ls{b}\vec{\omega}_{i,b}(t))I_b\l
 \end{split}
 \]</span></p>
 </section>
-<section id="section-163" class="slide level2">
+<section id="section-161" class="slide level2">
 <h2></h2>
 <p>Otro detalle importante es recordar que la velocidad angular no se mide directamente. En su lugar, el giroscopio entrega la siguiente medición:</p>
 <p><span class="math display">\[
@@ -8748,7 +8886,7 @@ I_b\ls{b}\dot{\vec{\omega}}_{i,b}(t) &amp; =-S(\ls{b}\vec{\omega}_{i,b}(t))I_b\l
 \]</span></p>
 <p>donde <span class="math inline">\(\zeta_b(t)\)</span> representa ruido de proceso asociado a la variación del sesgo. En consecuencia, <strong>el sesgo debe ser incluido como parte del estado a estimar en el filtro de Kalman</strong>.</p>
 </section>
-<section id="section-164" class="slide level2">
+<section id="section-162" class="slide level2">
 <h2></h2>
 <p>En formulaciones anteriores, la orientación se obtenía a partir de algoritmos estáticos de determinación de orientación (por ejemplo, TRIAD o QUEST), los cuales proporcionan directamente una estimación de la orientación.</p>
 <p>En este caso, no se utilizarán estimadores estáticos para generar la medición. En su lugar, se emplearán directamente los vectores medidos por los sensores.</p>
@@ -8767,7 +8905,7 @@ I_b\ls{b}\dot{\vec{\omega}}_{i,b}(t) &amp; =-S(\ls{b}\vec{\omega}_{i,b}(t))I_b\l
 <p>En este sentido, el filtro de Kalman se encarga de fusionar directamente las mediciones de los sensores para estimar la orientación, sin necesidad de pasar por un algoritmo estático intermedio.</p>
 <p>A esta práctica se le conoce como <strong>Sensor Fusion</strong>.</p>
 </section>
-<section id="section-165" class="slide level2">
+<section id="section-163" class="slide level2">
 <h2></h2>
 <p>Ahora, pensemos en el caso específico de estimación de orientación utilizando cuaterniones. El EKF puede aplicarse directamente, pero presenta limitaciones importantes. Suponga que el estado del sistema es</p>
 <p><span class="math display">\[
@@ -8789,7 +8927,7 @@ r_k=\mathbf{q}_{y,k}-\hat{\mathbf{q}}_k^{-}
 \]</span></p>
 <p>donde <span class="math inline">\(\delta\mathbf{q}_k\)</span> representa el error relativo entre la orientación real y la orientación estimada.</p>
 </section>
-<section id="section-166" class="slide level2">
+<section id="section-164" class="slide level2">
 <h2></h2>
 <p>El cuaternión de error <span class="math inline">\(\delta\mathbf{q}_k\)</span> también es un cuaternión unitario, por lo que se puede representar como:</p>
 <p><span class="math display">\[
@@ -8836,7 +8974,7 @@ r_k=\mathbf{q}_{y,k}-\hat{\mathbf{q}}_k^{-}
 <p>representa un vector de error mínimo de orientación.</p>
 <p><strong>El filtro de Kalman va a estimar <span class="math inline">\(\delta\theta_k\)</span> en lugar de estimar directamente el cuaternión</strong>. Esto garantiza que la actualización del estado mantenga la propiedad de ser un cuaternión unitario, y reduce la dimensión de las variables a estimar.</p>
 </section>
-<section id="section-167" class="slide level2">
+<section id="section-165" class="slide level2">
 <h2></h2>
 <p><strong>La modificación necesaria al EKF clásico para el manejo de cuaterniones es que la correción del estado se realiza en dos pasos: primero calculamos el error de estimación y posteriormente hacemos la correción del estado manteniendo la estructura de cada variable del estado</strong>.</p>
 <p>Por ejemplo, durante la etapa de corrección, el filtro estima el vector de error mínimo:</p>
@@ -8897,7 +9035,7 @@ q_3  &amp; q_0  &amp; -q_1 \\
 \end{split}
 \]</span></p>
 </section>
-<section id="section-168" class="slide level2">
+<section id="section-166" class="slide level2">
 <h2></h2>
 <p>Con ello, el modelo dinámico rotacional del satélite se puede escribir en espacio de estados como:</p>
 <p><span class="math display">\[
@@ -8957,7 +9095,7 @@ h(z)=\begin{bmatrix}
 \end{split}
 \]</span></p>
 </section>
-<section id="section-169" class="slide level2">
+<section id="section-167" class="slide level2">
 <h2></h2>
 <p>Atendiendo al planteamiento que hicimos, el filtro de Kalman va a estimar el error de orientación <span class="math inline">\(\delta\theta(t)\)</span> en lugar de estimar directamente el cuaternión <span class="math inline">\(\mathbf{q}(t)\)</span>. Para ello, hace falta definir el error de estimación como:</p>
 <p><span class="math display">\[
@@ -8997,7 +9135,7 @@ b_g(t)-\hat{b}_g(t)
 \end{split}
 \]</span></p>
 </section>
-<section id="section-170" class="slide level2">
+<section id="section-168" class="slide level2">
 <h2></h2>
 <p><span class="math display">\[
 \begin{split}
@@ -9030,7 +9168,7 @@ S(\hat{\omega}(t))\delta\theta(t)-\delta\omega(t)
 \end{split}
 \]</span></p>
 </section>
-<section id="section-171" class="slide level2">
+<section id="section-169" class="slide level2">
 <h2></h2>
 <p>Resumiendo, el modelo dinámico del error de estimación queda:</p>
 <p><span class="math display">\[
@@ -9095,7 +9233,7 @@ I_3    &amp; 0                                                  &amp; I_3    \\
 \end{split}
 \]</span></p>
 </section>
-<section id="section-172" class="slide level2">
+<section id="section-170" class="slide level2">
 <h2></h2>
 <p>Para discretizar el modelo dinámico no lineal, se puede utilizar el método de Euler, lo que conduce a la siguiente formulación discreta:</p>
 <p><span class="math display">\[
@@ -9159,7 +9297,7 @@ I_b^{-1} &amp; 0   \\
 \end{aligned}\]</span>
 <p>$$</p>
 </section>
-<section id="section-173" class="slide level2">
+<section id="section-171" class="slide level2">
 <h2></h2>
 <p>Finalmente, se pueden discretizar de la misma forma los modelos del error de estimación y del residuo de medición, lo que conduce a:</p>
 <ul>
@@ -9289,7 +9427,7 @@ I_3
 \end{aligned}\]</span>
 <p>$$</p>
 </section>
-<section id="section-174" class="slide level2">
+<section id="section-172" class="slide level2">
 <h2></h2>
 <div class="algorithm">
 <div class="algorithm-title">
@@ -9357,7 +9495,7 @@ f_{k-1}
 </ol>
 </div>
 </section>
-<section id="section-175" class="slide level2">
+<section id="section-173" class="slide level2">
 <h2></h2>
 <div class="algorithm">
 <div class="algorithm-title">
@@ -9409,7 +9547,7 @@ P_k^{-}
 </ol>
 </div>
 </section>
-<section id="section-176" class="slide level2">
+<section id="section-174" class="slide level2">
 <h2></h2>
 <div class="algorithm">
 <div class="algorithm-title">
@@ -9476,7 +9614,7 @@ P_k^{-}
 <li>Filtrar la velocidad angular, lo cual será de gran utilidad para las tareas de control.</li>
 </ul>
 </section>
-<section id="section-177" class="slide level2">
+<section id="section-175" class="slide level2">
 <h2></h2>
 <ul>
 <li>El MEKF es el enfoque que predomina actualmente para la determinación de la orientación en aplicaciones aeroespaciales. Existen métodos más sofisticados, como el UEKF, pero la mejora que ofrece no justifica el aumento en la complejidad computacional.</li>
@@ -9497,7 +9635,7 @@ P_k^{-}
 </ul>
 </div>
 </section>
-<section id="section-178" class="slide level2">
+<section id="section-176" class="slide level2">
 <h2></h2>
 <div class="definition-block">
 <p><strong>Selección de la matriz <span class="math inline">\(R\)</span></strong></p>
@@ -9597,11 +9735,11 @@ e_{K}
 <li>Los percentiles se obtienen ordenando las muestras de $ e_{K}$ y seleccionando el valor por debajo del cual cae el <span class="math inline">\(p_c\)</span> de los datos. En MATLAB: <span class="math inline">\(P_{n}\)</span> = <code>prctile(e_K, n)</code>.</li>
 </ul>
 </section>
-<section id="section-179" class="slide level2">
+<section id="section-177" class="slide level2">
 <h2></h2>
 
 <img data-src=".\Figures/c4/gaussian.svg" style="width:100.0%" class="r-stretch"></section>
-<section id="section-180" class="slide level2">
+<section id="section-178" class="slide level2">
 <h2></h2>
 <ul>
 <li>Para nuestro caso, podemos definir la señal AKE de la siguiente manera. Sea <span class="math inline">\(\hat{\mathbf{q}}_k\)</span> el cuaternión estimado y <span class="math inline">\(\mathbf{q}_k\)</span> el cuaternión real. Se define el cuaternión de error:</li>
@@ -9647,7 +9785,7 @@ Control
 </div>
 </section>
 
-<section id="section-181" class="slide level2">
+<section id="section-179" class="slide level2">
 <h2></h2>
 
 <img data-src="Figures/c1/closeloop.svg" class="quarto-figure quarto-figure-center r-stretch" style="width:100.0%"></section>
@@ -9667,7 +9805,7 @@ Control
 <li><strong>Lazo cerrado</strong>: La salida se mide y se compara con la referencia. El control ajusta la entrada del sistema en función del error.</li>
 </ul>
 </section>
-<section id="section-182" class="slide level2">
+<section id="section-180" class="slide level2">
 <h2></h2>
 <p>El <strong>control automático</strong> se encuentra presente en la mayoría de los sistemas modernos, desde aplicaciones domésticas hasta sistemas espaciales. Su objetivo común es <em>mantener una variable física en un valor deseado</em>.</p>
 <p><strong>Ejemplos:</strong></p>
@@ -9682,7 +9820,7 @@ Control
 </ul>
 <p>Cada uno de estos sistemas compara una <strong>variable medida</strong> con una <strong>referencia</strong> y actúa para reducir el error.</p>
 </section>
-<section id="section-183" class="slide level2">
+<section id="section-181" class="slide level2">
 <h2></h2>
 <p><strong>Componentes principales:</strong></p>
 <ul>
@@ -9760,7 +9898,7 @@ x\td  \to x^{\tref}\td
 </div>
 </div></div>
 </section>
-<section id="section-184" class="slide level2">
+<section id="section-182" class="slide level2">
 <h2></h2>
 <ul>
 <li>Según la <strong>fuente de energía</strong> que sustenta su acción, los actuadores se clasifican en:
@@ -9781,7 +9919,7 @@ x\td  \to x^{\tref}\td
 <li>Ambos tipos suelen combinarse: los pasivos contribuyen a la estabilidad estructural, mientras que los activos permiten el control preciso de la dinámica.</li>
 </ul>
 </section>
-<section id="section-185" class="slide level2">
+<section id="section-183" class="slide level2">
 <h2></h2>
 <ul>
 <li>En el ADCS del satélite, los actuadores generan los <strong>pares de control</strong> necesarios para modificar o mantener la orientación del satélite. Estos pares de control pueden tener varios canales de entrada.</li>
@@ -9853,7 +9991,7 @@ x\td  \to x^{\tref}\td
 </div>
 </div></div>
 </section>
-<section id="section-186" class="slide level2">
+<section id="section-184" class="slide level2">
 <h2></h2>
 <div class="columns">
 <div class="column" style="width:60%;">
@@ -9896,7 +10034,7 @@ h = I_b\td \,\omega\td  = \text{cte.}
 </div>
 </div></div>
 </section>
-<section id="section-187" class="slide level2">
+<section id="section-185" class="slide level2">
 <h2></h2>
 <div class="columns">
 <div class="column" style="width:60%;">
@@ -9954,7 +10092,7 @@ h = I_b\td \,\omega\td  = \text{cte.}
 </div>
 </div></div>
 </section>
-<section id="section-188" class="slide level2">
+<section id="section-186" class="slide level2">
 <h2></h2>
 <div class="columns">
 <div class="column" style="width:60%;">
@@ -10028,7 +10166,7 @@ h = I_b\td \,\omega\td  = \text{cte.}
 </div>
 </div></div>
 </section>
-<section id="section-189" class="slide level2">
+<section id="section-187" class="slide level2">
 <h2></h2>
 <div class="columns">
 <div class="column" style="width:50%;">
@@ -10123,7 +10261,7 @@ h = I_b\td \,\omega\td  = \text{cte.}
 </ul>
 </div></div>
 </section>
-<section id="section-190" class="slide level2">
+<section id="section-188" class="slide level2">
 <h2></h2>
 <div class="columns">
 <div class="column" style="width:50%;">
@@ -10140,7 +10278,7 @@ h = I_b\td \,\omega\td  = \text{cte.}
 </ul>
 </div></div>
 </section>
-<section id="section-191" class="slide level2">
+<section id="section-189" class="slide level2">
 <h2></h2>
 <div class="columns">
 <div class="column" style="width:50%;">
@@ -10198,7 +10336,7 @@ h\td =h_0\td +h_s\td +h_w\td =h_{\text{sat}}\td +h_{\text{int}}\td \equiv \text{
 \end{split}
 \]</span></p>
 </section>
-<section id="section-192" class="slide level2">
+<section id="section-190" class="slide level2">
 <h2></h2>
 <div class="definition-block">
 <p><strong>Suposición</strong></p>
@@ -10286,7 +10424,7 @@ I_w=\frac{1}{2}\pi\rho\left[h_o(r_o^4-r_i^4)+h_i(r_i^4-r_m^4)+h_o(r_m^4-r_j^4)\r
 </div>
 </div></div>
 </section>
-<section id="section-193" class="slide level2">
+<section id="section-191" class="slide level2">
 <h2></h2>
 <div class="columns">
 <div class="column" style="width:60%;">
@@ -10317,7 +10455,7 @@ I_w=\frac{1}{2}\pi\rho\left[h_o(r_o^4-r_i^4)+h_i(r_i^4-r_m^4)+h_o(r_m^4-r_j^4)\r
 </div>
 </div></div>
 </section>
-<section id="section-194" class="slide level2">
+<section id="section-192" class="slide level2">
 <h2></h2>
 <div class="definition-block">
 <p><strong>Suposición</strong></p>
@@ -10387,7 +10525,7 @@ I_{zz,a}\dot{\omega}_{z,a}\td
 <p>donde <span class="math inline">\(D\)</span> es la matriz de distribución del arreglo.</p>
 </div></div>
 </section>
-<section id="section-195" class="slide level2">
+<section id="section-193" class="slide level2">
 <h2></h2>
 <div class="columns">
 <div class="column" style="width:49%;">
@@ -10424,7 +10562,7 @@ D=\left[\begin{matrix}
 \]</span></p>
 </div></div>
 </section>
-<section id="section-196" class="slide level2">
+<section id="section-194" class="slide level2">
 <h2></h2>
 <div class="columns">
 <div class="column" style="width:49%;">
@@ -10461,7 +10599,7 @@ D=\left[\begin{matrix}
 \]</span></p>
 </div></div>
 </section>
-<section id="section-197" class="slide level2">
+<section id="section-195" class="slide level2">
 <h2></h2>
 <table class="caption-top">
 <colgroup>
@@ -10524,7 +10662,7 @@ D=\left[\begin{matrix}
 \]</span></p>
 <p>de ello, observamos que <span class="math inline">\(\max{|\uptau_x|}=\max{|\uptau_x|}=\max{|\uptau_x|}=\frac{4}{\sqrt{5}}|\uptau|_{\max}\)</span>.</p>
 </section>
-<section id="section-198" class="slide level2">
+<section id="section-196" class="slide level2">
 <h2></h2>
 <div class="columns">
 <div class="column" style="width:60%;">
@@ -10559,7 +10697,7 @@ D=\left[\begin{matrix}
 </div>
 </div></div>
 </section>
-<section id="section-199" class="slide level2">
+<section id="section-197" class="slide level2">
 <h2></h2>
 <div class="definition-block">
 <p><strong>Suposición</strong></p>
@@ -10602,7 +10740,7 @@ D=\left[\begin{matrix}
 </ul>
 </div></div>
 </section>
-<section id="section-200" class="slide level2">
+<section id="section-198" class="slide level2">
 <h2></h2>
 <div class="columns">
 <div class="column" style="width:60%;">
@@ -10643,7 +10781,7 @@ D=\left[\begin{matrix}
 </div>
 </div></div>
 </section>
-<section id="section-201" class="slide level2">
+<section id="section-199" class="slide level2">
 <h2></h2>
 <table class="caption-top">
 <colgroup>
@@ -10708,7 +10846,7 @@ D=\left[\begin{matrix}
 </tbody>
 </table>
 </section>
-<section id="section-202" class="slide level2">
+<section id="section-200" class="slide level2">
 <h2></h2>
 <table class="caption-top">
 <colgroup>
@@ -10891,7 +11029,7 @@ x\td  = x^\star, \quad \forall t \ge T(x_0)
 </div>
 </div></div>
 </section>
-<section id="section-203" class="slide level2">
+<section id="section-201" class="slide level2">
 <h2></h2>
 <p>Las propiedades de estabilidad pueden clasificarse según la <strong>región del espacio de estados</strong> donde se cumplen:</p>
 <ul>
@@ -11088,7 +11226,7 @@ x\td  \to x^{\tref}\td
 <li>Actuadores típicos: magnetopares y ruedas de reacción.</li>
 </ul>
 </section>
-<section id="section-204" class="slide level2">
+<section id="section-202" class="slide level2">
 <h2></h2>
 <p><strong>Acquisition mode</strong></p>
 <ul>
@@ -11110,7 +11248,7 @@ q \rightarrow q^\tref\td
 <li>Actuadores típicos: ruedas de reacción, CMG y propulsores.</li>
 </ul>
 </section>
-<section id="section-205" class="slide level2">
+<section id="section-203" class="slide level2">
 <h2></h2>
 <p><strong>Pointing mode</strong></p>
 <ul>
@@ -11197,7 +11335,7 @@ q \rightarrow q^\tref,
 </table>
 
 <img data-src="Figures/attitude_profile_1.png" class="quarto-figure quarto-figure-center r-stretch" style="width:75.0%"></section>
-<section id="section-206" class="slide level2">
+<section id="section-204" class="slide level2">
 <h2></h2>
 
 <img data-src="Figures/attitude_profile_1_flow.png" class="quarto-figure quarto-figure-center r-stretch" style="width:80.0%"></section>
@@ -11362,7 +11500,7 @@ u\td = f(\tx\td)
 \end{split}
 \]</span></p>
 </section>
-<section id="section-207" class="slide level2">
+<section id="section-205" class="slide level2">
 <h2></h2>
 <p>La dinámica de <span class="math inline">\(\tw\td\)</span> es</p>
 <p><span class="math display">\[
@@ -11400,7 +11538,7 @@ u\td = f(\tx\td)
 \end{split}
 \]</span></p>
 </section>
-<section id="section-208" class="slide level2">
+<section id="section-206" class="slide level2">
 <h2></h2>
 <p>Si descomponemos <span class="math inline">\(\tq\td\)</span> en su parte escalar <span class="math inline">\(\tqc\td\)</span> y vectorial <span class="math inline">\(\tqv\td\)</span>, la dinámica de <span class="math inline">\(\tq\td\)</span> se puede escribir como</p>
 <p><span class="math display">\[
@@ -11461,7 +11599,7 @@ u\td = f(\tx\td)
 \end{split}
 \]</span></p>
 </section>
-<section id="section-209" class="slide level2">
+<section id="section-207" class="slide level2">
 <h2></h2>
 <p>La dinámica de <span class="math inline">\(\tw\td\)</span> es</p>
 <p><span class="math display">\[
@@ -11503,7 +11641,7 @@ S(\vwref\td+\vwh\td)
 +\J\dvwref\td.
 \]</span></p>
 </section>
-<section id="section-210" class="slide level2">
+<section id="section-208" class="slide level2">
 <h2></h2>
 <p>La dinámica de <span class="math inline">\(\tq\td\)</span> es idéntica al caso inercial:</p>
 <p><span class="math display">\[
@@ -11648,7 +11786,7 @@ u\td=\gamma_{1}\tilde{\theta}\td+\gamma_{2}\tilde{\omega}\td,
 \]</span></p>
 <p>donde <span class="math inline">\(\gamma_{1}, \gamma_{2} \in \mathbb{R}\)</span> , con <span class="math inline">\(\gamma_{2}&gt;0\)</span> y <span class="math inline">\(\gamma_{1}&gt;0\)</span>.</p>
 </section>
-<section id="section-211" class="slide level2">
+<section id="section-209" class="slide level2">
 <h2></h2>
 <p>Proponga la siguiente función candidata de Lyapunov:</p>
 <p><span class="math display">\[
@@ -11692,7 +11830,7 @@ J\tilde{\omega}\td\dot{\tilde{\omega}}\td
 \]</span></p>
 <p>Por tanto, el origen es estable localmente. Sin embargo, este resultado únicamente garantiza que <span class="math inline">\(\dot{V}(\tx)\leq0\)</span>, es decir, que la energía del sistema no incrementa con el tiempo y no nos da información sobre la estabilidad de <span class="math inline">\(\ttheta\td\)</span>.</p>
 </section>
-<section id="section-212" class="slide level2">
+<section id="section-210" class="slide level2">
 <h2></h2>
 <p>Observe que</p>
 <p><span class="math display">\[
@@ -11747,7 +11885,7 @@ a=a^{\top},
 \dot{V}(\tx)=\tw^{\top}\td\J\dtw\td+2\gamma_{1}\tqv^{\top}\td\dtqv\td-2\gamma_{1}(1-\tqc\td)\dtqc\td.
 \]</span></p>
 </section>
-<section id="section-213" class="slide level2">
+<section id="section-211" class="slide level2">
 <h2></h2>
 <p>Sustituyendo la dinámica de <span class="math inline">\(\tqv\td\)</span> y <span class="math inline">\(\tqc\td\)</span> de la <a href="#/eq-dyn_error_iner" class="quarto-xref">Ecuación&nbsp;47</a>:</p>
 <p><span class="math display">\[
@@ -11770,7 +11908,7 @@ a=a^{\top},
 \dot{V}(\tx)=-\tw^{\top}\td\left(\uptau_{\inte}\td+\uptau_{\ext}\td-\uptau_{\feed}\td+\gamma_{1}\tqv\td\right).
 \]</span></p>
 </section>
-<section id="section-214" class="slide level2">
+<section id="section-212" class="slide level2">
 <h2></h2>
 <p>Como</p>
 <p><span class="math display">\[
@@ -11823,7 +11961,7 @@ V(\tx)=\frac{1}{2}\tw^{\top}\td\J\tw\td+\gamma_{1}\tqv^{\top}\td\tqv\td+\gamma_{
 \dot{V}(\tx)=\tw^{\top}\td\J\dtw\td-\gamma_{1}\tqv^{\top}\td\tw\td.
 \]</span></p>
 </section>
-<section id="section-215" class="slide level2">
+<section id="section-213" class="slide level2">
 <h2></h2>
 <p>Sustituyendo la dinámica de <span class="math inline">\(\tw\td\)</span> de la <a href="#/eq-dyn_error_orb" class="quarto-xref">Ecuación&nbsp;48</a>:</p>
 <p><span class="math display">\[
@@ -11846,7 +11984,7 @@ V(\tx)=\frac{1}{2}\tw^{\top}\td\J\tw\td+\gamma_{1}\tqv^{\top}\td\tqv\td+\gamma_{
 u\td=\uptau_{\inte}\td+\uptau_{\act}\td.
 \]</span></p>
 </section>
-<section id="section-216" class="slide level2">
+<section id="section-214" class="slide level2">
 <h2></h2>
 <p>Considere la ley de control</p>
 <p><span class="math display">\[
@@ -11911,7 +12049,7 @@ u\td=\gamma_{2}\tw\td-\gamma_{1}\tqv\td.
 \tw\td=\mathbf{0}.
 \]</span></p>
 </section>
-<section id="section-217" class="slide level2">
+<section id="section-215" class="slide level2">
 <h2></h2>
 <p>Para que el sistema permanezca en este conjunto, debe cumplirse además</p>
 <p><span class="math display">\[
@@ -11945,7 +12083,7 @@ u\td=\gamma_{2}\tw\td-\gamma_{1}\tqv\td,
 \]</span></p>
 <p>es suficiente para lograr el <strong>apuntamiento inercial</strong>. Esto el útil, por ejemplo, en el safe mode, ya que podemos definir el apuntamiento al sol en coordenadas inerciales.</p>
 </section>
-<section id="section-218" class="slide level2">
+<section id="section-216" class="slide level2">
 <h2></h2>
 <p>Considere ahora</p>
 <p><span class="math display">\[
@@ -11986,7 +12124,7 @@ u\td=\gamma_{2}\tw\td-\gamma_{1}\tqv\td,
 \|\tw\td\|=\frac{\|\uptau_{\per}\td\|}{\gamma_{2}}.
 \]</span></p>
 </section>
-<section id="section-219" class="slide level2">
+<section id="section-217" class="slide level2">
 <h2></h2>
 <p>Esto define una región alrededor del origen donde el análisis de Lyapunov no permite concluir estabilidad asintótica. Sin embargo, <strong>aumentando <span class="math inline">\(\gamma_{2}\)</span></strong>, dicha región puede hacerse arbitrariamente pequeña. En consecuencia, el origen presenta estabilidad práctica.</p>
 <div class="definition-block">
@@ -12042,7 +12180,7 @@ u\td=\gamma_{2}\tw\td-\gamma_{1}\tqv\td,
 \]</span></p>
 <p>la matriz <span class="math inline">\(\Gamma\)</span> debe ser definida positiva. Esto puede resolverse arbitrariamente utilizando programación lineal. Pero, analicemos un caso particular.</p>
 </section>
-<section id="section-220" class="slide level2">
+<section id="section-218" class="slide level2">
 <h2></h2>
 <p>Considere el caso particular de una órbita circular:</p>
 <p><span class="math display">\[
@@ -12084,7 +12222,7 @@ u\td=\gamma_{2}\tw\td-\gamma_{1}\tqv\td,
 \end{bmatrix}.
 \]</span></p>
 </section>
-<section id="section-221" class="slide level2">
+<section id="section-219" class="slide level2">
 <h2></h2>
 <div class="definition-block">
 <p><strong>Criterio de Sylvester</strong></p>
@@ -12134,7 +12272,7 @@ u\td=\gamma_{2}\tw\td-\gamma_{1}\tqv\td,
 \dot{V}(\tx)\leq-\|\tw\td\|\left(\lambda_{\min}(\Gamma)\|\tw\td\|-\|\uptau_{\per}\td\|\right).
 \]</span></p>
 </section>
-<section id="section-222" class="slide level2">
+<section id="section-220" class="slide level2">
 <h2></h2>
 <p>Por tanto,</p>
 <p><span class="math display">\[
@@ -12228,7 +12366,7 @@ u\td=\gamma_{2}\tw\td-\gamma_{1}\tqv\td+\uptau_{\feed}\td.
 </ul>
 <p><strong>¿Por qué decimos que se genera un par de amortiguamiento?</strong></p>
 </section>
-<section id="section-223" class="slide level2">
+<section id="section-221" class="slide level2">
 <h2></h2>
 <p>El campo magnético terrestre puede considerarse casi constante en un intervalo de tiempo suficientemente corto, dado que su variación debida al movimiento orbital es mucho más lenta que la dinámica rotacional del satélite. Por lo tanto, en el marco inercial se cumple:</p>
 <p><span class="math display">\[
@@ -12249,7 +12387,7 @@ u\td=\gamma_{2}\tw\td-\gamma_{1}\tqv\td+\uptau_{\feed}\td.
 \]</span></p>
 <p>Dado que el par depende de la velocidad angular, podemos asegurar que genera amortiguamiento.</p>
 </section>
-<section id="section-224" class="slide level2">
+<section id="section-222" class="slide level2">
 <h2></h2>
 <p><strong>Características principales:</strong></p>
 <ul>
@@ -12287,7 +12425,7 @@ u\td=\gamma_{2}\tw\td-\gamma_{1}\tqv\td+\uptau_{\feed}\td.
 </div>
 </div>
 </section>
-<section id="section-225" class="slide level2">
+<section id="section-223" class="slide level2">
 <h2></h2>
 <ul>
 <li>Hasta el momento hemos visto dos estrategias de control para el apuntamiento de satélites:
@@ -12468,7 +12606,7 @@ I_n\td
 <p>es el error de corriente en el eje <span class="math inline">\(n\)</span>.</p></li>
 </ul>
 </section>
-<section id="section-226" class="slide level2">
+<section id="section-224" class="slide level2">
 <h2></h2>
 <ul>
 <li>Finalmente, el voltaje <span class="math inline">\(V_{n}\)</span> puede aplicarse físicamente mediante una fuente de voltaje controlada. Dicho circuito puede implementarse con un convertidor boost o un puente H. El voltaje aplicado comunmente se controla mediante señales PWM (señales cuadradas de ciclo de trabajo variable).</li>
@@ -12505,7 +12643,7 @@ I_{\text{rw}}
 <li><p>El actuador no controla directamente el par, sino la <strong>velocidad angular</strong> <span class="math inline">\(\omega_{\text{rw},n}\td\)</span> mediante el voltaje aplicado al motor.</p></li>
 </ul>
 </section>
-<section id="section-227" class="slide level2">
+<section id="section-225" class="slide level2">
 <h2></h2>
 <ul>
 <li><p>Para un conjunto de <span class="math inline">\(N_{\text{rw}}\)</span> ruedas, el par que generan se relaciona con el par requerido mediante</p>
@@ -12552,7 +12690,7 @@ D\,\ls{b}\vec{\uptau}_{\text{rw}}\td.
 \]</span></p></li>
 </ul>
 </section>
-<section id="section-228" class="slide level2">
+<section id="section-226" class="slide level2">
 <h2></h2>
 <ul>
 <li><p>Una vez obtenido el par requerido en cada rueda,</p>
@@ -12587,7 +12725,7 @@ D\,\ls{b}\vec{\uptau}_{\text{rw}}\td.
 <p>donde <span class="math inline">\(\omega_{\text{rw},n}(t_0)\)</span> es la velocidad angular inicial de la rueda en el instante <span class="math inline">\(t_0\)</span>.</p></li>
 </ul>
 </section>
-<section id="section-229" class="slide level2">
+<section id="section-227" class="slide level2">
 <h2></h2>
 <ul>
 <li><p>Para fines de control de una rueda de reacción, un motor BLDC puede modelarse como un <strong>motor de corriente directa equivalente</strong>, donde la conmutación electrónica se promedia en el tiempo.</p></li>
@@ -12627,7 +12765,7 @@ b_{\text{rw}}\omega_{\text{rw}}\td,
 </ul></li>
 </ul>
 </section>
-<section id="section-230" class="slide level2">
+<section id="section-228" class="slide level2">
 <h2></h2>
 <ul>
 <li><p>El objetivo del controlador es regular la velocidad de la rueda:</p>
@@ -12668,7 +12806,7 @@ f(h_a,h_b,h_c),
 </ul></li>
 </ul>
 </section>
-<section id="section-231" class="slide level2">
+<section id="section-229" class="slide level2">
 <h2></h2>
 
 <img data-src="Figures/esc.svg" class="quarto-figure quarto-figure-center r-stretch" style="width:100.0%"></section>
@@ -12721,7 +12859,7 @@ h_{\text{rw},N_{\text{rw}}}\td
 <li><p>Para recuperar la capacidad de control es necesario <strong>descargar el momento angular</strong> utilizando actuadores no saturables, como los magnetopares.</p></li>
 </ul>
 </section>
-<section id="section-232" class="slide level2">
+<section id="section-230" class="slide level2">
 <h2></h2>
 <ul>
 <li><p>La desaturación consiste en extraer el momento angular acumulado en las ruedas y transferirlo al ambiente mediante magnetopares.</p></li>
@@ -12779,6 +12917,7 @@ D\,
   <script src="main_files/libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
   <script src="main_files/libs/revealjs/plugin/reveal-menu/menu.js"></script>
   <script src="main_files/libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
+  <script src="main_files/libs/revealjs/plugin/reveal-chalkboard/plugin.js"></script>
   <script src="main_files/libs/revealjs/plugin/quarto-support/support.js"></script>
   
 
@@ -12800,7 +12939,8 @@ D\,
 'autoAnimateDuration': 1,
 'autoAnimateUnmatched': true,
 'jumpToSlide': true,
-'menu': {"side":"right","useTextContentForMissingTitles":false,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleScrollView(event)\"><kbd>r</kbd> Scroll View Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"5\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true,"titleSelector":".menu-title, .menu-subtitle","hideMissingTitles":true},
+'menu': {"side":"right","useTextContentForMissingTitles":false,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleScrollView(event)\"><kbd>r</kbd> Scroll View Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"5\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleChalkboard(event)\"><kbd>b</kbd> Toggle Chalkboard</a></li>\n<li class=\"slide-tool-item\" data-item=\"6\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleNotesCanvas(event)\"><kbd>c</kbd> Toggle Notes Canvas</a></li>\n<li class=\"slide-tool-item\" data-item=\"7\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.downloadDrawings(event)\"><kbd>d</kbd> Download Drawings</a></li>\n<li class=\"slide-tool-item\" data-item=\"8\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true,"titleSelector":".menu-title, .menu-subtitle","hideMissingTitles":true},
+'chalkboard': {"buttons":true},
 'smaller': false,
  
         // Display controls in the bottom right corner
@@ -12971,7 +13111,7 @@ D\,
         },
 
         // reveal.js plugins
-        plugins: [QuartoLineHighlight, PdfExport, RevealMenu, QuartoSupport,
+        plugins: [QuartoLineHighlight, PdfExport, RevealMenu, RevealChalkboard, QuartoSupport,
 
           RevealMath,
           RevealNotes,

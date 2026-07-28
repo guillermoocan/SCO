@@ -326,22 +326,52 @@ $$
 
 ## Producto cruz: matriz antisimétrica
 
-Dado $\vec{u}=[u_1,u_2,u_3]^\top$, se define la matriz antisimétrica
+Dado $\vec{u}=[u_1,u_2,u_3]^\top$, se define
 
 $$
-    S(\vec{u})=
-    \begin{bmatrix}
-        0 & -u_3 & u_2\\
-        u_3 & 0 & -u_1\\
-        -u_2 & u_1 & 0
-    \end{bmatrix}.
-$$
-
-Entonces,
-
-$$
+S(\vec{u})=
+\begin{bmatrix}
+0 & -u_3 & u_2\\
+u_3 & 0 & -u_1\\
+-u_2 & u_1 & 0
+\end{bmatrix},
+\qquad
 \vec{u}\times\vec{v}=S(\vec{u})\vec{v}.
 $$
+
+::: {.fragment}
+
+**Ejemplo**
+
+$$
+\vec{u}=
+\begin{bmatrix}
+2\\-1\\3
+\end{bmatrix},
+\qquad
+\vec{v}=
+\begin{bmatrix}
+1\\4\\2
+\end{bmatrix},
+$$
+
+$$
+S(\vec{u})=
+\begin{bmatrix}
+0&-3&-1\\
+3&0&-2\\
+1&2&0
+\end{bmatrix},
+\qquad
+S(\vec{u})\vec{v}=
+\begin{bmatrix}
+-14\\-1\\9
+\end{bmatrix}
+=
+\vec{u}\times\vec{v}.
+$$
+
+:::
 
 ---
 
@@ -372,7 +402,7 @@ $$
 
 ---
 
-## Valores propios
+## Valores y vectores propios
 
 Sea $A\in\mathbb{R}^{n\times n}$.
 
@@ -385,16 +415,13 @@ $$
 **Condición equivalente:**
 
 $$
-\det(A-\lambda I_n)=0.
+\det(\lambda I_n-A)=0.
 $$
 
-donde $\det(A-\lambda I_n)$ es el polinomio característico de $A$.
+donde $\det(\lambda I_n-A)$ es el polinomio característico de $A$.
 
----
 
-## Vectores propios
-
-Sea $A\in\mathbb{R}^{n\times n}$.
+::: {.fragment}
 
 Si $\lambda$ es un valor propio de $A$, entonces todo vector no nulo $\vec{v}\in\mathbb{R}^n$ que cumple
 
@@ -410,9 +437,81 @@ $$
 E_\lambda=\ker(A-\lambda I_n).
 $$
 
+:::
 
 
-##
+---
+
+## Ejemplo: valores y vectores propios
+
+Sea
+
+$$
+A=
+\begin{bmatrix}
+2&0\\
+0&3
+\end{bmatrix}.
+$$
+
+Como
+
+$$
+\det(\lambda I-A)=
+\begin{vmatrix}
+\lambda-2&0\\
+0&\lambda-3
+\end{vmatrix}
+=(\lambda-2)(\lambda-3),
+$$
+
+los valores propios son
+
+$$
+\lambda_1=2,\qquad \lambda_2=3.
+$$
+
+::: {.fragment}
+
+Para $\lambda_1=2$,
+
+$$
+(2I-A)\vec{v}=0
+\quad\Longrightarrow\quad
+\vec{v}=
+\alpha
+\begin{bmatrix}
+1\\0
+\end{bmatrix},
+\qquad
+E_2=\mathrm{span}\left\{
+\begin{bmatrix}
+1\\0
+\end{bmatrix}
+\right\}.
+$$
+
+Para $\lambda_2=3$,
+
+$$
+(3I-A)\vec{v}=0
+\quad\Longrightarrow\quad
+\vec{v}=
+\beta
+\begin{bmatrix}
+0\\1
+\end{bmatrix},
+\qquad
+E_3=\mathrm{span}\left\{
+\begin{bmatrix}
+0\\1
+\end{bmatrix}
+\right\}.
+$$
+
+:::
+
+---
 
 ::: {.center-vertical}
 
@@ -460,6 +559,10 @@ $$
     \ls{i}{\vec{x}}\times\ls{i}{\vec{y}}=\ls{i}{\vec{z}}.
 $$
 
+
+
+::: {.fragment}
+
 **Equivalente matricial:**
 
 Si
@@ -476,7 +579,18 @@ $$
     \det(R)=1.
 $$
 
+
+
+:::
+
+
+
 ## Marcos de referencia para satélites
+
+
+::: {.columns}
+
+::: {.column width=50%}
 
 Un marco de referencia provee un sistema cartesiano para expresar coordenadas de vectores en el espacio. Mediante estos, es posible describir la orientación de un cuerpo.
 
@@ -490,11 +604,22 @@ Con ello, podemos cuantificar la orientación mediante un parámetro que describ
 
 Para un satélite, es común definir los siguientes marcos de referencia:
 
-##
+:::
+
+::: {.column width=50%}
 
 ![](/Figures/c2/frame_empty.svg){width=100% fig-align="center"}
 
+:::
+
+:::
+
 ## Marco inercial geocéntrico $\ls{i}{\mathcal{F}}$
+
+
+::: {.columns}
+
+::: {.column}
 
 **Centro:** $\ls{i}{O}$ (centro de la Tierra).
 
@@ -504,9 +629,30 @@ Para un satélite, es común definir los siguientes marcos de referencia:
 - $\ls{i}{\vec{y}}$: completa la regla de la mano derecha.
 - $\ls{i}{\vec{z}}$: apunta al eje de rotación terrestre.
 
-El adjetivo **inercial** indica que es un marco de referencia **no acelerado** (velocidad constante). Este marco inercial es una referencia constante que nos permite medir de forma absoluta la posición y velocidad angular del satélite. Es necesario para aplicar las leyes de la mecánica clásica y describir el movimiento orbital.
+El adjetivo **inercial** indica que es un marco de referencia **no acelerado** (velocidad constante). 
+
+Este marco inercial es una referencia constante que nos permite medir de forma absoluta la posición y velocidad angular del satélite. Es necesario para aplicar las leyes de la mecánica clásica y describir el movimiento orbital.
+
+:::
+
+::: {.column}
+
+![](/Figures/c2/frame_i.svg){width=100% fig-align="center"}
+
+:::
+
+:::
+
+
+
 
 ## Marco perifocal (PQW) $\ls{p}{\mathcal{F}}$
+
+
+::: {.columns}
+
+::: {.column}
+
 
 **Centro:** $\ls{p}{O}$ (centro de la Tierra).
 
@@ -518,9 +664,26 @@ El adjetivo **inercial** indica que es un marco de referencia **no acelerado** (
 
 Es el marco fundamental de la órbita, directamente relacionado con los elementos orbitales. Se usa para describir trayectorias elípticas y la geometría de la órbita en su plano. También es un marco de referencia inercial.
 
+
+:::
+
+::: {.column}
+
+![](/Figures/c2/frame_p.svg){width=100% fig-align="center"}
+
+:::
+
+:::
+
+
 ---
 
 ## Marco RSW $\ls{r}{\mathcal{F}}$
+
+
+::: {.columns}
+
+::: {.column}
 
 **Centro:** $\ls{r}{O}$ (centro de masa del satélite).
 
@@ -532,9 +695,27 @@ Es el marco fundamental de la órbita, directamente relacionado con los elemento
 
 Su origen está ligado a la posición orbital del satélite; *i.e.*, **cambia con el tiempo**.
 
+:::
+
+::: {.column}
+
+![](/Figures/c2/frame_r.svg){width=100% fig-align="center"}
+
+:::
+
+:::
+
+
+
+
 ---
 
 ## Marco orbital (Local Vertical Local Horizontal) $\ls{h}{\mathcal{F}}$
+
+
+::: {.columns}
+
+::: {.column}
 
 **Centro:** $\ls{h}{O}$ (centro de masa del satélite).
 
@@ -546,9 +727,28 @@ Su origen está ligado a la posición orbital del satélite; *i.e.*, **cambia co
 
 También llamado **LVLH**, es el marco natural para misiones que requieren apuntar instrumentos hacia la Tierra. Sirve como marco de referencia local desde la perspectiva del satélite en órbita.
 
+:::
+
+::: {.column}
+
+![](/Figures/c2/frame_h.svg){width=100% fig-align="center"}
+
+:::
+
+:::
+
+
+
+
+
 ---
 
-## Marco sujeto al cuerpo $\ls{b}{\mathcal{F}}$
+## Marco sujeto al cuerpo $\ls{b}{\mathcal{F}}$ {auto-animate=true}
+
+
+::: {.columns}
+
+::: {.column}
 
 **Centro:** $\ls{b}{O}$ (centro de masa del satélite).
 
@@ -560,11 +760,24 @@ También llamado **LVLH**, es el marco natural para misiones que requieren apunt
 
 Es el marco en el que se montan sensores y actuadores. Todos los algoritmos de control de orientación se implementan en este marco porque representa la orientación física real del vehículo espacial.
 
+:::
+
+::: {.column}
+
+![](/Figures/c2/frame_b.svg){width=100% fig-align="center"}
+
+:::
+
+:::
+
+
+
+
 ---
 
-##
+## {auto-animate=true}
 
-![](/Figures/c2/frame_b.svg){width=70% fig-align="center"}
+![](/Figures/c2/frames.svg){width=70% fig-align="center"}
 
 ---
 

@@ -41,3 +41,4 @@ format:
     slide-number: true
     transition: fade
     toc: false
+    chalkboard: true
