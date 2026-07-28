@@ -18,9 +18,87 @@ Preliminares
 
 :::
 
-## Vectores
+
+## Caso de estudio del curso
+
+
+::: {.columns}
+
+
+::: {.column width=70%}
+
+- A partir de este punto, todos los conceptos se desarrollarán tomando como caso de estudio el **movimiento rotacional de un satélite artificial** en órbita alrededor de un cuerpo centra, específicamente la Tierra.
+
+    Supondremos que:
+
+    - El satélite describe una **órbita elíptica** alrededor de cuerpo central, y este último se encuentra en **uno de los focos** de la elipse.
+    - No existen perturbaciones externas; únicamente actúa la **atracción gravitacional mutua**.
+
+    Estas hipótesis se utilizarán inicialmente como modelo de trabajo y serán justificadas más adelante en el curso.
+
+::: {.fragment}
+
+- Aunque el contexto será espacial, la mayor parte de las herramientas desarrolladas son aplicables a otros sistemas dinámicos, *e.g.*, robots manipuladores, drones, cohetes, vehículos aéreos, aeronaves, submarinos o cualquier cuerpo rígido con movimiento rotacional (sistemas acrobáticos).
+
+:::
+
+
+::: {.fragment}
+
+::: {.callout-important appearance="simple"}
+
+**Importante.** 
+
+Si en algún momento tienen dudas sobre cómo extender un resultado a otro tipo de sistemas (robots, drones, aeronaves, etc.), **o alguna otra cuestión**, no duden en preguntar.
+
+:::{.large}
+
+**La clase es para ustedes, no para mí**. 
+
+:::
+
+:::
+
+:::
+
+:::
+
+::: {.column width=30%}
+
+
+![](/Figures/c2/frame_empty.svg){width=110% fig-align="center"}
+
+:::
+
+:::
+
+
+
+---
+
+::: {.center-vertical}
+
+::: {.chapter-title}
+
+Preliminares
+
+:::
+
+<div class="chapter-line"></div>
+
+::: {.chapter-subtitle}
+
+Repaso de álgebra
 
 <div class="menu-title" style="display:none;"> ▸ Repaso de álgebra </div>
+
+:::
+
+:::
+
+
+## Vectores
+
 
 ::: {.columns}
 ::: {.column width="70%"}
@@ -69,7 +147,7 @@ $o_x$
 ```{ojs}
 viewof ox = Inputs.range([-5, 5], {value: 0, step: 0.1})
 ```
-$v_y$
+$o_y$
 ```{ojs}
 viewof oy = Inputs.range([-5, 5], {value: 0, step: 0.1})
 ```
@@ -536,7 +614,6 @@ Marcos de referencia
 
 ##
 
-![](Figures/c1/closeloop.svg){width=100% fig-align="center"}
 
 ## Marco de referencia
 
@@ -602,7 +679,17 @@ En general, es necesario definir:
 
 Con ello, podemos cuantificar la orientación mediante un parámetro que describa qué tan inclinado está el marco sujeto al cuerpo con respecto a otro marco.
 
-Para un satélite, es común definir los siguientes marcos de referencia:
+
+::: {.fragment}
+
+:::{.definition-block}
+ **Caso de estudio del curso**
+
+Vamos a estudiar los marcos de referencia necesarios para describir el movimiento rotacional de un satélite orbitando a la Tierra. 
+
+:::
+
+:::
 
 :::
 
@@ -806,10 +893,16 @@ Matrices de rotación
 
 ::: {.column width="45%"}
 
-Sea el marco de referencia $\ls{1}{\mathcal{F}}$ y el marco de referencia $\ls{2}{\mathcal{F}}$, el cual puede obtenerse al girar el sistema $\ls{1}{\mathcal{F}}$ sobre el eje $\ls{1}{\vec{z}}$ en un ángulo $\theta_1$. Las coordenadas del punto $p$ en el marco $\ls{1}{\mathcal{F}}$ son
+Sea el marco de referencia $\ls{1}{\mathcal{F}}$ y el marco de referencia $\ls{2}{\mathcal{F}}$, el cual puede obtenerse al girar el sistema $\ls{1}{\mathcal{F}}$ sobre el eje $\ls{1}{\vec{z}}$ en un ángulo $\theta_1$.
+
+
+
+::: {.fragment}
+
+Las coordenadas del punto $p$ en el marco $\ls{1}{\mathcal{F}}$ son
 
 $$
-    \ls{1}\vec{p}=
+    \ls{1}\vec{\rho}=
     \begin{bmatrix}
         \ls{1}p_x\\
         \ls{1}p_y\\
@@ -823,10 +916,15 @@ $$
     \end{bmatrix}
 $$ {#eq-1p}
 
+:::
+
+
+::: {.fragment}
+
 y en el marco $\ls{2}{\mathcal{F}}$ son
 
 $$
-    \ls{2}\vec{p}=
+    \ls{2}\vec{\rho}=
     \begin{bmatrix}
         \ls{2}p_x\\
         \ls{2}p_y\\
@@ -839,6 +937,9 @@ $$
         0
     \end{bmatrix}
 $$
+
+:::
+
 
 :::
 
@@ -859,7 +960,7 @@ $$
 ::: {.column width="45%"}
 
 $$
-    \ls{2}\vec{p}=
+    \ls{2}\vec{\rho}=
     \begin{bmatrix}
         r(\cos\theta_2\cos\theta_1+\sin\theta_2\sin\theta_1)\\
         r(\sin\theta_2\cos\theta_1-\cos\theta_2\sin\theta_1)\\
@@ -867,10 +968,10 @@ $$
     \end{bmatrix}
 $$ {#eq-2p}
 
-Sustituyendo la expresión anterior se obtiene
+Sustituyendo las componentes de $\ls{1}\vec{\rho}$ en la expresión anterior se obtiene
 
 $$
-    \ls{2}\vec{p}=
+    \ls{2}\vec{\rho}=
     \begin{bmatrix}
         \ls{1}p_x\cos\theta_1+\ls{1}p_y\sin\theta_1\\
         \ls{1}p_y\cos\theta_1-\ls{1}p_x\sin\theta_1\\
@@ -881,13 +982,13 @@ $$
 La relación entre las coordenadas del punto $p$ en los marcos $\ls{1}{\mathcal{F}}$ y $\ls{2}{\mathcal{F}}$ puede escribirse matricialmente como
 
 $$
-    \ls{2}\vec{p}=
+    \ls{2}\vec{\rho}=
     \begin{bmatrix}
         \cos\theta_1 & \sin\theta_1 & 0\\
         -\sin\theta_1 & \cos\theta_1 & 0\\
         0 & 0 & 1
     \end{bmatrix}
-    \ls{1}\vec{p}
+    \ls{1}\vec{\rho}
 $$
 
 :::
@@ -905,10 +1006,10 @@ $$
 ##
 
 $$
-    \ls{2}\vec{p}
+    \ls{2}\vec{\rho}
     =
     \ls{2}R_{1}
-    \ls{1}\vec{p}
+    \ls{1}\vec{\rho}
 $$
 
 donde
@@ -937,7 +1038,7 @@ $$
 
 ---
 
-- Dado que estamos considerando marcos de referencia con bases ortonormales, la norma de los vectores de las bases es igual a $1$, es decir,
+- Dado que estamos considerando marcos de referencia con bases ortonormales, la norma de los vectores de las bases es igual a $1$, *i.e.*,
 
 $$
     \|\ls{1}\vec{x}\|=\|\ls{1}\vec{y}\|=\|\ls{1}\vec{z}\|=
@@ -962,6 +1063,12 @@ $$
 
 ##
 
+
+::: {.columns}
+
+::: {.column}
+
+
 - Las matrices de rotación forman un grupo con respecto a la multiplicación matricial. Dicho grupo es conocido como **grupo especial ortonormal de orden 3** y se denota como $SO(3)$, el cual cumple con las siguientes propiedades.
 
   Sea $R_i\in SO(3)$:
@@ -971,9 +1078,53 @@ $$
   - $R_1R_2\in SO(3)$.
   - Las columnas y los renglones de $R$ tienen norma unitaria y son mutuamente ortogonales entre sí.
 
-  Es decir, las columnas de $R$ forman una base ortonormal derecha en $\mathbb{R}^3$.
+  *i.e.*, las columnas de $R$ forman una base ortonormal derecha en $\mathbb{R}^3$.
 
-- Note además que para la matriz de rotación $\ls{2}R_1$, cada columna corresponde a las componentes de los vectores de la base $\ls{1}{\mathcal{F}}$ expresados en la base $\ls{2}{\mathcal{F}}$ y, viceversa, cada renglón corresponde a las componentes de los vectores de la base $\ls{2}{\mathcal{F}}$ expresados en la base $\ls{1}{\mathcal{F}}$.
+
+::: {.fragment}
+
+- La matriz de rotación $\ls{2}R_{1}^\T$ es igual a la matriz de rotación del marco $\ls{2}{\mathcal{F}}$ al marco $\ls{1}{\mathcal{F}}$, *i.e.*
+
+$$
+\ls{2}R_{1}^\top=\ls{1}R_{2}
+$$
+
+:::
+
+
+::: {.fragment}
+
+- Note además que para la matriz de rotación $\ls{2}R_1$, cada columna corresponde a las componentes de los vectores de la base $\ls{1}{\mathcal{F}}$ expresados en la base $\ls{2}{\mathcal{F}}$, y viceversa, cada renglón corresponde a las componentes de los vectores de la base $\ls{2}{\mathcal{F}}$ expresados en la base $\ls{1}{\mathcal{F}}$.
+
+:::
+
+
+
+
+
+:::
+
+::: {.column}
+
+![](/Figures/c2/2drm.svg){width=100%}
+
+
+$$
+\ls{2}R_{1}=
+    \begin{bmatrix}
+        \cos\theta_1 & \sin\theta_1 & 0\\
+        -\sin\theta_1 & \cos\theta_1 & 0\\
+        0 & 0 & 1
+    \end{bmatrix}
+$$
+
+
+:::
+
+:::
+
+
+
 
 ---
 
@@ -1016,56 +1167,223 @@ $$
 
 ---
 
+
+
 ## Composición de matrices de rotación
+
+::: {.incremental}
 
 - Una **rotación general** es aquella que no necesariamente está alineada con un eje del marco de referencia. Estas pueden construirse como la composición de varias matrices de rotación.
 
 - Matemáticamente, la composición se expresa como un producto de matrices de rotación:
 
-$$
-    \ls{n}R_0
-    =
-    \ls{n}R_{n-1}
-    \ls{n-1}R_{n-2}
-    \cdots
-    \ls{2}R_1
-    \ls{1}R_0
-    =
-    \prod_{j=0}^{n-1}\ls{j+1}R_j
-$$
+    $$
+        \ls{n}R_0
+        =
+        \ls{n}R_{n-1}
+        \ls{n-1}R_{n-2}
+        \cdots
+        \ls{2}R_1
+        \ls{1}R_0
+        =
+        \prod_{j=0}^{n-1}\ls{j+1}R_j
+    $$
 
-donde cada $\ls{j+1}R_j$ corresponde a una rotación entre el marco de referencia $j+1$ y el marco de referencia $j$.
+    donde cada $\ls{j+1}R_j$ corresponde a una rotación entre el marco de referencia $j+1$ y el marco de referencia $j$.
 
 - El orden de multiplicación es esencial: la composición de rotaciones no es conmutativa.
 
 - Así, cualquier orientación en el espacio puede obtenerse mediante una secuencia adecuada de rotaciones.
 
----
-
-## Secuencias de rotaciones elementales
-
 - Toda rotación general en $\mathbb{R}^3$ puede describirse como el producto de tres rotaciones elementales.
 
 - Existen 12 posibles secuencias según el orden de los ejes:
 
-$$
-    ZXZ,\;
-    ZYZ,\;
-    XYX,\;
-    XZX,\;
-    YXY,\;
-    YZY,\;
-    XYZ,\;
-    XZY,\;
-    YXZ,\;
-    YZX,\;
-    ZXY,\;
-    ZYX.
-$$
+    $$
+        ZXZ,\;
+        ZYZ,\;
+        XYX,\;
+        XZX,\;
+        YXY,\;
+        YZY,\;
+        XYZ,\;
+        XZY,\;
+        YXZ,\;
+        YZX,\;
+        ZXY,\;
+        ZYX.
+    $$
 
 - Estas secuencias definen diferentes **convenciones de parametrización** de la rotación, *e.g.* ángulos de Euler y ángulos de Tait-Bryan (*roll-pitch-yaw*).
 
+:::
+
+## Ejemplo: composición de matrices
+
+Sean
+
+$$
+{}^{2}R_{1}=
+\begin{bmatrix}
+0&-1&0\\
+1&0&0\\
+0&0&1
+\end{bmatrix},
+\qquad
+{}^{1}R_{0}=
+\begin{bmatrix}
+1&0&0\\
+0&0&-1\\
+0&1&0
+\end{bmatrix}.
+$$
+
+La rotación total es
+
+$$
+{}^{2}R_0={}^{2}R_{1}\,{}^{1}R_{0}.
+$$
+
+::: {.fragment}
+
+Al efectuar la multiplicación,
+
+$$
+{}^{2}R_0=
+\begin{bmatrix}
+0&0&1\\
+1&0&0\\
+0&1&0
+\end{bmatrix}.
+$$
+
+La orientación final depende del orden de multiplicación.
+
+:::
+
+
+## Ejemplo: secuencia ZXZ
+
+Considérese la secuencia de Euler
+
+$$
+{}^{3}R_0=
+R_z(30^\circ)\,
+R_x(45^\circ)\,
+R_z(60^\circ).
+$$
+
+::: {.fragment}
+
+Las rotaciones elementales son
+
+$$
+R_z(30^\circ)=
+\begin{bmatrix}
+\frac{\sqrt3}{2}&\frac12&0\\
+-\frac12&\frac{\sqrt3}{2}&0\\
+0&0&1
+\end{bmatrix},
+\qquad
+R_x(45^\circ)=
+\begin{bmatrix}
+1&0&0\\
+0&\frac{\sqrt2}{2}&\frac{\sqrt2}{2}\\
+0&-\frac{\sqrt2}{2}&\frac{\sqrt2}{2}
+\end{bmatrix},
+\qquad
+R_z(60^\circ)=
+\begin{bmatrix}
+\frac12&\frac{\sqrt3}{2}&0\\
+-\frac{\sqrt3}{2}&\frac12&0\\
+0&0&1
+\end{bmatrix}.
+$$
+
+Por tanto,
+
+$$
+{}^{3}R_0=
+R_z(30^\circ)\,
+R_x(45^\circ)\,
+R_z(60^\circ)=
+\begin{bmatrix}
+\dfrac{2\sqrt3-\sqrt6}{8} & \dfrac{6+\sqrt2}{8} & \dfrac{\sqrt2}{4}\\[6pt]
+-\dfrac{2+3\sqrt2}{8} & \dfrac{\sqrt6-2\sqrt3}{8} & \dfrac{\sqrt6}{4}\\[6pt]
+\dfrac{\sqrt6}{4} & -\dfrac{\sqrt2}{4} & \dfrac{\sqrt2}{2}
+\end{bmatrix}
+$$
+:::
+
+
+
+
+
+
+
 ---
+
+La rotación inversa se obtiene mediante la transpuesta:
+
+$$
+{}^{0}R_{3}=({}^{3}R_{0})^\top
+=\left(R_z(30^\circ)\,R_x(45^\circ)\,R_z(60^\circ)\right)^\top.
+$$
+
+::: {.fragment}
+
+
+Utilizando $(AB)^\top=B^\top A^\top$,
+
+$$
+{}^{0}R_{3}
+=
+R_z(-60^\circ)\,
+R_x(-45^\circ)\,
+R_z(-30^\circ),
+$$
+
+donde 
+
+$$
+R_z(-30^\circ)=
+\begin{bmatrix}
+\frac{\sqrt3}{2}&-\frac12&0\\
+\frac12&\frac{\sqrt3}{2}&0\\
+0&0&1
+\end{bmatrix},
+\qquad
+R_x(-45^\circ)=
+\begin{bmatrix}
+1&0&0\\
+0&\frac{\sqrt2}{2}&-\frac{\sqrt2}{2}\\
+0&\frac{\sqrt2}{2}&\frac{\sqrt2}{2}
+\end{bmatrix},
+\qquad
+R_z(-60^\circ)=
+\begin{bmatrix}
+\frac12&-\frac{\sqrt3}{2}&0\\
+\frac{\sqrt3}{2}&\frac12&0\\
+0&0&1
+\end{bmatrix}.
+$$
+
+Por lo tanto 
+
+$$
+{}^{0}R_{3}
+=
+\begin{bmatrix}
+\dfrac{2\sqrt3-\sqrt6}{8} & -\dfrac{2+3\sqrt2}{8} & \dfrac{\sqrt6}{4}\\[6pt]
+\dfrac{6+\sqrt2}{8} & \dfrac{\sqrt6-2\sqrt3}{8} & -\dfrac{\sqrt2}{4}\\[6pt]
+\dfrac{\sqrt2}{4} & \dfrac{\sqrt6}{4} & \dfrac{\sqrt2}{2}
+\end{bmatrix}.
+$$
+
+:::
+
+---
+
 
 ## Relación entre $\ls{i}{\mathcal{F}}$ y $\ls{p}{\mathcal{F}}$
 
@@ -1091,7 +1409,7 @@ $$
 
 ---
 
-## Relación entre $\ls{i}{\mathcal{F}}$ y $\ls{p}{\mathcal{F}}$
+## Relación entre $\ls{p}{\mathcal{F}}$ y $\ls{r}{\mathcal{F}}$
 
 ![](/Figures/c2/i2p4.svg){width=100% fig-align="center"}
 
@@ -1118,37 +1436,40 @@ Elementos orbitales
 
 ##
 
-::: {.columns}
-
-::: {.column width="60%"}
-
 - Los **elementos orbitales** (o parámetros keplerianos) son seis variables que permiten describir de manera única la trayectoria de un satélite orbitando alrededor de un cuerpo central.
 
 - En particular, los elementos orbitales permiten definir:
 
-  1. La **<span style="color:red">forma y tamaño</span>** de la órbita.
-  2. La **<span style="color:teal">orientación</span>** de la órbita.
-  3. La **<span style="color:blue">posición instantánea</span>** del cuerpo en su trayectoria.
+  - La **<span style="color:red">forma y tamaño</span>** de la órbita.
+
+    ::: {.text-center .xlarge}
+
+    <span style="color:red">$a,e$</span>
+
+    :::
+
+  - La **<span style="color:teal">orientación</span>** de la órbita.
+
+    ::: {.text-center .xlarge}
+
+    <span style="color:teal">$i,\Omega,\omega$</span>
+
+    :::
+
+  - La **<span style="color:blue">posición instantánea</span>** del cuerpo en su trayectoria.
+
+    ::: {.text-center .xlarge}
+
+    <span style="color:blue">$\nu(t)$</span>
+
+    :::
 
 - Estos seis parámetros son la base del análisis orbital.
 
-:::
 
-::: {.column width="40%"}
 
-::: {.text-center .xlarge}
 
-<span style="color:red">$a,e$</span>
 
-<span style="color:teal">$i,\Omega,\omega$</span>
-
-<span style="color:blue">$\nu(t)$</span>
-
-:::
-
-:::
-
-:::
 
 ---
 
@@ -1160,12 +1481,20 @@ Elementos orbitales
 
 La **forma** y el **tamaño** de una órbita se determinan a partir de:
 
+
+::: {.fragment}
+
 - La <span style="color:red">**excentricidad** $e$</span> mide el grado de deformación de una sección cónica con respecto a una circunferencia. Según el valor de $e$:
 
   - $e=0$: órbita circular.
   - $0<e<1$: órbita elíptica.
   - $e=1$: parábola (caso límite de escape).
   - $e>1$: hipérbola (órbita de escape).
+
+:::
+
+
+::: {.fragment}
 
 - En el caso de órbitas elípticas, el <span style="color:red">**semieje mayor** $a$</span> determina su tamaño.
 
@@ -1176,6 +1505,8 @@ $$
 $$
 
 donde $c$ es la distancia del centro al foco y $b$ es el semieje menor.
+
+:::
 
 :::
 
@@ -1203,11 +1534,17 @@ donde $c$ es la distancia del centro al foco y $b$ es el semieje menor.
 
 La **orientación de la órbita** se determina con tres ángulos:
 
+:::{.incremental}
+
 - <span style="color:teal">**Longitud del nodo ascendente** $\Omega\in[0,2\pi)$</span>: ángulo en el plano de referencia entre la dirección de referencia y la línea de nodos.
+  <div class="vspace-3"></div>
 
 - <span style="color:teal">**Inclinación** $i\in[0,\pi]$</span>: ángulo entre el *plano orbital* y el *plano de referencia*.
+  <div class="vspace-3"></div>
 
 - <span style="color:teal">**Argumento del periapsis** $\omega\in[0,2\pi)$</span>: ángulo en el plano orbital entre el nodo ascendente y el periapsis.
+
+:::
 
 :::
 
@@ -1229,7 +1566,11 @@ La **orientación de la órbita** se determina con tres ángulos:
 
 La **posición instantánea** del cuerpo en su órbita se describe con la <span style="color:blue">**anomalía verdadera** $\nu(t)$</span>.
 
+
+:::{.incremental}
 - La anomalía verdadera $\nu(t)$ es el ángulo entre el periapsis y la posición actual del satélite, medido en el plano orbital desde el foco donde se encuentra el cuerpo central.
+
+    <div class="vspace-3"></div>
 
 - En lugar de $\nu(t)$, también pueden emplearse otras variables para describir la posición:
 
@@ -1240,9 +1581,13 @@ La **posición instantánea** del cuerpo en su órbita se describe con la <span 
 
 :::
 
+:::
+
 ---
 
 ##
+
+
 
 - La relación entre el marco de referencia inercial $\ls{i}{\mathcal{F}}$ y el marco perifocal $\ls{p}{\mathcal{F}}$ está dada por la matriz de rotación
 
@@ -1250,21 +1595,35 @@ $$
     \ls{p}R_i=R_z(\omega)\,R_x(i)\,R_z(\Omega)
 $${#eq-Ri2Rp}
 
+
 donde $R_x(\cdot)$ y $R_z(\cdot)$ son las matrices de rotación elementales alrededor de los ejes $x$ y $z$, respectivamente.
+
+<div class="vspace-3"></div>
+
+
+:::{.fragment}
 
 - Mientras que la relación entre el marco perifocal $\ls{p}{\mathcal{F}}$ y el marco RSW $\ls{r}{\mathcal{F}}$ está dada por la matriz de rotación
 
-$$
-\ls{r}R_p(t)=R_z(\nu(t))
-$$
+    $$
+    \ls{r}R_p(t)=R_z(\nu(t))
+    $$
 
-<span style="color:red">**La matriz de rotación $\ls{p}R_i$ es constante en el tiempo, mientras que la matriz de rotación $\ls{r}R_p$ varía con el tiempo a medida que cambia la anomalía verdadera $\nu(t)$.**</span>
-
-::: {.text-center .xlarge}
-
-<span style="color:blue">**¿Cómo se calcula $\nu(t)$?**</span>
+    <span style="color:red">**La matriz de rotación $\ls{p}R_i$ es constante en el tiempo, mientras que la matriz de rotación $\ls{r}R_p$ varía con el tiempo a medida que cambia la anomalía verdadera $\nu(t)$.**</span>
 
 :::
+
+::: {.fragment style="display:flex;justify-content:center;"}
+
+::: {.xlarge}
+
+<span style="color:blue">**Y ... ¿Cómo se calcula $\nu(t)$?**</span>
+
+:::
+
+:::
+
+
 
 ##
 
@@ -1314,29 +1673,14 @@ El problema de los dos cuerpos
 
 ::: {.column width="50%"}
 
-Sea un marco de referencia inercial $\ls{i}{\mathcal{F}}$ con origen en el centro de masa del cuerpo central, cuyos ejes están sujetos a una estrella fija en el espacio.
+- Sea un marco de referencia inercial $\ls{i}{\mathcal{F}}$ con origen en el centro de masa del cuerpo central, cuyos ejes están sujetos a una estrella fija en el espacio.
 
-Considere dos partículas de masas $m_1$ y $m_2$ que interactúan únicamente entre sí bajo la influencia de la gravedad. Sean $\ls{i}\vec{r}_1$ y $\ls{i}\vec{r}_2$ los vectores de posición de los centros de masa $c_1$ y $c_2$, respectivamente.
+- Considere dos partículas de masas $m_1$ y $m_2$ que interactúan únicamente entre sí bajo la influencia de la gravedad. Sean $\ls{i}\vec{r}_1$ y $\ls{i}\vec{r}_2$ los vectores de posición de los centros de masa $c_1$ y $c_2$, respectivamente.
 
-:::
 
-:::
+::: {.fragment}
 
----
-
-##
-
-::: {.columns}
-
-::: {.column width="50%"}
-
-![](/Figures/c2/two_body_problem_1.svg){width=100%}
-
-:::
-
-::: {.column width="50%"}
-
-El vector de posición del baricentro $c_{12}$ (o centro de masa generalizado) del sistema de dos partículas está dado por
+- El vector de posición del baricentro $c_{12}$ (o centro de masa generalizado) del sistema de dos partículas está dado por
 
 $$
     \begin{aligned}
@@ -1349,6 +1693,13 @@ $$
     \end{aligned}
 $$
 
+
+
+
+
+:::
+
+
 :::
 
 :::
@@ -1367,7 +1718,26 @@ $$
 
 ::: {.column width="50%"}
 
-El vector de velocidad absoluta del baricentro $c_{12}$ está dado por
+- El vector de posición relativa de $m_2$ con respecto a $m_1$ está dado por
+
+$$
+    \ls{i}\vec{r}_{12}
+    =
+    \ls{i}\vec{r}_2-\ls{i}\vec{r}_1
+$$
+
+y su vector unitario es
+
+$$
+    \ls{i}\hat{r}_{12}
+    =
+    \frac{\ls{i}\vec{r}_{12}}{\|\vec{r}_{12}\|}
+$$
+
+
+::: {.fragment}
+
+- El vector de velocidad absoluta^[El adjetivo *absoluta* indica que la cantidad está expresada respecto de un marco de referencia inercial.] del baricentro $c_{12}$ está dado por
 
 $$
     \ls{i}\vec{v}_c=
@@ -1383,41 +1753,9 @@ $$
     \frac{m_2}{m_1+m_2}\ls{i}\ddot{\vec{r}}_2
 $$ {#eq-ac_tbp}
 
-[^1]: El adjetivo *absoluto* significa que las cantidades están medidas en un marco inercial.
 
 :::
 
-:::
-
----
-
-##
-
-::: {.columns}
-
-::: {.column width="50%"}
-
-![](/Figures/c2/two_body_problem_1.svg){width=100%}
-
-:::
-
-::: {.column width="50%"}
-
-El vector de posición relativa de $m_2$ con respecto a $m_1$ está dado por
-
-$$
-    \ls{i}\vec{r}_{12}
-    =
-    \ls{i}\vec{r}_2-\ls{i}\vec{r}_1
-$$
-
-y su vector unitario es
-
-$$
-    \ls{i}\hat{r}_{12}
-    =
-    \frac{\ls{i}\vec{r}_{12}}{\|\ls{i}\vec{r}_{12}\|}
-$$
 
 :::
 
@@ -1437,31 +1775,39 @@ $$
 
 ::: {.column width="50%"}
 
-La partícula $m_2$ ejerce una fuerza gravitacional sobre la partícula $m_1$ dada por la ley de gravitación universal de Newton
+- La partícula $m_2$ ejerce una fuerza gravitacional sobre la partícula $m_1$ dada por la ley de gravitación universal de Newton
 
-$$
-    \ls{i}\vec{f}_{12}
-    =
-    G\frac{m_1m_2}{\|\ls{i}\vec{r}_{12}\|^2}\ls{i}\hat{r}_{12}
-$$
+    $$
+        \ls{i}\vec{f}_{12}
+        =
+        G\frac{m_1m_2}{\|\vec{r}_{12}\|^2}\ls{i}\hat{r}_{12}
+    $$
 
-donde
+    donde
 
-$$
-G=6.67430\times10^{-11}\;\mathrm{m^3\,kg^{-1}\,s^{-2}}.
-$$
+    $$
+    G=6.67430\times10^{-11}\;\mathrm{m^3\,kg^{-1}\,s^{-2}}.
+    $$
 
-Dada la tercera ley de Newton, la partícula $m_1$ ejerce una fuerza sobre la partícula $m_2$ dada por
 
-$$
-    \ls{i}\vec{f}_{21}
-    =
-    G\frac{m_1m_2}{\|\ls{i}\vec{r}_{12}\|^2}\ls{i}\hat{r}_{12}
-    =
-    -\ls{i}\vec{f}_{12}
-$$
+::: {.fragment}
+
+
+- Dada la tercera ley de Newton, la partícula $m_1$ ejerce una fuerza sobre la partícula $m_2$ dada por
+
+    $$
+        \ls{i}\vec{f}_{21}
+        =
+        G\frac{m_1m_2}{\|\vec{r}_{12}\|^2}\ls{i}\hat{r}_{12}
+        =
+        -\ls{i}\vec{f}_{12}
+    $$
 
 :::
+
+:::
+
+
 
 :::
 
@@ -1479,33 +1825,47 @@ $$
 
 ::: {.column width="50%"}
 
-Por otro lado, la segunda ley de Newton establece que la fuerza total aplicada sobre una partícula es igual a la variación de su momento lineal, es decir,
+- Por otro lado, la segunda ley de Newton establece que la fuerza total aplicada sobre una partícula es igual a la variación de su momento lineal, *i.e.*,
 
-$$
-    \ls{i}\vec{f}
-    =
-    \ls{i}\dot{\vec{p}}
-$$
+    $$
+        \ls{i}\vec{f}
+        =
+        \ls{i}\dot{\vec{\rho}}
+    $$
 
-donde
+    donde
 
-$$
-    \ls{i}\vec{p}
-    =
-    m\ls{i}\dot{\vec{r}}
-$$
+    $$
+        \ls{i}\vec{\rho}
+        =
+        m\ls{i}\dot{\vec{r}}
+    $$
 
-es el momento lineal.
+    es el momento lineal.
 
-Para una partícula con masa constante, la segunda ley de Newton se puede escribir como
 
-$$
-    \ls{i}\vec{f}
-    =
-    m\ls{i}\ddot{\vec{r}}
-    =
-    m\ls{i}\vec{a}.
-$$
+::: {.incremental}
+
+- Para una partícula con masa constante, la segunda ley de Newton se puede escribir como
+
+  $$
+      \ls{i}\vec{f}
+      =
+      m\ls{i}\ddot{\vec{r}}
+      =
+      m\ls{i}\vec{a}.
+  $$
+
+- En nuestro caso, las fuerzas totales que actúan sobre las partículas $m_1$ y $m_2$ son
+
+    $$
+        \ls{i}\vec{f}_{21}=m_1\ls{i}\ddot{\vec{r}}_1,
+        \qquad
+        \ls{i}\vec{f}_{12}=m_2\ls{i}\ddot{\vec{r}}_2
+    $$
+
+
+:::
 
 :::
 
@@ -1522,14 +1882,6 @@ $$
 :::
 
 ::: {.column width="50%"}
-
-En nuestro caso, las fuerzas totales que actúan sobre las partículas $m_1$ y $m_2$ son
-
-$$
-    \ls{i}\vec{f}_{21}=m_1\ls{i}\ddot{\vec{r}}_1,
-    \qquad
-    \ls{i}\vec{f}_{12}=m_2\ls{i}\ddot{\vec{r}}_2
-$$
 
 Sustituyendo en @eq-ac_tbp se obtiene
 
@@ -1546,31 +1898,18 @@ $$
     \end{aligned}
 $$
 
-:::
+
+:::{.incremental}
+
+- Por lo tanto, <span style="color:teal">**el baricentro $c_{12}$ no acelera**,</span> *i.e.*, se mueve en una línea recta con velocidad constante o está en reposo.
+
+- Esto implica que el movimiento de las partículas $m_1$ y $m_2$ puede analizarse en un marco de referencia inercial con <span style="color:teal">**origen en el baricentro $c_{12}$**</span>.
+
+- Si ambos cuerpos se aceleran mutuamente bajo la influencia de la gravedad...
+
+    <span style="color:red">**¿Por qué hemos colocado el origen de nuestro marco de referencia inercial geocéntrico en el centro de masa de la Tierra?**</span>
 
 :::
-
----
-
-##
-
-::: {.columns}
-
-::: {.column width="50%"}
-
-![](/Figures/c2/two_body_problem_1.svg){width=100%}
-
-:::
-
-::: {.column width="50%"}
-
-Por lo tanto, <span style="color:teal">**el baricentro $c_{12}$ no acelera**,</span> es decir, se mueve en una línea recta con velocidad constante o está en reposo.
-
-Esto implica que el movimiento de las partículas $m_1$ y $m_2$ puede analizarse en un marco de referencia inercial con <span style="color:teal">**origen en el baricentro $c_{12}$**</span>.
-
-Si ambos cuerpos se aceleran mutuamente bajo la influencia de la gravedad...
-
-<span style="color:red">**¿Por qué hemos colocado el origen de nuestro marco de referencia inercial geocéntrico en el centro de masa de la Tierra?**</span>
 
 :::
 
@@ -1590,22 +1929,28 @@ Si ambos cuerpos se aceleran mutuamente bajo la influencia de la gravedad...
 
 ::: {.column width="50%"}
 
-Dado que $m_1\gg m_2$, se puede suponer que
+- Dado que $m_1\gg m_2$, se puede suponer que
 
-$$
-    \begin{aligned}
-        \ls{i}\vec{r}_c
-        &=
-        \frac{m_1}{m_1+m_2}\ls{i}\vec{r}_1+
-        \frac{m_2}{m_1+m_2}\ls{i}\vec{r}_2\\
-        &\approx
-        \ls{i}\vec{r}_1.
-    \end{aligned}
-$$
+    $$
+        \begin{aligned}
+            \ls{i}\vec{r}_c
+            &=
+            \frac{m_1}{m_1+m_2}\ls{i}\vec{r}_1+
+            \frac{m_2}{m_1+m_2}\ls{i}\vec{r}_2\\
+            &\approx
+            \ls{i}\vec{r}_1.
+        \end{aligned}
+    $$
 
-Bajo esta suposición, el baricentro $c_{12}$ coincide con el centro de masa $c_1$. Con ello, podemos reducir el problema de los dos cuerpos a un problema de un solo cuerpo, donde la partícula $m_2$ se mueve bajo la influencia de la gravedad ejercida por la partícula $m_1$, la cual permanece en reposo en el origen del marco de referencia inercial.
+    Bajo esta suposición, el baricentro $c_{12}$ coincide con el centro de masa de la partícula $m_1$. 
 
-A este caso se le conoce como el **problema de una fuerza central**.
+:::{.incremental}
+
+- Con ello, podemos reducir el problema de los dos cuerpos a un problema de un solo cuerpo, donde la partícula $m_2$ se mueve bajo la influencia de la gravedad ejercida por la partícula $m_1$, la cual permanece en reposo en el origen del marco de referencia inercial.
+
+- A este caso se le conoce como el **problema de una fuerza central**.
+
+:::
 
 :::
 
@@ -1659,420 +2004,294 @@ El problema de una fuerza central
 
 ::: {.column width="50%"}
 
-Considere el movimiento de la partícula $m$ bajo la influencia de la gravedad ejercida por la partícula $m_0$, la cual permanece en reposo en el origen del marco de referencia $\ls{p}\mathcal{F}$.
 
-El momento angular de la partícula $m$ con respecto al origen del marco de referencia $\ls{p}\mathcal{F}$ está dado por
+- Considere el movimiento de la partícula $m$ bajo la influencia de la gravedad ejercida por la partícula $m_0$, la cual permanece en reposo en el origen del marco de referencia $\ls{p}\mathcal{F}$.
 
-$$
-    \ls{p}\vec{h}
-    =
-    \ls{p}\vec{r}\times\ls{p}\vec{p}
-$$
+<div class="vspace-3"></div>
 
-donde $\ls{p}\vec{r}$ es el vector de posición de $m$ con respecto al origen del marco de referencia $\ls{p}\mathcal{F}$ y $\ls{p}\vec{p}=m\ls{p}\dot{\vec{r}}$ es el momento lineal de $m$.
+:::{.incremental}
 
-:::
+- El momento angular de la partícula $m$ con respecto al origen del marco de referencia $\ls{p}\mathcal{F}$ está dado por
 
-:::
-
----
-
-##
-
-::: {.columns}
-
-::: {.column width="50%"}
-
-![](/Figures/c2/central_force.svg){width=100%}
-
-:::
-
-::: {.column width="50%"}
-
-La variación del momento angular considerando $m$ constante está dada por
-
-$$
-    \begin{aligned}
-        \ls{p}\dot{\vec{h}}
-        &=
-        \ls{p}\dot{\vec{r}}\times\ls{p}\vec{p}
-        +
-        \ls{p}\vec{r}\times\ls{p}\dot{\vec{p}}\\
-        &=
-        \ls{p}\vec{v}\times m\ls{p}\vec{v}
-        +
-        \ls{p}\vec{r}\times\ls{p}\vec{f}\\
-        &=
-        \ls{p}\vec{r}\times\ls{p}\vec{f}\\
-        &=
-        \ls{p}\vec{\tau}.
-    \end{aligned}
-$$
-
-donde
-
-$$
-    \ls{p}\vec{\tau}
-    =
-    \ls{p}\vec{r}\times\ls{p}\vec{f}
-$$
-
-es el **par** (o momento de fuerza) aplicado sobre $m$ con respecto al origen del marco de referencia $\ls{p}\mathcal{F}$.
-
-:::
-
-:::
-
----
-
-##
-
-::: {.columns}
-
-::: {.column width="50%"}
-
-![](/Figures/c2/central_force.svg){width=100%}
-
-:::
-
-::: {.column width="50%"}
-
-Dado que la fuerza gravitacional es una fuerza central, es decir, actúa a lo largo de la línea que une a las partículas $m$ y $m_0$, esta se puede expresar como
-
-$$
-    \ls{p}\vec{f}
-    =
-    -G\frac{m_0m}{r^2}\ls{p}\hat{r}.
-$$
-
-donde
-
-$$
-    r=\|\ls{p}\vec{r}\|,
-    \qquad
-    \ls{p}\hat{r}=\frac{\ls{p}\vec{r}}{r}.
-$$
-
-Con ello, el par aplicado sobre $m$ con respecto al origen del marco de referencia $\ls{p}\mathcal{F}$ es
-
-$$
-    \begin{aligned}
-        \ls{p}\vec{\tau}
-        &=
-        \ls{p}\vec{r}\times\ls{p}\vec{f}\\
-        &=
-        -G\frac{m_0m}{r^2}
-        \ls{p}\vec{r}\times\ls{p}\hat{r}\\
-        &=
-        0.
-    \end{aligned}
-$$
-
-:::
-
-:::
-
-##
-
-::: {.columns}
-
-::: {.column width="50%"}
-
-![](/Figures/c2/central_force.svg){width=100%}
-
-:::
-
-::: {.column width="50%"}
-
-Con ello, la variación del momento angular de $m$ con respecto al origen del marco de referencia $\ls{p}\mathcal{F}$ es nula. Es decir, <span style="color:teal">**el momento angular de $m$ es constante en el tiempo.**</span>
-
-$$
-    \begin{aligned}
-        \ls{p}\dot{\vec{h}}&=0\\
-        \Rightarrow\qquad
-        \ls{p}\vec{h}&=\text{constante}.
-    \end{aligned}
-$$
-
-Sin embargo, esto <span style="color:red">**cumple únicamente si no existen fuerzas externas no colineales**</span> (como la resistencia atmosférica o la influencia gravitacional de otros cuerpos) que actúen sobre $m$, debido a que estas fuerzas pueden generar un par neto diferente de cero ($\ls{p}\vec{\tau}\neq0$).
-
-:::
-
-:::
-
----
-
-##
-
-::: {.columns}
-
-::: {.column width="50%"}
-
-![](/Figures/c2/central_force.svg){width=100%}
-
-:::
-
-::: {.column width="50%"}
-
-El vector unitario $\ls{r}\hat{x}$ puede representarse en coordenadas polares como
-
-$$
-    \ls{r}\hat{x}
-    =
-    \cos(\nu)\ls{p}\hat{x}
-    +
-    \sin(\nu)\ls{p}\hat{y}
-$$
-
-donde $\nu$ es el ángulo entre $\ls{p}\hat{x}$ y $\ls{r}\hat{x}$. De manera similar,
-
-$$
-    \ls{r}\hat{y}
-    =
-    -\sin(\nu)\ls{p}\hat{x}
-    +
-    \cos(\nu)\ls{p}\hat{y}.
-$$
-
-La derivada de estos vectores unitarios es
-
-$$
-    \begin{aligned}
-        \ls{r}\dot{\hat{x}}
-        &=
-        \frac{\mathrm{d}\nu}{\mathrm{d}t}\ls{r}\hat{y}\\
-        \ls{r}\dot{\hat{y}}
-        &=
-        -\frac{\mathrm{d}\nu}{\mathrm{d}t}\ls{r}\hat{x}.
-    \end{aligned}
-$$
-
-:::
-
-:::
-
----
-
-##
-
-::: {.columns}
-
-::: {.column width="50%"}
-
-![](/Figures/c2/central_force.svg){width=100%}
-
-:::
-
-::: {.column width="50%"}
-
-Con ello, el vector de posición en el marco de referencia $\ls{p}\mathcal{F}$ está dado por
-
-$$
-    \ls{p}\vec{r}
-    =
-    r\,\ls{r}\hat{x},
-$$
-
-mientras que el vector de velocidad es
-
-$$
-    \ls{p}\vec{v}
-    =
-    \ls{p}\dot{\vec{r}}
-    =
-    \frac{\mathrm{d}r}{\mathrm{d}t}\ls{r}\hat{x}
-    +
-    r\frac{\mathrm{d}\nu}{\mathrm{d}t}\ls{r}\hat{y}.
-$$
-
-El vector de aceleración es
-
-$$
-    \begin{aligned}
-        \ls{p}\vec{a}
-        &=
-        \ls{p}\ddot{\vec{r}}\\
-        &=
-        \left(
-        \frac{\mathrm{d}^2r}{\mathrm{d}t^2}
-        -
-        r\left(\frac{\mathrm{d}\nu}{\mathrm{d}t}\right)^2
-        \right)\ls{r}\hat{x}\\
-        &\quad+
-        \left(
-        2\frac{\mathrm{d}r}{\mathrm{d}t}\frac{\mathrm{d}\nu}{\mathrm{d}t}
-        +
-        r\frac{\mathrm{d}^2\nu}{\mathrm{d}t^2}
-        \right)\ls{r}\hat{y}.
-    \end{aligned}
-$$ {#eq-acc_polar}
-
-:::
-
-:::
-
----
-
-##
-
-::: {.columns}
-
-::: {.column width="50%"}
-
-![](/Figures/c2/central_force.svg){width=100%}
-
-:::
-
-::: {.column width="50%"}
-
-<span style="color:red">**A partir de aquí en adelante, vamos a considerar que la partícula $m$ tiene masa unitaria ($m=1$), y definiremos a las variables bajo esta consideración como *específicas*.**</span>
-
-La fuerza de atracción gravitacional bajo las anteriores suposiciones es
-
-$$
-    \begin{aligned}
-        \ls{p}\vec{f}
-        &=
-        \ls{p}\vec{a}\\
-        &=
-        -G\frac{m_0}{r^2}\ls{r}\hat{x}.
-    \end{aligned}
-$$ {#eq-gravity_force}
-
-Igualando las componentes de @eq-acc_polar y @eq-gravity_force se obtiene el sistema de ecuaciones diferenciales
-
-$$
-    \begin{aligned}
-        \frac{\mathrm{d}^2r}{\mathrm{d}t^2}
-        -r\left(\frac{\mathrm{d}\nu}{\mathrm{d}t}\right)^2
-        &=
-        -G\frac{m_0}{r^2},\\
-        2\frac{\mathrm{d}r}{\mathrm{d}t}\frac{\mathrm{d}\nu}{\mathrm{d}t}
-        +r\frac{\mathrm{d}^2\nu}{\mathrm{d}t^2}
-        &=
-        0.
-    \end{aligned}
-$$ {#eq-system_ode}
-
-:::
-
-:::
-
----
-
-##
-
-::: {.columns}
-
-::: {.column width="50%"}
-
-![](/Figures/c2/central_force.svg){width=100%}
-
-:::
-
-::: {.column width="50%"}
-
-Por otro lado, el momento angular específico con respecto al origen del marco de referencia $\ls{p}\mathcal{F}$ es
-
-$$
-    \begin{aligned}
+    $$
         \ls{p}\vec{h}
-        &=
-        \ls{p}\vec{r}\times\ls{p}\vec{p}\\
-        &=
-        r\ls{r}\hat{x}\times
-        \left(
+        =
+        \ls{p}\vec{r}\times\ls{p}\vec{\rho}
+    $$
+
+    donde $\ls{p}\vec{r}$ es el vector de posición de $m$ con respecto al origen del marco de referencia $\ls{p}\mathcal{F}$ y 
+    
+    $$
+        \ls{p}\vec{\rho} = m\ls{p}\dot{\vec{r}}
+    $$ 
+    
+    es el momento lineal de $m$.
+
+:::
+
+:::
+
+:::
+
+---
+
+##
+
+::: {.columns}
+
+::: {.column width="50%"}
+
+![](/Figures/c2/central_force.svg){width=100%}
+
+:::
+
+::: {.column width="50%"}
+
+- La variación del momento angular considerando $m$ constante está dada por
+
+    $$
+        \begin{aligned}
+            \ls{p}\dot{\vec{h}}
+            &=
+            \ls{p}\dot{\vec{r}}\times\ls{p}\vec{\rho}
+            +
+            \ls{p}\vec{r}\times\ls{p}\dot{\vec{\rho}}\\
+            &=
+            \ls{p}\vec{v}\times m\ls{p}\vec{v}
+            +
+            \ls{p}\vec{r}\times\ls{p}\vec{f}\\
+            &=
+            \ls{p}\vec{r}\times\ls{p}\vec{f}\\
+            &=
+            \ls{p}\vec{\tau}.
+        \end{aligned}
+    $$
+
+    donde
+
+    $$
+        \ls{p}\vec{\tau}
+        =
+        \ls{p}\vec{r}\times\ls{p}\vec{f}
+    $$
+
+    es el **par** (o momento de fuerza) aplicado sobre $m$ con respecto al origen del marco de referencia $\ls{p}\mathcal{F}$.
+
+:::
+
+:::
+
+---
+
+##
+
+::: {.columns}
+
+::: {.column width="50%"}
+
+![](/Figures/c2/central_force.svg){width=100%}
+
+:::
+
+::: {.column width="50%"}
+
+- Dado que la fuerza gravitacional es una fuerza central, *i.e.*, actúa a lo largo de la línea que une a las partículas $m$ y $m_0$, esta se puede expresar como
+
+    $$
+        \ls{p}\vec{f}
+        =
+        -G\frac{m_0m}{r^2}\ls{p}\hat{r}.
+    $$
+
+    donde
+
+    $$
+        r=\|\vec{r}\|,
+        \qquad
+        \ls{p}\hat{r}=\frac{\ls{p}\vec{r}}{r}.
+    $$
+
+
+::: {.fragment}
+
+- Con ello, el par aplicado sobre $m$ con respecto al origen del marco de referencia $\ls{p}\mathcal{F}$ es
+
+    $$
+        \begin{aligned}
+            \ls{p}\vec{\tau}
+            &=
+            \ls{p}\vec{r}\times\ls{p}\vec{f}\\
+            &=
+            -G\frac{m_0m}{r^2}
+            \ls{p}\vec{r}\times\ls{p}\hat{r}\\
+            &=
+            0.
+        \end{aligned}
+    $$
+
+:::
+
+
+
+:::
+
+:::
+
+##
+
+::: {.columns}
+
+::: {.column width="50%"}
+
+![](/Figures/c2/central_force.svg){width=100%}
+
+:::
+
+::: {.column width="50%"}
+
+- La variación del momento angular de $m$ con respecto al origen del marco de referencia $\ls{p}\mathcal{F}$ es nula. *i.e.*, <span style="color:teal">**el momento angular de $m$ es constante en el tiempo.**</span>
+
+    $$
+        \begin{aligned}
+            \ls{p}\dot{\vec{h}}&=0\\
+            \Rightarrow\qquad
+            \ls{p}\vec{h}&=\text{constante}.
+        \end{aligned}
+    $$
+
+
+::: {.fragment}
+
+- Sin embargo, esto <span style="color:red">**cumple únicamente si no existen fuerzas externas no colineales**</span> (como la resistencia atmosférica o la influencia gravitacional de otros cuerpos) que actúen sobre $m$, debido a que estas fuerzas pueden generar un par neto diferente de cero ($\ls{p}\vec{\tau}\neq0$).
+
+:::
+
+
+
+:::
+
+:::
+
+---
+
+##
+
+::: {.columns}
+
+::: {.column width="50%"}
+
+![](/Figures/c2/central_force.svg){width=100%}
+
+:::
+
+::: {.column width="50%"}
+
+- El vector unitario $\ls{r}\hat{x}$ puede representarse en coordenadas polares como
+
+    $$
+        \ls{r}\hat{x}
+        =
+        \cos(\nu)\ls{p}\hat{x}
+        +
+        \sin(\nu)\ls{p}\hat{y}
+    $$
+
+    donde $\nu$ es el ángulo entre $\ls{p}\hat{x}$ y $\ls{r}\hat{x}$. 
+
+<div class="vspace-3"></div>
+
+:::{.incremental}
+
+- De manera similar,
+
+    $$
+        \ls{r}\hat{y}
+        =
+        -\sin(\nu)\ls{p}\hat{x}
+        +
+        \cos(\nu)\ls{p}\hat{y}.
+    $$
+
+<div class="vspace-3"></div>
+
+- La derivada de estos vectores unitarios es
+
+    $$
+        \begin{aligned}
+            \ls{r}\dot{\hat{x}}
+            &=
+            \frac{\mathrm{d}\nu}{\mathrm{d}t}\ls{r}\hat{y}\\
+            \ls{r}\dot{\hat{y}}
+            &=
+            -\frac{\mathrm{d}\nu}{\mathrm{d}t}\ls{r}\hat{x}.
+        \end{aligned}
+    $$
+
+:::
+
+:::
+
+:::
+---
+
+##
+
+::: {.columns}
+
+::: {.column width="50%"}
+
+![](/Figures/c2/central_force.svg){width=100%}
+
+:::
+
+::: {.column width="50%"}
+
+- El vector de posición en el marco de referencia $\ls{p}\mathcal{F}$ está dado por
+
+    $$
+        \ls{p}\vec{r}
+        =
+        r\,\ls{r}\hat{x},
+    $$
+
+    mientras que el vector de velocidad es
+
+    $$
+        \ls{p}\vec{v}
+        =
+        \ls{p}\dot{\vec{r}}
+        =
         \frac{\mathrm{d}r}{\mathrm{d}t}\ls{r}\hat{x}
         +
-        r\frac{\mathrm{d}\nu}{\mathrm{d}t}\ls{r}\hat{y}
-        \right)\\
-        &=
-        r^2\frac{\mathrm{d}\nu}{\mathrm{d}t}
-        \,
-        \ls{r}\hat{x}\times\ls{r}\hat{y}\\
-        &=
-        r^2\frac{\mathrm{d}\nu}{\mathrm{d}t}\ls{r}\hat{z}\\
-        &=
-        \|\ls{p}\vec{h}\|\ls{r}\hat{z}.
-    \end{aligned}
-$$ {#eq-angular_momentum}
+        r\frac{\mathrm{d}\nu}{\mathrm{d}t}\ls{r}\hat{y}.
+    $$
 
-Retomando la segunda ecuación de @eq-system_ode, se obtiene
 
-$$
-    \frac{1}{r}
-    \frac{\mathrm{d}}{\mathrm{d}t}
-    \left(
-    r^2\frac{\mathrm{d}\nu}{\mathrm{d}t}
-    \right)
-    =
-    0.
-$$
+::: {.fragment}
 
-Sustituyendo @eq-angular_momentum en la ecuación anterior se obtiene
+- El vector de aceleración es
 
-$$
-    \frac{1}{r}
-    \frac{\mathrm{d}}{\mathrm{d}t}
-    \left(
-    \|\ls{p}\vec{h}\|
-    \right)
-    =
-    0.
-$$
-
-lo cual confirma que <span style="color:teal">**el momento angular es constante en el tiempo.**</span>
+    $$
+        \begin{aligned}
+            \ls{p}\vec{a}
+            &=
+            \ls{p}\ddot{\vec{r}}\\
+            &=
+            \left(
+            \frac{\mathrm{d}^2r}{\mathrm{d}t^2}
+            -
+            r\left(\frac{\mathrm{d}\nu}{\mathrm{d}t}\right)^2
+            \right)\ls{r}\hat{x}\\
+            &\quad+
+            \left(
+            2\frac{\mathrm{d}r}{\mathrm{d}t}\frac{\mathrm{d}\nu}{\mathrm{d}t}
+            +
+            r\frac{\mathrm{d}^2\nu}{\mathrm{d}t^2}
+            \right)\ls{r}\hat{y}.
+        \end{aligned}
+    $$ {#eq-acc_polar}
 
 :::
-
-:::
-
-##
-
-::: {.columns}
-
-::: {.column width="50%"}
-
-![](/Figures/c2/central_force.svg){width=100%}
-
-:::
-
-::: {.column width="50%"}
-
-Para resolver la primera ecuación de @eq-system_ode, se realiza el cambio de variable
-
-$$
-r=\frac{1}{u}.
-$$
-
-Con ello, se obtiene
-
-$$
-    \begin{aligned}
-        \frac{\mathrm{d}r}{\mathrm{d}t}
-        &=
-        -\frac{1}{u^2}\frac{\mathrm{d}u}{\mathrm{d}t}\\
-        &=
-        -\frac{1}{u^2}
-        \frac{\partial u}{\partial\nu}
-        \frac{\mathrm{d}\nu}{\mathrm{d}t}.
-    \end{aligned}
-$$
-
-Sustituyendo @eq-angular_momentum se obtiene
-
-$$
-    \begin{aligned}
-        \frac{\mathrm{d}r}{\mathrm{d}t}
-        &=
-        -\frac{1}{u^2}
-        \frac{\partial u}{\partial\nu}
-        \frac{\|\ls{p}\vec{h}\|}{r^2}\\
-        &=
-        -\|\ls{p}\vec{h}\|
-        \frac{\partial u}{\partial\nu}.
-    \end{aligned}
-$$ {#eq-drdt}
 
 :::
 
@@ -2092,40 +2311,166 @@ $$ {#eq-drdt}
 
 ::: {.column width="50%"}
 
-Derivando nuevamente con respecto al tiempo se obtiene
+<span style="color:red">**A partir de aquí, vamos a considerar que la partícula $m$ tiene masa unitaria ($m=1$), y definiremos a las variables bajo esta consideración como *específicas*.**</span>
 
-$$
-    \begin{aligned}
-        \frac{\mathrm{d}^2r}{\mathrm{d}t^2}
-        &=
-        -\frac{\mathrm{d}\|\ls{p}\vec{h}\|}{\mathrm{d}t}
-        \frac{\partial u}{\partial\nu}
-        -
-        \|\ls{p}\vec{h}\|
+:::{.incremental}
+
+- La fuerza de atracción gravitacional bajo las anteriores suposiciones es
+
+    $$
+        \begin{aligned}
+            \ls{p}\vec{f}
+            &=
+            \ls{p}\vec{a}\\
+            &=
+            -G\frac{m_0}{r^2}\ls{r}\hat{x}.
+        \end{aligned}
+    $$ {#eq-gravity_force}
+
+- Igualando las componentes de @eq-acc_polar y @eq-gravity_force se obtiene el sistema de ecuaciones diferenciales
+
+    $$
+        \begin{aligned}
+            \frac{\mathrm{d}^2r}{\mathrm{d}t^2}
+            -r\left(\frac{\mathrm{d}\nu}{\mathrm{d}t}\right)^2
+            &=
+            -G\frac{m_0}{r^2},\\
+            2\frac{\mathrm{d}r}{\mathrm{d}t}\frac{\mathrm{d}\nu}{\mathrm{d}t}
+            +r\frac{\mathrm{d}^2\nu}{\mathrm{d}t^2}
+            &=
+            0.
+        \end{aligned}
+    $$ {#eq-system_ode}
+
+:::
+
+:::
+
+:::
+
+---
+
+##
+
+::: {.columns}
+
+::: {.column width="50%"}
+
+![](/Figures/c2/central_force.svg){width=100%}
+
+:::
+
+::: {.column width="50%"}
+
+- Por otro lado, el momento angular específico con respecto al origen del marco de referencia $\ls{p}\mathcal{F}$ es
+
+    $$
+        \begin{aligned}
+            \ls{p}\vec{h}
+            &=
+            \ls{p}\vec{r}\times\ls{p}\vec{\rho}\\
+            &=
+            r\ls{r}\hat{x}\times
+            \left(
+            \frac{\mathrm{d}r}{\mathrm{d}t}\ls{r}\hat{x}
+            +
+            r\frac{\mathrm{d}\nu}{\mathrm{d}t}\ls{r}\hat{y}
+            \right)\\
+            &=
+            r^2\frac{\mathrm{d}\nu}{\mathrm{d}t}
+            \,
+            \ls{r}\hat{x}\times\ls{r}\hat{y}\\
+            &=
+            r^2\frac{\mathrm{d}\nu}{\mathrm{d}t}\ls{r}\hat{z}\\
+            &=
+            \|\vec{h}\|\ls{r}\hat{z}.
+        \end{aligned}
+    $$ {#eq-angular_momentum}
+
+:::{.incremental}
+
+- Retomando la segunda ecuación de @eq-system_ode, se obtiene
+
+    $$
+        \frac{1}{r}
         \frac{\mathrm{d}}{\mathrm{d}t}
         \left(
-        \frac{\partial u}{\partial\nu}
-        \right)\\
-        &=
-        -\|\ls{p}\vec{h}\|
-        \frac{\partial^2u}{\partial\nu^2}
-        \frac{\mathrm{d}\nu}{\mathrm{d}t}.
-    \end{aligned}
-$$
+        r^2\frac{\mathrm{d}\nu}{\mathrm{d}t}
+        \right)
+        =
+        0.
+    $$
 
-Sustituyendo nuevamente @eq-angular_momentum se obtiene
+- Sustituyendo @eq-angular_momentum en la ecuación anterior se obtiene
 
-$$
-    \begin{aligned}
-        \frac{\mathrm{d}^2r}{\mathrm{d}t^2}
-        &=
-        -\frac{\|\ls{p}\vec{h}\|^2}{r^2}
-        \frac{\partial^2u}{\partial\nu^2}\\
-        &=
-        -\|\ls{p}\vec{h}\|^2u^2
-        \frac{\partial^2u}{\partial\nu^2}.
-    \end{aligned}
-$$
+    $$
+        \frac{1}{r}
+        \frac{\mathrm{d}}{\mathrm{d}t}
+        \left(
+        \|\vec{h}\|
+        \right)
+        =
+        0.
+    $$
+
+    lo cual confirma que <span style="color:teal">**el momento angular es constante en el tiempo.**</span>
+
+:::
+
+:::
+
+:::
+
+##
+
+::: {.columns}
+
+::: {.column width="50%"}
+
+![](/Figures/c2/central_force.svg){width=100%}
+
+:::
+
+::: {.column width="50%"}
+
+- Para resolver la primera ecuación de @eq-system_ode, se realiza el cambio de variable
+
+    $$
+    r=\frac{1}{u}.
+    $$
+
+:::{.incremental}
+
+- Con ello, se obtiene
+
+    $$
+        \begin{aligned}
+            \frac{\mathrm{d}r}{\mathrm{d}t}
+            &=
+            -\frac{1}{u^2}\frac{\mathrm{d}u}{\mathrm{d}t}\\
+            &=
+            -\frac{1}{u^2}
+            \frac{\partial u}{\partial\nu}
+            \frac{\mathrm{d}\nu}{\mathrm{d}t}.
+        \end{aligned}
+    $$
+
+- Sustituyendo @eq-angular_momentum se obtiene
+
+    $$
+        \begin{aligned}
+            \frac{\mathrm{d}r}{\mathrm{d}t}
+            &=
+            -\frac{1}{u^2}
+            \frac{\partial u}{\partial\nu}
+            \frac{\|\vec{h}\|}{r^2}\\
+            &=
+            -\|\vec{h}\|
+            \frac{\partial u}{\partial\nu}.
+        \end{aligned}
+    $$ {#eq-drdt}
+
+:::
 
 :::
 
@@ -2145,43 +2490,44 @@ $$
 
 ::: {.column width="50%"}
 
-Considere a $Gm_0=\mu$ como el parámetro gravitacional estándar del cuerpo central.
+- Derivando nuevamente con respecto al tiempo se obtiene
 
-Sustituyendo las expresiones anteriores en la primera ecuación de @eq-system_ode se obtiene
+    $$
+        \begin{aligned}
+            \frac{\mathrm{d}^2r}{\mathrm{d}t^2}
+            &=
+            -\frac{\mathrm{d}\|\vec{h}\|}{\mathrm{d}t}
+            \frac{\partial u}{\partial\nu}
+            -
+            \|\vec{h}\|
+            \frac{\mathrm{d}}{\mathrm{d}t}
+            \left(
+            \frac{\partial u}{\partial\nu}
+            \right)\\
+            &=
+            -\|\vec{h}\|
+            \frac{\partial^2u}{\partial\nu^2}
+            \frac{\mathrm{d}\nu}{\mathrm{d}t}.
+        \end{aligned}
+    $$
 
-$$
-    \begin{aligned}
-        -\|\ls{p}\vec{h}\|^2u^2
-        \frac{\partial^2u}{\partial\nu^2}
-        -
-        \frac{1}{u}
-        \left(
-        \|\ls{p}\vec{h}\|u^2
-        \right)^2
-        &=
-        -\mu u^2,\\
-        \frac{\partial^2u}{\partial\nu^2}+u
-        &=
-        \frac{\mu}{\|\ls{p}\vec{h}\|^2}.
-    \end{aligned}
-$$
+:::{.incremental}
 
-La solución general de esta ecuación diferencial es
+- Sustituyendo nuevamente @eq-angular_momentum se obtiene
 
-$$
-    u=
-    \frac{\mu}{\|\ls{p}\vec{h}\|^2}
-    +
-    C\cos(\nu-\nu_0)
-$$ {#eq-u}
+    $$
+        \begin{aligned}
+            \frac{\mathrm{d}^2r}{\mathrm{d}t^2}
+            &=
+            -\frac{\|\vec{h}\|^2}{r^2}
+            \frac{\partial^2u}{\partial\nu^2}\\
+            &=
+            -\|\vec{h}\|^2u^2
+            \frac{\partial^2u}{\partial\nu^2}.
+        \end{aligned}
+    $$
 
-donde $C$ y $\nu_0$ son constantes de integración que se determinan con las condiciones iniciales. Mientras que
-
-$$
-    \frac{\partial u}{\partial\nu}
-    =
-    -C\sin(\nu-\nu_0).
-$$ {#eq-dudnu}
+:::
 
 :::
 
@@ -2191,7 +2537,65 @@ $$ {#eq-dudnu}
 
 ##
 
-Sea
+::: {.columns}
+
+::: {.column width="50%"}
+
+![](/Figures/c2/central_force.svg){width=100%}
+
+:::
+
+::: {.column width="50%"}
+
+- Considere a $Gm_0=\mu$ como el parámetro gravitacional estándar del cuerpo central.
+
+    Sustituyendo las expresiones anteriores en la primera ecuación de @eq-system_ode se obtiene
+
+    $$
+        \begin{aligned}
+            -\|\vec{h}\|^2u^2
+            \frac{\partial^2u}{\partial\nu^2}
+            -
+            \frac{1}{u}
+            \left(
+            \|\vec{h}\|u^2
+            \right)^2
+            &=
+            -\mu u^2,\\
+            \frac{\partial^2u}{\partial\nu^2}+u
+            &=
+            \frac{\mu}{\|\vec{h}\|^2}.
+        \end{aligned}
+    $$
+
+:::{.incremental}
+
+- La solución general de esta ecuación diferencial es
+
+    $$
+        u=
+        \frac{\mu}{\|\vec{h}\|^2}
+        +
+        C\cos(\nu-\nu_0)
+    $$ {#eq-u}
+
+    donde $C$ y $\nu_0$ son constantes de integración que se determinan con las condiciones iniciales. Mientras que
+
+    $$
+        \frac{\partial u}{\partial\nu}
+        =
+        -C\sin(\nu-\nu_0).
+    $$ {#eq-dudnu}
+
+:::
+
+:::
+
+:::
+
+---
+
+- Sea
 
 $$
 E=E_c+E_p
@@ -2199,22 +2603,26 @@ $$
 
 la energía mecánica específica de la partícula.
 
-La energía cinética específica está dada por
+
+:::{.fragment}
+
+
+- La energía cinética específica y la energía potencial específica están dadas respectivamente por
 
 $$
-E_c=\frac{1}{2}\|\ls{p}\vec{v}\|^2
-$$
-
-y la energía potencial específica es
-
-$$
+E_c=\frac{1}{2}\|\vec{v}\|^2, \qquad
 E_p=-\frac{\mu}{r}.
 $$
 
-La norma del vector de velocidad se obtiene de la expresión
+
+:::
+
+:::{.fragment}
+
+- La norma del vector de velocidad se obtiene de la expresión
 
 $$
-    \|\ls{p}\vec{v}\|^2=
+    \|\vec{v}\|^2=
     \left(
     \frac{\mathrm{d}r}{\mathrm{d}t}
     \right)^2+
@@ -2223,23 +2631,25 @@ $$
     \right)^2.
 $$
 
-Sustituyendo @eq-angular_momentum y @eq-drdt se obtiene
+:::
+
+:::{.fragment}
+- Sustituyendo @eq-angular_momentum y @eq-drdt se obtiene
 
 $$
     \begin{aligned}
-        \|\ls{p}\vec{v}\|^2
+        \|\vec{v}\|^2
         &=
         \left(
-        -\|\ls{p}\vec{h}\|
+        -\|\vec{h}\|
         \frac{\partial u}{\partial\nu}
         \right)^2
         +
         \left(
         \frac{1}{u}
-        \|\ls{p}\vec{h}\|u^2
-        \right)^2\\
-        &=
-        \|\ls{p}\vec{h}\|^2
+        \|\vec{h}\|u^2
+        \right)^2=
+        \|\vec{h}\|^2
         \left[
         \left(
         \frac{\partial u}{\partial\nu}
@@ -2250,36 +2660,42 @@ $$
     \end{aligned}
 $$ {#eq-velocity_magnitude}
 
+
+:::
+
 ---
 
 ##
 
-Sustituyendo @eq-u y @eq-dudnu en la expresión anterior se obtiene
+- Sustituyendo @eq-u y @eq-dudnu en la expresión anterior se obtiene
 
 $$
     \begin{aligned}
-        \|\ls{p}\vec{v}\|^2
+        \|\vec{v}\|^2
         &=
-        \|\ls{p}\vec{h}\|^2
+        \|\vec{h}\|^2
         \left[
         C^2\sin^2(\nu-\nu_0)
         +
         \left(
-        \frac{\mu}{\|\ls{p}\vec{h}\|^2}
+        \frac{\mu}{\|\vec{h}\|^2}
         +
         C\cos(\nu-\nu_0)
         \right)^2
         \right]\\
         &=
-        \|\ls{p}\vec{h}\|^2C^2
+        \|\vec{h}\|^2C^2
         +
         2\mu C\cos(\nu-\nu_0)
         +
-        \frac{\mu^2}{\|\ls{p}\vec{h}\|^2}.
+        \frac{\mu^2}{\|\vec{h}\|^2}.
     \end{aligned}
 $$
 
-Con ello, la energía mecánica específica es
+
+::: {.fragment}
+
+- Con ello, la energía mecánica específica es
 
 $$
     \begin{aligned}
@@ -2289,75 +2705,99 @@ $$
         &=
         \frac{1}{2}
         \left(
-        \|\ls{p}\vec{h}\|^2C^2
+        \|\vec{h}\|^2C^2
         +
         2\mu C\cos(\nu-\nu_0)
         +
-        \frac{\mu^2}{\|\ls{p}\vec{h}\|^2}
+        \frac{\mu^2}{\|\vec{h}\|^2}
         \right)
         -
         \mu u\\
         &=
         \frac{1}{2}
         \left(
-        \|\ls{p}\vec{h}\|^2C^2
+        \|\vec{h}\|^2C^2
         +
         2\mu C\cos(\nu-\nu_0)
         +
-        \frac{\mu^2}{\|\ls{p}\vec{h}\|^2}
+        \frac{\mu^2}{\|\vec{h}\|^2}
         \right)
         -
         \mu
         \left(
-        \frac{\mu}{\|\ls{p}\vec{h}\|^2}
+        \frac{\mu}{\|\vec{h}\|^2}
         +
         C\cos(\nu-\nu_0)
         \right)\\
         &=
-        \frac{1}{2}\|\ls{p}\vec{h}\|^2C^2
+        \frac{1}{2}\|\vec{h}\|^2C^2
         -
-        \frac{\mu^2}{2\|\ls{p}\vec{h}\|^2}.
+        \frac{\mu^2}{2\|\vec{h}\|^2}.
     \end{aligned}
 $$
 
+:::
+
+
+::: {.fragment}
+
 Esto implica que <span style="color:teal">**la energía mecánica específica es constante en el tiempo**</span> para el caso de una fuerza central y no depende del ángulo $\nu$.
+
+:::
+
+
+
 
 ---
 
 ##
 
-De la anterior expresión se puede despejar la constante $C$ como
+- De la anterior expresión, se puede despejar la constante $C$ como
 
 $$
     C=
-    \frac{\mu}{\|\ls{p}\vec{h}\|^2}
+    \frac{\mu}{\|\vec{h}\|^2}
     \sqrt{
     1+
-    2E\frac{\|\ls{p}\vec{h}\|^2}{\mu^2}
+    2E\frac{\|\vec{h}\|^2}{\mu^2}
     }.
 $$
 
-Considerando que
+
+::: {.fragment}
+
+
+
+
+
+- Considerando que
 
 $$
     e=
     \sqrt{
     1+
-    2E\frac{\|\ls{p}\vec{h}\|^2}{\mu^2}
+    2E\frac{\|\vec{h}\|^2}{\mu^2}
     }
 $$
 
-es la **excentricidad** de la órbita, la expresión de $u$ en @eq-u se puede escribir como
+es la **excentricidad** de la órbita. La @eq-u se puede escribir como
 
 $$
     u=
-    \frac{\mu}{\|\ls{p}\vec{h}\|^2}
+    \frac{\mu}{\|\vec{h}\|^2}
     \left(
     1+e\cos(\nu-\nu_0)
     \right).
 $$
 
-Finalmente, la ecuación de la órbita en coordenadas polares es
+
+
+:::
+
+
+::: {.fragment}
+
+- Finalmente, la **ecuación de la órbita** es
 
 $$
     \begin{aligned}
@@ -2365,33 +2805,171 @@ $$
         &=
         \frac{1}{u}
         =
-        \frac{\|\ls{p}\vec{h}\|^2/\mu}
-        {1+e\cos(\nu-\nu_0)}\\
-        &=
+        \frac{\|\vec{h}\|^2/\mu}
+        {1+e\cos(\nu-\nu_0)}=
         \frac{p}
         {1+e\cos(\nu-\nu_0)}.
     \end{aligned}
 $$ {#eq-orbit_equation}
 
-donde
+donde $p=\frac{\|\vec{h}\|^2}{\mu}$ es el **semi-latus rectum** (o semi-parámetro) de la órbita.
 
-$$
-p=\frac{\|\ls{p}\vec{h}\|^2}{\mu}
-$$
-
-es el **semi-latus rectum** de la órbita.
+:::
 
 ## Algunas cuestiones interesantes
 
+<div class="vspace-3"></div>
+
 - ¿Qué pasa con la ley de gravitación universal si $r=0$?
 
+<div class="vspace-3"></div>
+
+:::{.incremental}
 - ¿A qué sistema clásico recuerda la ecuación diferencial @eq-system_ode?
+<div class="vspace-3"></div>
 
 - ¿Por qué la energía potencial es siempre negativa?
+<div class="vspace-3"></div>
 
 - ¿Por qué decimos que la variable $e$ de la ecuación de la órbita @eq-orbit_equation es la excentricidad de la órbita?
+<div class="vspace-3"></div>
+
+:::
+
+## Ecuación de la órbita
+
+$$
+r=\frac{p}{1+e\cos(\nu-\nu_0)}
+$$
+
+
+```{ojs}
+//| echo: false
+
+viewof params = Inputs.form(
+  {
+    p: Inputs.range([0.5, 3.0], {value: 1.0, step: 0.1, label: html`<span style="font-family:serif;font-style:italic;">p</span>`}),
+    e: Inputs.range([0.0, 1.4], {value: 0.5, step: 0.05, label: html`<span style="font-family:serif;font-style:italic;">e</span>`}),
+    nu0: Inputs.range([0, 360], {value: 0, step: 5, label: html`<span style="font-family:serif;font-style:italic;">ν₀ (°)</span>`})
+  },
+  {
+    template: inputs => html`
+      <div style="display:flex;justify-content:center;gap:2.5rem;align-items:flex-start;">
+        <div>${inputs.p}</div>
+        <div>${inputs.e}</div>
+        <div>${inputs.nu0}</div>
+      </div>
+    `
+  }
+)
+
+p = params.p
+e = params.e
+nu0 = params.nu0
+
+puntos_orbita = {
+  const step = 0.01;
+  const data = [];
+  const nu0_rad = nu0 * Math.PI / 180;
+  const r_max_limite = 10.0;
+
+  for (let nu = 0; nu <= 2 * Math.PI + step; nu += step) {
+    const den = 1 + e * Math.cos(nu - nu0_rad);
+
+    if (den > 0.001) {
+      const r = p / den;
+      if (r <= r_max_limite)
+        data.push({x: r * Math.cos(nu), y: r * Math.sin(nu), valido: true});
+      else
+        data.push({x: NaN, y: NaN, valido: false});
+    } else
+      data.push({x: NaN, y: NaN, valido: false});
+  }
+
+  return data;
+}
+
+puntos_malla = {
+  const data = [];
+  for (let r = 2; r <= 10; r += 2)
+    for (let t = 0; t <= 2 * Math.PI + 0.1; t += 0.1)
+      data.push({id: r, x: r * Math.cos(t), y: r * Math.sin(t)});
+  return data;
+}
+
+lineas_grados =
+  [0,30,60,90,120,150,180,210,240,270,300,330].map(deg => ({
+    deg,
+    x1: 10 * Math.cos(deg * Math.PI / 180),
+    y1: 10 * Math.sin(deg * Math.PI / 180)
+  }));
+
+```
+
+<div style="display:flex;justify-content:center;">
+
+```{ojs}
+Plot.plot({
+  height: 650,
+  width: 650,
+  aspectRatio: 1,
+  style: {
+    background: "transparent",
+    fontFamily: "serif",
+    fontSize: "12px"
+  },
+  axis: null,
+  x: {domain: [-10, 10]},
+  y: {domain: [-10, 10]},
+  marks: [
+    Plot.line(puntos_malla, {
+      x: "x",
+      y: "y",
+      z: "id",
+      stroke: "rgba(128,128,128,0.15)",
+      strokeWidth: 1
+    }),
+
+    Plot.link(lineas_grados, {
+      x1: 0,
+      y1: 0,
+      x2: "x1",
+      y2: "y1",
+      stroke: "rgba(128,128,128,0.12)",
+      strokeWidth: 1
+    }),
+
+    Plot.text(lineas_grados, {
+      x: "x1",
+      y: "y1",
+      text: d => `${d.deg}°`,
+      fill: "gray",
+      dx: 8,
+      dy: -2
+    }),
+
+    Plot.dot([{x:0,y:0}], {
+      x:"x",
+      y:"y",
+      r:5,
+      fill:"#333"
+    }),
+
+    Plot.line(puntos_orbita,{
+      x:"x",
+      y:"y",
+      defined:d=>d.valido,
+      stroke:"#1f77b4",
+      strokeWidth:3
+    })
+  ]
+})
+```
+
+</div>
 
 ---
+
 
 ##
 
@@ -2536,18 +3114,18 @@ $$
     \begin{aligned}
         E
         &=
-        \frac{1}{2}\|\ls{p}\vec{h}\|^2C^2
+        \frac{1}{2}\|\vec{h}\|^2C^2
         -
-        \frac{\mu^2}{2\|\ls{p}\vec{h}\|^2}\\
+        \frac{\mu^2}{2\|\vec{h}\|^2}\\
         &=
-        \frac{1}{2}\|\ls{p}\vec{h}\|^2
+        \frac{1}{2}\|\vec{h}\|^2
         \left(
-        \frac{\mu}{\|\ls{p}\vec{h}\|^2}e
+        \frac{\mu}{\|\vec{h}\|^2}e
         \right)^2
         -
-        \frac{\mu^2}{2\|\ls{p}\vec{h}\|^2}\\
+        \frac{\mu^2}{2\|\vec{h}\|^2}\\
         &=
-        -\frac{\mu^2}{2\|\ls{p}\vec{h}\|^2}(1-e^2)\\
+        -\frac{\mu^2}{2\|\vec{h}\|^2}(1-e^2)\\
         &=
         -\frac{\mu}{2a}<0.
     \end{aligned}
@@ -2809,10 +3387,10 @@ donde $A_0$ es el área barrida en $t=0$.
 Considerando $A_0=0$, se tiene que
 
 $$
-\frac{A}{t}= \frac{1}{2}\|\ls{p}\vec{h}\|,
+\frac{A}{t}= \frac{1}{2}\|\vec{h}\|,
 $$ {#eq-areatime}
 
-y, dado que $\|\ls{p}\vec{h}\|$ es constante, la relación entre el área barrida y el tiempo en órbita es constante. Un resultado interesante es cuando $t=T$, donde $T$ es el periodo orbital. En este caso, el área total de la elipse está dada por
+y, dado que $\|\vec{h}\|$ es constante, la relación entre el área barrida y el tiempo en órbita es constante. Un resultado interesante es cuando $t=T$, donde $T$ es el periodo orbital. En este caso, el área total de la elipse está dada por
 
 $$
 A=\pi ab,
@@ -2822,7 +3400,7 @@ y por lo tanto,
 
 $$
     \begin{split}
-        T & =\frac{2\pi ab}{\|\ls{p}\vec{h}\|}=\frac{2\pi ab}{\sqrt{p\mu}},\\
+        T & =\frac{2\pi ab}{\|\vec{h}\|}=\frac{2\pi ab}{\sqrt{p\mu}},\\
         & =\frac{2\pi a^2\sqrt{1-e^2}}{\sqrt{a(1-e^2)\mu}}=2\pi\sqrt{\frac{a^3}{\mu}}=\frac{2\pi}{\omega_0},
     \end{split}
 $$
