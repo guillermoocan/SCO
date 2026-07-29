@@ -3006,16 +3006,24 @@ Secciones cónicas
 
 ::: {.column width="50%"}
 
-La ecuación de la órbita @eq-orbit_equation describe una sección cónica con excentricidad $e$ en coordenadas polares $(r,\nu)$.
+- La ecuación de la órbita @eq-orbit_equation describe una sección cónica con excentricidad $e$ en coordenadas polares $(r,\nu)$.
 
-Dependiendo del valor de $e$, la órbita puede ser:
+<div class="vspace-3"></div>
 
-- Una circunferencia ($e=0$).
-- Una elipse ($0\le e<1$).
-- Una parábola ($e=1$).
-- Una hipérbola ($e>1$).
+:::{.incremental}
 
-Para este curso, nos enfocaremos únicamente en las órbitas elípticas.
+- Dependiendo del valor de $e$, la órbita puede ser:
+
+  - Una circunferencia ($e=0$).
+  - Una elipse ($0\le e<1$).
+  - Una parábola ($e=1$).
+  - Una hipérbola ($e>1$).
+
+<div class="vspace-3"></div>
+
+- Para este curso, nos enfocaremos únicamente en las órbitas elípticas.
+
+:::
 
 :::
 
@@ -3029,34 +3037,38 @@ Para este curso, nos enfocaremos únicamente en las órbitas elípticas.
 
 ::: {.column width="45%"}
 
-La órbita elíptica es la más común en mecánica orbital.
+- La órbita elíptica es la más común en mecánica orbital.
 
-El punto de la elipse con $\nu=0$ se conoce como **perigeo** y el punto con $\nu=\pi$ como **apogeo**.
 
-La distancia desde el foco hasta el perigeo (punto <span style="color:red">A</span>) puede obtenerse de @eq-orbit_equation como
+:::{.incremental}
+- El punto de la elipse con $\nu=0$ se conoce como **periapsis** (perigeo en el caso de la Tierra) y el punto con $\nu=\pi$ como **apoapsis** (apogeo).
 
-$$
-r_p=\frac{p}{1+e}.
-$$
+- La distancia desde el foco hasta el periapsis  (punto <span style="color:red">A</span>) puede obtenerse de @eq-orbit_equation como
 
-Mientras que la distancia desde el foco hasta el apogeo (punto <span style="color:red">B</span>) es
+    $$
+    r_p=\frac{p}{1+e}.
+    $$
 
-$$
-r_a=\frac{p}{1-e}.
-$$
+- Mientras que la distancia desde el foco hasta el apogeo (punto <span style="color:red">B</span>) es
 
-Con ello, el semieje mayor $a$ está dado por
+    $$
+    r_a=\frac{p}{1-e}.
+    $$
 
-$$
-    a=\frac{r_p+r_a}{2}
-    =\frac{p}{1-e^2}.
-$$
+    Con ello, el semieje mayor $a$ está dado por
+
+    $$
+        a=\frac{r_p+r_a}{2}
+        =\frac{p}{1-e^2}.
+    $$
+
+:::
 
 :::
 
 ::: {.column width="55%"}
 
-![](/Figures/c2/ellipse_orbit.svg){width=120%}
+![](/Figures/c2/ellipse_orbit.svg){width=100%}
 
 :::
 
@@ -3070,31 +3082,34 @@ $$
 
 ::: {.column width="45%"}
 
-En este sentido, el **semi-latus rectum** $p$ puede expresarse en función del semieje mayor $a$ y la excentricidad $e$ como
+- En este sentido, el **semi-latus rectum** $p$ puede expresarse en función del semieje mayor $a$ y la excentricidad $e$ como
 
-$$
-p=a(1-e^2).
-$$
+    $$
+    p=a(1-e^2).
+    $$
 
-Adicionalmente, puede interpretarse geométricamente como la distancia desde el foco hasta la elipse cuando $\nu=\pm\frac{\pi}{2}$.
+:::{.incremental}
+- Adicionalmente, puede interpretarse geométricamente como la distancia desde el foco hasta la elipse cuando $\nu=\pm\frac{\pi}{2}$.
 
-La distancia focal $c$ en términos de $e$ y $p$ está dada por
+- La distancia focal $c$ en términos de $e$ y $p$ está dada por
 
-$$
-c=\frac{ep}{1-e^2},
-$$
+    $$
+    c=\frac{ep}{1-e^2},
+    $$
 
-mientras que el semieje menor $b$ está dado por
+    mientras que el semieje menor $b$ está dado por
 
-$$
-b=\frac{p}{\sqrt{1-e^2}}.
-$$
+    $$
+    b=\frac{p}{\sqrt{1-e^2}}.
+    $$
+
+:::
 
 :::
 
 ::: {.column width="55%"}
 
-![](/Figures/c2/ellipse_orbit.svg){width=120%}
+![](/Figures/c2/ellipse_orbit.svg){width=100%}
 
 :::
 
@@ -3108,42 +3123,47 @@ $$
 
 ::: {.column width="45%"}
 
-La energía mecánica específica en una órbita elíptica está dada por
+- La energía mecánica específica en una órbita elíptica está dada por
 
-$$
-    \begin{aligned}
-        E
-        &=
-        \frac{1}{2}\|\vec{h}\|^2C^2
-        -
-        \frac{\mu^2}{2\|\vec{h}\|^2}\\
-        &=
-        \frac{1}{2}\|\vec{h}\|^2
-        \left(
-        \frac{\mu}{\|\vec{h}\|^2}e
-        \right)^2
-        -
-        \frac{\mu^2}{2\|\vec{h}\|^2}\\
-        &=
-        -\frac{\mu^2}{2\|\vec{h}\|^2}(1-e^2)\\
-        &=
-        -\frac{\mu}{2a}<0.
-    \end{aligned}
-$$
+    $$
+        \begin{aligned}
+            E
+            &=
+            \frac{1}{2}\|\vec{h}\|^2C^2
+            -
+            \frac{\mu^2}{2\|\vec{h}\|^2}\\
+            &=
+            \frac{1}{2}\|\vec{h}\|^2
+            \left(
+            \frac{\mu}{\|\vec{h}\|^2}e
+            \right)^2
+            -
+            \frac{\mu^2}{2\|\vec{h}\|^2}\\
+            &=
+            -\frac{\mu^2}{2\|\vec{h}\|^2}(1-e^2)\\
+            &=
+            -\frac{\mu}{2a}<0.
+        \end{aligned}
+    $$
 
-Esto implica que <span style="color:teal">**la energía mecánica específica es negativa en una órbita elíptica.**</span>
 
-Por consecuencia,
+::: {.fragment}
 
-$$
-|E_c|<|E_p|.
-$$
+- Esto implica que <span style="color:teal">**la energía mecánica específica es negativa en una órbita elíptica.**</span> Por consecuencia,
+
+    $$
+    |E_c|<|E_p|.
+    $$
+
+
+:::
+
 
 :::
 
 ::: {.column width="55%"}
 
-![](/Figures/c2/ellipse_orbit.svg){width=120%}
+![](/Figures/c2/ellipse_orbit.svg){width=100%}
 
 :::
 
@@ -3153,7 +3173,7 @@ $$
 
 ## Relación entre energía y secciones cónicas
 
-De forma general, la relación entre la energía mecánica específica y las diferentes secciones cónicas puede resumirse en
+- De forma general, la relación entre la energía mecánica específica y las diferentes secciones cónicas puede resumirse en
 
 | **Sección cónica** | $e$ | $E$ | **Energía dominante** |
 |:-------------------|:---:|:---:|:---------------------:|
@@ -3162,7 +3182,9 @@ De forma general, la relación entre la energía mecánica específica y las dif
 | Parábola | $e=1$ | $E=0$ | Igual |
 | Hipérbola | $e>1$ | $E>0$ | Cinética |
 
-Por otro lado, geométricamente puede describirse en términos de $e$ y $p$ mediante
+::: {.fragment}
+
+- Por otro lado, geométricamente puede describirse en términos de $e$ y $p$ mediante
 
 | **Sección cónica** | $e$ | $p$ | **Descripción** |
 |:-------------------|:---:|:---:|:----------------|
@@ -3171,9 +3193,18 @@ Por otro lado, geométricamente puede describirse en términos de $e$ y $p$ medi
 | Parábola | $e=1$ | $p=2r_p$ | Órbita límite |
 | Hipérbola | $e>1$ | $p=a(e^2-1)$ | Órbita abierta |
 
-La conclusión de esto es que <span style="color:red">**la forma y el tamaño de la órbita están determinados únicamente por la energía mecánica específica y el momento angular específico.**</span>
+:::
 
-En otros términos, la forma y el tamaño están determinados por las condiciones iniciales de posición y velocidad, y no por la masa del cuerpo en órbita.
+
+::: {.fragment}
+
+- La conclusión de esto es que <span style="color:red">**la forma y el tamaño de la órbita están determinados únicamente por la energía mecánica específica y el momento angular específico, respectivamente.**</span>
+
+- En otros términos, **la forma y el tamaño están determinados por las condiciones iniciales de posición y velocidad, y no por la masa del cuerpo en órbita**.
+
+:::
+
+
 
 ---
 
@@ -3191,7 +3222,7 @@ Preliminares
 
 ::: {.chapter-subtitle}
 
-Anomalías y ????????
+Anomalías
 
 
 <div class="menu-title" style="display:none;"> ▸ Anomalías </div>
@@ -3202,12 +3233,38 @@ Anomalías y ????????
 
 ---
 
-Hasta ahora, hemos visto la descripción geométrica de las órbitas elípticas, así como su orientación en el espacio. Sin embargo, no hemos visto cómo se mueve un cuerpo a lo largo de su órbita.
+::: {.columns}
 
-Para ello, es necesario introducir el concepto de **anomalía**.
+::: {.column width="45%"}
+
+- Hasta ahora, hemos visto la descripción geométrica de las órbitas elípticas, así como su orientación en el espacio. Sin embargo, no hemos visto cómo se mueve un cuerpo a lo largo de su órbita.
+
+<div class="vspace-3"></div>
+
+:::{.incremental}
+
+- Para ello, es necesario introducir el concepto de **anomalía**.
+ 
+<div class="vspace-3"></div>
 
 - Una anomalía es un ángulo que describe la posición de un cuerpo en su órbita en función del tiempo.
+
+<div class="vspace-3"></div>
+
 - El término **anomalía** se deriva del griego *anomalos*, que significa *irregular* o *desviado*, haciendo referencia a la naturaleza no uniforme del movimiento orbital.
+
+:::
+
+:::
+
+::: {.column width="55%"}
+
+![](/Figures/c2/ellipse_orbit.svg){width=120% fig-align="center"}
+
+:::
+
+:::
+
 
 ---
 
@@ -3215,59 +3272,26 @@ Para ello, es necesario introducir el concepto de **anomalía**.
 
 ::: {.column width="45%"}
 
-- La **anomalía verdadera** $\nu\in[0,2\pi)$ es el ángulo entre el perigeo y la posición actual del cuerpo en su órbita, medido desde el foco de la elipse.
+- La **anomalía verdadera** $\nu\in[0,2\pi)$ es el ángulo entre el periapsis y la posición actual del cuerpo en su órbita, medido desde el foco de la elipse.
+
+:::{.incremental}
 
 - Para calcularla, es necesario introducir un ángulo auxiliar conocido como **anomalía excéntrica** $\psi\in[0,2\pi)$.
 
+<div class="vspace-3"></div>
+
 - Para ello, se define un círculo auxiliar de radio $a$ con centro en el centro de la elipse (línea punteada).
 
-- La anomalía excéntrica $\psi$ es el ángulo entre los segmentos $OA$ y $OC$, donde $O$ es el centro de la elipse, $A$ es el perigeo y $C$ es la proyección del cuerpo en el círculo auxiliar.
+<div class="vspace-3"></div>
+
+- La anomalía excéntrica $\psi$ es el ángulo entre los segmentos $OA$ y $OC$, donde $O$ es el centro de la elipse, $A$ es el periapsis y $C$ es la proyección del cuerpo en el círculo auxiliar.
+
+<div class="vspace-3"></div>
 
 - La relación entre la anomalía verdadera $\nu$ y la anomalía excéntrica $\psi$ se construye de la siguiente manera:
 
 :::
 
-::: {.column width="55%"}
-
-![](/Figures/c2/ellipse_orbit.svg){width=120% fig-align="center"}
-
-:::
-
-:::
-
----
-
-::: {.columns}
-
-::: {.column width="45%"}
-
-Considere
-
-$$
-    \begin{aligned}
-        c &= m+n,\\
-        m &= a\cos(\psi),\\
-        n &= r\cos(\pi-\nu)=-r\cos(\nu).
-    \end{aligned}
-$$
-
-En consecuencia,
-
-$$
-c=a\cos(\psi)-r\cos(\nu)=ae,
-$$
-
-y considerando $\nu_0=0\ \mathrm{rad}$,
-
-$$
-    \begin{aligned}
-        m &= a\cos(\psi)=r\cos(\nu)+ae\\
-        &=\frac{p\cos\nu}{1+e\cos\nu}+ae\\
-        &=\frac{a(1-e^2)\cos\nu}{1+e\cos\nu}+ae\\
-        &=\frac{ae+a\cos\nu}{1+e\cos\nu}.
-    \end{aligned}
-$$
-
 :::
 
 ::: {.column width="55%"}
@@ -3284,15 +3308,39 @@ $$
 
 ::: {.column width="45%"}
 
-Por lo tanto,
+- Considere
 
-$$ 
-    \begin{aligned}
-        \cos(\nu)&=\frac{\cos(\psi)-e}{1-e\cos(\psi)},\\
-        \sin(\nu)&=\frac{\sin(\psi)\sqrt{1-e^2}}{1-e\cos(\psi)},\\
-        \tan(\nu)&=\frac{\sin(\psi)\sqrt{1-e^2}}{\cos(\psi)-e}.
-    \end{aligned}
-$$ {#eq-cos_sin_nu}
+    $$
+        \begin{aligned}
+            c &= m+n,\\
+            m &= a\cos(\psi),\\
+            n &= r\cos(\pi-\nu)=-r\cos(\nu).
+        \end{aligned}
+    $$
+
+
+::: {.fragment}
+
+- En consecuencia,
+
+    $$
+    c=a\cos(\psi)-r\cos(\nu)=ae,
+    $$
+
+    y considerando $\nu_0=0\ \mathrm{rad}$,
+
+    $$
+        \begin{aligned}
+            m &= a\cos(\psi)=r\cos(\nu)+ae\\
+            &=\frac{p\cos\nu}{1+e\cos\nu}+ae\\
+            &=\frac{a(1-e^2)\cos\nu}{1+e\cos\nu}+ae\\
+            &=\frac{ae+a\cos\nu}{1+e\cos\nu}.
+        \end{aligned}
+    $$
+
+:::
+
+
 
 :::
 
@@ -3310,17 +3358,32 @@ $$ {#eq-cos_sin_nu}
 
 ::: {.column width="45%"}
 
-Adicionalmente, la distancia $r(t)$ puede expresarse en función de la anomalía excéntrica como
+- Por lo tanto,
 
-$$ 
-    \begin{aligned}
-        r(t)&=\frac{p}{1+e\cos(\nu)}\\
-        &=\frac{a(1-e^2)}{1+e\left(\frac{\cos(\psi)-e}{1-e\cos(\psi)}\right)}\\
-        &=a(1-e\cos(\psi)).
-    \end{aligned}
-$$ {#eq-r_psi}
+    $$ 
+        \begin{aligned}
+            \cos(\nu)&=\frac{\cos(\psi)-e}{1-e\cos(\psi)},\\
+            \sin(\nu)&=\frac{\sin(\psi)\sqrt{1-e^2}}{1-e\cos(\psi)},\\
+            \tan(\nu)&=\frac{\sin(\psi)\sqrt{1-e^2}}{\cos(\psi)-e}.
+        \end{aligned}
+    $$ {#eq-cos_sin_nu}
 
-Sin embargo, aún seguimos sin conocer cómo varía la anomalía excéntrica con el tiempo.
+::: {.fragment}
+
+- Adicionalmente, la distancia $r(t)$ puede expresarse en función de la anomalía excéntrica como
+
+    $$ 
+        \begin{aligned}
+            r(t)&=\frac{p}{1+e\cos(\nu)}\\
+            &=\frac{a(1-e^2)}{1+e\left(\frac{\cos(\psi)-e}{1-e\cos(\psi)}\right)}\\
+            &=a(1-e\cos(\psi)).
+        \end{aligned}
+    $$ {#eq-r_psi}
+
+    Sin embargo, aún seguimos sin conocer cómo varía la anomalía excéntrica con el tiempo.
+
+:::
+
 
 :::
 
@@ -3334,37 +3397,42 @@ Sin embargo, aún seguimos sin conocer cómo varía la anomalía excéntrica con
 
 ---
 
+
 ::: {.columns}
 
 ::: {.column width="45%"}
 
-Con tal propósito, considere el diferencial de área barrida por el vector de posición ${}^{p}\vec{r}$ en un intervalo de tiempo $\Delta t$. Este diferencial de área se define como
+- Con tal propósito, considere el diferencial de área barrida por el vector de posición ${}^{p}\vec{r}$ en un intervalo de tiempo $\Delta t$. Este diferencial de área se define como
 
-$$
-\Delta A=\frac{1}{2}r^2\Delta\nu.
-$$
+    $$
+    \Delta A=\frac{1}{2}r^2\Delta\nu.
+    $$
 
-Dividiendo entre $\Delta t$ y considerando el límite cuando $\Delta t\rightarrow0$, se obtiene
+:::{.incremental}
 
-$$
-    \frac{\mathrm{d}A}{\mathrm{d}t}
-    =\frac{1}{2}r^2\frac{\mathrm{d}\nu}{\mathrm{d}t}.
-$$
+- Dividiendo entre $\Delta t$ y considerando el límite cuando $\Delta t\rightarrow0$, se obtiene
 
-Sustituyendo la @eq-angular_momentum se obtiene
+    $$
+        \frac{\mathrm{d}A}{\mathrm{d}t}
+        =\frac{1}{2}r^2\frac{\mathrm{d}\nu}{\mathrm{d}t}.
+    $$
 
-$$
-    \frac{\mathrm{d}A}{\mathrm{d}t}
-    =\frac{1}{2}\|{}^{p}\vec{h}\|.
-$$
+- Sustituyendo la @eq-angular_momentum se obtiene
 
-Dado que $\|{}^{p}\vec{h}\|$ es constante, al integrar se obtiene
+    $$
+        \frac{\mathrm{d}A}{\mathrm{d}t}
+        =\frac{1}{2}\|{}^{p}\vec{h}\|.
+    $$
 
-$$
-A=A_0+\frac{1}{2}\|{}^{p}\vec{h}\|t,
-$$
+- Dado que $\|{}^{p}\vec{h}\|$ es constante, al integrar se obtiene
 
-donde $A_0$ es el área barrida en $t=0$.
+    $$
+    A=A_0+\frac{1}{2}\|{}^{p}\vec{h}\|t,
+    $$
+
+    donde $A_0$ es el área barrida en $t=0$.
+
+:::
 
 :::
 
@@ -3384,34 +3452,42 @@ donde $A_0$ es el área barrida en $t=0$.
 
 ::: {.column width="45%"}
 
-Considerando $A_0=0$, se tiene que
+- Considerando $A_0=0$, se tiene que
 
-$$
-\frac{A}{t}= \frac{1}{2}\|\vec{h}\|,
-$$ {#eq-areatime}
+    $$
+    \frac{A}{t}= \frac{1}{2}\|\vec{h}\|,
+    $$ {#eq-areatime}
 
-y, dado que $\|\vec{h}\|$ es constante, la relación entre el área barrida y el tiempo en órbita es constante. Un resultado interesante es cuando $t=T$, donde $T$ es el periodo orbital. En este caso, el área total de la elipse está dada por
+    y, dado que $\|\vec{h}\|$ es constante, la relación entre el área barrida y el tiempo en órbita es constante. 
 
-$$
-A=\pi ab,
-$$
 
-y por lo tanto,
+::: {.fragment}
 
-$$
-    \begin{split}
-        T & =\frac{2\pi ab}{\|\vec{h}\|}=\frac{2\pi ab}{\sqrt{p\mu}},\\
-        & =\frac{2\pi a^2\sqrt{1-e^2}}{\sqrt{a(1-e^2)\mu}}=2\pi\sqrt{\frac{a^3}{\mu}}=\frac{2\pi}{\omega_0},
-    \end{split}
-$$
+- Un resultado interesante es cuando $t=T$, donde $T$ es el periodo orbital. En este caso, el área total de la elipse está dada por
 
-donde $\omega_0=\sqrt{\mu/a^3}$ se conoce como *movimiento angular medio*.
+    $$
+    A=\pi ab,
+    $$
+
+    y por lo tanto,
+
+    $$
+        \begin{split}
+            T & =\frac{2\pi ab}{\|\vec{h}\|}=\frac{2\pi ab}{\sqrt{p\mu}},\\
+            & =\frac{2\pi a^2\sqrt{1-e^2}}{\sqrt{a(1-e^2)\mu}}=2\pi\sqrt{\frac{a^3}{\mu}}=\frac{2\pi}{\omega_0},
+        \end{split}
+    $$
+
+    donde $\omega_0=\sqrt{\mu/a^3}$ se conoce como *movimiento angular medio*.
+
+:::
+
 
 :::
 
 ::: {.column width="55%"}
 
-![](/Figures/c2/ellipse_orbit.svg){width=120%}
+![](/Figures/c2/ellipse_orbit.svg){width=100%}
 
 :::
 
@@ -3425,27 +3501,35 @@ donde $\omega_0=\sqrt{\mu/a^3}$ se conoce como *movimiento angular medio*.
 
 ::: {.column width="45%"}
 
-Con ello, podemos definir la \textcolor{blue}{anomalía media $M \in [0, 2\pi)$} como
+- Con ello, podemos definir la \textcolor{blue}{anomalía media $M \in [0, 2\pi)$} como
 
-$$
-M = \omega_0 (t-t_0)+M_0,
-$$ {#eq-mean_anomaly}
+    $$
+    M = \omega_0 (t-t_0)+M_0,
+    $$ {#eq-mean_anomaly}
 
-donde $t_0$ es la *época* y $M_0$ es la *anomalía media acumulada en la época $t_0$*. Si se asume que $t_0=t_p$, donde $t_p=nT$,$n \in \mathbb{N}$, entonces $M_0=0$ (el satélite se encuentra en el perigeo).
+    donde $t_0$ es la *época* y $M_0$ es la *anomalía media acumulada en la época $t_0$*. Si se asume que $t_0=t_p$, donde $t_p=nT$,$n \in \mathbb{N}$, entonces $M_0=0$ (el satélite se encuentra en el periapsis).
 
-En este caso, la anomalía media es
+<div class="vspace-3"></div>
 
-$$
-M = \omega_0 (t-t_p),
-$$
+:::{.incremental}
 
-Una interpretación geométrica de la anomalía media es que es el ángulo que barrería un cuerpo si se moviera con velocidad angular constante $\omega_0$ en una órbita circular de radio $a$.
+- En este caso, la anomalía media es
+
+    $$
+    M = \omega_0 (t-t_p),
+    $$
+
+<div class="vspace-3"></div>
+
+- Una interpretación geométrica de la anomalía media es que es el ángulo que barrería un cuerpo si se moviera con velocidad angular constante $\omega_0$ en una órbita circular de radio $a$.
+
+:::
 
 :::
 
 ::: {.column width="55%"}
 
-![](/Figures/c2/ellipse_orbit.svg){width=120%}
+![](/Figures/c2/ellipse_orbit.svg){width=100%}
 
 :::
 
@@ -3459,30 +3543,38 @@ Una interpretación geométrica de la anomalía media es que es el ángulo que b
 
 ::: {.column width="45%"}
 
-Para encontrar una relación entre la anomalía media $M$ y la anomalía excéntrica $\psi$, considere lo siguiente:
-Sea $S(AFC')$ el área del sector $AFC'$, y sea $S(AFC)$ el área del sector $AFC$. Entonces, siguiendo la ecuación @eq-areatime, se tiene que
+- Para encontrar una relación entre la anomalía media $M$ y la anomalía excéntrica $\psi$, considere lo siguiente:
+Sea $S(AFC')$ el área del sector $AFC'$, y sea $S(AFC)$ el área del sector $AFC$. 
+<div class="vspace-3"></div>
 
-$$
-    \begin{split}
-        \frac{t-t_p}{S(AFC')} & =\frac{T}{\pi ab}.
-    \end{split}
-$$ {#eq-areatime2}
+:::{.incremental}
+- Entonces, siguiendo la ecuación @eq-areatime, se tiene que
 
-Por otro lado, el área del sector $AFC$ puede calcularse como
+    $$
+        \begin{split}
+            \frac{t-t_p}{S(AFC')} & =\frac{T}{\pi ab}.
+        \end{split}
+    $$ {#eq-areatime2}
 
-$$
-    \begin{split}
-        S(AFC) & =\frac{\psi}{2\pi}(\pi a^2)-S(OFC),\\
-        & =\frac{\psi}{2}a^2-\frac{1}{2}ac\sin(\psi),\\.
-        & =\frac{a^2}{2}(\psi - e\sin(\psi)).
-    \end{split}
-$$
+<div class="vspace-3"></div>
+
+- Por otro lado, el área del sector $AFC$ puede calcularse como
+
+    $$
+        \begin{split}
+            S(AFC) & =\frac{\psi}{2\pi}(\pi a^2)-S(OFC),\\
+            & =\frac{\psi}{2}a^2-\frac{1}{2}ac\sin(\psi),\\.
+            & =\frac{a^2}{2}(\psi - e\sin(\psi)).
+        \end{split}
+    $$
+
+:::
 
 :::
 
 ::: {.column width="55%"}
 
-![](/Figures/c2/ellipse_orbit.svg){width=120%}
+![](/Figures/c2/ellipse_orbit.svg){width=100%}
 
 :::
 
@@ -3496,39 +3588,88 @@ $$
 
 ::: {.column width="45%"}
 
-Considerando que
+- Considerando que
 
-$$
-    \begin{split}
-        S(AFC') & =\frac{b}{a}S(AFC),\\
-        & =\frac{b}{a}\cdot\frac{a^2}{2}(\psi - e\sin(\psi)),\\
-        & =\frac{ab}{2}(\psi - e\sin(\psi)),
-    \end{split}
-$$
+    $$
+        \begin{split}
+            S(AFC') & =\frac{b}{a}S(AFC),\\
+            & =\frac{b}{a}\cdot\frac{a^2}{2}(\psi - e\sin(\psi)),\\
+            & =\frac{ab}{2}(\psi - e\sin(\psi)),
+        \end{split}
+    $$
 
-Sustituyendo en @eq-areatime2 se obtiene
+:::{.incremental}
 
-$$
-    \begin{split}
-        \frac{t-t_0}{\frac{ab}{2}(\psi - e\sin(\psi))} & =\frac{T}{\pi ab},\\
-        \Rightarrow \quad t-t_0                        & = \frac{T}{2\pi}(\psi - e\sin(\psi)),\\
-        \Rightarrow \quad M                            & = \psi - e\sin(\psi).
-    \end{split}
-$$
+- Sustituyendo en @eq-areatime2 se obtiene
 
-La última ecuación se conoce como **Ecuación de Kepler**.
+    $$
+        \begin{split}
+            \frac{t-t_0}{\frac{ab}{2}(\psi - e\sin(\psi))} & =\frac{T}{\pi ab},\\
+            \Rightarrow \quad t-t_0                        & = \frac{T}{2\pi}(\psi - e\sin(\psi)),\\
+            \Rightarrow \quad M                            & = \psi - e\sin(\psi).
+        \end{split}
+    $$
+
+- La última ecuación se conoce como **Ecuación de Kepler**.
+
+:::
 
 :::
 
 ::: {.column width="55%"}
 
-![](/Figures/c2/ellipse_orbit.svg){width=120%}
+![](/Figures/c2/ellipse_orbit.svg){width=100%}
 
 :::
 
 :::
 
 ---
+
+
+
+## Leyes de Kepler
+
+- Como consecuencia del análisis realizado, también obtumivos los argumentos que demuestran las **Leyes de Kepler**
+
+:::{.definition-block .fragment}
+
+**Primera ley**
+
+*Todos los planetas se desplazan alrededor del Sol describiendo órbitas elípticas. El Sol se encuentra en uno de los focos de la elipse.*
+
+$$
+r=\frac{p}{1+e\cos(\nu-\nu_0)}
+$$
+
+
+:::
+
+:::{.definition-block .fragment}
+
+**Segunda ley**
+
+*El radio vector que une un planeta y el Sol recorre áreas iguales en tiempos iguales.*
+
+$$
+    \frac{A}{t}= \frac{1}{2}\|\vec{h}\|.
+$$
+
+:::
+
+:::{.definition-block .fragment}
+
+**Tercera ley**
+    
+*Para cualquier planeta, el cuadrado de su período orbital es directamente proporcional al cubo de la longitud del semieje mayor de su órbita elíptica.*
+
+
+$$
+    T =2\pi\sqrt{\frac{a^3}{\mu}}.
+$$
+
+:::
+
 
 ##
 
@@ -3559,6 +3700,8 @@ Propagación de órbita
 
 La **propagación de órbita** es el proceso de determinar la posición y la velocidad futura (o pasada) de un cuerpo en órbita. El problema puede plantearse de forma general de la siguiente manera:
 
+<div class="vspace-3"></div>
+
 ::: {.definition-block .fragment #prob-orbit_propagation}
 
 **Problema 2.1**
@@ -3583,6 +3726,8 @@ La órbita es elíptica y está gobernada únicamente por la fuerza de atracció
 
 ::: {.fragment}
 
+<div class="vspace-3"></div>
+
 Bajo la Suposición 2.1, se entiende que
 
 - Los elementos orbitales no varían con el tiempo, excepto la anomalía media $M(t)$.
@@ -3597,73 +3742,73 @@ Esto nos remite a lo visto en anteriores diapositivas.
 
 ---
 
-El primer paso para resolver el Problema 2.1 es determinar la anomalía excéntrica $\psi(t)$ en el instante $t$. Para ello, hacemos uso de la ecuación de Kepler:
+- El primer paso para resolver el Problema 2.1 es determinar la anomalía excéntrica $\psi(t)$ en el instante $t$. Para ello, hacemos uso de la ecuación de Kepler:
 
-$$
-M(t) = \psi(t) - e\sin(\psi(t)),
-$$ {#eq-kepler}
+    $$
+    M(t) = \psi(t) - e\sin(\psi(t)),
+    $$ {#eq-kepler}
 
-::: incremental
+::: {.incremental}
 
-Sustituyendo @eq-mean_anomaly en @eq-kepler se obtiene
+- Sustituyendo @eq-mean_anomaly en @eq-kepler se obtiene
 
-$$
-\psi(t) - e\sin(\psi(t))-M(t) = 0,
-$$
+    $$
+    \psi(t) - e\sin(\psi(t))-M(t) = 0,
+    $$
 
-donde $\omega_0=\sqrt{\mu/a^3}$.
+    donde $\omega_0=\sqrt{\mu/a^3}$.
 
-Definiendo la función real
+- Definiendo la función real
 
-$$
-g(\uppsi,t) = \uppsi - e\sin(\uppsi) - M(t)
-$$ {#eq-g_root}
+    $$
+    g(\uppsi,t) = \uppsi - e\sin(\uppsi) - M(t)
+    $$ {#eq-g_root}
 
-El objetivo es encontrar la raíz de la función $g(\uppsi^\star,t)$=0, que corresponde a la anomalía excéntrica $\psi(t)$ en el instante $t$ ($\uppsi^\star=\psi(t)$). Esto puede lograrse mediante métodos numéricos clásicos.
-
-:::
-
----
-
-Para conocer las componentes del vector de posición $\ls{p}\vec{r}(t)$, partimos de su descomposición en coordenadas polares
-
-$$
-    \ls{p}\vec{r}(t) = \begin{bmatrix}
-    r(t)\cos(\nu(t)) \\
-    r(t)\sin(\nu(t)) \\
-    0
-    \end{bmatrix}.
-$$ {#eq-p_r}
-
-::: incremental
-
-Sustituyendo @eq-r_psi y @eq-cos_sin_nu se obtiene
-
-$$
-    \ls{p}\vec{r}(t) = a\begin{bmatrix}
-    \cos(\psi(t))-e \\
-    \sqrt{1-e^2}\sin(\psi(t)) \\
-    0
-    \end{bmatrix}.
-$$ {#eq-p_vec}
-
-Para calcular el vector de velocidad $\ls{p}\vec{v}(t)$, podemos derivar el vector de posición $\ls{p}\vec{r}(t)$ con respecto al tiempo
-
-$$
-\ls{p}\vec{v}(t) = \frac{\text{d}\ls{p}\vec{r}(t)}{\text{d}t} = \frac{\partial\ls{p}\vec{r}(t)}{\partial \psi(t)}\cdot\frac{\text{d}\psi(t)}{\text{d}t}.
-$$
-
-Derivando @eq-kepler se obtiene
-
-$$
-\frac{\text{d}\psi(t)}{\text{d}t} = \frac{\omega_0}{1-e\cos(\psi(t))}.
-$$
+- El objetivo es encontrar la raíz de la función $g(\uppsi^\star,t)$=0, que corresponde a la anomalía excéntrica $\psi(t)$ en el instante $t$ ($\uppsi^\star=\psi(t)$). Esto puede lograrse mediante métodos numéricos clásicos.
 
 :::
 
 ---
 
-Derivando $\ls{p}\vec{r}(t)$ se obtiene
+- Para conocer las componentes del vector de posición $\ls{p}\vec{r}(t)$, partimos de su descomposición en coordenadas polares
+
+    $$
+        \ls{p}\vec{r}(t) = \begin{bmatrix}
+        r(t)\cos(\nu(t)) \\
+        r(t)\sin(\nu(t)) \\
+        0
+        \end{bmatrix}.
+    $$ {#eq-p_r}
+
+:::{.incremental}
+
+- Sustituyendo @eq-r_psi y @eq-cos_sin_nu se obtiene
+
+    $$
+        \ls{p}\vec{r}(t) = a\begin{bmatrix}
+        \cos(\psi(t))-e \\
+        \sqrt{1-e^2}\sin(\psi(t)) \\
+        0
+        \end{bmatrix}.
+    $$ {#eq-p_vec}
+
+- Para calcular el vector de velocidad $\ls{p}\vec{v}(t)$, podemos derivar el vector de posición $\ls{p}\vec{r}(t)$ con respecto al tiempo
+
+    $$
+    \ls{p}\vec{v}(t) = \frac{\text{d}\ls{p}\vec{r}(t)}{\text{d}t} = \frac{\partial\ls{p}\vec{r}(t)}{\partial \psi(t)}\cdot\frac{\text{d}\psi(t)}{\text{d}t}.
+    $$
+
+- Derivando @eq-kepler se obtiene
+
+    $$
+    \frac{\text{d}\psi(t)}{\text{d}t} = \frac{\omega_0}{1-e\cos(\psi(t))}.
+    $$
+
+:::
+
+---
+
+- Derivando $\ls{p}\vec{r}(t)$ se obtiene
 
 $$
     \frac{\partial\ls{p}\vec{r}(t)}{\partial\psi(t)} = a\begin{bmatrix}
@@ -3673,34 +3818,34 @@ $$
     \end{bmatrix}.
 $$
 
-::: incremental
+:::{.incremental}
 
-Por lo tanto, el vector de velocidad es
+- Por lo tanto, el vector de velocidad es
 
-$$
-    \ls{p}\vec{v}(t) = \frac{a\omega_0}{1-e\cos(\psi(t))}\begin{bmatrix}
-    -\sin(\psi(t)) \\
-    \sqrt{1-e^2}\cos(\psi(t)) \\
-    0
-    \end{bmatrix}.
-$$ {#eq-p_v}
+    $$
+        \ls{p}\vec{v}(t) = \frac{a\omega_0}{1-e\cos(\psi(t))}\begin{bmatrix}
+        -\sin(\psi(t)) \\
+        \sqrt{1-e^2}\cos(\psi(t)) \\
+        0
+        \end{bmatrix}.
+    $$ {#eq-p_v}
 
-Finalmente, para obtener los vectores de posición y velocidad en el marco de referencia inercial geocéntrico $\ls{i}\vec{r}(t)$ y $\ls{i}\vec{v}(t)$, es necesario realizar una transformación de coordenadas desde el marco $\ls{p}\mathcal{F}$ al $\ls{i}\mathcal{F}$. Esto se logra mediante la matriz de rotación $\ls{i}R_p=\ls{p}R_i^\top$ definida en @eq-Ri2Rp.
+- Finalmente, para obtener los vectores de posición y velocidad en el marco de referencia inercial geocéntrico $\ls{i}\vec{r}(t)$ y $\ls{i}\vec{v}(t)$, es necesario realizar una transformación de coordenadas desde el marco $\ls{p}\mathcal{F}$ al $\ls{i}\mathcal{F}$. Esto se logra mediante la matriz de rotación $\ls{i}R_p=\ls{p}R_i^\top$ definida en @eq-Ri2Rp.
 
-$$
-    \begin{split}
-        \ls{i}\vec{r}(t) & = \ls{i}R_p\ls{p}\vec{r}(t), \\
-        \ls{i}\vec{v}(t) & = \ls{i}R_p\ls{p}\vec{v}(t).
-    \end{split}
-$$
+    $$
+        \begin{split}
+            \ls{i}\vec{r}(t) & = \ls{i}R_p\ls{p}\vec{r}(t), \\
+            \ls{i}\vec{v}(t) & = \ls{i}R_p\ls{p}\vec{v}(t).
+        \end{split}
+    $$
 
-Al conjunto de vectores $\{\ls{i}\vec{r}(t),\ls{i}\vec{v}(t)\}$ para un conjunto finito de instantes de tiempo $\{t_0,t_1,\ldots,t_n\}$ se le denomina **efemérides**.
+- Al conjunto de vectores $\{\ls{i}\vec{r}(t),\ls{i}\vec{v}(t)\}$ para un conjunto finito de instantes de tiempo $\{t_0,t_1,\ldots,t_n\}$ se le denomina **efemérides**.
 
 :::
 
 ---
 
-Los pasos para resolver el Problema 2.1 bajo la Suposición 2.1 pueden resumirse en el siguiente algoritmo:
+- Los pasos para resolver el Problema 2.1 bajo la Suposición 2.1 pueden resumirse en el siguiente algoritmo:
 
 ::: {.algorithm}
 
@@ -3728,9 +3873,10 @@ $\ls{i}\vec{r}(t),\ls{i}\vec{v}(t)$
 </ol>
 
 :::
-::: incremental
 
-A este tipo de algoritmos se les conoce como **propagadores**. En específico, al propagador descrito por el Algoritmo 1 se le denomina **propagador kepleriano**.
+:::{.incremental}
+
+- A este tipo de algoritmos se les conoce como **propagadores**. En específico, al propagador descrito por el Algoritmo 1 se le denomina **propagador kepleriano**.
 
 :::
 
@@ -3759,45 +3905,41 @@ Marcos de referencia auxiliares
 
 ---
 
-Como se mencionó anteriormente, para relacionar el marco $\ls{p}\mathcal{F}$ y el marco $\ls{r}\mathcal{F}$ es necesario conocer la anomalía verdadera $\nu(t)$, dado que
+- Como se mencionó anteriormente, para relacionar el marco $\ls{p}\mathcal{F}$ y el marco $\ls{r}\mathcal{F}$ es necesario conocer la anomalía verdadera $\nu(t)$, dado que
 
-$$
-\ls{r}R_p(t)=R_z(\nu(t)).
-$$
+    $$
+    \ls{r}R_p(t)=R_z(\nu(t)).
+    $$
 
-::: incremental
+:::{.incremental}
 
-Para conocer $\nu(t)$, es necesario calcular la anomalía excéntrica $\psi(t)$, que puede obtenerse de la misma forma que en el problema de propagación de órbita. Una vez conocida $\psi(t)$, la anomalía verdadera $\nu(t)$ puede obtenerse mediante @eq-cos_sin_nu, de tal modo que
+- Para conocer $\nu(t)$, es necesario calcular la anomalía excéntrica $\psi(t)$, que puede obtenerse de la misma forma que en el problema de propagación de órbita. Una vez conocida $\psi(t)$, la anomalía verdadera $\nu(t)$ puede obtenerse mediante @eq-cos_sin_nu, de tal modo que
 
-$$
-\nu(t) = \tan^{-1}\left(\frac{\sin(\psi(t))\sqrt{1-e^2}}{\cos(\psi(t))-e}\right).
-$$
+    $$
+    \nu(t) = \tan^{-1}\left(\frac{\sin(\psi(t))\sqrt{1-e^2}}{\cos(\psi(t))-e}\right).
+    $$
 
-:::
+- Debido a que la función $\tan^{-1}(\cdot)$ tiene un rango de $(-\pi/2,\pi/2)$, es necesario considerar el cuadrante en el que se encuentra $\nu(t)$ para obtener el valor correcto. Por ello , es recomendable utilizar la función $\text{atan2}(y,x)$, que considera el cuadrante correcto, de modo que
 
----
+    $$
+    \nu(t) = \text{atan2}\left(\sin(\psi(t))\sqrt{1-e^2},\cos(\psi(t))-e\right).
+    $$
 
-Debido a que la función $\tan^{-1}(\cdot)$ tiene un rango de $(-\pi/2,\pi/2)$, es necesario considerar el cuadrante en el que se encuentra $\nu(t)$ para obtener el valor correcto. Por ello , es recomendable utilizar la función $\text{atan2}(y,x)$, que considera el cuadrante correcto, de modo que
 
-$$
-\nu(t) = \text{atan2}\left(\sin(\psi(t))\sqrt{1-e^2},\cos(\psi(t))-e\right).
-$$
+    donde $\text{atan2}(y,x)$ se define como
 
-::: incremental
+    $$
+        \text{atan2}(y,x) =
+        \begin{cases}
+            \tan^{-1}(y/x),     & x>0,\\
+            \tan^{-1}(y/x)+\pi, & x<0,y\geq 0,\\
+            \tan^{-1}(y/x)-\pi, & x<0,y<0,\\
+            +\pi/2,             & x=0,y>0,\\
+            -\pi/2,             & x=0,y<0,\\
+            \text{indefinido},  & x=0,y=0.
+        \end{cases}
+    $$
 
-donde $\text{atan2}(y,x)$ se define como
-
-$$
-    \text{atan2}(y,x) =
-    \begin{cases}
-        \tan^{-1}(y/x),     & x>0,\\
-        \tan^{-1}(y/x)+\pi, & x<0,y\geq 0,\\
-        \tan^{-1}(y/x)-\pi, & x<0,y<0,\\
-        +\pi/2,             & x=0,y>0,\\
-        -\pi/2,             & x=0,y<0,\\
-        \text{indefinido},  & x=0,y=0.
-    \end{cases}
-$$
 
 :::
 
@@ -3809,9 +3951,9 @@ $$
 \ls{h}R_r = R_z\left(\frac{\pi}{2}\right)R_y\left(-\frac{\pi}{2}\right).
 $$
 
-::: incremental
+:::{.fragment}
 
-Con ello, la matriz de rotación desde el marco $\ls{i}\mathcal{F}$ al marco $\ls{h}\mathcal{F}$ está dada por
+- Con ello, la matriz de rotación desde el marco $\ls{i}\mathcal{F}$ al marco $\ls{h}\mathcal{F}$ está dada por
 
 $$
     \begin{split}
@@ -3820,15 +3962,24 @@ $$
     \end{split}
 $$
 
-Ahora...
+:::
 
-<center>
 
-\Large \textcolor{red}{¿Cómo calculamos $\ls{b}R_h(t)$?}
+::: {.fragment style="display:flex;justify-content:center;"}
+Y ahora ...
 
-</center>
+::: {.xlarge}
+
+<div class="vspace-3"></div>
+
+<span style="color:blue">**¿Cómo se calcula $\ls{b}R_h\td$?**</span>
 
 :::
+
+:::
+
+
+
 
 ---
 
@@ -3841,9 +3992,11 @@ Ahora...
 
   La elección de las siglas *S* y *W* puede deberse a convenciones históricas o a la necesidad de evitar confusiones con otras letras.
 
-::: incremental
+:::{.incremental}
 
 - El análisis que hicimos la sección de mecánica orbital se realizó bajo la suposición de los cuerpos son puntuales. En la práctica, los cuerpos tienen una distribución de masa que puede afectar la órbita. Sin embargo, para las escalas de órbita que vimos hasta este punto del curso, la suposición de cuerpos puntuales es suficientemente precisa.
+
+- También consideramos que los elementos orbitales son constantes con el tiempo. Eso nace de la suposición que hicimos sobre la ausencia de fuerza externas. Para mejorar el resultado, el comportamiento temporal de los elementos orbitales debe ser considerado. 
 
 - Existe otra forma más de describir la órbita, y es mediante los **coeficientes de Lagrange**. Estos coeficientes permiten calcular la posición y velocidad en función de las condiciones iniciales.
 

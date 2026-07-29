@@ -106,54 +106,54 @@ $$
 
 ## Variables de estado y vector de estado
 
-**Variables de estado** $x_i\td $
-Son un conjunto mínimo de variables que describen completamente la condición interna de un sistema en un instante dado.
+-   **Variables de estado** $x_i\td$
+    Son un conjunto mínimo de variables que describen completamente la condición interna de un sistema en un instante dado.
 
-**Vector de estado ** $x\td $ 
-Es la agrupación de las variables de estado en forma vectorial:
+-   **Vector de estado ** $x\td$ 
+    Es la agrupación de las variables de estado en forma vectorial:
 
-$$
-x\td  = \begin{bmatrix}
-x_1\td \\
-x_2\td \\
-\vdots \\
-x_n\td
-\end{bmatrix}
-$$
+    $$
+    x\td  = \begin{bmatrix}
+    x_1\td \\
+    x_2\td \\
+    \vdots \\
+    x_n\td
+    \end{bmatrix}
+    $$
 
-- El conocimiento de $x(t_0)$ y de las entradas futuras determina completamente la evolución del sistema
-- Las variables de estado no son únicas (distintas elecciones pueden describir el mismo sistema)
-- Deben ser independientes y suficientes (no redundantes)
-- Su elección afecta la forma del modelo, no la física del sistema
+    - El conocimiento de $x(t_0)$ y de las entradas futuras determina completamente la evolución del sistema
+    - Las variables de estado no son únicas (distintas elecciones pueden describir el mismo sistema)
+    - Deben ser independientes y suficientes (no redundantes)
+    - Su elección afecta la forma del modelo, no la física del sistema
 
 ---
 
 ## Espacio de Estados
 
-**Espacio de estados** 
+-   **Espacio de estados** 
 
-El *espacio de estados* es el conjunto $\mathcal{X}$ de todos los valores posibles del vector de estado:
+    El *espacio de estados* es el conjunto $\mathcal{X}$ de todos los valores posibles del vector de estado:
 
-$$
-\mathcal{X} = \{x \in \mathcal{X}_1 \times \mathcal{X}_2 \times \cdots \times \mathcal{X}_n : x \text{ es un vector de estado admisible}\}
-$$
+    $$
+    \mathcal{X} = \{x \in \mathcal{X}_1 \times \mathcal{X}_2 \times \cdots \times \mathcal{X}_n : x \text{ es un vector de estado admisible}\}
+    $$
 
-El término “admisible” se refiere a que el vector de estado debe cumplir ciertas restricciones físicas o de modelado (por ejemplo, restricciones de energía, límites de velocidad, etc.) para ser considerado válido.
+    El término “admisible” se refiere a que el vector de estado debe cumplir ciertas restricciones físicas o de modelado (por ejemplo, restricciones de energía, límites de velocidad, etc.) para ser considerado válido.
 
-**Ecuaciones de estado** 
+-   **Ecuaciones de estado** 
 
-La dinámica del sistema (evolución del sistema) se describe mediante un sistema de ecuaciones diferenciales:
+    La dinámica del sistema (evolución del sistema) se describe mediante un sistema de ecuaciones diferenciales:
 
-$$
-\dot{x}\td  = f\big(x\td ,\, u\td ,\, t\big)
-$$
+    $$
+    \dot{x}\td  = f\big(x\td ,\, u\td ,\, t\big)
+    $$
 
-dichas ecuaciones diferenciales se obtienen a partir de analizar las restricciones y las leyes físicas que rigen el sistema (por ejemplo, leyes de Newton, leyes de Maxwell, etc.) y representan cómo el vector de estado evoluciona en el tiempo bajo la influencia de las entradas $u\td $.
+    dichas ecuaciones diferenciales se obtienen a partir de analizar las restricciones y las leyes físicas que rigen el sistema (por ejemplo, leyes de Newton, leyes de Maxwell, etc.) y representan cómo el vector de estado evoluciona en el tiempo bajo la influencia de las entradas $u\td $.
 
-- El vector de estado $x\td$ evoluciona temporalmente como una trayectoria en $\mathcal{X}$.
-- La función $f$ define un campo vectorial sobre $\mathcal{X}$ y depende del modelo físico del sistema.
-- La entrada $u\td$ modifica la dinámica definida por las condiciones iniciales $x(t_0)$.
-- En su mayoría de los casos,  no se dispone de soluciones analíticas del sistema de ecuaciones diferenciales.
+    - El vector de estado $x\td$ evoluciona temporalmente como una trayectoria en $\mathcal{X}$.
+    - La función $f$ define un campo vectorial sobre $\mathcal{X}$ y depende del modelo físico del sistema.
+    - La entrada $u\td$ modifica la dinámica definida por las condiciones iniciales $x(t_0)$.
+    - En su mayoría de los casos,  no se dispone de soluciones analíticas del sistema de ecuaciones diferenciales.
 
 ---
 
@@ -163,70 +163,71 @@ $$
 m\ddot{q}\td  + c\dot{q}\td  + k q\td  = u\td
 $$
 
-donde $q\td $ es la posición del bloque, $m$ es la masa, $c$ es el coeficiente de amortiguamiento, $k$ es la constante del resorte y $u\td $ es la fuerza externa aplicada al bloque.
+donde $q\td$ es la posición del bloque, $m$ es la masa, $c$ es el coeficiente de amortiguamiento, $k$ es la constante del resorte y $u\td $ es la fuerza externa aplicada al bloque.
 
-**Definición de variables de estado** 
+-   **Elección de las variables de estado** 
 
-$$
-x_1\td  = q\td , \quad x_2\td  = \dot{q}\td , \quad x\td  =
-\begin{bmatrix}
-x_1\td \\
-x_2\td
-\end{bmatrix}
-$$
+    $$
+    x_1\td  = q\td , \quad x_2\td  = \dot{q}\td , \quad x\td  =
+    \begin{bmatrix}
+    x_1\td \\
+    x_2\td
+    \end{bmatrix}
+    $$
 
-**Modelo en espacio de estados** 
+-   **Modelo en espacio de estados** 
 
-$$
-\dot{x}_1\td  = x_2\td
-$$
+    $$
+    \dot{x}_1\td  = x_2\td
+    $$
 
-$$
-\dot{x}_2\td  = -\frac{k}{m}x_1\td  - \frac{c}{m}x_2\td  + \frac{1}{m}u\td
-$$
+    $$
+    \dot{x}_2\td  = -\frac{k}{m}x_1\td  - \frac{c}{m}x_2\td  + \frac{1}{m}u\td
+    $$
 
-**Campo vectorial** 
+-   **Campo vectorial** 
 
-$$
-\begin{split}
-\dot{x}\td  = f(x\td , u\td ) & =
-\begin{bmatrix}
-x_2 \\
--\frac{k}{m}x_1 - \frac{c}{m}x_2 + \frac{1}{m}u
-\end{bmatrix}                                                                                                                                                      \\
-& = \begin{bmatrix} 0 & 1 \\ -\frac{k}{m} & -\frac{c}{m} \end{bmatrix} \begin{bmatrix} x_1 \\ x_2 \end{bmatrix} + \begin{bmatrix} 0 \\ \frac{1}{m} \end{bmatrix} u\td
-\end{split}
-$$
+    $$
+    \begin{split}
+    \dot{x}\td  = f(x\td , u\td ) & =
+    \begin{bmatrix}
+    x_2 \\
+    -\frac{k}{m}x_1 - \frac{c}{m}x_2 + \frac{1}{m}u
+    \end{bmatrix}                                                                                                                                                      \\
+    & = \begin{bmatrix} 0 & 1 \\ -\frac{k}{m} & -\frac{c}{m} \end{bmatrix} \begin{bmatrix} x_1 \\ x_2 \end{bmatrix} + \begin{bmatrix} 0 \\ \frac{1}{m} \end{bmatrix} u\td
+    \end{split}
+    $$
 
 ---
 
 ## Sistemas lineales
 
-**Definición** 
-Un sistema es lineal si su dinámica puede escribirse como:
+-   **Definición** 
 
-$$
-\dot{x}\td  = A\td \,x\td  + B\td \,u\td
-$$
+    Un sistema es lineal si su dinámica puede escribirse como:
 
-donde $A \in \mathbb{R}^{n \times n}$ y $B \in \mathbb{R}^{n \times m}$ son matrices constantes.
+    $$
+    \dot{x}\td  = A\td \,x\td  + B\td \,u\td
+    $$
 
-**Caso invariante en el tiempo**  
+    donde $A \in \mathbb{R}^{n \times n}$ y $B \in \mathbb{R}^{n \times m}$ son matrices constantes.
 
-$$
-\dot{x}\td  = A\,x\td  + B\,u\td
-$$
+-   **Caso invariante en el tiempo**  
 
-**Caso autónomo** ($u\td  = 0$)  
+    $$
+    \dot{x}\td  = A\,x\td  + B\,u\td
+    $$
 
-$$
-\dot{x}\td  = A\,x\td
-$$
+-   **Caso autónomo** ($u\td  = 0$)  
 
-- El campo vectorial es una transformación lineal en $x$
-- En el caso autónomo, la dinámica está completamente determinada por la matriz $A$ y las condiciones iniciales $x(t_0)$
-- Las trayectorias dependen de los valores propios de $A$
-- Muchos sistemas no lineales se aproximan localmente por uno lineal (lo veremos más adelante).
+    $$
+    \dot{x}\td  = A\,x\td
+    $$
+
+    - El campo vectorial es una transformación lineal en $x$
+    - En el caso autónomo, la dinámica está completamente determinada por la matriz $A$ y las condiciones iniciales $x(t_0)$
+    - Las trayectorias dependen de los valores propios de $A$
+    - Muchos sistemas no lineales se aproximan localmente por uno lineal (lo veremos más adelante).
 
 ---
 
@@ -241,88 +242,88 @@ B = \begin{bmatrix} 0 \\ \frac{1}{m} \end{bmatrix}
 \end{split}
 $$
 
-**Valores propios de A** 
+-   **Valores propios de A** 
 
-$$
-\lambda_{1,2} = \frac{-c \pm \sqrt{c^2 - 4mk}}{2m}
-$$
+    $$
+    \lambda_{1,2} = \frac{-c \pm \sqrt{c^2 - 4mk}}{2m}
+    $$
 
-**Solución (caso autónomo $u\td =0$)** 
+-   **Solución (caso autónomo $u\td =0$)** 
 
-$$
-x\td  = e^{At}x(0)
-$$
+    $$
+    x\td  = e^{At}x(0)
+    $$
 
-donde
+    donde
 
-$$
-e^{At} = I + At + \frac{A^2 t^2}{2!} + \frac{A^3 t^3}{3!} + \cdots
-$$
+    $$
+    e^{At} = I + At + \frac{A^2 t^2}{2!} + \frac{A^3 t^3}{3!} + \cdots
+    $$
 
-En términos de la variable física $q\td $:
+-   En términos de la variable física $q\td$:
 
-$$
-q\td  = C_1 e^{\lambda_1 t} + C_2 e^{\lambda_2 t}
-$$
+    $$
+    q\td  = C_1 e^{\lambda_1 t} + C_2 e^{\lambda_2 t}
+    $$
 
-donde $C_1$ y $C_2$ son constantes determinadas por las condiciones iniciales $x(0)$.
+    donde $C_1$ y $C_2$ son constantes determinadas por las condiciones iniciales $x(0)$.
 
 ---
 
 ## Ecuación de medición
 
-**Modelo completo** 
+-   **Modelo completo** 
 
-Un sistema dinámico se describe mediante:
+    Un sistema dinámico se describe mediante:
 
-$$
-\dot{x}\td  = f\big(x\td ,\, u\td ,\, t\big)
-$$
+    $$
+    \dot{x}\td  = f\big(x\td ,\, u\td ,\, t\big)
+    $$
 
-$$
-y\td  = h\big(x\td ,\, u\td ,\, t\big)
-$$
+    $$
+    y\td  = h\big(x\td ,\, u\td ,\, t\big)
+    $$
 
-**Ecuación de medición** 
+-   **Ecuación de medición** 
 
-- La salida $y\td  \in \mathcal{Y}$ representa las variables observables (medibles) del sistema, donde $\mathcal{Y}$ es el espacio de mediciones.
-- La función $h(\cdot)$ relaciona el estado con las mediciones
+    - La salida $y\td  \in \mathcal{Y}$ representa las variables observables (medibles) del sistema, donde $\mathcal{Y}$ es el espacio de mediciones.
+    - La función $h(\cdot)$ relaciona el estado con las mediciones
 
-**Caso lineal** 
+-   **Caso lineal** 
 
-$$
-y\td  = Cx\td  + Du\td
-$$
+    $$
+    y\td  = Cx\td  + Du\td
+    $$
 
-donde $C \in \mathbb{R}^{p \times n}$ y $D \in \mathbb{R}^{p \times m}$
+    donde $C \in \mathbb{R}^{p \times n}$ y $D \in \mathbb{R}^{p \times m}$
 
-- No todas las variables de estado son directamente medibles.
-- La medición es una proyección del estado.
-- La forma de $C$ determina qué información del estado es accesible.
-- En la práctica, las mediciones suelen incluir ruido ($y\td  = h(x\td , u\td , t) + w\td$).
-- La forma de $h$ depende de la instrumentación utilizada.
+    - No todas las variables de estado son directamente medibles.
+    - La medición es una proyección del estado.
+    - La forma de $C$ determina qué información del estado es accesible.
+    - En la práctica, las mediciones suelen incluir ruido ($y\td  = h(x\td , u\td , t) + w\td$).
+    - La forma de $h$ depende de la instrumentación utilizada.
 
 ---
 
 ##
 
-Por ejemplo, para el sistema masa--resorte--amortiguador, si sólo se mide la posición $q\td $, entonces la ecuación de medición es:
+-   Por ejemplo, para el sistema masa--resorte--amortiguador, si sólo se mide la posición $q\td $, entonces la ecuación de medición es:
 
-$$
-y\td  = x_1\td
-$$
+    $$
+    y\td  = x_1\td
+    $$
 
-o en forma matricial:
+    o en forma matricial:
 
-$$
-y\td  = \begin{bmatrix} 1 & 0 \end{bmatrix} x\td
-$$
+    $$
+    y\td  = \begin{bmatrix} 1 & 0 \end{bmatrix} x\td
+    $$
 
-Si se mide la posición y la velocidad, entonces la ecuación de medición es:
+-   Si se mide la posición y la velocidad, entonces la ecuación de medición es:
 
-$$
-y\td  = \begin{bmatrix} 1 & 0 \\ 0 & 1 \end{bmatrix} x\td
-$$
+    $$
+    y\td  = \begin{bmatrix} 1 & 0 \\ 0 & 1 \end{bmatrix} x\td
+    $$
 
 ---
 
@@ -338,20 +339,20 @@ $$
 y_k = h(x_k,\, u_k,\, k)
 $$
 
-**Caso lineal** 
+-   **Caso lineal** 
 
-$$
-x_{k+1} = A x_k + B u_k
-$$
+    $$
+    x_{k+1} = A x_k + B u_k
+    $$
 
-$$
-y_k = C x_k + D u_k
-$$
+    $$
+    y_k = C x_k + D u_k
+    $$
 
-- El estado evoluciona en instantes discretos $k$
-- La dinámica se describe mediante ecuaciones en diferencias
-- Es la forma natural para implementación digital
-- Se obtiene mediante métodos de discretización (ej. retenedor de orden cero con paso $T_s$, discretización de Euler, etc.)
+    - El estado evoluciona en instantes discretos $k$
+    - La dinámica se describe mediante ecuaciones en diferencias
+    - Es la forma natural para implementación digital
+    - Se obtiene mediante métodos de discretización (ej. retenedor de orden cero con paso $T_s$, discretización de Euler, etc.)
 
 ---
 
@@ -367,6 +368,8 @@ I_b\ls{b}\dot{\vec{\omega}}_{h,b}\td = & -S(\ls{b}\vec{\omega}_{h,b}\td )(I_b\ls
 \end{split}
 $$
 
+De forma compacta
+
 $$
 \dot{x}\td =f(x\td ,u\td ),
 $$
@@ -380,11 +383,6 @@ x\td & =\begin{bmatrix}
 \ls{b}\mathbf{q}_h\td
 \end{bmatrix} \in \mathbb{R}^{3} \times \mathbb{H}_1                                                                                                                                \\
 u\td & =\ls{b}\vec{\tau}_c\td -\ls{b}\vec{\tau}_{w}\td -\ls{b}R_i \td \ls{i}\dot{\vec{\omega}}_{i,h}\td  -\ls{b}\vec{r}_c\td \times\ls{b}\vec{f}_{c}\td , \quad u\td \in \mathbb{R}^{3} \\
-\end{split}
-$$
-
-$$
-\begin{split}
 f(x\td ,u\td ) & =\begin{bmatrix}
 \ls{b}\dot{\vec{\omega}}_{h,b}\td \\
 \ls{b}\dot{\mathbf{q}}_h\td
@@ -440,25 +438,25 @@ $$
 \min_{x \in \mathcal{X}} \; f(x)
 $$
 
-**Condición necesaria de optimalidad** 
+-   **Condición necesaria de optimalidad** 
 
-Si $x^\ast$ es un mínimo local y $f$ es diferenciable:
+    Si $x^\ast$ es un mínimo local y $f$ es diferenciable:
 
-$$
-\nabla f(x^\ast)= [\partial f(x^\ast) / \partial x_i ]_{i=1}^{n}] = 0
-$$
+    $$
+    \nabla f(x^\ast)= [\partial f(x^\ast) / \partial x_i ]_{i=1}^{n} = 0
+    $$
 
-**Condiciones de segundo orden**
+-   **Condiciones de segundo orden**
 
-- $\nabla^2 f(x^\ast) \succ 0$ $\Rightarrow$ mínimo local
-- $\nabla^2 f(x^\ast) \prec 0$ $\Rightarrow$ máximo local
-- $\nabla^2 f(x^\ast)$ indefinida $\Rightarrow$ punto silla
+    - $\nabla^2 f(x^\ast) \succ 0$ $\Rightarrow$ mínimo local
+    - $\nabla^2 f(x^\ast) \prec 0$ $\Rightarrow$ máximo local
+    - $\nabla^2 f(x^\ast)$ indefinida $\Rightarrow$ punto silla
 
-**Observación**
+-   **Observación**
 
-- Estas condiciones son locales. Es decir, garantizan optimalidad sólo en una vecindad de $x^\ast$.
-- No garantizan un mínimo global.
-- Para garantizar el optimo global, se deben cumplir las condiciones de *KKT*. (Esto no lo veremos en este curso, pero es importante mencionarlo).
+    - Estas condiciones son locales. Es decir, garantizan optimalidad sólo en una vecindad de $x^\ast$.
+    - No garantizan un mínimo global.
+    - Para garantizar el optimo global, se deben cumplir las condiciones de *KKT*. (Esto no lo veremos en este curso, pero es importante mencionarlo).
 
 ---
 
@@ -525,19 +523,23 @@ donde $\ell_i(x)$ mide la contribución de cada dato o condición.
 **Problema** 
 Dado un conjunto de $n$ estados y salidas  $x_i, y_i \in \mathbb{R}$, y la función de medición $\bar{y}_i= \alpha_1 x_i + \alpha_2$, se busca resolver el siguiente problema de optimización:
 
+$$
+\min_{\alpha_1,\alpha_2 \in \mathbb{R}} \; J(\alpha_1,\alpha_2) 
+$$
+
 donde:
 
 $$
-\min_{\alpha_1,\alpha_2} \; J(\alpha_1,\alpha_2) = \sum_{i=1}^{n} (y_i - \bar{y}_i)^2 = \sum_{i=1}^{n} (y_i - \alpha_1 x_i - \alpha_2)^2
+J(\alpha_1,\alpha_2) = \sum_{i=1}^{n} (y_i - \bar{y}_i)^2 = \sum_{i=1}^{n} (y_i - \alpha_1 x_i - \alpha_2)^2
 $$
-
-donde $\alpha_1,\alpha_2 \in \mathbb{R}$.
 
 **Condiciones de optimalidad**
 
 $$
 \frac{\partial J}{\partial \alpha_1} = 0, \quad \frac{\partial J}{\partial \alpha_2} = 0
 $$
+
+---
 
 **Sistema resultante**
 

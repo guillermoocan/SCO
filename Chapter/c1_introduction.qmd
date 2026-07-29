@@ -841,26 +841,4 @@ Revisión histórica
 :::
 
 
-## Caso de estudio del curso
 
-A partir de este punto, todos los conceptos se desarrollarán tomando como caso de estudio el **movimiento rotacional de un satélite artificial** en órbita alrededor de un cuerpo centra, específicamente la Tierra.
-
-Supondremos que:
-
-- El satélite describe una **órbita elíptica** alrededor del cuerpo central.
-- El cuerpo central se encuentra en **uno de los focos** de la elipse.
-- No existen perturbaciones externas; únicamente actúa la **atracción gravitacional mutua**.
-
-Estas hipótesis se utilizarán inicialmente como modelo de trabajo y serán justificadas más adelante en el curso.
-
-::: {.fragment}
-
-Aunque el contexto será espacial, la mayor parte de las herramientas matemáticas desarrolladas son aplicables a otros sistemas dinámicos, por ejemplo:
-
-- Robots manipuladores.
-- Drones y vehículos aéreos.
-- Aeronaves.
-- Submarinos.
-- Cualquier cuerpo rígido con movimiento rotacional.
-
-:::
