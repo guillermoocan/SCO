@@ -1,0 +1,52 @@
+## {.title-slide-custom}
+
+<div class="cover">
+
+<div class="cover-logo">
+<img src="Assets/logo_big.png">
+</div>
+
+<!-- <div class="cover-background">
+<img src="Assets/background_sco_blue_1080.png">
+</div> -->
+
+<div class="cover-title">
+Sistema de Control de Orientación
+</div>
+
+<div class="cover-line"></div>
+
+<div class="cover-subtitle">
+Diapositivas
+</div>
+
+<div class="cover-author">
+M.I. Guillermo Ocaña Anaya
+</div>
+
+<div class="cover-affiliation">
+Universidad Nacional Autónoma de México<br>
+Facultad de Ingeniería<br>
+Unidad de Alta Tecnología
+</div>
+
+
+
+</div>
+
+<div class="menu-title" style="display:none;">Inicio </div>
+
+---
+
+{{< include Chapter/c0_course.qmd >}}
+
+{{< include Chapter/c1_introduction.qmd >}}
+
+{{< include Chapter/c2_preliminar.qmd >}}  
+
+{{< include Chapter/c3_dynamics.qmd >}}
+
+{{< include Chapter/c4_determination.qmd >}} 
+
+{{< include Chapter/c5_control.qmd >}} 
+

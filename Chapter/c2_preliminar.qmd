@@ -1,23 +1,27 @@
+## {.title-slide-custom}
 
-::: {.chapter-slide}
+<div class="cover">
 
-# Capítulo 2
+<div class="cover-logo">
+<img src="Assets/logo_big.png">
+</div>
 
-::: {.text-center}
 
-<div class="chapter-line"></div>
-
-::: {.large}
-
+<div class="cover-title">
 Preliminares
-<div class="menu-title" style="display:none;"> Preliminares </div>
+</div>
 
-:::
+<div class="cover-line"></div>
 
-:::
+<div class="cover-subtitle">
+Capítulo 2
+</div>
 
-:::
+</div>
 
+<div class="menu-title" style="display:none;">Preliminares </div>
+
+---
 
 ## Caso de estudio del curso
 
@@ -25,7 +29,7 @@ Preliminares
 ::: {.columns}
 
 
-::: {.column width=70%}
+::: {.column width=60%}
 
 - A partir de este punto, todos los conceptos se desarrollarán tomando como caso de estudio el **movimiento rotacional de un satélite artificial** en órbita alrededor de un cuerpo centra, específicamente la Tierra.
 
@@ -63,7 +67,9 @@ Si en algún momento tienen dudas sobre cómo extender un resultado a otro tipo 
 
 :::
 
-::: {.column width=30%}
+::: {.column width=40%}
+<div class="vspace-3"></div>
+<div class="vspace-3"></div>
 
 
 ![](/Figures/c2/frame_empty.svg){width=110% fig-align="center"}

@@ -142,22 +142,20 @@ $background-color: #ffffff;
 ==================================================*/
 
 #background-image {
-    position: fixed;
+    position: absolute;
     top: 0;
-    right: 0;
-    width: 45vw;
-    height: 100vh;
-    opacity: 0.08;
+    right: -100px;
+    height: 100%;
     pointer-events: none;
-    z-index: -1;
+    z-index: 0;
 }
 
 #background-image img {
-    width: 110%;
-    height: 110%;
-    object-fit: contain;
-    object-position: right center;
+    display: block;
+    height: 100%;
+    width: auto;
 }
+
 
 /*==================================================
   CONFIGURACIÓN DE REVEAL.JS
@@ -232,8 +230,6 @@ $background-color: #ffffff;
     line-height: 1.4;
     color: #555;
 }
-
-
 
 /*==================================================
   DIAPOSITIVAS DE CAPÍTULO

@@ -1,24 +1,29 @@
-::: {.chapter-slide}
 
-# Capítulo 4
 
-::: {.text-center}
+## {.title-slide-custom}
 
-<div class="chapter-line"></div>
+<div class="cover">
 
-::: {.large}
+<div class="cover-logo">
+<img src="Assets/logo_big.png">
+</div>
 
+
+<div class="cover-title">
 Determinación
+</div>
 
-<div class="menu-title" style="display:none;"> Determinación </div>
+<div class="cover-line"></div>
 
-:::
+<div class="cover-subtitle">
+Capítulo 4
+</div>
 
-:::
+</div>
 
-:::
+<div class="menu-title" style="display:none;">Determinación </div>
 
-##
+---
 
 ![](Figures/c1/closeloop.svg){width=100% width=100% fig-align="center"}
 
@@ -834,28 +839,48 @@ Sensores
 
 ##
 
+<div class="vspace-2"></div>
+
 ::: {.definition-block}
 **Definición**
 
 Un sensor es un dispositivo que mide una magnitud física (generada por un fenómeno físico) y la convierte en una señal proporcional que puede ser interpretada, procesada o registrada.
 :::
 
+<div class="vspace-2"></div>
+
 - También se les conoce como transductores, pero este término es más general y abarca dispositivos que convierten cualquier tipo de energía en otra.
 - Comúnmente los sensores convierten una magnitud física en una señal eléctrica (sea analogíca o digital), debido a que las señales eléctricas son fáciles de transmitir, procesar y almacenar.
 - Por otro lado, es común que los sensores incluyan circuitos electrónicos adicionales para amplificar, filtrar o acondicionar la señal generada.
 - Se pueden clasificar como absolutos o relativos, dependiendo de si miden una magnitud con respecto a un punto de referencia fijo o a otro valor variable.
 - Algunos ejemplos de sensores son
+
+::: {.columns}
+
+::: {.column}
+-
   - Ópticos: cámaras, fotodiodos, fotoceldas.
   - Inerciales: acelerómetros, giroscopios.
   - Magnéticos: magnetómetros.
   - Térmicos: termopares.
   - De presión: barómetros, manómetros.
   - De proximidad: sensores ultrasónicos, sensores infrarrojos.
+
+:::
+
+::: {.column}
+-
   - De flujo: anemómetros, medidores de caudal.
   - De posición: potenciómetros, encoders.
   - De fuerza: celdas de carga.
   - De luz: fotómetros.
   - De sonido: micrófonos.
+
+:::
+
+:::
+
+
 
 ---
 
@@ -872,11 +897,15 @@ Un sensor es un dispositivo que mide una magnitud física (generada por un fenó
 ---
 
 ##
+
+<div class="vspace-3"></div>
+
+
 Para el caso de satélites, los sensores más comunes para la determinación de orientación son:
 
 - Sensores solares
 - Sensores de horizonte
-- Cámaras de estrellas (Seguidor de estrellas-)
+- Seguidor de estrellas (cámara de estrellas)
 - Magnetómetros
 - Giroscopios (IMU)
 
@@ -895,6 +924,8 @@ Pero su implementación requiere consideraciones adicionales sobre el satélite 
 
 ::: {.column width="59%"}
 
+<div class="vspace-3"></div>
+
 - El sensor solar determina la dirección del Sol con respecto al centro de masa del satélite.
 - Es una referencia absoluta de orientación, ya que la posición del Sol en el espacio inercial se conoce con gran precisión y puede tomarse como referencia.
 - Opera midiendo la intensidad de la radiación solar incidente sobre una o más superficies sensibles (fotodiodos o celdas solares).
@@ -905,6 +936,8 @@ Pero su implementación requiere consideraciones adicionales sobre el satélite 
 :::
 
 ::: {.column width="40%"}
+
+<div class="vspace-3"></div>
 
 ![](Figures/sensor_sunsensor.png){width=100% fig-align="center"}
 
@@ -920,6 +953,8 @@ Pero su implementación requiere consideraciones adicionales sobre el satélite 
 
 ::: {.column width="55%"}
 
+<div class="vspace-3"></div>
+
 - Magnitud física: irradiancia solar.
 - Fenómeno: incidencia de radiación electromagnética proveniente del Sol.
 - Variable derivada: dirección del vector que apunta al Sol desde el centro de masa del satélite en coordenadas del cuerpo: 
@@ -934,6 +969,8 @@ donde $\:^b\hat{r}_{\odot}$ es el vector unitario que apunta desde el centro de 
 :::
 
 ::: {.column width="40%"}
+
+<div class="vspace-3"></div>
 
 ![](Figures/sensor_sunsensor.png){width=100% fig-align="center"}
 
@@ -986,17 +1023,21 @@ donde $V_\odot$ es el voltaje de salida del sensor, $k_\odot$ es una constante d
 
 ::: {.columns}
 
-::: {.column width="50%"}
-
-- Por sí solo, un sensor solar con una única celda no es capaz de determinar la dirección del Sol en tres dimensiones, ya que sólo mide la proyección del vector solar sobre la normal de la celda.
-- El conjunto de vectores $\ls{b}\hat{r}_\odot$ para un único ángulo $\theta_\odot$ forma un cono alrededor de la normal de la celda $(\cos(\theta_\odot) = \:^b\hat{n}_\odot ^\top \:^b\hat{r}_{\odot} )$.
-- Una solución común es colocar en la superficie del satélite sensores solares en diferentes posiciones y orientaciones, de modo que al menos tres de ellos puedan detectar la radiación solar en cualquier orientación del satélite. Geométricamente, esto se puede interpretar como la intersección tres conos, lo cual define un punto único en el espacio.
-
-:::
-
 ::: {.column width="45%"}
 
 ![](Figures/sunsensor.svg){width=100% fig-align="center"}
+
+:::
+
+::: {.column width="50%"}
+
+<div class="vspace-4"></div>
+
+- Por sí solo, un sensor solar con una única celda no es capaz de determinar la dirección del Sol en tres dimensiones, ya que sólo mide la proyección del vector solar sobre la normal de la celda.
+  <div class="vspace-3"></div>
+- El conjunto de vectores $\ls{b}\hat{r}_\odot$ para un único ángulo $\theta_\odot$ forma un cono alrededor de la normal de la celda $(\cos(\theta_\odot) = \:^b\hat{n}_\odot ^\top \:^b\hat{r}_{\odot} )$.
+  <div class="vspace-3"></div>
+- Una solución común es colocar en la superficie del satélite sensores solares en diferentes posiciones y orientaciones, de modo que al menos tres de ellos puedan detectar la radiación solar en cualquier orientación del satélite. Geométricamente, esto se puede interpretar como la intersección tres conos, lo cual define un punto único en el espacio.
 
 :::
 
@@ -1138,6 +1179,12 @@ $$
 
 ##
 
+<div class="vspace-3"></div>
+
+<div class="vspace-3"></div>
+
+
+
 - Para obtener la dirección del Sol en el marco inercial, es necesario conocer la posición del Sol en dicho marco.
 - Esto se puede lograr mediante efemérides solares o modelos astronómicos que proporcionan la posición del Sol en función del tiempo.
 - Una vez que se tiene la posición del Sol en el marco inercial, se puede comparar con la dirección medida por el sensor solar para determinar la orientación del satélite.
@@ -1152,6 +1199,12 @@ donde $\:^i\vec{r}_{s}$ es la posición del Sol desde el origen del marco de ref
 
 ##
 
+
+<div class="vspace-3"></div>
+
+<div class="vspace-3"></div>
+
+
 Algunas consideraciones importantes sobre los sensores solares:
 
 - Requieren una línea de visión directa al Sol para funcionar correctamente. Es decir, dependiendo de la tecnología utilizada, la irradiación debe ser detectada por un conjunto mínimo de sensores para no perder la referencia.
@@ -1163,6 +1216,12 @@ Algunas consideraciones importantes sobre los sensores solares:
 ---
 
 ## Sensor de horizonte
+
+
+
+::: {.columns}
+
+::: {.column}
 
 - Un sensor de horizonte determina la dirección del centro de la Tierra con respecto al centro de masa del satélite.
 - Es una referencia absoluta de orientación, ya que la posición del centro terrestre en el marco inercial se conoce con gran precisión (para nuestro caso, es el origen del marco inercial).
@@ -1181,11 +1240,22 @@ $$
 \end{bmatrix}
 $$
 
+:::
+
+::: {.column width="35%"}
+
+![](Figures/sensor_horizonsensor.png){width=100% fig-align="center"}
+
+:::
+
+:::
+
+
 ---
 
 ::: {.columns}
 
-::: {.column width="50%"}
+::: {.column}
 
 **Constitución física**
 
@@ -1202,9 +1272,9 @@ $$
 
 :::
 
-::: {.column width="45%"}
+::: {.column width="35%"}
 
-![](Figures/sensor_horizonsensor.png){width=60% fig-align="center"}
+![](Figures/sensor_horizonsensor.png){width=100% fig-align="center"}
 
 :::
 
@@ -1216,7 +1286,7 @@ $$
 
 ::: {.columns}
 
-::: {.column width="50%"}
+::: {.column width=65%}
 
 Considere el conjunto de $n$ vectores unitarios $\hat{u}_i$ que apuntan al horizonte terrestre. Todos estos vectores satisfacen la siguiente relación:
 
@@ -1259,7 +1329,7 @@ Para ello, es necesario que el conjunto de vectores $\hat{u}_i$ sea suficienteme
 
 :::
 
-::: {.column width="45%"}
+::: {.column width="35%"}
 
 ![](Figures/earth_sensor.svg){width=100% fig-align="center"}
 
@@ -1315,16 +1385,14 @@ $$
 ^b\hat{r}_\oplus = (U^\top U)^{-1} U^\top \vec{C}_\beta
 $$
 
+
 $$
 U^\top U =
 \begin{bmatrix}
 0.5 & 0     & 0     \\
 0   & 0.25  & 0.433 \\
 0   & 0.433 & 2.25
-\end{bmatrix}
-$$
-
-$$
+\end{bmatrix} \qquad
 U^\top \vec{C}_\beta =
 \begin{bmatrix}
 0     \\
@@ -1348,6 +1416,7 @@ $$
 \end{bmatrix}
 $$
 
+
 :::
 
 ::: {.column width="45%"}
@@ -1360,7 +1429,12 @@ $$
 
 ---
 
+
 ##
+
+<div class="vspace-3"></div>
+
+<div class="vspace-3"></div>
 
 Algunas consideraciones sobre los sensores de horizonte:
 
@@ -1513,7 +1587,7 @@ $$
 \vec{F} =\vec{I} \times \:^b\vec{B}
 $$
 
-- Esta fuerza genera un par sobre la masa móvil, lo cual genera un cambio de capacitancia $$\Delta C$$.
+- Esta fuerza genera un par sobre la masa móvil, lo cual genera un cambio de capacitancia $\Delta C$.
 - El cambio de capacitancia es proporcional a la componente del campo magnético medida:
 
 $$
@@ -1525,6 +1599,10 @@ $$
 :::
 
 ::: {.column width="45%"}
+
+<div class="vspace-3"></div>
+
+<div class="vspace-3"></div>
 
 ![](Figures/sensor_magnetometer_MEMS.png){width=100% fig-align="center"}
 
@@ -1539,6 +1617,8 @@ $$
 ::: {.columns}
 
 ::: {.column width="60%"}
+
+<div class="vspace-3"></div>
 
 **Medición**
 
@@ -1602,7 +1682,11 @@ Un indicador clave para evaluar la calidad de la calibración es que la norma de
 
 ##
 
+:::{.large}
+
 <span style="color:#003399">¿Cómo se obtienen $A$ y $\vec{b}$?</span>
+
+:::
 
 Partiendo del modelo de medición
 
@@ -1674,6 +1758,8 @@ $$
 
 ##
 
+<div class="vspace-3"></div>
+
 **Salida de los modelos geomagnéticos**
 
 - $X$: componente norte geográfico.
@@ -1698,6 +1784,8 @@ Algunas consideraciones adicionales:
 ::: {.columns}
 
 ::: {.column width="60%"}
+
+<div class="vspace-3"></div>
 
 - El giroscopio mide la **velocidad angular** de un cuerpo con respecto a una referencia inercial. Por lo mismo, también se le clasifica como una unidad de medición inercial (IMU, por sus siglas en inglés).
 - Se considera como un sensor relativo, ya que mide cambios en la orientación a lo largo del tiempo.
@@ -1733,6 +1821,8 @@ $$
 ::: {.columns}
 
 ::: {.column width="65%"}
+
+<div class="vspace-3"></div>
 
 **Constitución física (MEMS)**
 
@@ -1775,6 +1865,8 @@ Las tres componentes de la velocidad angular se obtienen mediante tres estructur
 
 ::: {.column width="53%"}
 
+<div class="vspace-3"></div>
+
 **Medición**
 
 $$
@@ -1803,6 +1895,8 @@ La principal complejidad de un giroscopio radica en que el sesgo $\vec{b}_g$ pue
 ---
 
 ##
+
+<div class="vspace-3"></div>
 
 Una forma de modelar la evolución del sesgo es mediante un proceso estocástico:
 
@@ -1833,6 +1927,10 @@ donde $n$ es el número de muestras tomadas en reposo. Este sensgo puede ser uti
 
 ##
 
+<div class="vspace-3"></div>
+
+<div class="vspace-3"></div>
+
 Algunas consideraciones adicionales:
 
 - Los giroscopios MEMS son económicos y compactos, pero tienen mayor ruido y sesgo que los giroscopios mecánicos u ópticos.
@@ -1845,11 +1943,14 @@ Algunas consideraciones adicionales:
 
 ## Comparativa
 
+<div class="vspace-3"></div>
+<div class="vspace-3"></div>
+
 
 |Sensor | Precisión | Descripción |
 |:---:|:---:|:---:|
-| Magnetómetros | $1 [^{\circ}] - 5000 [km]$, $ 5 [^{\circ}] - 200 [km]$ | Altura relativa al nivel del mar. Medición del vector de campo magnético. No están recomendados para alturas mayores a $6000 [km]$ |
-| Sensor de horizonte | $0.05 [^{\circ}] - 2 [^{\circ}] $ | Sensores infrarrojos que detectan la diferencia de temperatura entre el cuerpo celeste y el espacio profundo. |
+| Magnetómetros | $1 [^{\circ}] - 5000 [km]$, $5 [^{\circ}] - 200 [km]$ | Altura relativa al nivel del mar. Medición del vector de campo magnético. No están recomendados para alturas mayores a $6000 [km]$ |
+| Sensor de horizonte | $0.05 [^{\circ}] - 2 [^{\circ}]$ | Sensores infrarrojos que detectan la diferencia de temperatura entre el cuerpo celeste y el espacio profundo. |
 | Cámara de estrellas | $3\times 10^{-4} [^{\circ}] - 3\times 10^{-3}  [^{\circ}]$ | Detecta el patrón de un conjunto de estrellas y lo compara con una base de datos. Costosos. FOV limitado. |
 | Sensor solar | $0.01[^{\circ}]-5[^{\circ}]$ | Detectan el ángulo de incidencia de la radiación solar mediante fotoceldas. Bajo costo. Necesario un conjunto mínimo irradiado para su funcionamiento. |
 | Giroscopios |  | Error de integración acumulativo. Requieren una calibración constante debido al sesgo dinámico. |
@@ -1857,6 +1958,9 @@ Algunas consideraciones adicionales:
 ---
 
 ##
+
+<div class="vspace-3"></div>
+
 - En este punto, hemos visto cómo obtener mediciones de vectores de referencia en el marco del cuerpo ($^b\hat{v}_j$) y en el marco inercial ($^i\hat{v}_j$) mediante sensores absolutos.
   - Sensor solar: $\:^b\hat{r}_{\odot}$ y $\:^i\hat{r}_{\odot}$$\:^i\hat{s}$ (vector que apunta al Sol).
   - Sensor de horizonte: $\:^b\hat{r}_\oplus$ y $\:^i\hat{r}_\oplus$ (vector que apunta al centro de la Tierra).
@@ -1896,6 +2000,10 @@ Algoritmos de determinación estáticos
 
 ## Algoritmos de determinación estáticos
 
+<div class="vspace-3"></div>
+<div class="vspace-3"></div>
+<div class="vspace-3"></div>
+
 - Estiman la orientación instantánea utilizando mediciones disponibles en un único instante.
 - No requieren propagar estados previos ni modelar la dinámica rotacional del sistema.
 - Emplean pares de vectores conocidos en marcos inercial y cuerpo para inferir la rotación entre ambos sistemas de referencia.
@@ -1907,10 +2015,13 @@ Algoritmos de determinación estáticos
 ## TRIAD
 <div class="menu-title" style="display:none;"> ▸▸ TRIAD </div>
 
+<div class="vspace-3"></div>
+<div class="vspace-3"></div>
+
 ::: {.definition-block}
 **Idea general**
 
-El método **TRIAD** (TRI-Axial Attitude Determination) es un algoritmo geométrico que estima la orientación del satélite utilizando únicamente dos pares de vectores conocidos:
+El método *TRIAD* (TRI-Axial Attitude Determination) es un algoritmo geométrico que estima la orientación del satélite utilizando únicamente dos pares de vectores conocidos:
 
 $$
 \{\,^i\hat{v}_1,\, ^b\hat{v}_1\,\}, \quad \{\,^i\hat{v}_2,\, ^b\hat{v}_2\,\}.
@@ -1919,6 +2030,9 @@ $$
 A partir de ellos se construyen dos bases ortonormales (tríadas), una en el marco inercial y otra en el marco del cuerpo.
 :::
 
+<div class="vspace-3"></div>
+
+
 - Las tríadas son formadas por los vectores originales y sus productos cruzados, de forma que se garantice ortogonalidad.
 - La matriz de rotación estimada $^{b}\hat{R}_i$ se obtiene al alinear la tríada del cuerpo con la tríada inercial.
 
@@ -1926,7 +2040,10 @@ A partir de ellos se construyen dos bases ortonormales (tríadas), una en el mar
 
 ## Construcción de las tríadas
 
-Dado el conocimiento de dos vectores unitarios $\,^i\hat{v}_1$, $\,^i\hat{v}_2$ en el marco inercial y sus mediciones $\,^b\hat{v}_1$, $\,^b\hat{v}_2$ en el marco del cuerpo, se construyen las siguientes bases ortonormales:
+<div class="vspace-3"></div>
+<div class="vspace-3"></div>
+
+Dado el conocimiento de dos vectores unitarios $\,^i\hat{v}_1$, $\,^i\hat{v}_2$ en el marco inercial y sus respectivas mediciones $\,^b\hat{v}_1$, $\,^b\hat{v}_2$ en el marco del cuerpo, se construyen las siguientes bases ortonormales:
 
 $$
 \begin{aligned}
@@ -1995,6 +2112,8 @@ $$
 \end{bmatrix}^\top.
 $$
 
+<div class="vspace-3"></div>
+
 ::: {.definition-block}
 **Ventajas y limitaciones**
 
@@ -2009,7 +2128,7 @@ $$
 
 ::: {.algorithm}
 
-<div class="algorithm-title">Algoritmo 1</div>
+<div class="algorithm-title">Algoritmo 2: TRIAD</div>
 
 <div class="algorithm-io">
 <strong>Entrada:</strong>
@@ -2114,11 +2233,7 @@ $$
 1 & \frac{1}{\sqrt{2}} & 0 \\
 0 & \frac{1}{\sqrt{2}} & 0 \\
 0 & 0                  & 1
-\end{bmatrix}^\top
-$$
-
-$$
-=
+\end{bmatrix}^\top =
 \begin{bmatrix}
 \frac{\sqrt{2}}{2} & -\frac{\sqrt{2}}{2} & 0 \\
 \frac{\sqrt{2}}{2} & \frac{\sqrt{2}}{2}  & 0 \\
@@ -2137,6 +2252,8 @@ $$
 <div class="menu-title" style="display:none;"> ▸▸ Problema de Wahba </div>
 
 El **problema de Wahba** es un enfoque analítico u óptimo para la determinación de la orientación del satélite. Fue formulado por Grace Wahba en 1965 y busca encontrar la matriz de rotación que minimice el error entre un conjunto de vectores de referencia conocidos en el marco inercial y sus mediciones en el marco del cuerpo. Es una forma formal de plantear el problema de determinación de orientación.
+
+<div class="vspace-1"></div>
 
 ::: {.definition-block}
 **Formulación del problema**
@@ -2158,6 +2275,8 @@ $$
 
 $^i\hat{v}_j$, $j=\{1,⋯,n\}$ son los vectores de referencia en el marco inercial, y $^b\hat{v}_j$ son los vectores medidos en el marco del cuerpo y $\sum_{j}a_j=1$ son coeficientes de ponderación.
 :::
+
+<div class="vspace-1"></div>
 
 - TRIAD es una solución particular del problema de Wahba con $n=2$ y $a_1=a_2=0.5$.
 - La condición $\sum_{j}a_j=1$ asegura que la función de costo sea convexa y tenga un mínimo global.
@@ -2201,7 +2320,7 @@ z      & Q-\sigma I
 \end{bmatrix} \succ 0
 $$
 
-con:
+donde
 
 $$
 D=\sum_{j=1}^{n} a_j\,{}^b\hat{v}_j\:^i\hat{v}_j^\top
@@ -2237,6 +2356,8 @@ $$
 
 Por lo tanto, el problema de Wahba puede reformularse como la maximización de una función cuadrática de un cuaternión unitario $\:^b\hat{\mathbf{q}}_i$ que representa la rotación $\:^b\hat{R}_i$. Esta reformulación es conocida como la formulación de Davenport.
 
+<div class="vspace-3"></div>
+
 ::: {.definition-block}
 **Formulación de Davenport**
 
@@ -2264,10 +2385,12 @@ y $K$ es una matriz simétrica de $4\times4$ construida a partir de los vectores
 
 <div class="menu-title" style="display:none;"> ▸▸ QUEST </div>
 
+<div class="vspace-3"></div>
+
 ::: {.definition-block}
 **Idea general**
 
-**QUEST** (*QUaternion ESTimator*) es un algoritmo computacionalmente eficiente que nos permite encontrar la solución al problema de Wahba explotando la forlación de Devenport. Se aprovecha del siguiente hecho:
+*QUEST* (*QUaternion ESTimator*) es un algoritmo computacionalmente eficiente que nos permite encontrar la solución al problema de Wahba explotando la forlación de Devenport. Se aprovecha del siguiente hecho:
 
 $$
 \:^b\hat{\mathbf{q}}_i^{\top} K \:^b\hat{\mathbf{q}}_i \leq \lambda_{\max}(K) \|\:^b\hat{\mathbf{q}}_i\|^2 = \lambda_{\max}(K),
@@ -2283,16 +2406,21 @@ Esto convierte el problema de optimización no lineal con restricciones en un pr
 
 :::
 
-- Si bien el problema ahora es más sencillo, aún requiere resolver un polinomio de grado cuatro para encontrar $\lambda_{\max}(K)$, lo cual no es una tarea trivial.
+<div class="vspace-3"></div>
+
+- Si bien, el problema ahora es más sencillo, aún requiere resolver un polinomio de grado cuatro para encontrar $\lambda_{\max}(K)$, lo cual no es una tarea trivial.
 - En 1981, Malcolm D. Shuster propuso el algoritmo QUEST, donde el principal aporte fue derivar una expresión analítica del polinomio característico de $K$ utilizando el teorema de Caley-Hamilton (Toda matriz satisface su polinomio característico) la cual podia resolverse mediante métodos numéricos sencillos.
 
 ---
 
+
 ::: {.algorithm}
 
 <div class="algorithm-title">
-<strong>Algoritmo 2:</strong> QUEST
+<strong>Algoritmo 3:</strong> QUEST
 </div>
+
+:::{.small}
 
 <div class="algorithm-io">
 <strong>Entrada:</strong>
@@ -2337,7 +2465,7 @@ Para cada instante de tiempo $t$.
     \Delta=\det(Q).
     $$
 
-3. Obtener $\lambda_{\max}$ mediante Newton–Raphson.
+3. Obtener $\lambda_{\max}$ con $\lambda_0=1$ mediante Newton–Raphson.
 
     $$
     \lambda_{k+1}
@@ -2347,8 +2475,6 @@ Para cada instante de tiempo $t$.
     \frac{f(\lambda_k)}
     {f'(\lambda_k)}
     $$
-
-    con $\lambda_0=1$.
 
 4. Encontrar $\vec{p}$ resolviendo
 
@@ -2376,12 +2502,18 @@ Para cada instante de tiempo $t$.
 
 :::
 
+:::
+
 ##
+
+<div class="vspace-3"></div>
 
 - Un detalle importante es que la raíz del polinomio característico que se obtiene mediante Newton-Rhapson puede no ser el valor propio máximo, ya que esta depende de las condiciones iniciales. Sin embargo, en la práctica, se ha observado que el valor propio máximo de $K$ suele ser cercano a 1, por lo que la elección de $\lambda_0=1$ es algo razonable.
 - QUEST evita el uso directo de matrices de rotación y trabaja con cuaterniones para mejorar la estabilidad numérica.
 - Reduce el problema de Wahba a la búsqueda del valor propio máximo de una matriz simétrica de $4\times4$.
 - Aunque el algoritmo es más complejo que TRIAD, ofrece una solución óptima en el sentido de mínimos cuadrados, lo que le brida cierto grado de robustez frente al ruido en las mediciones.
+
+<div class="vspace-3"></div>
 
 ::: {.definition-block}
 **Ventajas y limitaciones**
@@ -2397,17 +2529,22 @@ Para cada instante de tiempo $t$.
 
 ##
 
-- Existen otros algoritmos estáticos para la resolución del problema de Wahba, como el método SVD o ESOQ. Sin embargo, TRIAD y QUEST son los más comunes en aplicaciones prácticas debido a su balance entre simplicidad y precisión.
-- Un caso particular para aplicaciones en Tierra es utilizar un acelerómetro para medir el vector de gravedad local como referencia inercial, junto con el vector de campo magnético terrestre medido por un magnetómetro. Con ello, podemos determinar los ángulos de Tait-Bryan.
-$$
-\begin{split}
-      \phi   & = \text{atan2}(\bar{a}_y, \bar{a}_z)                                                                                                                         \\
-      \theta & = \text{atan2}(-\bar{a}_x, \sqrt{\bar{a}_y^2 + \bar{a}_z^2})                                                                                                 \\
-      \psi   & = \text{atan2}(- \cos(\theta)\bar{B}_x - \sin(\theta)\bar{B}_z, \sin(\phi)\sin(\theta)\bar{B}_x + \cos(\phi)\bar{B}_y - \sin(\phi)\cos(\theta)\bar{B}_z) - d
-\end{split}
-$$
+<div class="vspace-3"></div>
+<div class="vspace-3"></div>
 
-donde $d$ es un ángulo de declinación magnética.
+- Existen otros algoritmos estáticos para la resolución del problema de Wahba, como el método SVD o ESOQ. Sin embargo, TRIAD y QUEST son los más comunes en aplicaciones prácticas debido a su balance entre simplicidad y precisión.
+
+- Un caso particular para aplicaciones en Tierra es utilizar un acelerómetro para medir el vector de gravedad local como referencia inercial, junto con el vector de campo magnético terrestre medido por un magnetómetro. Con ello, podemos determinar los ángulos de Tait-Bryan.
+    $$
+    \begin{split}
+        \phi   & = \text{atan2}(\bar{a}_y, \bar{a}_z)                                                                                                                         \\
+        \theta & = \text{atan2}(-\bar{a}_x, \sqrt{\bar{a}_y^2 + \bar{a}_z^2})                                                                                                 \\
+        \psi   & = \text{atan2}(- \cos(\theta)\bar{B}_x - \sin(\theta)\bar{B}_z, \sin(\phi)\sin(\theta)\bar{B}_x + \cos(\phi)\bar{B}_y - \sin(\phi)\cos(\theta)\bar{B}_z) - d
+    \end{split}
+    $$
+
+    donde $d$ es un ángulo de declinación magnética.
+
 - Todos los algoritmos de determinación estáticos son susceptibles al ruido de medición.
 
 ---
@@ -2434,35 +2571,40 @@ Algoritmos de determinación dinámicos
 
 ---
 
+<div class="vspace-3"></div>
 
-Los algoritmos de determinación estática, como TRIAD y QUEST, estiman de forma instantánea la orientación a partir de mediciones vectoriales, resolviendo el problema de Wahba:
+-   Los algoritmos de determinación estática, como TRIAD y QUEST, estiman de forma instantánea la orientación a partir de mediciones vectoriales, resolviendo el problema de Wahba:
 
-$$
-^b\hat{R}_i=\arg\min_{R \in SO(3)} J(R)
-$$
+    $$
+    ^b\hat{R}_i=\arg\min_{R \in SO(3)} J(R)
+    $$
 
-Aunque estos métodos ofrecen soluciones optimas y de baja complejidad computacional, cada estimación se realiza de manera independiente, por lo que presentan limitaciones importantes:
+-   Aunque estos métodos ofrecen soluciones optimas y de baja complejidad computacional, cada estimación se realiza de manera independiente, por lo que presentan limitaciones importantes:
 
-- No consideran la evolución temporal del sistema.
-- Su desempeño depende únicamente de las mediciones instantáneas.
-- Son susceptibles a ruido y errores en las mediciones.
+    - No consideran la evolución temporal del sistema.
+    - Su desempeño depende únicamente de las mediciones instantáneas.
+    - Son susceptibles a ruido y errores en las mediciones.
 
-Los algoritmos de determinación dinámica incorporan el modelo para propagar la orientación en el tiempo:
+-   Los algoritmos de determinación dinámica incorporan el modelo para propagar la orientación en el tiempo:
 
-$$
-\begin{align*}
-      x_{k} & =f(x_{k-1},u_{k-1}), \\
-      y_{k} & =h(x_{k}),
-\end{align*}
-$$
+    $$
+    \begin{align*}
+        x_{k} & =f(x_{k-1},u_{k-1}), \\
+        y_{k} & =h(x_{k}),
+    \end{align*}
+    $$
 
-permitiendo combinar la predicción del modelo con mediciones ruidosas para obtener estimaciones recursivas más robustas y consistentes. Comúnmente, a este proceso también se le conoce como **estimación**.
+    permitiendo combinar la predicción del modelo con mediciones ruidosas para obtener estimaciones recursivas más robustas y consistentes. Comúnmente, a este proceso también se le conoce como **estimación**.
 
 ---
 
 ## Estructura general
 
+<div class="vspace-3"></div>
+
 Todo algoritmo de determinación dinámica sigue dos etapas:
+
+<div class="vspace-3"></div>
 
 ::: {.definition-block}
 **Predicción**
@@ -2478,6 +2620,8 @@ $$
 
 donde $\hat{x}_{k-1}^+$ es la **estimación** del estado en el instante de tiempo $k-1$, $\hat{x}_k^-$ es la **predicción** del estado en el instante $k$ y $\hat{y}_k^-$ es la **predicción** de las mediciones asociada a dicha predicción.
 :::
+
+<div class="vspace-3"></div>
 
 ::: {.definition-block}
 **Corrección**
@@ -2498,28 +2642,35 @@ donde $\mathcal{K}(\cdot)$ es una función de corrección que combina la predicc
 
 <div class="menu-title" style="display:none;"> ▸▸ Filtro complementario</div>
 
-El filtro complementario implementa la estructura de predicción-corrección mediante una combinación lineal entre la estimación obtenida a partir del modelo dinámico y una medición instantánea del estado.
+- El filtro complementario implementa la estructura de predicción-corrección mediante una combinación lineal entre la estimación obtenida a partir del modelo dinámico y una medición instantánea del estado. Considere el modelo discreto:
 
-Considere el modelo discreto:
+    $$
+    x_k=f_k(x_{k-1},u_{k-1})
+    $$
 
-$$
-x_k=f_k(x_{k-1},u_{k-1})
-$$
+    y se asume que el estado se mide completamente.
 
-y se asume que el estado se mide completamente. La etapa de predicción está dada por:
+- La etapa de predicción está dada por:
 
-$$
-\hat{x}_k^-=
-f_k(\hat{x}_{k-1}^+,u_{k-1})
-$$
+    $$
+    \hat{x}_k^-=
+    f_k(\hat{x}_{k-1}^+,u_{k-1})
+    $$
 
-donde $\hat{x}_k^-$ representa la predicción del estado en el instante $k$. Posteriormente, esta predicción se corrige utilizando la medición:
+    donde $\hat{x}_k^-$ representa la predicción del estado en el instante $k$.
+    
+- Posteriormente, esta predicción se corrige utilizando la medición:
 
-$$
-\hat{x}_k^+ =\alpha \hat{x}_k^-+(1-\alpha)x_{y,k}
-$$
+    $$
+    \hat{x}_k^+ =\alpha \hat{x}_k^-+(1-\alpha)x_{y,k}
+    $$
 
-donde $\alpha\in[0,1]$ define el peso asignado a la predicción y a la medición. La restricción de $\alpha$ asegura que la corrección sea una combinación convexa entre la predicción y la medición, lo que ayuda a mantener la estabilidad del filtro. La idea del filtro complementario viene desde el estudio de sistemas en el dominio de la frecuencia. Para sistemas continuos, la función de transferencia de un filtro complementario es del tipo:
+    donde $\alpha\in[0,1]$ define el peso asignado a la predicción y a la medición. La restricción de $\alpha$ asegura que la corrección sea una combinación convexa entre la predicción y la medición, lo que ayuda a mantener la estabilidad del filtro.
+
+::: {.callout-note .fragment}
+### Nota:
+
+ La idea del filtro complementario viene desde el estudio de sistemas en el dominio de la frecuencia. Para sistemas continuos, la función de transferencia de un filtro complementario es del tipo:
 
 $$
 \hat{X}(s) = \frac{\alpha s}{s + \alpha} X_{lf}(s) + \frac{\alpha}{s + \alpha} X_{hf}(s)
@@ -2527,64 +2678,73 @@ $$
 
 donde $X_{lf}(s)$ y $X_{hf}(s)$ son las transformadas de Laplace de las señales de baja y alta frecuencia, respectivamente.
 
----
 
-##
 
-Considere que la orientación se parametriza mediante ángulos de Tait-Bryan::
+:::
 
-$$
-x\td =
-\begin{bmatrix}
-\ls{b}\phi_i\td   \\
-\ls{b}\theta_i\td \\
-\ls{b}\psi_i\td
-\end{bmatrix}
-$$
-
-La formulación clásica del filtro complementario es la siguiente:
-
-$$
-\begin{align*}
-      \dot{\omega}\td & \approx 0,    \\
-      \dot{x}\td      & =\omega \td ,
-\end{align*}
-$$
-
-donde $\omega\td =\ls{b}\vec{\omega}_{i,b}\td$. Y se asume que se mide $x_{y}\td$ mediante un algoritmo de determinación estático (por ejemplo, QUEST) y que $\omega_{y}\td$ es la velocidad angular medida por el giroscopio.
-
-Se tienen dos suposiciones importantes:
-
-- La aceleración angular es cero. Esto implica que no actúan pares externos sobre el satélite, lo cual es una suposición fuerte pero puede ser razonable en ciertas condiciones.
-- La variación de cada uno de los ángulos de Tait-Bryan es igual a la velocidad angular medida por el giroscopio. Esto no corresponde con el modelo cinemático de esta parametrización, pero es una aproximación común en la práctica para simplificar el diseño del filtro complementario.
 
 ---
 
 ##
 
-Bajo las suposiciones anteriores, podemos asumir que $\omega\td$ es una entrada del modelo cinemático. Esto nos permite propagar la orientación utilizando las velocidades angulares medidas por el giroscopio, es decir,
+<div class="vspace-3"></div>
 
-$$
-\dot{x}\td \approx \omega_{y}\td
-$$
+-   Considere que la orientación se parametriza mediante ángulos de Tait-Bryan::
 
-Para implementar el filtro complementario, se discretiza el modelo dinámico utilizando un método de integración numérica, por ejemplo (método de Euler):
+    $$
+    x\td =
+    \begin{bmatrix}
+    \ls{b}\phi_i\td   \\
+    \ls{b}\theta_i\td \\
+    \ls{b}\psi_i\td
+    \end{bmatrix}
+    $$
 
-$$
-\dot{x}(t_{k-1}) \approx \frac{x_k - x_{k-1}}{\Delta t_k} \qquad  \Leftrightarrow \qquad x_k = x_{k-1} + \dot{x}(t_{k-1}) \Delta t_k
-$$
+-   La formulación clásica del filtro complementario es la siguiente:
 
-donde $\Delta t_k = t_k-t_{k-1}$. Entonces, la etapa de predicción se realiza propagando la orientación estimada:
+    $$
+    \begin{align*}
+        \dot{\omega}\td & \approx 0,    \\
+        \dot{x}\td      & =\omega \td ,
+    \end{align*}
+    $$
 
-$$
-\hat{x}_k^- = \hat{x}_{k-1}^+ + \omega_{y,k-1} \Delta t_k
-$$
+    donde $\omega\td =\ls{b}\vec{\omega}_{i,b}\td$. Y se asume que se mide $x_{y}\td$ mediante un algoritmo de determinación estático (por ejemplo, QUEST) y que $\omega_{y}\td$ es la velocidad angular medida por el giroscopio.
 
-Posteriormente, esta predicción se corrige utilizando la orientación estimada mediante algoritmos estáticos en el instante $k$:
+-   Se tienen dos suposiciones importantes:
 
-$$
-\hat{x}_k^+ = \alpha \hat{x}_k^- + (1-\alpha) x_{y,k}
-$$
+    - La aceleración angular es cero. Esto implica que no actúan pares externos sobre el satélite, lo cual es una suposición fuerte pero puede ser razonable en ciertas condiciones.
+    - La variación de cada uno de los ángulos de Tait-Bryan es igual a la velocidad angular medida por el giroscopio. Esto no corresponde con el modelo cinemático de esta parametrización, pero es una aproximación común en la práctica para simplificar el diseño del filtro complementario.
+
+---
+
+##
+
+<div class="vspace-3"></div>
+
+-   Bajo las suposiciones anteriores, podemos asumir que $\omega\td$ es una entrada del modelo cinemático. Esto nos permite propagar la orientación utilizando las velocidades angulares medidas por el giroscopio, es decir,
+
+    $$
+    \dot{x}\td \approx \omega_{y}\td
+    $$
+
+-   Para implementar el filtro complementario, se discretiza el modelo dinámico utilizando un método de integración numérica, por ejemplo (método de Euler):
+
+    $$
+    \dot{x}(t_{k-1}) \approx \frac{x_k - x_{k-1}}{\Delta t_k} \qquad  \Leftrightarrow \qquad x_k = x_{k-1} + \dot{x}(t_{k-1}) \Delta t_k
+    $$
+
+    donde $\Delta t_k = t_k-t_{k-1}$. Entonces, la etapa de predicción se realiza propagando la orientación estimada:
+
+    $$
+    \hat{x}_k^- = \hat{x}_{k-1}^+ + \omega_{y,k-1} \Delta t_k
+    $$
+
+-   Posteriormente, esta predicción se corrige utilizando la orientación estimada mediante algoritmos estáticos en el instante $k$:
+
+    $$
+    \hat{x}_k^+ = \alpha \hat{x}_k^- + (1-\alpha) x_{y,k}
+    $$
 
 ---
 
@@ -2592,8 +2752,10 @@ $$
 ::: {.algorithm}
 
 <div class="algorithm-title">
-<strong>Algoritmo 3:</strong> Filtro complementario
+<strong>Algoritmo 4:</strong> Filtro complementario
 </div>
+
+:::{.small}
 
 <div class="algorithm-io">
 <strong>Entrada:</strong>
@@ -2641,58 +2803,62 @@ Para cada instante de tiempo $t_k$:
 
 :::
 
+:::
+
 - En el caso de utilizar TRIAD o QUEST como algoritmo de determinación estático, debemos de transformar su salida a los ángulos de Tait-Bryan para obtener $x_{y,k}$.
 
 ---
 
 ##
 
-Una forma más precisa de implementar el filtro complementario es considerar el modelo cinemático de los ángulos de Tait-Bryan:
+<div class="vspace-3"></div>
 
-$$
-\dot{x}\td=
-\begin{bmatrix}
-\dot{\phi}\td   \\
-\dot{\theta}\td \\
-\dot{\psi}\td
-\end{bmatrix}
-=
-\begin{bmatrix}
-\cos(\psi)\sec(\theta)  & -\sin(\psi)\sec(\theta) & 0 \\
-\sin(\psi)              & \cos(\psi)              & 0 \\
--\cos(\psi)\tan(\theta) & \sin(\psi)\tan(\theta)  & 1
-\end{bmatrix}
-\omega_y\td = T(x\td)\omega_y\td,
-$$
+-   Una forma más precisa de implementar el filtro complementario es considerar el modelo cinemático de los ángulos de Tait-Bryan:
 
-Para implementar el filtro complementario, el modelo continuo se discretiza utilizando el método de Euler:
+    $$
+    \dot{x}\td=
+    \begin{bmatrix}
+    \dot{\phi}\td   \\
+    \dot{\theta}\td \\
+    \dot{\psi}\td
+    \end{bmatrix}
+    =
+    \begin{bmatrix}
+    \cos(\psi)\sec(\theta)  & -\sin(\psi)\sec(\theta) & 0 \\
+    \sin(\psi)              & \cos(\psi)              & 0 \\
+    -\cos(\psi)\tan(\theta) & \sin(\psi)\tan(\theta)  & 1
+    \end{bmatrix}
+    \omega_y\td = T(x\td)\omega_y\td,
+    $$
 
-$$
-\dot{x}(t_{k-1})
-\approx
-\frac{x_k-x_{k-1}}{\Delta t_k}
-\qquad \Leftrightarrow \qquad
-x_k=x_{k-1}+\dot{x}(t_{k-1})\Delta t_k
-$$
+-   Para implementar el filtro complementario, el modelo continuo se discretiza utilizando el método de Euler:
 
-donde $\Delta t_k=t_k-t_{k-1}$.
+    $$
+    \dot{x}(t_{k-1})
+    \approx
+    \frac{x_k-x_{k-1}}{\Delta t_k}
+    \qquad \Leftrightarrow \qquad
+    x_k=x_{k-1}+\dot{x}(t_{k-1})\Delta t_k
+    $$
 
-Entonces, la etapa de predicción está dada por:
+    donde $\Delta t_k=t_k-t_{k-1}$.
 
-$$
-\hat{x}_k^-=
-\hat{x}_{k-1}^+
-+
-T(\hat{x}_{k-1}^+)\omega_{y,k-1}\Delta t_k
-$$
+-   Entonces, la etapa de predicción está dada por:
 
-Posteriormente, la corrección se realiza mediante:
+    $$
+    \hat{x}_k^-=
+    \hat{x}_{k-1}^+
+    +
+    T(\hat{x}_{k-1}^+)\omega_{y,k-1}\Delta t_k
+    $$
 
-$$
-\hat{x}_k^+=
-\alpha\hat{x}_k^-+
-(1-\alpha)x_{y,k}
-$$
+    Posteriormente, la corrección se realiza mediante:
+
+    $$
+    \hat{x}_k^+=
+    \alpha\hat{x}_k^-+
+    (1-\alpha)x_{y,k}
+    $$
 
 ---
 
@@ -2700,7 +2866,7 @@ $$
 ::: {.algorithm}
 
 <div class="algorithm-title">
-<strong>Algoritmo 3:</strong> Filtro complementario
+<strong>Algoritmo 5:</strong> Filtro complementario con modelo cinemático
 </div>
 
 <div class="algorithm-io">
@@ -2824,31 +2990,34 @@ donde cada componente del cuaternión puede modelarse como una variable aleatori
 
 ## Probabilidad
 
-La probabilidad cuantifica la posibilidad de ocurrencia de un evento aleatorio.
+-   La probabilidad cuantifica la posibilidad de ocurrencia de un evento aleatorio.
 
-Sea $A\subseteq\Omega$ un evento dentro del espacio muestral $\Omega$, entonces:
+-   Sea $A\subseteq\Omega$ un evento dentro del espacio muestral $\Omega$, entonces:
 
-$$
-p(A)\in[0,1]
-$$
+    $$
+    p(A)\in[0,1]
+    $$
 
-donde $p(A)=0$ indica que el evento es imposible, mientras que $p(A)=1$ indica que el evento ocurre con certeza.
+    donde $p(A)=0$ indica que el evento es imposible, mientras que $p(A)=1$ indica que el evento ocurre con certeza.
 
-Para una variable aleatoria discreta $X$, la probabilidad puede describirse mediante una función de masa:
+-   Para una variable aleatoria discreta $X$, la probabilidad puede describirse mediante una función de masa:
 
-$$
-p(X=x_i)
-$$
+    $$
+    p(X=x_i)
+    $$
 
-donde $x$ son los valores posibles de $X$. Para un vector aleatorio  discreto $\vec{X}$, la probabilidad se describe mediante una función de probabilidad conjunta:
+    donde $x$ son los valores posibles de $X$. Para un vector aleatorio  discreto $\vec{X}$, la probabilidad se describe mediante una función de probabilidad conjunta:
 
-$$
-p(\vec{X}=\vec{x})
-$$
+    $$
+    p(\vec{X}=\vec{x})
+    $$
 
-donde $\vec{x}$ representa un vector específico de valores posibles para $\vec{X}$. Para variables aleatorias continuas, la probabilidad se describe mediante una función de densidad:
+    donde $\vec{x}$ representa un vector específico de valores posibles para $\vec{X}$. 
+-   Para variables aleatorias continuas, la probabilidad se describe mediante una función de densidad:
 
-\[ f_X(x) \]
+    $$
+    f_X(x)
+    $$
 
 ---
 
@@ -2892,34 +3061,34 @@ $$
 
 ## Varianza
 
-La **varianza** mide qué tan dispersa se encuentra una variable aleatoria respecto a su valor esperado:
+-   La **varianza** mide qué tan dispersa se encuentra una variable aleatoria respecto a su valor esperado:
 
-$$
-\text{Var}[X]
-=
-\sum_{i=1}^{n}(x_i-\mu_X)^2p(X=x_i)
-$$
+    $$
+    \text{Var}[X]
+    =
+    \sum_{i=1}^{n}(x_i-\mu_X)^2p(X=x_i)
+    $$
 
-Un valor pequeño de varianza indica que los valores de la variable tienden a concentrarse cerca de su media, mientras que una varianza grande indica mayor incertidumbre.
+    Un valor pequeño de varianza indica que los valores de la variable tienden a concentrarse cerca de su media, mientras que una varianza grande indica mayor incertidumbre.
 
-La **desviación estándar** se define como:
+-   La **desviación estándar** se define como:
 
-$$
-\sigma_X=\sqrt{\text{Var}[X]}
-$$
+    $$
+    \sigma_X=\sqrt{\text{Var}[X]}
+    $$
 
-y representa la dispersión de la variable en las mismas unidades de $X$.
+    y representa la dispersión de la variable en las mismas unidades de $X$.
 
-La **covarianza** mide cómo dos variables aleatorias cambian conjuntamente:
+-   La **covarianza** mide cómo dos variables aleatorias cambian conjuntamente:
 
-$$
-\text{Cov}[X,Y]
-=
-\sum_{i=1}^{n}
-(x_i-\mu_X)(y_i-\mu_Y)p(X=x_i,Y=y_i)
-$$
+    $$
+    \text{Cov}[X,Y]
+    =
+    \sum_{i=1}^{n}
+    (x_i-\mu_X)(y_i-\mu_Y)p(X=x_i,Y=y_i)
+    $$
 
-Si la covarianza es positiva, ambas variables tienden a variar en el mismo sentido; si es negativa, tienden a variar en sentidos opuestos; y si es cero, no existe una relación entre ellas.
+    Si la covarianza es positiva, ambas variables tienden a variar en el mismo sentido; si es negativa, tienden a variar en sentidos opuestos; y si es cero, no existe una relación entre ellas.
 
 ---
 
@@ -3027,62 +3196,68 @@ Esto permite actualizar continuamente la estimación del estado conforme evoluci
 
 Hasta ahora se utilizaron variables aleatorias discretas para introducir los conceptos básicos de probabilidad. Sin embargo, en problemas de estimación continua suele asumirse que las variables aleatorias siguen una distribución normal.
 
-Para una variable aleatoria escalar:
+-   Para una variable aleatoria escalar:
 
-$$
-X\sim \mathcal{N}(\mu_X,\sigma_X^2)
-$$
+    $$
+    X\sim \mathcal{N}(\mu_X,\sigma_X^2)
+    $$
 
-su función de densidad está dada por:
+    su función de densidad está dada por:
 
-$$
-f_X(x)=
-\frac{1}{\sqrt{2\pi\sigma_X^2}}
-\exp\left(
--\frac{(x-\mu_X)^2}{2\sigma_X^2}
-\right)
-$$
+    $$
+    f_X(x)=
+    \frac{1}{\sqrt{2\pi\sigma_X^2}}
+    \exp\left(
+    -\frac{(x-\mu_X)^2}{2\sigma_X^2}
+    \right)
+    $$
 
-Para un vector aleatorio:
+-   Para un vector aleatorio:
 
-$$
-\vec{X}\sim \mathcal{N}(E[\vec{X}],P)
-$$
+    $$
+    \vec{X}\sim \mathcal{N}(E[\vec{X}],P)
+    $$
 
-su función de densidad conjunta está dada por:
+    su función de densidad conjunta está dada por:
 
-$$
-f_{\vec{X}}(\vec{x})=
-\frac{1}{\sqrt{(2\pi)^n\det(P)}}
-\exp\left(
--\frac{1}{2}
-(\vec{x}-E[\vec{X}])^\top
-P^{-1}
-(\vec{x}-E[\vec{X}])
-\right)
-$$
+    $$
+    f_{\vec{X}}(\vec{x})=
+    \frac{1}{\sqrt{(2\pi)^n\det(P)}}
+    \exp\left(
+    -\frac{1}{2}
+    (\vec{x}-E[\vec{X}])^\top
+    P^{-1}
+    (\vec{x}-E[\vec{X}])
+    \right)
+    $$
 
 ---
 
-##
+
+<div class="vspace-3"></div>
+<div class="vspace-3"></div>
 
 En sistemas reales, los modelos dinámicos y las mediciones no son perfectos debido a perturbaciones externas, errores de modelado e incertidumbre instrumental.
 
-El modelo dinámico puede representarse como:
+<div class="vspace-3"></div>
 
-$$
-x_k=f(x_{k-1},u_{k-1},\zeta_{k-1})
-$$
+-   El modelo dinámico puede representarse como:
 
-donde $\zeta_k \in \mathbb{R}^n$ representa el ruido de proceso asociado a incertidumbres en el modelo dinámico en el instante $t_k$.
+    $$
+    x_k=f(x_{k-1},u_{k-1},\zeta_{k-1})
+    $$
 
-De forma similar, el modelo de medición puede escribirse como:
+    donde $\zeta_k \in \mathbb{R}^n$ representa el ruido de proceso asociado a incertidumbres en el modelo dinámico en el instante $t_k$.
 
-$$
-y_k=h(x_k,\xi_k)
-$$
+<div class="vspace-3"></div>
 
-donde $\xi_k\in \mathbb{R}^m$ representa el ruido asociado a la medición en el instante $t_k$.
+-   De forma similar, el modelo de medición puede escribirse como:
+
+    $$
+    y_k=h(x_k,\xi_k)
+    $$
+
+    donde $\xi_k\in \mathbb{R}^m$ representa el ruido asociado a la medición en el instante $t_k$.
 
 ---
 
@@ -3090,111 +3265,115 @@ donde $\xi_k\in \mathbb{R}^m$ representa el ruido asociado a la medición en el 
 
 El ruido en problemas de estimación suelen agruparse en dos categorías.
 
-**Ruido de medición** $\;\xi_k$
+-   **Ruido de medición** $\;\xi_k$
+    - Ruido electrónico
+    - Resolución finita del sensor
+    - Perturbaciones térmicas o ambientales
+    - Errores instantáneos de medición
 
-- Ruido electrónico
-- Resolución finita del sensor
-- Perturbaciones térmicas o ambientales
-- Errores instantáneos de medición
+    Se modela mediante:
 
-Se modela mediante:
+    $$
+    \xi_k\sim\mathcal{N}(0,R_k)
+    $$
 
-$$
-\xi_k\sim\mathcal{N}(0,R_k)
-$$
+-   **Ruido de proceso** $\;\zeta_k$
+    - Dinámicas no modeladas
+    - Incertidumbre paramétrica
+    - Perturbaciones externas
+    - Errores de discretización o integración numérica
 
-**Ruido de proceso** $\;\zeta_k$
+    Se modela mediante:
 
-- Dinámicas no modeladas
-- Incertidumbre paramétrica
-- Perturbaciones externas
-- Errores de discretización o integración numérica
+    $$
+    \zeta_k\sim\mathcal{N}(0,Q_k)
+    $$
 
-Se modela mediante:
-
-$$
-\zeta_k\sim\mathcal{N}(0,Q_k)
-$$
-
-Las matrices $Q \in \mathbb{R}^{n \times n}$ y $R \in \mathbb{R}^{m \times m}$ son la varianza de $\zeta_k$ y $\xi_k$, respectivamente.
+    Las matrices $Q \in \mathbb{R}^{n \times n}$ y $R \in \mathbb{R}^{m \times m}$ son la varianza de $\zeta_k$ y $\xi_k$, respectivamente.
 
 ---
 
 ##
+
+:::{.large}
 <span style="color:#003399">¿Por qué modelar el ruido como una distribución normal?</span>
+:::
 
-El **teorema central del límite** establece que la suma de múltiples variables aleatorias independientes con media y varianza finita tiende a seguir una distribución normal, incluso si cada una de ellas no sigue una distribución gaussiana.
+-   El **teorema central del límite** establece que la suma de múltiples variables aleatorias independientes con media y varianza finita tiende a seguir una distribución normal, incluso si cada una de ellas no sigue una distribución gaussiana.
 
-En sistemas reales, el ruido de proceso y de medición suele ser resultado de múltiples fuentes pequeñas e independientes, como las que se mencionaron anteriormente. Por lo tanto, es razonable modelar el ruido como una variable aleatoria con distribución normal, ya que esta suposición se justifica por el teorema central del límite.
+-   En sistemas reales, el ruido de proceso y de medición suele ser resultado de múltiples fuentes pequeñas e independientes, como las que se mencionaron anteriormente. Por lo tanto, es razonable modelar el ruido como una variable aleatoria con distribución normal, ya que esta suposición se justifica por el teorema central del límite.
 
-Por esta razón, frecuentemente se modela el ruido como:
+-   Por esta razón, frecuentemente se modela el ruido como:
 
-$$
-\zeta_k\sim\mathcal{N}(0,Q_k)
-$$
+    $$
+    \zeta_k\sim\mathcal{N}(0,Q_k)
+    $$
 
-$$
-\xi_k\sim\mathcal{N}(0,R_k)
-$$
+    $$
+    \xi_k\sim\mathcal{N}(0,R_k)
+    $$
 
-La media se asume cero porque los errores sistemáticos idealmente han sido calibrados o modelados por separado. Adicionalmente, se suele asumir que el ruido satisface las siguientes propiedades:
+-   La media se asume cero porque los errores sistemáticos idealmente han sido calibrados o modelados por separado. Adicionalmente, se suele asumir que el ruido satisface las siguientes propiedades:
 
-$$
-\text{Cov}[\zeta_k, \zeta_j]=Q\,\delta_{kj}, \qquad \text{Cov}[\xi_k v_j]=R\,\delta_{kj}, \quad \text{Cov}[\zeta_k, \xi_j]=0 \forall k,j
-$$
+    $$
+    \text{Cov}[\zeta_k, \zeta_j]=Q\,\delta_{kj}, \qquad \text{Cov}[\xi_k v_j]=R\,\delta_{kj}, \quad \text{Cov}[\zeta_k, \xi_j]=0 \forall k,j
+    $$
 
-$$
-\delta_{kj}=
-\begin{cases}
-1, & k=j     \\
-0, & k\neq j
-\end{cases}
-$$
+    $$
+    \delta_{kj}=
+    \begin{cases}
+    1, & k=j     \\
+    0, & k\neq j
+    \end{cases}
+    $$
 
-donde $\delta_{kj}$ es la delta de Kronecker. Esto implica que el ruido es no correlacionado en el tiempo y entre sí. A este tipo de ruido se le conoce como **ruido blanco**. Asimismo, se suele asumir que $R$ y $Q$ son matrices constantes, aunque en la práctica puede varias en cada instante de tiempo.
+    donde $\delta_{kj}$ es la delta de Kronecker. Esto implica que el ruido es no correlacionado en el tiempo y entre sí. A este tipo de ruido se le conoce como **ruido blanco**.
+-   Asimismo, se suele asumir que $R$ y $Q$ son matrices constantes, aunque en la práctica puede varias en cada instante de tiempo.
 
 ---
 
 ## Estimación óptima lineal
 
-Considere un vector aleatorio de estado $x_k$ y un vector aleatorio de medición $y_k$ que describen un proceso estocástico (aleatorio). El objetivo es estimar la media condicional del estado a partir de las mediciones disponibles:
+-   Considere un vector aleatorio de estado $x_k$ y un vector aleatorio de medición $y_k$ que describen un proceso estocástico (aleatorio). El objetivo es estimar la media condicional del estado a partir de las mediciones disponibles:
 
-$$
-\hat{x}_k=\hat{E}[x_k\mid y_0,\dots,y_k]
-$$
+    $$
+    \hat{x}_k=\hat{E}[x_k\mid y_0,\dots,y_k]
+    $$
 
-Si se restringe el estimador a una forma lineal, se propone:
+-   Si se restringe el estimador a una forma lineal, se propone:
 
-$$
-\hat{x}_k=
-a_k+D_k y_k
-$${#eq-linear_estimator}
+    $$
+    \hat{x}_k=
+    a_k+D_k y_k
+    $${#eq-linear_estimator}
 
-donde $a_k \in \mathbb{R}^{n}$ y $D_k \in \mathbb{R}^{n \times m}$ son parámetros constantes en el instante de tiempo $t_k$. Para decir que @eq-linear_estimator es óptimo, debe resolver el siguiente problema de optimización:
+    donde $a_k \in \mathbb{R}^{n}$ y $D_k \in \mathbb{R}^{n \times m}$ son parámetros constantes en el instante de tiempo $t_k$.
+    
+-   Para decir que el estimador descriot en la @eq-linear_estimator es óptimo, se puede proponer el siguiente problema de optimización:
 
-$$
-\min_{a_k,D_k}
-Tr(P_k)
-$$
+    $$
+    \min_{a_k,D_k}
+    Tr(P_k)
+    $$
 
-donde $P_k$ es la varianza del error de estimación:
+    donde $P_k$ es la varianza del error de estimación:
 
-$$
-P_k=
-E\left[
-(\hat{x}_k-x_k)(\hat{x}_k-x_k)^\top \mid y_0,\dots,y_k
-\right]
-$$
+    $$
+    P_k=
+    E\left[
+    (\hat{x}_k-x_k)(\hat{x}_k-x_k)^\top \mid y_0,\dots,y_k
+    \right]
+    $$
 
-de lo cual
+    de lo cual
 
-$$
-Tr(P_k)=\sum_{i=1}^{n}E\left[
-(\hat{x}_{k,i}-x_{k,i})^2 \mid y_0,\dots,y_k
-\right]
-$$
+    $$
+    Tr(P_k)=\sum_{i=1}^{n}E\left[
+    (\hat{x}_{k,i}-x_{k,i})^2 \mid y_0,\dots,y_k
+    \right]
+    $$
 
-Es decir, se busca **minimizar el error cuadrático** medio de la estimación.
+-   Es decir, se busca **minimizar el error cuadrático** medio de la estimación.
 
 ---
 
@@ -3203,38 +3382,40 @@ Es decir, se busca **minimizar el error cuadrático** medio de la estimación.
 <div class="menu-title" style="display:none;"> ▸▸ Filtro de Kalman</div>
 
 
-En 1960, Rudolf E. Kalman propuso una solución recursiva al problema de optimización de estimación lineal para sistemas estocásticos lineales.
+-   En 1960, Rudolf E. Kalman propuso una solución recursiva al problema de optimización de estimación lineal para sistemas estocásticos lineales.
 
-$$
-\begin{split}
-x_k & =A_{k-1}x_{k-1}+B_{k-1}u_{k-1}+\zeta_{k-1} \\
-y_k & =C_kx_k+\xi_k
-\end{split}
-$$
+    $$
+    \begin{split}
+    x_k & =A_{k-1}x_{k-1}+B_{k-1}u_{k-1}+\zeta_{k-1} \\
+    y_k & =C_kx_k+\xi_k
+    \end{split}
+    $$
 
-donde $\zeta_k$ y $\xi_k$ es ruido blanco gaussiano con covarianzas $Q$ y $R$, respectivamente. Además, se asume que el estado inicial $x_0$ es una variable aleatoria con distribución normal:
+    donde $\zeta_k$ y $\xi_k$ es ruido blanco gaussiano con covarianzas $Q$ y $R$, respectivamente. Además, se asume que el estado inicial $x_0$ es una variable aleatoria con distribución normal:
 
-$$
-x_0\sim\mathcal{N}(\hat{x}_0,P_0), \quad \text{Cov}[x_0 \zeta_0^\top]=0, \quad \text{Cov}[x_0 \xi_0^\top]=0
-$$
+    $$
+    x_0\sim\mathcal{N}(\hat{x}_0,P_0), \quad \text{Cov}[x_0 \zeta_0^\top]=0, \quad \text{Cov}[x_0 \xi_0^\top]=0
+    $$
 
-La estimación se actualiza recursivamente mediante dos etapas: **predicción** y **corrección**.
+-   La estimación se actualiza recursivamente mediante dos etapas: **predicción** y **corrección**.
 
-$$
-\hat{x}_{k-1}^{+}
-\rightarrow
-\hat{x}_{k}^{-}
-\rightarrow
-\hat{x}_{k}^{+}
-$$
+    $$
+    \hat{x}_{k-1}^{+}
+    \rightarrow
+    \hat{x}_{k}^{-}
+    \rightarrow
+    \hat{x}_{k}^{+}
+    $$
 
-Con ello, el estimador lineal óptimo toma en cada instante de tiempo $t_k$ la forma
+-   Con ello, el estimador lineal óptimo toma en cada instante de tiempo $t_k$ la forma
 
-$$
-\hat{x}_k=a_k+D_k y_k \Rightarrow \hat{x}_k^+=\hat{x}_k^-+K_k(y_k-C_k\hat{x}_k^-)
-$$
+    $$
+    \hat{x}_k=a_k+D_k y_k \Rightarrow \hat{x}_k^+=\hat{x}_k^-+K_k(y_k-C_k\hat{x}_k^-)
+    $$
 
-donde $K_k$ es la ganancia de Kalman. Al algoritmo de estimación que calcula $K_k$ e implementa esta actualización de forma recursiva se le conoce como **filtro de Kalman**.
+    donde $K_k$ es la ganancia de Kalman.
+    
+-   El algoritmo que calcula $K_k$ e implementa esta actualización de forma recursiva se le conoce como **filtro de Kalman**.
 
 ---
 
@@ -3242,8 +3423,9 @@ donde $K_k$ es la ganancia de Kalman. Al algoritmo de estimación que calcula $K
 ::: {.algorithm}
 
 <div class="algorithm-title">
-<strong>Algoritmo 4:</strong> Filtro de Kalman
+<strong>Algoritmo 6:</strong> Filtro de Kalman
 </div>
+
 
 <div class="algorithm-io">
 <strong>Entrada:</strong>
@@ -3270,6 +3452,12 @@ $\hat{x}_0^{+}$, $P_0^{+}$
 </div>
 
 Para cada instante de tiempo $t_k$:
+
+
+::: {.columns}
+
+::: {.column}
+
 
 1. Predicción del estado:
 
@@ -3302,6 +3490,12 @@ Para cada instante de tiempo $t_k$:
     -
     C_k\hat{x}_k^{-}
     $$
+
+
+
+:::
+
+::: {.column}
 
 4. Calcular la ganancia de Kalman:
 
@@ -3340,6 +3534,11 @@ Para cada instante de tiempo $t_k$:
 
 :::
 
+:::
+
+:::
+
+
 ---
 
 ##
@@ -3374,46 +3573,46 @@ Generalmente $\hat{x}_0$ proviene de una estimación inicial y $P_0$ se seleccio
 
 ## Ejemplo
 
-Considere el modelo cinemático que utilizamos para el filtro complementario:
+-   Considere el modelo cinemático que utilizamos para el filtro complementario:
 
-$$
-\begin{split}
-\dot{x}(t) & =T(x(t))\omega(t)+\zeta(t), \\
-y(t)       & =x(t)+v(t)
-\end{split}
-$$
+    $$
+    \begin{split}
+    \dot{x}(t) & =T(x(t))\omega(t)+\zeta(t), \\
+    y(t)       & =x(t)+v(t)
+    \end{split}
+    $$
 
-donde
+    donde
 
-$$
-x=
-\begin{bmatrix}
-\phi^\top   &
-\theta^\top &
-\psi^\top
-\end{bmatrix}^{\top}
-$$
+    $$
+    x=
+    \begin{bmatrix}
+    \phi^\top   &
+    \theta^\top &
+    \psi^\top
+    \end{bmatrix}^{\top}
+    $$
 
-Discretizando el modelo utilizando el método de Euler, se obtiene:
+-   Discretizando el modelo utilizando el método de Euler, se obtiene:
 
-$$
-\begin{split}
-x_k & =x_{k-1}+T(x_{k-1})\omega_{k-1}\Delta t_k+\zeta_{k-1} \\
-& =A_{k-1}x_{k-1}+B_{k-1}\omega_{k-1}+\zeta_{k-1}       \\
-y_k & =x_k+\xi_k                                            \\
-& =C_kx_k+\xi_k
-\end{split}
-$$
+    $$
+    \begin{split}
+    x_k & =x_{k-1}+T(x_{k-1})\omega_{k-1}\Delta t_k+\zeta_{k-1} \\
+    & =A_{k-1}x_{k-1}+B_{k-1}\omega_{k-1}+\zeta_{k-1}       \\
+    y_k & =x_k+\xi_k                                            \\
+    & =C_kx_k+\xi_k
+    \end{split}
+    $$
 
-con
+    con
 
-$$
-\begin{split}
-A_{k-1}=I_3,\quad B_{k-1}=T(x_{k-1})\Delta t_k,\quad C_k=I_3
-\end{split}
-$$
+    $$
+    \begin{split}
+    A_{k-1}=I_3,\quad B_{k-1}=T(x_{k-1})\Delta t_k,\quad C_k=I_3
+    \end{split}
+    $$
 
-En este caso, la velocidad angular $\omega_{k-1}$ se considera como una entrada del sistema, y el estado puede propagarse mediante la medición de velocidad angular.
+-   En este caso, la velocidad angular $\omega_{k-1}$ se considera como una entrada del sistema, y el estado puede propagarse mediante la medición de velocidad angular.
 
 ---
 
@@ -3421,7 +3620,7 @@ En este caso, la velocidad angular $\omega_{k-1}$ se considera como una entrada 
 ::: {.algorithm}
 
 <div class="algorithm-title">
-<strong>Algoritmo 5:</strong> Filtro de Kalman para estimación de orientación
+<strong>Algoritmo 7:</strong> Filtro de Kalman para estimación de orientación
 </div>
 
 <div class="algorithm-io">
@@ -3448,6 +3647,11 @@ $P_0^{+}$
 </div>
 
 Para cada instante de tiempo $t_k$:
+
+
+::: {.columns}
+
+::: {.column}
 
 1. Actualizar la matriz del sistema:
 
@@ -3488,6 +3692,11 @@ Para cada instante de tiempo $t_k$:
     \hat{x}_k^{-}
     $$
 
+
+:::
+
+::: {.column}
+
 5. Calcular la ganancia de Kalman:
 
     $$
@@ -3520,58 +3729,63 @@ Para cada instante de tiempo $t_k$:
     P_k^{-}
     $$
 
+
+:::
+
+:::
+
 :::
 
 ---
 
 ##
 
-En el modelo anterior, la velocidad angular se consideró una entrada conocida. Para estimarla simultáneamente con la orientación, se redefine el estado como:
+-   En el modelo anterior, la velocidad angular se consideró una entrada conocida. Para estimarla simultáneamente con la orientación, se redefine el estado como:
 
-$$
-\begin{split}
-x(t) & =
-\begin{bmatrix}
-\omega^\top & \phi(t) & \theta(t) & \psi(t)
-\end{bmatrix}^{\top} \\
-y(t) & =
-\begin{bmatrix}
-\omega_y^\top & \phi_y(t) & \theta(t)_y & \psi(t)_y
-\end{bmatrix}^{\top}.
-\end{split}
-$$
+    $$
+    \begin{split}
+    x(t) & =
+    \begin{bmatrix}
+    \omega^\top & \phi(t) & \theta(t) & \psi(t)
+    \end{bmatrix}^{\top} \\
+    y(t) & =
+    \begin{bmatrix}
+    \omega_y^\top & \phi_y(t) & \theta(t)_y & \psi(t)_y
+    \end{bmatrix}^{\top}.
+    \end{split}
+    $$
 
-La velocidad angular se modela como una caminata aleatoria:
+    La velocidad angular se modela como una caminata aleatoria:
 
-$$
-\begin{split}
-\dot{\omega}(t)=\zeta_{\omega}(t)
-\end{split}
-$$
+    $$
+    \begin{split}
+    \dot{\omega}(t)=\zeta_{\omega}(t)
+    \end{split}
+    $$
 
-El modelo discretizado queda como:
+-   El modelo discretizado queda como:
 
-$$
-\begin{split}
-x_k & =A_{k-1}x_{k-1}+\zeta_{k-1},\quad \zeta_{k-1} \in \mathbb{R}^6, \\
-y_k & =C_kx_k+\xi_k, \quad \xi_{k} \in \mathbb{R}^6,
-\end{split}
-$$
+    $$
+    \begin{split}
+    x_k & =A_{k-1}x_{k-1}+\zeta_{k-1},\quad \zeta_{k-1} \in \mathbb{R}^6, \\
+    y_k & =C_kx_k+\xi_k, \quad \xi_{k} \in \mathbb{R}^6,
+    \end{split}
+    $$
 
-donde
+    donde
 
-$$
-\begin{split}
-A_{k-1}=
-\begin{bmatrix}
-I_3                                             & 0_{3\times3} \\
-T(\phi_{k-1},\theta_{k-1},\psi_{k-1})\Delta t_k & I_3
-\end{bmatrix},
-\quad C_k=I_6
-\end{split}
-$$
+    $$
+    \begin{split}
+    A_{k-1}=
+    \begin{bmatrix}
+    I_3                                             & 0_{3\times3} \\
+    T(\phi_{k-1},\theta_{k-1},\psi_{k-1})\Delta t_k & I_3
+    \end{bmatrix},
+    \quad C_k=I_6
+    \end{split}
+    $$
 
-Con ello, el filtro de Kalman estima simultáneamente la orientación y la velocidad angular, lo que permite una mejor predicción del estado y una mayor robustez frente a ruido en las mediciones.
+-   Con ello, el filtro de Kalman estima simultáneamente la orientación y la velocidad angular, lo que permite una mejor predicción del estado y una mayor robustez frente a    ruido en las mediciones.
 
 ---
 
@@ -3580,7 +3794,7 @@ Con ello, el filtro de Kalman estima simultáneamente la orientación y la veloc
 ::: {.algorithm}
 
 <div class="algorithm-title">
-<strong>Algoritmo 6:</strong> Filtro de Kalman con velocidad angular
+<strong>Algoritmo 8:</strong> Filtro de Kalman con velocidad angular
 </div>
 
 <div class="algorithm-io">
@@ -3606,6 +3820,12 @@ $P_0^{+}$
 </div>
 
 Para cada instante de tiempo $t_k$:
+
+
+::: {.columns}
+
+::: {.column}
+
 
 1. Actualizar la matriz del sistema:
 
@@ -3643,6 +3863,11 @@ Para cada instante de tiempo $t_k$:
     +
     Q
     $$
+
+
+:::
+
+::: {.column}
 
 4. Calcular el residuo:
 
@@ -3688,37 +3913,41 @@ Para cada instante de tiempo $t_k$:
 
 :::
 
+:::
+
+:::
+
 ---
 
 ##
 
-Los filtros anteriores permiten estimar orientación y velocidad angular, pero presentan limitaciones importantes:
+-   Los filtros anteriores permiten estimar orientación y velocidad angular, pero presentan limitaciones importantes:
 
-- **Singularidades cinemáticas:** La matriz de transformación $T(\phi,\theta,\psi)$ contiene términos como $\tan(\theta)$ y $\sec(\theta)$, por lo que se vuelve singular cuando 
+    - **Singularidades cinemáticas:** La matriz de transformación $T(\phi,\theta,\psi)$ contiene términos como $\tan(\theta)$ y $\sec(\theta)$, por lo que se vuelve singular cuando 
 
-$$
-\theta=\pm \frac{\pi}{2}
-$$
+    $$
+    \theta=\pm \frac{\pi}{2}
+    $$
 
-provocando el fenómeno de *gimbal lock*.
+    provocando el fenómeno de *gimbal lock*.
 
-- **Discontinuidades angulares:** Los ángulos de Tait-Bryan presentan saltos debido a su naturaleza periódica, por ejemplo: 
+    - **Discontinuidades angulares:** Los ángulos de Tait-Bryan presentan saltos debido a su naturaleza periódica, por ejemplo: 
 
-$$
-\psi=\pi \equiv -\pi
-$$
+    $$
+    \psi=\pi \equiv -\pi
+    $$
 
-lo que puede degradar la estimación.
+    lo que puede degradar la estimación.
 
-- **Modelo simplificado de velocidad angular:** Modelar $\omega$ como una caminata aleatoria puede ser insuficiente cuando la dinámica rotacional del satélite es relevante.
-- **Ruido no gaussiano:** Estamos asumiendo que el ruido de medición de la orientación es gaussiano, lo cual no es cierto debido al uso de algoritmos estáticos y transformaciones entre parametrizaciones de orientación.
+    - **Modelo simplificado de velocidad angular:** Modelar $\omega$ como una caminata aleatoria puede ser insuficiente cuando la dinámica rotacional del satélite es relevante.
+    - **Ruido no gaussiano:** Estamos asumiendo que el ruido de medición de la orientación es gaussiano, lo cual no es cierto debido al uso de algoritmos estáticos y transformaciones entre parametrizaciones de orientación.
 
-Para resolver estas limitaciones:
+-   Para resolver estas limitaciones:
 
-- La orientación se representará mediante cuaterniones. Esto implica el uso de un modelo cinemático de cuaterniones.
-- La velocidad angular se propagará mediante el modelo dinámico rotacional.
+    - La orientación se representará mediante cuaterniones. Esto implica el uso de un modelo cinemático de cuaterniones.
+    - La velocidad angular se propagará mediante el modelo dinámico rotacional.
 
-Esto conduce naturalmente la formulación del ...
+-   Esto conduce naturalmente la formulación del ...
 
 ---
 
@@ -3758,92 +3987,92 @@ Proceso mediante el cual se aproxima un sistema no lineal por un sistema lineal 
 
 ##
 
-Considere el sistema no lineal discreto:
+-   Considere el sistema no lineal discreto:
 
-$$
-\begin{split}
-x_k & =f_{k-1}(x_{k-1},u_{k-1},\zeta_{k-1}), \\
-y_k & =h_k(x_k,\xi_k)
-\end{split}
-$$
+    $$
+    \begin{split}
+    x_k & =f_{k-1}(x_{k-1},u_{k-1},\zeta_{k-1}), \\
+    y_k & =h_k(x_k,\xi_k)
+    \end{split}
+    $$
 
-Para aplicar el filtro de Kalman, la ecuación de estado se linealiza mediante una expansión de Taylor alrededor de la estimación previa $x_{k-1}=\hat{x}_{k-1}^{+}$ y $\zeta_{k-1}=0$:
+-   Para aplicar el filtro de Kalman, la ecuación de estado se linealiza mediante una expansión de Taylor alrededor de la estimación previa $x_{k-1}=\hat{x}_{k-1}^{+}$ y $\zeta_{k-1}=0$:
 
-$$
-\begin{split}
-f_{k-1}(x_{k-1},u_{k-1},\zeta_{k-1})
-& \approx
-f_{k-1}(\hat{x}_{k-1}^{+},u_{k-1},0)
-+
-\frac{\partial f_{k-1}}{\partial x_{k-1}}\bigg|_{\hat{x}_{k-1}^{+}}
-(x_{k-1}-\hat{x}_{k-1}^{+})+
-\frac{\partial f_{k-1}}{\partial \zeta_{k-1}}\bigg|_{\hat{x}_{k-1}^{+}}
-\zeta_{k-1}
-\end{split}
-$$
+    $$
+    \begin{split}
+    f_{k-1}(x_{k-1},u_{k-1},\zeta_{k-1})
+    & \approx
+    f_{k-1}(\hat{x}_{k-1}^{+},u_{k-1},0)
+    +
+    \frac{\partial f_{k-1}}{\partial x_{k-1}}\bigg|_{\hat{x}_{k-1}^{+}}
+    (x_{k-1}-\hat{x}_{k-1}^{+})+
+    \frac{\partial f_{k-1}}{\partial \zeta_{k-1}}\bigg|_{\hat{x}_{k-1}^{+}}
+    \zeta_{k-1}
+    \end{split}
+    $$
 
-Definiendo:
+-   Definiendo:
 
-$$
-\begin{split}
-F_{k-1}=\frac{\partial f_{k-1}}{\partial x_{k-1}}\bigg|_{\hat{x}_{k-1}^{+}},\quad
-L_{k-1}=\frac{\partial f_{k-1}}{\partial \zeta_{k-1}}\bigg|_{\hat{x}_{k-1}^{+}}
-\end{split}
-$$
+    $$
+    \begin{split}
+    F_{k-1}=\frac{\partial f_{k-1}}{\partial x_{k-1}}\bigg|_{\hat{x}_{k-1}^{+}},\quad
+    L_{k-1}=\frac{\partial f_{k-1}}{\partial \zeta_{k-1}}\bigg|_{\hat{x}_{k-1}^{+}}
+    \end{split}
+    $$
 
-se obtiene el modelo linealizado:
+    se obtiene el modelo linealizado:
 
-$$
-\begin{split}
-x_k & =F_{k-1}x_{k-1}+\tilde{u}_{k-1}+\tilde{w}_{k-1}
-\end{split}
-$${#eq-ekf_lineal_state}
+    $$
+    \begin{split}
+    x_k & =F_{k-1}x_{k-1}+\tilde{u}_{k-1}+\tilde{w}_{k-1}
+    \end{split}
+    $${#eq-ekf_lineal_state}
 
-donde
+    donde
 
-$$
-\begin{split}
-\tilde{u}_{k-1}=f_{k-1}(\hat{x}_{k-1}^{+},u_{k-1},0)-F_{k-1}\hat{x}_{k-1}^{+}, \qquad \tilde{w}_{k-1}=L_{k-1}\zeta_{k-1}, \qquad \text{Var}[\tilde{w}_{k-1}]=L_{k-1}Q_{k-1}L_{k-1}^\top
-\end{split}
-$$
+    $$
+    \begin{split}
+    \tilde{u}_{k-1}=f_{k-1}(\hat{x}_{k-1}^{+},u_{k-1},0)-F_{k-1}\hat{x}_{k-1}^{+}, \qquad \tilde{w}_{k-1}=L_{k-1}\zeta_{k-1}, \qquad \text{Var}[\tilde{w}_{k-1}]=L_{k-1}Q_{k-1}L_{k-1}^\top
+    \end{split}
+    $$
 
 ---
 
 ##
 
-De forma similar, el modelo de medición se linealiza alrededor de la predicción $x_k=\hat{x}_k^{-}$ y $\xi_k=0$:
+-   De forma similar, el modelo de medición se linealiza alrededor de la predicción $x_k=\hat{x}_k^{-}$ y $\xi_k=0$:
 
-$$
-\begin{split}
-h_k(x_k,\xi_k)\approx h_k(\hat{x}_k^{-},0)+\frac{\partial h_k}{\partial x_k}\bigg|_{\hat{x}_k^{-}}(x_k-\hat{x}_k^{-})+\frac{\partial h_k}{\partial \xi_k}\bigg|_{\hat{x}_k^{-}}\xi_k
-\end{split}
-$$
+    $$
+    \begin{split}
+    h_k(x_k,\xi_k)\approx h_k(\hat{x}_k^{-},0)+\frac{\partial h_k}{\partial x_k}\bigg|_{\hat{x}_k^{-}}(x_k-\hat{x}_k^{-})+\frac{\partial h_k}{\partial \xi_k}\bigg|_{\hat{x}_k^{-}}\xi_k
+    \end{split}
+    $$
 
-Definiendo:
+-   Definiendo:
 
-$$
-\begin{split}
-H_k=\frac{\partial h_k}{\partial x_k}\bigg|_{\hat{x}_k^{-}},\quad M_k=\frac{\partial h_k}{\partial \xi_k}\bigg|_{\hat{x}_k^{-}}
-\end{split}
-$$
+    $$
+    \begin{split}
+    H_k=\frac{\partial h_k}{\partial x_k}\bigg|_{\hat{x}_k^{-}},\quad M_k=\frac{\partial h_k}{\partial \xi_k}\bigg|_{\hat{x}_k^{-}}
+    \end{split}
+    $$
 
-el sistema equivalente queda:
+    el sistema equivalente queda:
 
-$$
-\begin{split}
-y_k=H_kx_k+z_k+\tilde{\xi}_k
-\end{split}
-$${#eq-ekf_lineal_measurement}
+    $$
+    \begin{split}
+    y_k=H_kx_k+z_k+\tilde{\xi}_k
+    \end{split}
+    $${#eq-ekf_lineal_measurement}
 
-donde
+    donde
 
-$$
-\begin{split}
-z_k=h_k(\hat{x}_k^{-},0)-H_k\hat{x}_k^{-},\quad \tilde{\xi}_k=M_k\xi_k,\qquad \text{Var}[\tilde{\xi}_{k}]=M_{k}QM_{k}^\top
-\end{split}
-$$
+    $$
+    \begin{split}
+    z_k=h_k(\hat{x}_k^{-},0)-H_k\hat{x}_k^{-},\quad \tilde{\xi}_k=M_k\xi_k,\qquad \text{Var}[\tilde{\xi}_{k}]=M_{k}QM_{k}^\top
+    \end{split}
+    $$
 
-Las ecuaciones @eq-ekf_lineal_state y @eq-ekf_lineal_measurement representan un sistema lineal equivalente al sistema no lineal original. Esto permite aplicar el filtro de Kalman clásico para obtener una estimación del estado, aunque esta estimación ya no es óptima debido a las aproximaciones realizadas en la linealización.
+-   Las ecuaciones @eq-ekf_lineal_state y @eq-ekf_lineal_measurement representan un sistema lineal equivalente al sistema no lineal original. Esto permite aplicar el filtro de Kalman clásico para obtener una estimación del estado, aunque esta estimación ya no es óptima debido a las aproximaciones realizadas en la linealización.
 
 ---
 
@@ -3851,7 +4080,7 @@ Las ecuaciones @eq-ekf_lineal_state y @eq-ekf_lineal_measurement representan un 
 ::: {.algorithm}
 
 <div class="algorithm-title">
-<strong>Algoritmo 7:</strong> Filtro de Kalman Extendido
+<strong>Algoritmo 9:</strong> Filtro de Kalman extendido
 </div>
 
 <div class="algorithm-io">
@@ -3877,6 +4106,11 @@ $P_0^{+}$
 </div>
 
 Para cada instante de tiempo $t_k$:
+
+
+::: {.columns}
+
+::: {.column}
 
 1. Predicción del estado:
 
@@ -3933,6 +4167,10 @@ Para cada instante de tiempo $t_k$:
     \right)
     $$
 
+:::
+
+::: {.column}
+
 4. Calcular la ganancia de Kalman:
 
     $$
@@ -3986,237 +4224,235 @@ Para cada instante de tiempo $t_k$:
 
 :::
 
----
+:::
 
-##
-
-Para empezar el diseño del EFK para la determinación de la orientación, hace falta definir varios aspectos. El primero de ellos es extender el modelo dinámico para considerar la velocidad angular como parte del estado a estimar.
-
-El modelo dinámico rotacional del satélite se puede escribir en espacio de estados como:
-
-$$
-\begin{split}
-I_b\ls{b}\dot{\vec{\omega}}_{i,b}(t) & =-S(\ls{b}\vec{\omega}_{i,b}(t))I_b\ls{b}\vec{\omega}_{i,b}(t)+\ls{b}\vec{\tau}_c(t)-\ls{b}\vec{r}_c(t)\times\ls{b}\vec{f}_{c}(t)-\ls{b}R_i(t)\ls{i}\dot{\vec{h}}_w(t).
-\end{split}
-$$
-
-Podemos reformular este modelo dinámico como
-
-$$
-\begin{split}
-\dot{\omega}(t)=-I_b^{-1}S(\omega(t))I_b\omega(t)+I_b^{-1}\tau(t)
-\end{split}
-$$
-
-donde $\omega(t)=\ls{b}\vec{\omega}_{i,b}(t)$ y
-
-$$
-\begin{split}
-\tau(t)=\ls{b}\vec{\tau}_c(t)-\ls{b}\vec{r}_c(t)\times\ls{b}\vec{f}_{c}(t)-\ls{b}R_i(t)\ls{i}\dot{\vec{h}}_w(t)
-\end{split}
-$$
-
-Debido a que desconocemos es su totalidad a las perturbaciones que afectan al sistema, **el par $\tau$ suele asumirse como parte del ruido de proceso**. Con ello, la propagación de la velocidad angular puede modelarse como:
-
-$$
-\begin{split}
-\dot{\omega}(t)=-I_b^{-1}S(\omega(t))I_b\omega(t)+I_b^{-1}\zeta_\omega(t)
-\end{split}
-$$
+:::
 
 ---
 
 ##
 
-Otro detalle importante es recordar que la velocidad angular no se mide directamente. En su lugar, el giroscopio entrega la siguiente medición:
+-   Para empezar el diseño del EFK para la determinación de la orientación, hace falta definir varios aspectos. El primero de ellos es extender el modelo dinámico para considerar la velocidad angular como parte del estado a estimar.
 
-$$
-\begin{split}
-\omega_y(t)=\omega(t)+b(t)+\xi_{\omega}(t)
-\end{split}
-$$
+-   El modelo dinámico rotacional del satélite se puede escribir en espacio de estados como:
 
-donde:
+    $$
+    \begin{split}
+    I_b\ls{b}\dot{\vec{\omega}}_{i,b}(t) & =-S(\ls{b}\vec{\omega}_{i,b}(t))I_b\ls{b}\vec{\omega}_{i,b}(t)+\ls{b}\vec{\tau}_c(t)-\ls{b}\vec{r}_c(t)\times\ls{b}\vec{f}_{c}(t)-\ls{b}R_i(t)\ls{i}\dot{\vec{h}}_w(t).
+    \end{split}
+    $$
 
-- $\omega(t)$: velocidad angular real
-- $b(t)$: sesgo del giroscopio
-- $\xi_{\omega}(t)$: ruido de medición
+-   Podemos reformular este modelo dinámico como
 
-El sesgo representa errores sistemáticos del sensor causados por factores como:
+    $$
+    \begin{split}
+    \dot{\omega}(t)=-I_b^{-1}S(\omega(t))I_b\omega(t)+I_b^{-1}\tau(t)
+    \end{split}
+    $$
 
-- Temperatura
-- Vibraciones
-- Envejecimiento del sensor
-- Errores de calibración
+    donde $\omega(t)=\ls{b}\vec{\omega}_{i,b}(t)$ y
 
-Debido a que el sesgo suele variar lentamente, comúnmente se modela como una caminata aleatoria:
+    $$
+    \begin{split}
+    \tau(t)=\ls{b}\vec{\tau}_c(t)-\ls{b}\vec{r}_c(t)\times\ls{b}\vec{f}_{c}(t)-\ls{b}R_i(t)\ls{i}\dot{\vec{h}}_w(t)
+    \end{split}
+    $$
 
-$$
-\begin{split}
-\dot{b}(t)=\zeta_b(t)
-\end{split}
-$$
+-   Debido a que desconocemos es su totalidad a las perturbaciones que afectan al sistema, **el par $\tau$ suele asumirse como parte del ruido de proceso**. Con ello, la propagación de la velocidad angular puede modelarse como:
 
-donde $\zeta_b(t)$ representa ruido de proceso asociado a la variación del sesgo. En consecuencia, **el sesgo debe ser incluido como parte del estado a estimar en el filtro de Kalman**.
-
----
-
-##
-
-En formulaciones anteriores, la orientación se obtenía a partir de algoritmos estáticos de determinación de orientación (por ejemplo, TRIAD o QUEST), los cuales proporcionan directamente una estimación de la orientación.
-
-En este caso, no se utilizarán estimadores estáticos para generar la medición. En su lugar, se emplearán directamente los vectores medidos por los sensores.
-
-Sea $\:^{i}\vec{v}_{j,k}$ un vector de referencia conocido en el marco inercial y $\:^{b}\vec{v}_{j,k}$ su medición en el marco del cuerpo, entonces:
-
-$$
-\begin{split}
-\:^{b}\vec{v}_{j,k}=\mathcal{R}(\mathbf{q}_k)\:^{i}\vec{v}_{j,k}+\xi_{j,k}
-\end{split}
-$$
-
-donde $\mathcal{R}(\mathbf{q}_k)$ es la matriz de rotación asociada al cuaternión $\mathbf{q}_k$.
-
-Este enfoque:
-
-- Evita introducir no linealidades fuera del modelo nominal.
-- Podemos asumir que el ruido de medición $\xi_{j,k}$ es gaussiano, lo cual es una suposición más razonable que asumir que el residuo de un algoritmo estático es gaussiano.
-
-En este sentido, el filtro de Kalman se encarga de fusionar directamente las mediciones de los sensores para estimar la orientación, sin necesidad de pasar por un algoritmo estático intermedio.
-
-A esta práctica se le conoce como **Sensor Fusion**.
+    $$
+    \begin{split}
+    \dot{\omega}(t)=-I_b^{-1}S(\omega(t))I_b\omega(t)+I_b^{-1}\zeta_\omega(t)
+    \end{split}
+    $$
 
 ---
 
 ##
 
-Ahora, pensemos en el caso específico de estimación de orientación utilizando cuaterniones. El EKF puede aplicarse directamente, pero presenta limitaciones importantes. Suponga que el estado del sistema es
+-   Otro detalle importante es recordar que la velocidad angular no se mide directamente. En su lugar, el giroscopio entrega la siguiente medición:
 
-$$
-x_k=\mathbf{q}_k,
-$$
+    $$
+    \begin{split}
+    \omega_y(t)=\omega(t)+b(t)+\xi_{\omega}(t)
+    \end{split}
+    $$
 
-donde $\mathbf{q}_k=\:^b\mathbf{q}_h(t_k)$ es un cuaternión unitario que representa la orientación del satélite.
+    donde:
 
-Aplicando la correción del estado del EKF, se obtiene:
+    - $\omega(t)$: velocidad angular real
+    - $b(t)$: sesgo del giroscopio
+    - $\xi_{\omega}(t)$: ruido de medición
 
-$$
-\hat{\mathbf{q}}_k^{+}=\hat{\mathbf{q}}_k^{-}+K_kr_k
-$$
+    El sesgo representa errores sistemáticos del sensor causados por factores como:
 
-donde $r_k$ es el residuo de la medición. Dado a que $\hat{\mathbf{q}}_k^{-}$ es en principio un cuaternión unitario , **esta actualización no garantiza que $\hat{\mathbf{q}}_k^{+}$ siga siendo un cuaternión unitario**, lo que puede llevar a estimaciones físicamente inconsistentes. Además, analizando el cálculo del residuo, se obtiene:
+    - Temperatura
+    - Vibraciones
+    - Envejecimiento del sensor
+    - Errores de calibración
 
-$$
-r_k=\mathbf{q}_{y,k}-\hat{\mathbf{q}}_k^{-}
-$$
+-   Debido a que el sesgo suele variar lentamente, comúnmente se modela como una caminata aleatoria:
 
-La diferencia entre dos orientaciones no puede calcularse mediante una resta directa de cuaterniones unitarios. Esto se soluciona considerando como medición a los vectores medidos por los sensores, como se planteó anteriormente.
+    $$
+    \begin{split}
+    \dot{b}(t)=\zeta_b(t)
+    \end{split}
+    $$
 
-Para resolver el problema restante, se define un **cuaternión de error**:
-
-$$
-\mathbf{q}_k=\delta\mathbf{q}_k\otimes\hat{\mathbf{q}}_k,
-$$
-
-donde $\delta\mathbf{q}_k$ representa el error relativo entre la orientación real y la orientación estimada.
-
----
-
-##
-
-El cuaternión de error $\delta\mathbf{q}_k$ también es un cuaternión unitario, por lo que se puede representar como:
-
-$$
-\delta\mathbf{q}_k=
-\begin{bmatrix}
-\delta q_0 & \delta q_1 & \delta q_2 & \delta q_3
-\end{bmatrix}^{\top}
-$$
-
-sujeto a:
-
-$$
-\|\delta\mathbf{q}_k\|=1
-$$
-
-Utilizando la relación entre la representación eje-ángulo y los cuaterniones unitarios,
-
-$$
-\begin{split}
-\delta\mathbf{q}_k=\begin{bmatrix}
-\cos\left(\frac{\theta_k}{2}\right) \\
--\sin\left(\frac{\theta_k}{2}\right)\hat{u}_k
-\end{bmatrix}
-\end{split}
-$$
-
-De lo anterior, vamos a asumir que el error de orientación es pequeño, es decir, $\theta_k \to 0$. Bajo esta suposición, se puede aproximar el cuaternión de error como:
-
-$$
-\delta\mathbf{q}_k=
-\begin{bmatrix}
-\delta q_0 \\
-\delta\mathbf{q}_v
-\end{bmatrix}
-\approx
-\begin{bmatrix}
-1 \\
--\frac{1}{2}\theta_k\hat{u}_k
-\end{bmatrix}
-=
-\begin{bmatrix}
-1 \\
--\frac{1}{2}\delta\theta_k
-\end{bmatrix}
-$$
-
-donde:
-
-$$
-\delta\theta_k\in\mathbb{R}^3
-$$
-
-representa un vector de error mínimo de orientación.
-
-**El filtro de Kalman va a estimar $\delta\theta_k$ en lugar de estimar directamente el cuaternión**. Esto garantiza que la actualización del estado mantenga la propiedad de ser un cuaternión unitario, y reduce la dimensión de las variables a estimar.
+    donde $\zeta_b(t)$ representa ruido de proceso asociado a la variación del sesgo. En consecuencia, **el sesgo debe ser incluido como parte del estado a estimar en el filtro de Kalman**.
 
 ---
 
 ##
 
-**La modificación necesaria al EKF clásico para el manejo de cuaterniones es que la correción del estado se realiza en dos pasos: primero calculamos el error de estimación y posteriormente hacemos la correción del estado manteniendo la estructura de cada variable del estado**.
+-   En formulaciones anteriores, la orientación se obtenía a partir de algoritmos estáticos de determinación de orientación (por ejemplo, TRIAD o QUEST), los cuales proporcionan directamente una estimación de la orientación.
 
-Por ejemplo, durante la etapa de corrección, el filtro estima el vector de error mínimo:
+-   En este caso, no se utilizarán estimadores estáticos para generar la medición. En su lugar, se emplearán directamente los vectores medidos por los sensores.
 
-$$
-\delta\hat{\theta}_k = K_k r_k
-$$
+-   Sea $\:^{i}\vec{v}_{j,k}$ un vector de referencia conocido en el marco inercial y $\:^{b}\vec{v}_{j,k}$ su medición en el marco del cuerpo, entonces:
 
-A partir de este vector, se construye el cuaternión de corrección:
+    $$
+    \begin{split}
+    \:^{b}\vec{v}_{j,k}=\mathcal{R}(\mathbf{q}_k)\:^{i}\vec{v}_{j,k}+\xi_{j,k}
+    \end{split}
+    $$
 
-$$
-\delta\hat{\mathbf{q}}_k=
-\begin{bmatrix}
-1 \\
--\frac{1}{2}\delta\hat{\theta}_k
-\end{bmatrix}
-$$
+    donde $\mathcal{R}(\mathbf{q}_k)$ es la matriz de rotación asociada al cuaternión $\mathbf{q}_k$.
 
-La orientación nominal se actualiza mediante multiplicación de cuaterniones:
+-   Este enfoque:
 
-$$
-\hat{\mathbf{q}}_k^{+}=
-\delta\hat{\mathbf{q}}_k
-\otimes
-\hat{\mathbf{q}}_k^{-}
-$$
+    - Evita introducir no linealidades fuera del modelo nominal.
+    - Podemos asumir que el ruido de medición $\xi_{j,k}$ es gaussiano, lo cual es una suposición más razonable que asumir que el residuo de un algoritmo estático es gaussiano.
 
-Este procedimiento mantiene la restricción unitaria del cuaternión y separa:
+-   En este sentido, el filtro de Kalman se encarga de fusionar directamente las mediciones de los sensores para estimar la orientación, sin necesidad de pasar por un algoritmo estático intermedio.
 
-- Estado nominal no lineal (cuaternión $\hat{\mathbf{q}}_k$).
-- Estado de error lineal (vector de error mínimo $\hat{\theta}_k$).
+-   A esta práctica se le conoce como **Sensor Fusion**.
 
-A esta formulación se le conoce como ...
+---
+
+##
+
+-   Ahora, pensemos en el caso específico de estimación de orientación utilizando cuaterniones. El EKF puede aplicarse directamente, pero presenta limitaciones importantes. Suponga que el estado del sistema es
+
+    $$
+    x_k=\mathbf{q}_k,
+    $$
+
+    donde $\mathbf{q}_k=\:^b\mathbf{q}_h(t_k)$ es un cuaternión unitario que representa la orientación del satélite.
+
+-   Aplicando la correción del estado del EKF, se obtiene:
+
+    $$
+    \hat{\mathbf{q}}_k^{+}=\hat{\mathbf{q}}_k^{-}+K_kr_k
+    $$
+
+    donde $r_k$ es el residuo de la medición. Dado a que $\hat{\mathbf{q}}_k^{-}$ es en principio un cuaternión unitario , **esta actualización no garantiza que $\hat{\mathbf{q}}_k^{+}$ siga siendo un cuaternión unitario**, lo que puede llevar a estimaciones físicamente inconsistentes.
+    
+-   Además, analizando el cálculo del residuo, se obtiene:
+
+    $$
+    r_k=\mathbf{q}_{y,k}-\hat{\mathbf{q}}_k^{-}
+    $$
+
+    La diferencia entre dos orientaciones no puede calcularse mediante una resta directa de cuaterniones unitarios. Esto se soluciona considerando como medición a los vectores medidos por los sensores, como se planteó anteriormente.
+
+-   Para resolver el problema restante, se define un **cuaternión de error**:
+
+    $$
+    \mathbf{q}_k=\delta\mathbf{q}_k\otimes\hat{\mathbf{q}}_k,
+    $$
+
+    donde $\delta\mathbf{q}_k$ representa el error relativo entre la orientación real y la orientación estimada.
+
+---
+
+-   El cuaternión de error $\delta\mathbf{q}_k$ también es un cuaternión unitario, por lo que se puede representar como:
+
+    $$
+    \delta\mathbf{q}_k=
+    \begin{bmatrix}
+    \delta q_0 & \delta q_1 & \delta q_2 & \delta q_3
+    \end{bmatrix}^{\top}
+    $$
+
+    sujeto a:
+
+    $$
+    \|\delta\mathbf{q}_k\|=1
+    $$
+
+-   Utilizando la relación entre la representación eje-ángulo y los cuaterniones unitarios,
+
+    $$
+    \begin{split}
+    \delta\mathbf{q}_k=\begin{bmatrix}
+    \cos\left(\frac{\theta_k}{2}\right) \\
+    -\sin\left(\frac{\theta_k}{2}\right)\hat{u}_k
+    \end{bmatrix}
+    \end{split}
+    $$
+
+-   De lo anterior, vamos a asumir que el error de orientación es pequeño, es decir, $\theta_k \to 0$. Bajo esta suposición, se puede aproximar el cuaternión de error como:
+
+    $$
+    \delta\mathbf{q}_k=
+    \begin{bmatrix}
+    \delta q_0 \\
+    \delta\mathbf{q}_v
+    \end{bmatrix}
+    \approx
+    \begin{bmatrix}
+    1 \\
+    -\frac{1}{2}\theta_k\hat{u}_k
+    \end{bmatrix}
+    =
+    \begin{bmatrix}
+    1 \\
+    -\frac{1}{2}\delta\theta_k
+    \end{bmatrix}
+    $$
+
+    donde $\delta\theta_k\in\mathbb{R}^3$ representa un vector de error mínimo de orientación.
+
+-   **El filtro de Kalman va a estimar $\delta\theta_k$ en lugar de estimar directamente el cuaternión**. Esto garantiza que la actualización del estado mantenga la propiedad de ser un cuaternión unitario, y reduce la dimensión de las variables a estimar.
+
+---
+
+##
+
+-   **La modificación necesaria al EKF clásico para el manejo de cuaterniones es que la correción del estado se realiza en dos pasos: primero calculamos el error de estimación y posteriormente hacemos la correción del estado manteniendo la estructura de cada variable del estado**.
+
+-   Por ejemplo, durante la etapa de corrección, el filtro estima el vector de error mínimo:
+
+    $$
+    \delta\hat{\theta}_k = K_k r_k
+    $$
+
+-   A partir de este vector, se construye el cuaternión de corrección:
+
+    $$
+    \delta\hat{\mathbf{q}}_k=
+    \begin{bmatrix}
+    1 \\
+    -\frac{1}{2}\delta\hat{\theta}_k
+    \end{bmatrix}
+    $$
+
+-   La orientación nominal se actualiza mediante multiplicación de cuaterniones:
+
+    $$
+    \hat{\mathbf{q}}_k^{+}=
+    \delta\hat{\mathbf{q}}_k
+    \otimes
+    \hat{\mathbf{q}}_k^{-}
+    $$
+
+-   Este procedimiento mantiene la restricción unitaria del cuaternión y separa:
+
+    - Estado nominal no lineal (cuaternión $\hat{\mathbf{q}}_k$).
+    - Estado de error lineal (vector de error mínimo $\hat{\theta}_k$).
+
+-   A esta formulación se le conoce como ...
 
 ---
 
@@ -4225,339 +4461,338 @@ A esta formulación se le conoce como ...
 <div class="menu-title" style="display:none;"> ▸▸ Filtro de Kalman extendido multiplicativo</div>
 
 
-Considere el modelo rotacional del satélite en coordenadas inerciales bajo las suposiciones mencionadas:
+-   Considere el modelo rotacional del satélite en coordenadas inerciales bajo las suposiciones mencionadas:
 
-$$
-\begin{split}
-\dot{\omega}(t)=      & -I_b^{-1}S(\omega(t))I_b\omega(t)+I_b^{-1}\zeta_\omega(t) \\
-\dot{\mathbf{q}}\td = & -\frac{1}{2}\boldsymbol{\omega} \otimes \mathbf{q},       \\
-\dot{b}_g(t)=         & \: \zeta_b(t)
-\end{split}
-$$
+    $$
+    \begin{split}
+    \dot{\omega}(t)=      & -I_b^{-1}S(\omega(t))I_b\omega(t)+I_b^{-1}\zeta_\omega(t) \\
+    \dot{\mathbf{q}}\td = & -\frac{1}{2}\boldsymbol{\omega} \otimes \mathbf{q},       \\
+    \dot{b}_g(t)=         & \: \zeta_b(t)
+    \end{split}
+    $$
 
-donde $\omega(t)$ es la velocidad angular, $\mathbf{q}(t)$ es el cuaternión de orientación, $b_g(t)$ es el sesgo del giroscopio, e $\zeta_\omega(t)$ y $\zeta_b(t)$ representan ruido de proceso. El modelo cinemático puede también escribirse como:
+    donde $\omega(t)$ es la velocidad angular, $\mathbf{q}(t)$ es el cuaternión de orientación, $b_g(t)$ es el sesgo del giroscopio, e $\zeta_\omega(t)$ y $\zeta_b(t)$ representan ruido de proceso.
 
-$$
-\begin{split}
-\dot{\mathbf{q}}\td = & -\frac{1}{2}\Omega(\mathbf{q})\omega
-\end{split}
-$$
+- El modelo cinemático puede también escribirse como:
 
-donde $\Omega(\mathbf{q})$ se define como:
+    $$
+    \begin{split}
+    \dot{\mathbf{q}}\td = & -\frac{1}{2}\Omega(\mathbf{q})\omega
+    \end{split}
+    $$
 
-$$
-\begin{split}
-\Omega(\mathbf{q})=
-\begin{bmatrix}
--q_1 & -q_2 & -q_3 \\
-q_0  & -q_3 & q_2  \\
-q_3  & q_0  & -q_1 \\
--q_2 & q_1  & q_0
-\end{bmatrix}
-\end{split}
-$$
+    donde $\Omega(\mathbf{q})$ se define como:
 
----
-
-##
-
-Con ello, el modelo dinámico rotacional del satélite se puede escribir en espacio de estados como:
-
-$$
-\dot{z}(t)=f(z(t))+G\zeta(t)
-$$
-
-donde
-
-$$
-\begin{split}
-z(t)=\begin{bmatrix}
-\omega(t)     \\
-\mathbf{q}(t) \\
-b_g(t)
-\end{bmatrix},\quad
-f(x)=\begin{bmatrix}
--I_b^{-1}S(\omega)I_b\omega          \\
--\frac{1}{2}\Omega(\mathbf{q})\omega \\
-0
-\end{bmatrix},\quad
-G=\begin{bmatrix}
-I_b^{-1} & 0   \\
-0        & 0   \\
-0        & I_3
-\end{bmatrix},\quad
-\zeta(t)=\begin{bmatrix}
-\zeta_\omega(t) \\
-\zeta_b(t)
-\end{bmatrix}
-\end{split}
-$$
-
-Por otro lado, el modelo de medición se puede escribir como:
-
-$$
-\begin{split}
-y(t)=h(z(t))+\xi(t)
-\end{split}
-$$
-
-donde
-
-$$
-\begin{split}
-y(t)=\begin{bmatrix}
-\omega_y(t)  \\
-{}^{b}v_1(t) \\
-\vdots       \\
-{}^{b}v_n(t)
-\end{bmatrix},\quad
-h(z)=\begin{bmatrix}
-\omega(t)+b_g(t)                         \\
-\mathcal{R}(\mathbf{q}(t))\,{}^{i}v_1(t) \\
-\vdots                                   \\
-\mathcal{R}(\mathbf{q}(t))\,{}^{i}v_n(t)
-\end{bmatrix},\quad
-\xi(t)=\begin{bmatrix}
-\xi_\omega(t) \\
-\xi_1(t)      \\
-\vdots        \\
-\xi_n(t)
-\end{bmatrix}
-\end{split}
-$$
+    $$
+    \begin{split}
+    \Omega(\mathbf{q})=
+    \begin{bmatrix}
+    -q_1 & -q_2 & -q_3 \\
+    q_0  & -q_3 & q_2  \\
+    q_3  & q_0  & -q_1 \\
+    -q_2 & q_1  & q_0
+    \end{bmatrix}
+    \end{split}
+    $$
 
 ---
 
 ##
 
-Atendiendo al planteamiento que hicimos, el filtro de Kalman va a estimar el error de orientación $\delta\theta(t)$ en lugar de estimar directamente el cuaternión $\mathbf{q}(t)$. Para ello, hace falta definir el error de estimación como:
+-   Con ello, el modelo dinámico rotacional del satélite se puede escribir en espacio de estados como:
 
-$$
-\begin{split}
-\delta z(t)=\begin{bmatrix}
-\delta\omega(t) \\
-\delta\theta(t) \\
-\delta b_g(t)
-\end{bmatrix}=
-\begin{bmatrix}
-\omega(t)-\hat{\omega}(t) \\
-\delta\theta(t)           \\
-b_g(t)-\hat{b}_g(t)
-\end{bmatrix}
-\end{split}
-$$
+    $$
+    \dot{z}(t)=f(z(t))+G\zeta(t)
+    $$
 
-donde $\hat{\omega}(t)$ y $\hat{b}_g(t)$ son las estimaciones de la velocidad angular y el sesgo del giroscopio, respectivamente, y $\delta\theta(t)$ es el vector de error mínimo de orientación definido como:
+    donde
 
-$$
-\begin{split}
-\delta\mathbf{q}(t)=\mathbf{q}(t)\otimes\hat{\mathbf{q}}(t)^{\star}
-\end{split}
-$$
+    $$
+    \begin{split}
+    z(t)=\begin{bmatrix}
+    \omega(t)     \\
+    \mathbf{q}(t) \\
+    b_g(t)
+    \end{bmatrix},\quad
+    f(x)=\begin{bmatrix}
+    -I_b^{-1}S(\omega)I_b\omega          \\
+    -\frac{1}{2}\Omega(\mathbf{q})\omega \\
+    0
+    \end{bmatrix},\quad
+    G=\begin{bmatrix}
+    I_b^{-1} & 0   \\
+    0        & 0   \\
+    0        & I_3
+    \end{bmatrix},\quad
+    \zeta(t)=\begin{bmatrix}
+    \zeta_\omega(t) \\
+    \zeta_b(t)
+    \end{bmatrix}
+    \end{split}
+    $$
 
-<span style="color:#003399">**El procedimiento para obtener la dinámica de $\delta z (t)$ y el residuo $r(t)$ se omite por cuestiones de espacio, pero se puede consultar en las notas adicionales del curso.**</span>
+-   Por otro lado, el modelo de medición se puede escribir como:
 
-**Dinámica de $\delta b_g(t)$**
+    $$
+    \begin{split}
+    y(t)=h(z(t))+\xi(t)
+    \end{split}
+    $$
 
-Dado a que  $\dot{\hat{b}}_g(t)=0$ ($\mu_b=0$), tenemos:
+    donde
 
-$$
-\begin{split}
-\delta \dot{b}_g(t) & = \dot{b}_g(t)-\dot{\hat{b}}_g(t) \\
-& =\zeta_b(t)
-\end{split}
-$$
-
-**Dinámica de $\delta \omega(t)$**
-
-$$
-\begin{split}
-\dot{\omega}(t)       & =-I_b^{-1}S(\omega(t))I_b\omega(t)+I_b^{-1}\zeta_\omega(t) \\
-\dot{\hat{\omega}}(t) & =-I_b^{-1}S(\hat{\omega}(t))I_b\hat{\omega}(t)             \\
-\end{split}
-$$
-
----
-
-##
-
-$$
-\begin{split}
-\delta\dot{\omega}(t) & = \dot{\omega}(t)-\dot{\hat{\omega}}(t)                                                                 \\
-& =-I_b^{-1}S(\omega(t))I_b\omega(t)+I_b^{-1}\zeta_\omega(t)+I_b^{-1}S(\hat{\omega}(t))I_b\hat{\omega}(t) \\
-& \vdots                                                                                                  \\
-& =I_b^{-1}[S(\hat{\omega}(t))I_b-S(I_b\hat{\omega}(t))]\delta\omega(t)+I_b^{-1}\zeta_\omega(t)
-\end{split}
-$$
-
-**Dinámica de $\delta \theta (t)$**
-
-$$
-\begin{split}
-\dot{\mathbf{q}}\td               & =-\frac{1}{2}\Omega(\mathbf{q})\omega,                                                                        \\
-\dot{\hat{\mathbf{q}}}\td         & =-\frac{1}{2}\Omega(\hat{\mathbf{q}})\hat{\omega},                                                            \\
-\delta\dot{\mathbf{q}}(t)         & =\dot{\mathbf{q}}(t)\otimes\hat{\mathbf{q}}(t)^{\star}+\mathbf{q}(t)\otimes\dot{\hat{\mathbf{q}}}(t)^{\star}, \\
-& \vdots                                                                                                        \\
-\begin{bmatrix}
-0 \\
--\frac{1}{2}\delta\dot{\theta}(t)
-\end{bmatrix} & =\frac{1}{2}\begin{bmatrix}
-0 \\
-S(\hat{\omega}(t))\delta\theta(t)-\delta\omega(t)
-\end{bmatrix}
-\end{split}
-$$
-
-Por lo tanto,
-
-$$
-\begin{split}
-\delta\dot{\theta}(t)=-S(\hat{\omega}(t))\delta\theta(t)+\delta\omega(t)
-\end{split}
-$$
+    $$
+    \begin{split}
+    y(t)=\begin{bmatrix}
+    \omega_y(t)  \\
+    {}^{b}v_1(t) \\
+    \vdots       \\
+    {}^{b}v_n(t)
+    \end{bmatrix},\quad
+    h(z)=\begin{bmatrix}
+    \omega(t)+b_g(t)                         \\
+    \mathcal{R}(\mathbf{q}(t))\,{}^{i}v_1(t) \\
+    \vdots                                   \\
+    \mathcal{R}(\mathbf{q}(t))\,{}^{i}v_n(t)
+    \end{bmatrix},\quad
+    \xi(t)=\begin{bmatrix}
+    \xi_\omega(t) \\
+    \xi_1(t)      \\
+    \vdots        \\
+    \xi_n(t)
+    \end{bmatrix}
+    \end{split}
+    $$
 
 ---
 
 ##
 
-Resumiendo, el modelo dinámico del error de estimación queda:
+-   Atendiendo al planteamiento que hicimos, el filtro de Kalman va a estimar el error de orientación $\delta\theta(t)$ en lugar de estimar directamente el cuaternión $\mathbf{q}(t)$. Para ello, hace falta definir el error de estimación como:
 
-$$
-\begin{split}
-\delta\dot{z}(t)=F(z(t))\delta z(t)+G\zeta(t)
-\end{split}
-$$
+    $$
+    \begin{split}
+    \delta z(t)=\begin{bmatrix}
+    \delta\omega(t) \\
+    \delta\theta(t) \\
+    \delta b_g(t)
+    \end{bmatrix}=
+    \begin{bmatrix}
+    \omega(t)-\hat{\omega}(t) \\
+    \delta\theta(t)           \\
+    b_g(t)-\hat{b}_g(t)
+    \end{bmatrix}
+    \end{split}
+    $$
 
-donde
+    donde $\hat{\omega}(t)$ y $\hat{b}_g(t)$ son las estimaciones de la velocidad angular y el sesgo del giroscopio, respectivamente, y $\delta\theta(t)$ es el vector de error mínimo de orientación definido como:
 
-$$
-\begin{split}
-\delta z(t)=\begin{bmatrix}
-\delta\omega(t) \\
-\delta\theta(t) \\
-\delta b_g(t)
-\end{bmatrix},\quad
-F(z)=\begin{bmatrix}
-I_b^{-1}[S(\hat{\omega})I_b-S(I_b\hat{\omega})] & 0                & 0 \\
-I_3                                             & -S(\hat{\omega}) & 0 \\
-0                                               & 0                & 0
-\end{bmatrix},\quad
-G=\begin{bmatrix}
-I_b^{-1} & 0   \\
-0        & 0   \\
-0        & I_3
-\end{bmatrix},\quad
-\zeta(t)=\begin{bmatrix}
-\zeta_\omega(t) \\
-\zeta_b(t)
-\end{bmatrix}
-\end{split}
-$$
+    $$
+    \begin{split}
+    \delta\mathbf{q}(t)=\mathbf{q}(t)\otimes\hat{\mathbf{q}}(t)^{\star}
+    \end{split}
+    $$
 
-Ahora, necesitamos expresar el modelo de medición en función del error de estimación $\delta z(t)$. Los residuos de medición se pueden escribir como:
+-   <span style="color:#003399">**El procedimiento para obtener la dinámica de $\delta z (t)$ y el residuo $r(t)$ se omite por cuestiones de espacio, pero se puede consultar en las notas adicionales del curso.**</span>
 
-$$
-\begin{split}
-r_k=y_k-h(\hat{z}_k^{-}) & =
-\begin{bmatrix}
-\omega_y(t)  \\
-{}^{b}v_1(t) \\
-\vdots       \\
-{}^{b}v_n(t)
-\end{bmatrix}
--
-\begin{bmatrix}
-\hat{\omega}(t)+\hat{b}_g(t)                   \\
-\mathcal{R}(\hat{\mathbf{q}}(t))\,{}^{i}v_1(t) \\
-\vdots                                         \\
-\mathcal{R}(\hat{\mathbf{q}}(t))\,{}^{i}v_n(t)
-\end{bmatrix}=
-\begin{bmatrix}
-\delta\omega(t)+\delta b_g(t)+\xi_\omega(t)                                \\
--S(\mathcal{R}(\hat{\mathbf{q}}(t))\,{}^{i}v_1(t))\delta\theta(t)+\xi_1(t) \\
-\vdots                                                                     \\
--S(\mathcal{R}(\hat{\mathbf{q}}(t))\,{}^{i}v_n(t))\delta\theta(t)+\xi_n(t)
-\end{bmatrix}                       \\
-& =\begin{bmatrix}
-I_3    & 0                                                  & I_3    \\
-0      & -S(\mathcal{R}(\hat{\mathbf{q}}(t))\,{}^{i}v_1(t)) & 0      \\
-\vdots & \vdots                                             & \vdots \\
-0      & -S(\mathcal{R}(\hat{\mathbf{q}}(t))\,{}^{i}v_n(t)) & 0
-\end{bmatrix}\delta z(t)+\xi(t) \\
-& =H(t)\delta z(t)+\xi(t)
-\end{split}
-$$
+-   **Dinámica de $\delta b_g(t)$**
+
+    Dado a que  $\dot{\hat{b}}_g(t)=0$ ($\mu_b=0$), tenemos:
+
+    $$
+    \begin{split}
+    \delta \dot{b}_g(t) & = \dot{b}_g(t)-\dot{\hat{b}}_g(t) \\
+    & =\zeta_b(t)
+    \end{split}
+    $$
+
+
 
 ---
 
 ##
 
-Para discretizar el modelo dinámico no lineal, se puede utilizar el método de Euler, lo que conduce a la siguiente formulación discreta:
+-   **Dinámica de $\delta \omega(t)$**
 
-$$
-\begin{split}
-z_{k} & =z_{k-1}+\dot{z}(t_{k-1})\Delta t_{k}                    \\
-& =z_{k-1}+f(z_{k-1})\Delta t_{k}+G\zeta_{k-1}\Delta t_{k} \\
-\end{split}
-$$
+    $$
+    \begin{split}
+    \dot{\omega}(t)       & =-I_b^{-1}S(\omega(t))I_b\omega(t)+I_b^{-1}\zeta_\omega(t) \\
+    \dot{\hat{\omega}}(t) & =-I_b^{-1}S(\hat{\omega}(t))I_b\hat{\omega}(t)             \\
+    \delta\dot{\omega}(t) & = \dot{\omega}(t)-\dot{\hat{\omega}}(t)                                                                 \\
+    & =-I_b^{-1}S(\omega(t))I_b\omega(t)+I_b^{-1}\zeta_\omega(t)+I_b^{-1}S(\hat{\omega}(t))I_b\hat{\omega}(t) \\
+    & \vdots                                                                                                  \\
+    & =I_b^{-1}[S(\hat{\omega}(t))I_b-S(I_b\hat{\omega}(t))]\delta\omega(t)+I_b^{-1}\zeta_\omega(t)
+    \end{split}
+    $$
 
-Discretizando el modelo dinámico y de medición mediante el método de Euler, se obtiene:
+-   **Dinámica de $\delta \theta (t)$**
 
-$$
-\begin{split}
-z_k & = f_{k-1}(z_{k-1}) + G_{k-1}\zeta_{k-1} \\
-y_k & = h_k(z_k) + \xi_k
-\end{split}
-$$
+    $$
+    \begin{split}
+    \dot{\mathbf{q}}\td               & =-\frac{1}{2}\Omega(\mathbf{q})\omega,                                                                        \\
+    \dot{\hat{\mathbf{q}}}\td         & =-\frac{1}{2}\Omega(\hat{\mathbf{q}})\hat{\omega},                                                            \\
+    \delta\dot{\mathbf{q}}(t)         & =\dot{\mathbf{q}}(t)\otimes\hat{\mathbf{q}}(t)^{\star}+\mathbf{q}(t)\otimes\dot{\hat{\mathbf{q}}}(t)^{\star}, \\
+    & \vdots                                                                                                        \\
+    \begin{bmatrix}
+    0 \\
+    -\frac{1}{2}\delta\dot{\theta}(t)
+    \end{bmatrix} & =\frac{1}{2}\begin{bmatrix}
+    0 \\
+    S(\hat{\omega}(t))\delta\theta(t)-\delta\omega(t)
+    \end{bmatrix}
+    \end{split}
+    $$
 
-donde
+-   Por lo tanto,
 
-$$
-\begin{aligned}
-z_k               & =\begin{bmatrix}
-\omega_k     \\
-\mathbf{q}_k \\
-b_{g,k}
-\end{bmatrix}, & \qquad y_k & =\begin{bmatrix}
-\omega_{y,k}  \\
-{}^{b}v_{1,k} \\
-\vdots        \\
-{}^{b}v_{n,k}
-\end{bmatrix}, & \qquad f_{k-1}(z_{k-1}) & =
-\begin{bmatrix}
-\omega_{k-1}
--
-\Delta t_{k} I_b^{-1}
-S(\omega_{k-1})
-I_b
-\omega_{k-1}
-\\[6pt]
+    $$
+    \begin{split}
+    \delta\dot{\theta}(t)=-S(\hat{\omega}(t))\delta\theta(t)+\delta\omega(t)
+    \end{split}
+    $$
 
-\mathbf{q}_{k-1}
--
-\frac{1}{2}
-\Delta t_{k}
-\Omega(\mathbf{q}_{k-1})
-\omega_{k-1}
-\\[6pt]
+---
 
-b_{g,k-1}
-\end{bmatrix}                                                                          \\
-G_{k-1}           & =
-\Delta t_{k}
-\begin{bmatrix}
-I_b^{-1} & 0   \\
-0        & 0   \\
-0        & I_3
-\end{bmatrix}, & \qquad h_k(z_k)   & =
-\begin{bmatrix}
-\omega_k+b_{g,k}                        \\
-\mathcal{R}(\mathbf q_k)\,{}^{i}v_{1,k} \\
-\vdots                                  \\
-\mathcal{R}(\mathbf q_k)\,{}^{i}v_{n,k}
-\end{bmatrix}
-\end{aligned}
-$$
+##
+
+-   Resumiendo, el modelo dinámico del error de estimación queda:
+
+    $$
+    \begin{split}
+    \delta\dot{z}(t)=F(z(t))\delta z(t)+G\zeta(t)
+    \end{split}
+    $$
+
+    donde
+
+    $$
+    \begin{split}
+    \delta z(t)=\begin{bmatrix}
+    \delta\omega(t) \\
+    \delta\theta(t) \\
+    \delta b_g(t)
+    \end{bmatrix},\quad
+    F(z)=\begin{bmatrix}
+    I_b^{-1}[S(\hat{\omega})I_b-S(I_b\hat{\omega})] & 0                & 0 \\
+    I_3                                             & -S(\hat{\omega}) & 0 \\
+    0                                               & 0                & 0
+    \end{bmatrix},\quad
+    G=\begin{bmatrix}
+    I_b^{-1} & 0   \\
+    0        & 0   \\
+    0        & I_3
+    \end{bmatrix},\quad
+    \zeta(t)=\begin{bmatrix}
+    \zeta_\omega(t) \\
+    \zeta_b(t)
+    \end{bmatrix}
+    \end{split}
+    $$
+
+-   Ahora, necesitamos expresar el modelo de medición en función del error de estimación $\delta z(t)$. Los residuos de medición se pueden escribir como:
+
+    $$
+    \begin{split}
+    r_k=y_k-h(\hat{z}_k^{-}) & =
+    \begin{bmatrix}
+    \omega_y(t)  \\
+    {}^{b}v_1(t) \\
+    \vdots       \\
+    {}^{b}v_n(t)
+    \end{bmatrix}
+    -
+    \begin{bmatrix}
+    \hat{\omega}(t)+\hat{b}_g(t)                   \\
+    \mathcal{R}(\hat{\mathbf{q}}(t))\,{}^{i}v_1(t) \\
+    \vdots                                         \\
+    \mathcal{R}(\hat{\mathbf{q}}(t))\,{}^{i}v_n(t)
+    \end{bmatrix}=
+    \begin{bmatrix}
+    \delta\omega(t)+\delta b_g(t)+\xi_\omega(t)                                \\
+    -S(\mathcal{R}(\hat{\mathbf{q}}(t))\,{}^{i}v_1(t))\delta\theta(t)+\xi_1(t) \\
+    \vdots                                                                     \\
+    -S(\mathcal{R}(\hat{\mathbf{q}}(t))\,{}^{i}v_n(t))\delta\theta(t)+\xi_n(t)
+    \end{bmatrix}                       \\
+    & =\begin{bmatrix}
+    I_3    & 0                                                  & I_3    \\
+    0      & -S(\mathcal{R}(\hat{\mathbf{q}}(t))\,{}^{i}v_1(t)) & 0      \\
+    \vdots & \vdots                                             & \vdots \\
+    0      & -S(\mathcal{R}(\hat{\mathbf{q}}(t))\,{}^{i}v_n(t)) & 0
+    \end{bmatrix}\delta z(t)+\xi(t) \\
+    & =H(t)\delta z(t)+\xi(t)
+    \end{split}
+    $$
+
+---
+
+##
+
+-   Para discretizar el modelo dinámico no lineal, se puede utilizar el método de Euler, lo que conduce a la siguiente formulación discreta:
+
+    $$
+    \begin{split}
+    z_{k} & =z_{k-1}+\dot{z}(t_{k-1})\Delta t_{k}                    \\
+    & =z_{k-1}+f(z_{k-1})\Delta t_{k}+G\zeta_{k-1}\Delta t_{k} \\
+    \end{split}
+    $$
+
+-   Discretizando el modelo dinámico y de medición mediante el método de Euler, se obtiene:
+
+    $$
+    \begin{split}
+    z_k & = f_{k-1}(z_{k-1}) + G_{k-1}\zeta_{k-1} \\
+    y_k & = h_k(z_k) + \xi_k
+    \end{split}
+    $$
+
+    donde
+
+    $$
+    \begin{aligned}
+    z_k               & =\begin{bmatrix}
+    \omega_k     \\
+    \mathbf{q}_k \\
+    b_{g,k}
+    \end{bmatrix}, & \qquad y_k & =\begin{bmatrix}
+    \omega_{y,k}  \\
+    {}^{b}v_{1,k} \\
+    \vdots        \\
+    {}^{b}v_{n,k}
+    \end{bmatrix}, & \qquad f_{k-1}(z_{k-1}) & =
+    \begin{bmatrix}
+    \omega_{k-1}
+    -
+    \Delta t_{k} I_b^{-1}
+    S(\omega_{k-1})
+    I_b
+    \omega_{k-1}
+    \\[6pt]
+
+    \mathbf{q}_{k-1}
+    -
+    \frac{1}{2}
+    \Delta t_{k}
+    \Omega(\mathbf{q}_{k-1})
+    \omega_{k-1}
+    \\[6pt]
+
+    b_{g,k-1}
+    \end{bmatrix}                                                                          \\
+    G_{k-1}           & =
+    \Delta t_{k}
+    \begin{bmatrix}
+    I_b^{-1} & 0   \\
+    0        & 0   \\
+    0        & I_3
+    \end{bmatrix}, & \qquad h_k(z_k)   & =
+    \begin{bmatrix}
+    \omega_k+b_{g,k}                        \\
+    \mathcal{R}(\mathbf q_k)\,{}^{i}v_{1,k} \\
+    \vdots                                  \\
+    \mathcal{R}(\mathbf q_k)\,{}^{i}v_{n,k}
+    \end{bmatrix}
+    \end{aligned}
+    $$
 
 ---
 
@@ -4565,135 +4800,131 @@ $$
 
 Finalmente, se pueden discretizar de la misma forma los modelos del error de estimación y del residuo de medición, lo que conduce a:
 
+
+
+::: {.columns}
+
+::: {.column}
+
+
 - **Modelo del error linealizado discreto:**
 
-$$
-\delta z_k=
-F_{k-1}(z_{k-1})\delta z_{k-1}
-+
-G_{k-1}\zeta_{k-1}
-$$
+    $$
+    \delta z_k=
+    F_{k-1}(z_{k-1})\delta z_{k-1}
+    +
+    G_{k-1}\zeta_{k-1}
+    $$
 
-donde
+    donde
 
-$$
-\begin{aligned}
-\delta z_k
-&=
-\begin{bmatrix}
-\omega_k-\hat{\omega}_k\\
-\delta\theta_k\\
-b_{g,k}-\hat{b}_{g,k}
-\end{bmatrix}
-=
-\begin{bmatrix}
-\delta\omega_k\\
-\delta\theta_k\\
-\delta b_{g,k}
-\end{bmatrix}
-\\[8pt]
+    $$
+    \begin{split}
+    &\delta z_k
+    =
+    \begin{bmatrix}
+    \omega_k-\hat{\omega}_k\\
+    \delta\theta_k\\
+    b_{g,k}-\hat{b}_{g,k}
+    \end{bmatrix}
+    =
+    \begin{bmatrix}
+    \delta\omega_k\\
+    \delta\theta_k\\
+    \delta b_{g,k}
+    \end{bmatrix}\\
+    &\\
+    &F_{k-1}(z_{k-1})=\\
+    &\begin{bmatrix}
+    I_3+
+    \Delta t_k I_b^{-1}
+    \left(
+    S(I_b\omega_{k-1})
+    -
+    S(\omega_{k-1})I_b
+    \right)
+    &
+    0
+    &
+    0\\
+    \Delta t_k I_3
+    &
+    I_3-\Delta t_kS(\omega_{k-1})
+    &
+    0\\
+    0
+    &
+    0
+    &
+    I_3
+    \end{bmatrix}\\
+    &\\
+    &G_{k-1}=
+    \Delta t_k
+    \begin{bmatrix}
+    I_b^{-1} & 0\\
+    0 & 0\\
+    0 & I_3
+    \end{bmatrix}
+    \end{split}
+    $$
 
-F_{k-1}(z_{k-1})
-&=
-\begin{bmatrix}
-I_3+
-\Delta t_k I_b^{-1}
-\left(
-S(I_b\omega_{k-1})
--
-S(\omega_{k-1})I_b
-\right)
-&
-0
-&
-0
-\\[6pt]
 
-\Delta t_k I_3
-&
-I_3-\Delta t_kS(\omega_{k-1})
-&
-0
-\\[6pt]
+:::
 
-0
-&
-0
-&
-I_3
-\end{bmatrix}
-\\[8pt]
+::: {.column}
 
-G_{k-1}
-&=
-\Delta t_k
-\begin{bmatrix}
-I_b^{-1} & 0\\
-0 & 0\\
-0 & I_3
-\end{bmatrix}
-\end{aligned}
-$$
 
 - **Modelo del error de estimación:**
 
-$$
-r_k=
-H_k(\hat z_k)\delta\hat z_k+\xi_k
-$$
+    $$
+    r_k=
+    H_k(\hat z_k)\delta\hat z_k+\xi_k
+    $$
 
-donde
+    donde
 
-$$
-\begin{aligned}
-r_k
-&=
-\begin{bmatrix}
-\omega_{y,k}
--
-\hat{\omega}_k
--
-\hat b_{g,k}
-\\
+    $$
+    \begin{aligned}
+    r_k
+    &=
+    \begin{bmatrix}
+    \omega_{y,k}
+    -
+    \hat{\omega}_k
+    -
+    \hat b_{g,k}\\
+    {}^{b}v_{1,k}
+    -
+    \mathcal{R}(\hat{\mathbf q}_k)\,{}^{i}v_{1,k}\\
+    \vdots\\
+    {}^{b}v_{n,k}
+    -
+    \mathcal{R}(\hat{\mathbf q}_k)\,{}^{i}v_{n,k}
+    \end{bmatrix},\\
+    &\\
+    H_k(\hat z_k)
+    &=
+    \begin{bmatrix}
+    I_3 &
+    0 &
+    I_3\\
+    0 &
+    -S(\mathcal{R}(\hat{\mathbf q}_k)\,{}^{i}v_{1,k}) &
+    0\\
+    \vdots &
+    \vdots &
+    \vdots\\
+    0 &
+    -S(\mathcal{R}(\hat{\mathbf q}_k)\,{}^{i}v_{n,k}) &
+    0
+    \end{bmatrix}
+    \end{aligned}
+    $$
 
-{}^{b}v_{1,k}
--
-\mathcal{R}(\hat{\mathbf q}_k)\,{}^{i}v_{1,k}
-\\
+:::
 
-\vdots
-\\
-
-{}^{b}v_{n,k}
--
-\mathcal{R}(\hat{\mathbf q}_k)\,{}^{i}v_{n,k}
-\end{bmatrix},
-\qquad
-
-H_k(\hat z_k)
-=
-\begin{bmatrix}
-I_3 &
-0 &
-I_3
-\\
-
-0 &
--S(\mathcal{R}(\hat{\mathbf q}_k)\,{}^{i}v_{1,k}) &
-0
-\\
-
-\vdots &
-\vdots &
-\vdots
-\\
-
-0 &
--S(\mathcal{R}(\hat{\mathbf q}_k)\,{}^{i}v_{n,k}) &
-0
-\end{bmatrix}
-\end{aligned}
-$$
+:::
 
 
 ---
@@ -4702,7 +4933,7 @@ $$
 ::: {.algorithm}
 
 <div class="algorithm-title">
-<strong>Algoritmo 8:</strong> MEKF (Inicialización)
+<strong>Algoritmo 10:</strong> MEKF (Inicialización)
 </div>
 
 <div class="algorithm-io">
@@ -4729,10 +4960,11 @@ $\hat b_{g,k}$
 <strong>Inicialización:</strong>
 </div>
 
-1. Calcular $\hat{\mathbf q}_0^{+}$ mediante QUEST o TRIAD usando
+
+- Calcular $\hat{\mathbf q}_0^{+}$ mediante QUEST o TRIAD usando
    ${}^{b}v_{j,0}$ y ${}^{i}v_{j,0}$.
 
-2. Inicializar
+- Inicializar
 
     $$
     \hat{\omega}_0^{+}
@@ -4740,7 +4972,7 @@ $\hat b_{g,k}$
     \omega_{y,0}
     $$
 
-3. Inicializar
+- Inicializar
 
     $$
     \hat b_{g,0}^{+}
@@ -4748,7 +4980,7 @@ $\hat b_{g,k}$
     b_{g,0}
     $$
 
-4. Construir el estado nominal inicial
+- Construir el estado nominal inicial
 
     $$
     \hat z_0^{+}
@@ -4760,39 +4992,7 @@ $\hat b_{g,k}$
     \end{bmatrix}
     $$
 
-Para cada instante de tiempo $t_k$:
 
-5. Calcular
-
-    $$
-    \Delta t_k
-    =
-    t_k-t_{k-1}
-    $$
-
-6. Propagar el estado nominal utilizando el modelo dinámico no lineal con
-   $z_{k-1}=\hat z_{k-1}^{+}$ y $\zeta_{k-1}=0$:
-
-    $$
-    \hat z_k^{-}
-    =
-    f_{k-1}
-    \left(
-    \hat z_{k-1}^{+}
-    \right)
-    $$
-
-7. Normalizar el cuaternión:
-
-    $$
-    \hat{\mathbf q}_k^{-}
-    \leftarrow
-    \frac{\hat{\mathbf q}_k^{-}}
-    {\left\|\hat{\mathbf q}_k^{-}\right\|}
-    $$
-
-8. Calcular las matrices $F_{k-1}$ y $G_{k-1}$ del modelo linealizado utilizando
-   $z_{k-1}=\hat z_{k-1}^{+}$.
 
 :::
 
@@ -4808,7 +5008,45 @@ Para cada instante de tiempo $t_k$:
 
 Para cada instante de tiempo $t_k$:
 
-1. Propagar la matriz de covarianza del error de estimación:
+
+::: {.columns}
+
+::: {.column}
+
+1. Calcular
+
+    $$
+    \Delta t_k
+    =
+    t_k-t_{k-1}
+    $$
+
+2. Propagar el estado nominal utilizando el modelo dinámico no lineal con
+   $z_{k-1}=\hat z_{k-1}^{+}$ y $\zeta_{k-1}=0$:
+
+    $$
+    \hat z_k^{-}
+    =
+    f_{k-1}
+    \left(
+    \hat z_{k-1}^{+}
+    \right)
+    $$
+
+3. Normalizar el cuaternión:
+
+    $$
+    \hat{\mathbf q}_k^{-}
+    \leftarrow
+    \frac{\hat{\mathbf q}_k^{-}}
+    {\left\|\hat{\mathbf q}_k^{-}\right\|}
+    $$
+
+4. Calcular las matrices $F_{k-1}$ y $G_{k-1}$ del modelo linealizado utilizando
+   $z_{k-1}=\hat z_{k-1}^{+}$.
+
+
+5. Propagar la matriz de covarianza del error de estimación:
 
     $$
     P_k^{-}
@@ -4822,10 +5060,16 @@ Para cada instante de tiempo $t_k$:
     G_{k-1}^{\top}
     $$
 
-2. Calcular la matriz de observación $H_k$ utilizando
+:::
+
+::: {.column}
+
+
+
+6. Calcular la matriz de observación $H_k$ utilizando
    $z_k=\hat z_k^{-}$.
 
-3. Calcular la ganancia de Kalman:
+7. Calcular la ganancia de Kalman:
 
     $$
     K_k
@@ -4841,10 +5085,11 @@ Para cada instante de tiempo $t_k$:
     \right)^{-1}
     $$
 
-4. Calcular el residuo de medición $r_k$ utilizando
+8. Calcular el residuo de medición $r_k$ utilizando
    $z_k=\hat z_k^{-}$.
 
-5. Calcular el error de estimación:
+
+9. Calcular el error de estimación:
 
     $$
     \delta\hat z_k
@@ -4852,7 +5097,7 @@ Para cada instante de tiempo $t_k$:
     K_k r_k
     $$
 
-6. Actualizar la matriz de covarianza del error de estimación:
+10. Actualizar la matriz de covarianza del error de estimación:
 
     $$
     P_k^{+}
@@ -4860,6 +5105,13 @@ Para cada instante de tiempo $t_k$:
     (I-K_kH_k)
     P_k^{-}
     $$
+
+
+
+
+:::
+
+:::
 
 :::
 
@@ -4873,9 +5125,13 @@ Para cada instante de tiempo $t_k$:
 <strong>Algoritmo 10:</strong> MEKF (Actualización del estado nominal)
 </div>
 
-Para cada instante de tiempo $t_k$:
 
-1. Actualizar la velocidad angular:
+::: {.columns}
+
+::: {.column}
+
+
+11. Actualizar la velocidad angular:
 
     $$
     \hat{\omega}_k^{+}
@@ -4885,7 +5141,7 @@ Para cada instante de tiempo $t_k$:
     \delta\hat{\omega}_k
     $$
 
-2. Actualizar el sesgo del giroscopio:
+12. Actualizar el sesgo del giroscopio:
 
     $$
     \hat b_{g,k}^{+}
@@ -4895,7 +5151,8 @@ Para cada instante de tiempo $t_k$:
     \delta\hat b_{g,k}
     $$
 
-3. Construir el cuaternión de corrección:
+
+14. Construir el cuaternión de corrección:
 
     $$
     \delta\hat{\mathbf q}_k
@@ -4906,7 +5163,11 @@ Para cada instante de tiempo $t_k$:
     \end{bmatrix}
     $$
 
-4. Actualizar el cuaternión nominal:
+:::
+
+::: {.column}
+
+15. Actualizar el cuaternión nominal:
 
     $$
     \hat{\mathbf q}_k^{+}
@@ -4916,7 +5177,7 @@ Para cada instante de tiempo $t_k$:
     \hat{\mathbf q}_k^{-}
     $$
 
-5. Normalizar el cuaternión:
+16. Normalizar el cuaternión:
 
     $$
     \hat{\mathbf q}_k^{+}
@@ -4925,7 +5186,7 @@ Para cada instante de tiempo $t_k$:
     {\left\|\hat{\mathbf q}_k^{+}\right\|}
     $$
 
-6. Construir el estado nominal actualizado:
+17. Construir el estado nominal actualizado:
 
     $$
     \hat z_k^{+}
@@ -4936,6 +5197,11 @@ Para cada instante de tiempo $t_k$:
     \hat b_{g,k}^{+}
     \end{bmatrix}
     $$
+
+
+:::
+
+:::
 
 :::
 
@@ -4969,7 +5235,9 @@ Mediante este procedimiento, logramos:
 
 ---
 
-##
+<div class="vspace-3"></div>
+<div class="vspace-3"></div>
+<div class="vspace-3"></div>
 
 ::: {.definition-block}
 **Selección de la matriz $R$**
@@ -4992,6 +5260,12 @@ R =\mathrm{blkdiag}(\sigma_{\omega}^2 I_3, \sigma_{v_1}^2 I_3, \ldots, \sigma_{v
 $$
 
 :::
+
+---
+
+<div class="vspace-3"></div>
+<div class="vspace-3"></div>
+<div class="vspace-3"></div>
 
 ::: {.definition-block}
 **Selección de la matriz $Q$**
@@ -5017,26 +5291,26 @@ $$
 
 ## Ambigüedad de signo en cuaterniones
 
-Los cuaterniones presentan una ambigüedad de signo:
+-   Los cuaterniones presentan una ambigüedad de signo:
 
-$$
-\mathbf{q} \equiv -\mathbf{q}
-$$
+    $$
+    \mathbf{q} \equiv -\mathbf{q}
+    $$
 
-es decir, ambos representan la misma orientación.
+    es decir, ambos representan la misma orientación.
 
-En algoritmos de estimación, esto puede provocar cambios de signo entre iteraciones:
+-   En algoritmos de estimación, esto puede provocar cambios de signo entre iteraciones:
 
-$$
-\hat{\mathbf{q}}_k^{-} \rightarrow -\hat{\mathbf{q}}_k^{-}
-$$
+    $$
+    \hat{\mathbf{q}}_k^{-} \rightarrow -\hat{\mathbf{q}}_k^{-}
+    $$
 
-lo que introduce discontinuidades artificiales en la estimación. Algunos de los algoritmos de determinación que presentan este problema son:
+    lo que introduce discontinuidades artificiales en la estimación. Algunos de los algoritmos de determinación que presentan este problema son:
 
-- EKF con cuaterniones
-- MEKF
-- QUEST
-- Matriz de rotación a cuaternión.
+    - EKF con cuaterniones
+    - MEKF
+    - QUEST
+    - Matriz de rotación a cuaternión.
 
 ::: {.definition-block}
 **Solución**
@@ -5063,23 +5337,25 @@ $$
 e_{K}
 $$
 
-**Nivel de confianza:**
-- Describe la probabilidad de que el error esté dentro de un umbral bilateral con media cero.
-- Otra forma de caracterizar el nivel de confianza es mediante percentiles unilaterales de la distribución del error.
+-   **Nivel de confianza:**
+    - Describe la probabilidad de que el error esté dentro de un umbral bilateral con media cero.
+    - Otra forma de caracterizar el nivel de confianza es mediante percentiles unilaterales de la distribución del error.
 
-| Nivel de confianza $p_c$ | Percentil unilateral $P_n$ |
-|---|---|
-| 68\%  (1$\sigma$) | $P_{84.1}$ |
-| 95\%  (2$\sigma$) | $P_{97.7}$ |
-| 99.7\% (3$\sigma$) | $P_{99.9}$ |
+    | Nivel de confianza $p_c$ | Percentil unilateral $P_n$ |
+    |---|---|
+    | 68\%  (1$\sigma$) | $P_{84.1}$ |
+    | 95\%  (2$\sigma$) | $P_{97.7}$ |
+    | 99.7\% (3$\sigma$) | $P_{99.9}$ |
 
-donde $P_{84.1}$, $P_{97.7}$ y $P_{99.9}$ son los percentiles correspondientes a cada nivel de confianza.
+    donde $P_{84.1}$, $P_{97.7}$ y $P_{99.9}$ son los percentiles correspondientes a cada nivel de confianza.
 
-**Nota:**
+::: {.callout-note .fragment}
+### Nota:
 
 - La equivalencia con $\sigma$ asume una distribución gaussiana de $e_{K}$. Esto es justificado por el Teorema Central del Límite, pero en la práctica es importante verificar la distribución del error para asegurar que esta suposición sea válida.
-- Los percentiles se obtienen ordenando las muestras de $ e_{K}$ y seleccionando el valor por debajo del cual cae el $p_c$ de los datos.  En MATLAB: $P_{n}$ = `prctile(e_K, n)`.
+- Los percentiles se obtienen ordenando las muestras de $e_{K}$ y seleccionando el valor por debajo del cual cae el $p_c$ de los datos.  En MATLAB: $P_{n}$ = `prctile(e_K, n)`.
 
+:::
 ---
 
 ##
@@ -5092,25 +5368,23 @@ donde $P_{84.1}$, $P_{97.7}$ y $P_{99.9}$ son los percentiles correspondientes a
 
 - Para nuestro caso, podemos definir la señal AKE de la siguiente manera. Sea $\hat{\mathbf{q}}_k$ el cuaternión estimado y $\mathbf{q}_k$ el cuaternión real. Se define el cuaternión de error:
 
-$$
-\delta \mathbf{q}_{j} = \mathbf{q}_j \otimes \hat{\mathbf{q}}_j^{\star}
-$$
+    $$
+    \delta \mathbf{q}_{j} = \mathbf{q}_j \otimes \hat{\mathbf{q}}_j^{\star}
+    $$
 
-El error angular asociado se obtiene como: 
+    El error angular asociado se obtiene como: 
 
-$$
-\theta_j = 2\cos^{-1}(\delta q_{0,j}) \equiv e_{K}
-$$
+    $$
+    \theta_j = 2\cos^{-1}(\delta q_{0,j}) \equiv e_{K}
+    $$
 
-donde $\delta q_{0,j}$ es la parte escalar de $\delta \mathbf{q}_{j}$.
+    donde $\delta q_{0,j}$ es la parte escalar de $\delta \mathbf{q}_{j}$.
 
 - Otros parámetros estádisticos importante son su desviación estándar y su media:
 
 $$
 \mu_{K} = \frac{1}{N}\sum_{j=1}^{N} \theta_j
-$$
-
-$$
+\qquad
 \sigma_{K} = \sqrt{\frac{1}{N}\sum_{j=1}^{N} (\theta_j - \mu_{K})^2}
 $$
 

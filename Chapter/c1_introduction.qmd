@@ -1,21 +1,29 @@
 
-::: {.chapter-slide}
 
-# Capítulo 1
+## {.title-slide-custom}
 
-::: {.text-center}
+<div class="cover">
 
-<div class="chapter-line"></div>
+<div class="cover-logo">
+<img src="Assets/logo_big.png">
+</div>
 
-::: {.large}
 
+<div class="cover-title">
 Introducción
-<div class="menu-title" style="display:none;"> Introducción </div>
-:::
+</div>
 
-:::
+<div class="cover-line"></div>
 
-:::
+<div class="cover-subtitle">
+Capítulo 1
+</div>
+
+</div>
+
+<div class="menu-title" style="display:none;">Introducción </div>
+
+---
 
 ## Definiciones
 

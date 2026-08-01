@@ -1,23 +1,25 @@
+## {.title-slide-custom}
 
-::: {.chapter-slide}
+<div class="cover">
 
-# Capítulo 3
+<div class="cover-logo">
+<img src="Assets/logo_big.png">
+</div>
 
-::: {.text-center}
 
-<div class="chapter-line"></div>
-
-::: {.large}
-
+<div class="cover-title">
 Movimiento de cuerpo rígido
+</div>
 
-<div class="menu-title" style="display:none;"> Movimiento de cuerpo rígido </div>
+<div class="cover-line"></div>
 
-:::
+<div class="cover-subtitle">
+Capítulo 3
+</div>
 
-:::
+</div>
 
-:::
+<div class="menu-title" style="display:none;">Movimiento de cuerpo rígido </div>
 
 ---
 
