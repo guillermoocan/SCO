@@ -15,6 +15,21 @@ $background-color: #ffffff;
 
 /*-- scss:rules --*/
 
+
+.reveal {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+
+.reveal img {
+    -webkit-user-drag: none;
+    user-drag: none;
+    pointer-events: none;
+}
+
 /*==================================================
   ESTILOS GLOBALES
 ==================================================*/

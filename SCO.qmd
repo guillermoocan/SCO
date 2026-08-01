@@ -6,9 +6,6 @@
 <img src="Assets/logo_big.png">
 </div>
 
-<!-- <div class="cover-background">
-<img src="Assets/background_sco_blue_1080.png">
-</div> -->
 
 <div class="cover-title">
 Sistema de Control de Orientación
