@@ -160,6 +160,32 @@ El alumno analizará el funcionamiento de los sistemas de control de orientació
 
 :::
 
+
+## Bibliografía
+
+::: {.columns}
+
+::: {.column width="33%"}
+
+![](/Figures/c0/spacecrat_modeling_attitude_determination_and_control.png){width=87%}
+
+:::
+
+::: {.column .fragment width="33%"}
+
+![](/Figures/c0/fundamentals_of_spacecraft_attitude_determination_and_control.jpg){width=91%}
+
+:::
+
+::: {.column .fragment width="33%" }
+
+![](/Figures/c0/adcs_spacecraft_attitude_determination_and_control.jpg){width=100%}
+
+:::
+
+:::
+
+
 ## Classroom
 
 ![](/Figures/c0/classroom_sco.png){fig-align="center"}
