@@ -8,7 +8,9 @@
 
 
 <div class="cover-title">
-Movimiento de cuerpo rígido
+Movimiento de 
+
+cuerpo rígido
 </div>
 
 <div class="cover-line"></div>

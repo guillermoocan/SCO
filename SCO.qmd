@@ -8,7 +8,9 @@
 
 
 <div class="cover-title">
-Sistemas de Control de Orientación
+Sistemas de Control
+
+de Orientación
 </div>
 
 <div class="cover-line"></div>
