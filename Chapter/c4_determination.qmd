@@ -886,13 +886,13 @@ Un sensor es un dispositivo que mide una magnitud física (generada por un fenó
 
 ##
 
-![](Figures/determination_empty.svg){width=100% fig-align="center"}
+![](Figures/c4/determination_empty.svg){width=100% fig-align="center"}
 
 ---
 
 ##
 
-![](Figures/determination.svg){width=100% fig-align="center"}
+![](Figures/c4/determination.svg){width=100% fig-align="center"}
 
 ---
 
@@ -939,7 +939,7 @@ Pero su implementación requiere consideraciones adicionales sobre el satélite 
 
 <div class="vspace-3"></div>
 
-![](Figures/sensor_sunsensor.png){width=100% fig-align="center"}
+![](Figures/c4/sensor_sunsensor.png){width=100% fig-align="center"}
 
 :::
 
@@ -972,7 +972,7 @@ donde $\:^b\hat{r}_{\odot}$ es el vector unitario que apunta desde el centro de 
 
 <div class="vspace-3"></div>
 
-![](Figures/sensor_sunsensor.png){width=100% fig-align="center"}
+![](Figures/c4/sensor_sunsensor.png){width=100% fig-align="center"}
 
 :::
 
@@ -986,7 +986,7 @@ donde $\:^b\hat{r}_{\odot}$ es el vector unitario que apunta desde el centro de 
 
 ::: {.column width="45%"}
 
-![](Figures/sunsensor.svg){width=100% fig-align="center"}
+![](Figures/c4/sunsensor.svg){width=100% fig-align="center"}
 
 :::
 
@@ -1025,7 +1025,7 @@ donde $V_\odot$ es el voltaje de salida del sensor, $k_\odot$ es una constante d
 
 ::: {.column width="45%"}
 
-![](Figures/sunsensor.svg){width=100% fig-align="center"}
+![](Figures/c4/sunsensor.svg){width=100% fig-align="center"}
 
 :::
 
@@ -1169,7 +1169,7 @@ $$
 
 ::: {.column width="45%"}
 
-![](Figures/sunsensor_dup.svg){width=100% fig-align="center"}
+![](Figures/c4/sunsensor_dup.svg){width=100% fig-align="center"}
 
 :::
 
@@ -1244,7 +1244,7 @@ $$
 
 ::: {.column width="35%"}
 
-![](Figures/sensor_horizonsensor.png){width=100% fig-align="center"}
+![](Figures/c4/sensor_horizonsensor.png){width=100% fig-align="center"}
 
 :::
 
@@ -1274,7 +1274,7 @@ $$
 
 ::: {.column width="35%"}
 
-![](Figures/sensor_horizonsensor.png){width=100% fig-align="center"}
+![](Figures/c4/sensor_horizonsensor.png){width=100% fig-align="center"}
 
 :::
 
@@ -1331,7 +1331,7 @@ Para ello, es necesario que el conjunto de vectores $\hat{u}_i$ sea suficienteme
 
 ::: {.column width="35%"}
 
-![](Figures/earth_sensor.svg){width=100% fig-align="center"}
+![](Figures/c4/earth_sensor.svg){width=100% fig-align="center"}
 
 :::
 
@@ -1421,7 +1421,7 @@ $$
 
 ::: {.column width="45%"}
 
-![](Figures/earth_sensor.svg){width=100% fig-align="center"}
+![](Figures/c4/earth_sensor.svg){width=100% fig-align="center"}
 
 :::
 
@@ -1469,7 +1469,7 @@ $$
 
 ::: {.column width="45%"}
 
-![](Figures/sensor_startracker.png){width=80% fig-align="center"}
+![](Figures/c4/sensor_startracker.png){width=80% fig-align="center"}
 
 :::
 
@@ -1500,7 +1500,7 @@ $$
 
 ::: {.column width="45%"}
 
-![](Figures/sensor_startracker.png){width=80% fig-align="center"}
+![](Figures/c4/sensor_startracker.png){width=80% fig-align="center"}
 
 :::
 
@@ -1559,7 +1559,7 @@ $$
 
 ::: {.column width="40%"}
 
-![](Figures/sensor_magnetometer.jpg){width=100% fig-align="center"}
+![](Figures/c4/sensor_magnetometer.jpg){width=100% fig-align="center"}
 
 :::
 
@@ -1604,7 +1604,7 @@ $$
 
 <div class="vspace-3"></div>
 
-![](Figures/sensor_magnetometer_MEMS.png){width=100% fig-align="center"}
+![](Figures/c4/sensor_magnetometer_MEMS.png){width=100% fig-align="center"}
 
 :::
 
@@ -1641,7 +1641,7 @@ La calibración del magnetómetro busca estimar y compensar estos efectos para m
 
 ::: {.column width="35%"}
 
-![](Figures/sensor_magnetometer_hmc.jpg){width=100% fig-align="center"}
+![](Figures/c4/sensor_magnetometer_hmc.jpg){width=100% fig-align="center"}
 
 :::
 
@@ -1672,7 +1672,7 @@ Un indicador clave para evaluar la calidad de la calibración es que la norma de
 
 ::: {.column width="40%"}
 
-![](Figures/sensor_magnetometer_ellip.png){width=110% fig-align="center"}
+![](Figures/c4/sensor_magnetometer_ellip.png){width=110% fig-align="center"}
 
 :::
 
@@ -1808,7 +1808,7 @@ $$
 
 ::: {.column width="35%"}
 
-![](Figures/sensor_gyroscope.jpg){width=100% fig-align="center"}
+![](Figures/c4/sensor_gyroscope.jpg){width=100% fig-align="center"}
 
 :::
 
@@ -1851,7 +1851,7 @@ Las tres componentes de la velocidad angular se obtienen mediante tres estructur
 
 ::: {.column width="33%"}
 
-![](Figures/sensor_gyroscope_MEMS.png){width=80% fig-align="center"}
+![](Figures/c4/sensor_gyroscope_MEMS.png){width=80% fig-align="center"}
 
 :::
 
@@ -1886,7 +1886,7 @@ La principal complejidad de un giroscopio radica en que el sesgo $\vec{b}_g$ pue
 
 ::: {.column width="43%"}
 
-![](Figures/sensor_gyroscope_l3g.jpg){width=100% fig-align="center"}
+![](Figures/c4/sensor_gyroscope_l3g.jpg){width=100% fig-align="center"}
 
 :::
 

@@ -51,7 +51,7 @@ Modelo cinemático
 
 ::: {.column width="50%"}
 
-![](Figures/att_rot.jpg){fig-align="center"}
+![](Figures/c3/att_rot.jpg){fig-align="center"}
 
 :::
 
@@ -77,7 +77,7 @@ Rotando una esfera de forma arbitraria alrededor de su centro, siempre es posibl
 
 ::: {.column width="50%"}
 
-![](Figures/att_rot.jpg){fig-align="center"}
+![](Figures/c3/att_rot.jpg){fig-align="center"}
 
 :::
 
@@ -115,7 +115,7 @@ Cualquier rotación en el espacio tridimensional puede ser representada como una
 
 ::: {.column width="50%"}
 
-![](Figures/att_rot.jpg){fig-align="center"}
+![](Figures/c3/att_rot.jpg){fig-align="center"}
 
 :::
 
@@ -164,7 +164,7 @@ $$
 
 - Considere el vector $\ls{i}\vec{u}(t)$ expresado en el marco de referencia inercial $\ls{i}\mathcal{F}$, sujeto a un cuerpo rígido en movimiento. El cuerpo rígido es mostrado en dos instantes de tiempo diferentes. En el tiempo $t$, el cuerpo rígido se encuentra en una orientación distinta a la del tiempo $t+\Delta t$. Esto mismo aplica para el vector $\ls{i}\vec{u}$, manteniendo su magnitud pero cambiando su dirección.
 
-![](Figures/moving_vector.svg){width=50% fig-align="center"}
+![](Figures/c3/moving_vector.svg){width=50% fig-align="center"}
 
 ---
 
@@ -173,7 +173,7 @@ $$
 
 ::: {.column width="50%"}
 
-![](Figures/derivate_vector.svg){width=100% fig-align="center"}
+![](Figures/c3/derivate_vector.svg){width=100% fig-align="center"}
 
 :::
 
@@ -211,7 +211,7 @@ $$
 
 ::: {.column width="50%"}
 
-![](Figures/derivate_vector.svg){width=100% fig-align="center"}
+![](Figures/c3/derivate_vector.svg){width=100% fig-align="center"}
 
 :::
 
@@ -431,7 +431,7 @@ $${#eq-rpy}
 
 ##
 
-![](Figures/rpy_diagram.svg){width=80% fig-align="center"}
+![](Figures/c3/rpy_diagram.svg){width=80% fig-align="center"}
 
 
 
@@ -601,7 +601,7 @@ $$
 
 ::: {.column width="50%"}
 
-![](Figures/Gimbal_lock.png){fig-align="center"}
+![](Figures/c3/Gimbal_lock.png){fig-align="center"}
 
 :::
 
@@ -806,7 +806,7 @@ $$
 - Por lógica, es común pensar que para llevar esta idea para representar rotaciones en tres dimensiones $(z=a+\mathbf{i}b+\mathbf{j}c)$, hace falta agregar una dimensión al número complejo. Sin embargo, debido a que la base axiomática de los complejos no se mantenían en tres dimensiones, este problema no era tan sencillo.
 - Sir William Rowan Hamilton (1805–1865) descubrió que no solamente tenía que agregarse una dimensión al número complejo para mantener la base axiomática de los complejos, sino que era necesario agregar una cuarta dimensión ($z=a+\mathbf{i}b+\mathbf{j}c+\mathbf{k}d$).
 
-  ![](Figures/dublin-broom-bridge04.jpg){width=45% fig-align="center"}
+  ![](Figures/c3/dublin-broom-bridge04.jpg){width=45% fig-align="center"}
 
 :::
 ---
@@ -1452,7 +1452,7 @@ Modelo dinámico
 
 ::: {.column width="50%"}
 
-![](Figures/particle_system.svg){width=100% fig-align="center"}
+![](Figures/c3/particle_system.svg){width=100% fig-align="center"}
 
 :::
 
@@ -1487,7 +1487,7 @@ Modelo dinámico
 
 ::: {.column width="50%"}
 
-![](Figures/particle_system.svg){width=100% fig-align="center"}
+![](Figures/c3/particle_system.svg){width=100% fig-align="center"}
 
 :::
 
@@ -1528,7 +1528,7 @@ Modelo dinámico
 
 ::: {.column width="50%"}
 
-![](Figures/particle_system.svg){width=100% fig-align="center"}
+![](Figures/c3/particle_system.svg){width=100% fig-align="center"}
 
 :::
 
@@ -1562,7 +1562,7 @@ Modelo dinámico
 
 ::: {.column width="50%"}
 
-![](Figures/particle_system.svg){width=100% fig-align="center"}
+![](Figures/c3/particle_system.svg){width=100% fig-align="center"}
 
 :::
 
@@ -1600,7 +1600,7 @@ Modelo dinámico
 
 ::: {.column width="50%"}
 
-![](Figures/rigid_body.svg){width=100% fig-align="center"}
+![](Figures/c3/rigid_body.svg){width=100% fig-align="center"}
 
 :::
 
@@ -1630,7 +1630,7 @@ Modelo dinámico
 
 ::: {.column width="50%"}
 
-![](Figures/rigid_body.svg){width=100% fig-align="center"}
+![](Figures/c3/rigid_body.svg){width=100% fig-align="center"}
 
 :::
 
@@ -1679,7 +1679,7 @@ Modelo dinámico
 
 ::: {.column width="50%"}
 
-![](Figures/rigid_body.svg){width=100% fig-align="center"}
+![](Figures/c3/rigid_body.svg){width=100% fig-align="center"}
 
 :::
 
@@ -1721,7 +1721,7 @@ Modelo dinámico
 
 ::: {.column width="50%"}
 
-![](Figures/rigid_body_internal.svg){width=100% fig-align="center"}
+![](Figures/c3/rigid_body_internal.svg){width=100% fig-align="center"}
 
 :::
 
@@ -1867,7 +1867,7 @@ Modelo dinámico
 
 ::: {.column width="40%"}
 
-![](Figures/rectangular.svg){width=90% fig-align="center"}
+![](Figures/c3/rectangular.svg){width=90% fig-align="center"}
 
 :::
 
@@ -2496,6 +2496,6 @@ donde $A_x$, $A_y$ y $A_z$ son las areas de la superficie en la dirección $x$, 
 
 ##
 
-![](Figures/mt_disturbances.png){width=50% fig-align="center"}
+![](Figures/c3/mt_disturbances.png){width=50% fig-align="center"}
 
 

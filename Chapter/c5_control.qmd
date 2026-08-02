@@ -86,7 +86,7 @@ Cada uno de estos sistemas compara una **variable medida** con una **referencia*
 
 Estos elementos se relacionan mediante un **lazo de realimentación negativa**, que ajusta la acción de control de forma continua para reducir el error.
 
-![](Figures/control.svg){width=70% fig-align="center"}
+![](Figures/c5/control.svg){width=70% fig-align="center"}
 
 ---
 
@@ -168,7 +168,7 @@ Actuadores
 
 ::: {.column width="40%"}
 
-![](Figures/actuator.svg){width=70% fig-align="center"}
+![](Figures/c5/actuator.svg){width=70% fig-align="center"}
 
 :::
 
@@ -403,7 +403,7 @@ donde:
 
 ::: {.column width="35%"}
 
-![](Figures/pm.png){width=90% fig-align="center"}
+![](Figures/c5/pm.png){width=90% fig-align="center"}
 
 :::
 
@@ -437,7 +437,7 @@ donde:
 <div class="vspace-3"></div>
 <div class="vspace-3"></div>
 
-![](Figures/pm_aling.png){width=100% fig-align="center"}
+![](Figures/c5/pm_aling.png){width=100% fig-align="center"}
 
 :::
 
@@ -496,7 +496,7 @@ donde:
 <div class="vspace-3"></div>
 <div class="vspace-3"></div>
 
-![](Figures/magnetorquer.svg){width=100% fig-align="center"}
+![](Figures/c5/magnetorquer.svg){width=100% fig-align="center"}
 
 :::
 
@@ -543,7 +543,7 @@ $$
 <div class="vspace-3"></div>
 <div class="vspace-3"></div>
 
-![](Figures/magnetorquer_field.svg){width=100% fig-align="center"}
+![](Figures/c5/magnetorquer_field.svg){width=100% fig-align="center"}
 
 :::
 
@@ -580,7 +580,7 @@ $$
 <div class="vspace-3"></div>
 <div class="vspace-3"></div>
 
-![](Figures/mt_physic.png){fig-align="center"}
+![](Figures/c5/mt_physic.png){fig-align="center"}
 
 :::
 
@@ -593,7 +593,7 @@ $$
 
 ::: {.column width="50%"}
 
-![](Figures/thrusters.svg){width=100% fig-align="center"}
+![](Figures/c5/thrusters.svg){width=100% fig-align="center"}
 
 :::
 
@@ -628,7 +628,7 @@ donde:
 
 ::: {.column width="50%"}
 
-![](Figures/thrusters.svg){width=100% fig-align="center"}
+![](Figures/c5/thrusters.svg){width=100% fig-align="center"}
 
 :::
 
@@ -654,7 +654,7 @@ donde:
 
 ::: {.column width="50%"}
 
-![](Figures/service_module_orion.jpg){width=70% fig-align="center"}
+![](Figures/c5/service_module_orion.jpg){width=70% fig-align="center"}
 
 :::
 
@@ -758,7 +758,7 @@ $$
 
 ::: {.column width="47%"}
 
-![](Figures/momentum_wheel.svg){width=100% fig-align="center"}
+![](Figures/c5/momentum_wheel.svg){width=100% fig-align="center"}
 
 :::
 
@@ -788,7 +788,7 @@ El principio de funcionamiento se basa en la conservación del momento angular. 
 
 ## Estructura
 
-![](Figures/mt_rw_structure.svg){width=70% fig-align="center"}
+![](Figures/c5/mt_rw_structure.svg){width=70% fig-align="center"}
 
 ---
 
@@ -798,7 +798,7 @@ El principio de funcionamiento se basa en la conservación del momento angular. 
 - En esencia, es un disco que gira a alta velocidad y resiste cambios en su movimiento angular.
 - Para optimizar el uso de la masa del voltante, se suele concentrar la mayor parte de esta fuera de su eje de rotación. Con ello, se puede aumentar el momento de inercia del volante.
 
-![](Figures/mt_flywheel.svg){width=60% fig-align="center"}
+![](Figures/c5/mt_flywheel.svg){width=60% fig-align="center"}
 
 $$
 \begin{split}
@@ -826,7 +826,7 @@ Debido a la necesidad de tener una velocidad angular considerablemente alta, se 
 
 ::: {.column width="65%"}
 
-![](Figures/esc.svg){width=110% fig-align="center"}
+![](Figures/c5/esc.svg){width=110% fig-align="center"}
 
 :::
 
@@ -860,7 +860,7 @@ No obstante, la principal aplicación de estos dispositivos surge en el análisi
 
 ::: {.column width="35%"}
 
-![](Figures/mw_real.jpg){width=90% fig-align="center"}
+![](Figures/c5/mw_real.jpg){width=90% fig-align="center"}
 
 :::
 
@@ -924,7 +924,7 @@ $$
 
 ::: {.column width="57%"}
 
-![](Figures/reaction_wheels.svg){width=100% fig-align="center"}
+![](Figures/c5/reaction_wheels.svg){width=100% fig-align="center"}
 
 :::
 
@@ -967,7 +967,7 @@ donde $D$ es la matriz de distribución del arreglo.
 
 **Arreglo ortogonal**
 
-![](Figures/mt_rw_d1.svg){fig-align="center"}
+![](Figures/c5/mt_rw_d1.svg){fig-align="center"}
 
 $$
 \begin{split}
@@ -985,7 +985,7 @@ $$
 
 **Arreglo ortogonal redundante**
 
-![](Figures/mt_rw_d2.svg){fig-align="center"}
+![](Figures/c5/mt_rw_d2.svg){fig-align="center"}
 
 $$
 \begin{split}
@@ -1010,7 +1010,7 @@ $$
 
 **Arreglo tetraédrico**
 
-![](Figures/mt_rw_d3.svg){fig-align="center"}
+![](Figures/c5/mt_rw_d3.svg){fig-align="center"}
 
 $$
 \begin{split}
@@ -1028,7 +1028,7 @@ $$
 
 **Arreglo piramidal**
 
-![](Figures/mt_rw_d4.svg){fig-align="center"}
+![](Figures/c5/mt_rw_d4.svg){fig-align="center"}
 
 $$
 \begin{split}
@@ -1114,7 +1114,7 @@ de ello, observamos que $\max{|\uptau_x|}=\max{|\uptau_x|}=\max{|\uptau_x|}=\fra
 
 <div class="vspace-3"></div>
 
-![](Figures/rw_real.jpg){width=150% fig-align="center"}
+![](Figures/c5/rw_real.jpg){width=150% fig-align="center"}
 
 :::
 
@@ -1155,7 +1155,7 @@ $$
 
 ::: {.column width="57%"}
 
-![](Figures/cmg.svg){width=100% fig-align="center"}
+![](Figures/c5/cmg.svg){width=100% fig-align="center"}
 
 :::
 
@@ -1217,7 +1217,7 @@ donde:
 
 <div class="vspace-3"></div>
 
-![](Figures/CMG_real.png){fig-align="center"}
+![](Figures/c5/CMG_real.png){fig-align="center"}
 
 :::
 
@@ -1378,7 +1378,7 @@ El sistema no diverge ante perturbaciones pequeñas, pero no necesariamente conv
 
 ::: {.column width="43%"}
 
-![](Figures/stability.svg){width=100% fig-align="center"} 
+![](Figures/c5/stability.svg){width=100% fig-align="center"} 
 
 :::
 
@@ -1413,7 +1413,7 @@ Este tipo de estabilidad es deseable en sistemas físicos que deben regresar a s
 
 ::: {.column width="43%"}
 
-![](Figures/stability.svg){width=100% fig-align="center"}
+![](Figures/c5/stability.svg){width=100% fig-align="center"}
 
 :::
 
@@ -1445,7 +1445,7 @@ $$
 
 ::: {.column width="43%"}
 
-![](Figures/stability.svg){width=100% fig-align="center"}
+![](Figures/c5/stability.svg){width=100% fig-align="center"}
 
 :::
 
@@ -1478,7 +1478,7 @@ $$
 
 ::: {.column width="43%"}
 
-![](Figures/stability.svg){width=100% fig-align="center"}
+![](Figures/c5/stability.svg){width=100% fig-align="center"}
 
 :::
 
@@ -1643,7 +1643,7 @@ según la misión o tarea que realiza. El tipo de apuntamiento seleccionado defi
 
 ::: {.column width="40%"}
 
-![](Figures/pointing2.png){width=100% fig-align="center"}
+![](Figures/c5/pointing2.png){width=100% fig-align="center"}
 
 :::
 
@@ -1677,7 +1677,7 @@ La elección del tipo de estabilización define los siguiente aspectos de los ac
 
 ::: {.column width="35%"}
 
-![](Figures/momentum_mode.svg){width=90% fig-align="center"}
+![](Figures/c5/momentum_mode.svg){width=90% fig-align="center"}
 
 :::
 
@@ -1808,13 +1808,13 @@ $$
 | Comunicación | Slew mode | Seguimiento | Reoriención del satélite en dirección a la estación terrena. |
 | Desaturación | Momentum dumping mode | Libre | Descargar momento acumulado en ruedas de reacción. |
 
-![](Figures/attitude_profile_1.png){width=70% fig-align="center"}
+![](Figures/c5/attitude_profile_1.png){width=70% fig-align="center"}
 
 ---
 
 ##
 
-![](Figures/attitude_profile_1_flow.png){width=80% fig-align="center"}
+![](Figures/c5/attitude_profile_1_flow.png){width=80% fig-align="center"}
 
 ---
 
@@ -1852,7 +1852,7 @@ Controlador
   - **Centralizada:** ejecutada por la OBC.
   - **Descentralizada:** mediante una unidad de procesamiento dedicada al ADCS.
 
-![](Figures/control.svg){width=80% fig-align="center"}
+![](Figures/c5/control.svg){width=80% fig-align="center"}
 
 ---
 
@@ -1996,7 +1996,7 @@ $$
 
 ::: {.column width="50%"}
 
-![](Figures/Enfoques.svg){width=100% fig-align="center"}
+![](Figures/c5/Enfoques.svg){width=100% fig-align="center"}
 
 :::
 
@@ -3573,7 +3573,7 @@ son matrices diagonales con el número de vueltas y el área transversal de cada
 - Finalmente, el voltaje $V_{n}$ puede aplicarse físicamente mediante una fuente de voltaje controlada. Dicho circuito puede implementarse con un convertidor boost o un puente H. El voltaje aplicado comunmente se controla mediante señales PWM (señales cuadradas de ciclo de trabajo variable).
 - La limitante física es la corrinte máxima que puede soportar la bobina sin dañarse y el voltaje máximo que puede aplicarse.
 
-![](Figures/coil_driver.png){fig-align="center"}
+![](Figures/c5/coil_driver.png){fig-align="center"}
 
 ---
 
@@ -3809,7 +3809,7 @@ son matrices diagonales con el número de vueltas y el área transversal de cada
 
 ##
 
-![](Figures/esc.svg){width=100% fig-align="center"}
+![](Figures/c5/esc.svg){width=100% fig-align="center"}
 
 ---
 
@@ -3931,7 +3931,7 @@ Aquí se termina el curso
 :::
 
 
-![](Figures/yop.png){width=60% fig-align="center"}
+![](Figures/c5/yop.png){width=60% fig-align="center"}
 
 ::: {.fragment style="display:flex;justify-content:center;"}
 
