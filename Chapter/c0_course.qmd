@@ -193,7 +193,8 @@ El alumno analizará el funcionamiento de los sistemas de control de orientació
 ## Formato de entrega
 
 - Los documentos deberán ser entregados en formato PDF mediante Classroom.
-- El nombre del archivo deberá seguir el siguiente formato: *Tipo\_Número\_ApellidoNombre.pdf*, *e.g.*,  *Tarea\_1\_OcanaGuillermo.pdf*
+- El nombre del archivo deberá seguir el siguiente formato: *SCO\_TipoyNúmero\_ApellidoNombre.pdf*, *e.g.*,  *SCO\_T1\_OcanaGuillermo.pdf*
+- Tipo: Tarea (**T**), Proyecto(**P**), Examen(**E**).
 - La entrega es individual, incluso si el trabajo es en equipo.
 - Es **obligatorio** utilizar la plantilla en LaTeX que será proporcionada en cada actividad.
 
