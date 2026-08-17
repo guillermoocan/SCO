@@ -204,4 +204,4 @@ El alumno analizará el funcionamiento de los sistemas de control de orientació
 - La entrega es individual, incluso si el trabajo es en equipo.
 - Es **obligatorio** utilizar la plantilla en LaTeX que será proporcionada en cada actividad.
 
-![](/Figures/c0/formato.png){fig-align="center"}
+![](/Figures/c0/formato_sco.png){fig-align="center"}
