@@ -4,6 +4,8 @@ project:
 
 lang: es
 
+pagetitle: "SCO | UNAM"
+
 language:
   crossref-fig-title: "Figura"
   crossref-tbl-title: "Tabla"
@@ -22,10 +24,15 @@ format:
     include-after-body:
       - Assets/footer.html
       - Assets/background.html
-    
+
+    resources:
+      - Assets/logo_icon_sco.ico
+
     include-in-header:
       - Assets/footer-script.html
       - Assets/Math/macros.html
+      - text: |
+          <link rel="icon" href="Assets/logo_icon_sco.ico" type="image/x-icon">
 
     theme:
       - default

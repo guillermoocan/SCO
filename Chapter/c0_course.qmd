@@ -41,6 +41,12 @@ El alumno analizará el funcionamiento de los sistemas de control de orientació
 
 ![](/Figures/c0/adcs_animation.mp4){width=86% fig-align="center" data-autoplay=true}
 
+## Astrodinámica {transition="fade"}
+
+![](/Figures/c0/mo_c0_2.mp4){width=86% fig-align="center" data-autoplay=true}
+
+
+
 ## Presentación
 
 ::: {.columns}
