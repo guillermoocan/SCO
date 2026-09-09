@@ -2849,11 +2849,12 @@ R_z(-60^\circ)=
 <p><img data-src=".\Figures/c2/central_force.svg" style="width:100.0%"></p>
 </div><div class="column" style="width:50%;">
 <ul>
-<li>Considere el movimiento de la partícula <span class="math inline">\(m\)</span> bajo la influencia de la gravedad ejercida por la partícula <span class="math inline">\(m_0\)</span>, la cual permanece en reposo en el origen del marco de referencia <span class="math inline">\(\ls{p}\mathcal{F}\)</span>.</li>
-</ul>
+<li><p>Considere el movimiento de la partícula <span class="math inline">\(m\)</span> bajo la influencia de la gravedad ejercida por la partícula <span class="math inline">\(m_0\)</span>, la cual permanece en reposo en el origen del marco de referencia <span class="math inline">\(\ls{p}\mathcal{F}\)</span>.</p></li>
+<li><p>El marco de referencia <span class="math inline">\(\ls{p}\mathcal{F}\)</span> es inercial con velocidad cero.</p>
 <div class="vspace-3">
 
-</div>
+</div></li>
+</ul>
 <ul>
 <li class="fragment"><p>El momento angular de la partícula <span class="math inline">\(m\)</span> con respecto al origen del marco de referencia <span class="math inline">\(\ls{p}\mathcal{F}\)</span> está dado por</p>
 <p><span class="math display">\[
@@ -2961,7 +2962,8 @@ R_z(-60^\circ)=
 </ul>
 <div class="fragment">
 <ul>
-<li>Sin embargo, esto <span style="color:red"><strong>cumple únicamente si no existen fuerzas externas no colineales</strong></span> (como la resistencia atmosférica o la influencia gravitacional de otros cuerpos) que actúen sobre <span class="math inline">\(m\)</span>, debido a que estas fuerzas pueden generar un par neto diferente de cero (<span class="math inline">\(\ls{p}\vec{\tau}\neq0\)</span>).</li>
+<li><p>Como consecuencia, sabemos que el movimiento de la partícula <span class="math inline">\(m\)</span> se desarrolla en un plano normal al momento angular, es decir, el plano formado por los vectores <span class="math inline">\(\ls{p}\hat{x}\)</span> y <span class="math inline">\(\ls{p}\hat{y}\)</span>.</p></li>
+<li><p>Sin embargo, esto <span style="color:red"><strong>cumple únicamente si no existen fuerzas externas no colineales</strong></span> (como la resistencia atmosférica o la influencia gravitacional de otros cuerpos) que actúen sobre <span class="math inline">\(m\)</span>, debido a que estas fuerzas pueden generar un par neto diferente de cero (<span class="math inline">\(\ls{p}\vec{\tau}\neq0\)</span>).</p></li>
 </ul>
 </div>
 </div></div>
@@ -2973,7 +2975,19 @@ R_z(-60^\circ)=
 <p><img data-src=".\Figures/c2/central_force.svg" style="width:100.0%"></p>
 </div><div class="column" style="width:50%;">
 <ul>
-<li><p>El vector unitario <span class="math inline">\(\ls{r}\hat{x}\)</span> puede representarse en coordenadas polares como</p>
+<li><p>Ya que sabemos que el movimiento de la partícula <span class="math inline">\(m\)</span> se desarrolla en un plano, podemos describir su movimiento mediante las componentes radiales y transversales de su posición y velocidad.</p></li>
+<li><p>Para ello, vamos a agregar el marco de referencia <span class="math inline">\(\ls{r}\mathcal{F}\)</span>, el cual tiene su origen en el centro de masa de la partícula <span class="math inline">\(m\)</span> y</p>
+<ul>
+<li>su eje <span class="math inline">\(\ls{r}\hat{x}\)</span> apunta el la misma dirección y sentido que el vector de posición <span class="math inline">\(\ls{p}\vec{r}\)</span></li>
+<li>su eje <span class="math inline">\(\ls{r}\hat{y}\)</span> es perpendicular a los otros dos y</li>
+<li>su eje <span class="math inline">\(\ls{r}\hat{z}\)</span> es perpendicular al plano de movimiento.</li>
+</ul></li>
+</ul>
+<div class="vspace-3">
+
+</div>
+<ul>
+<li class="fragment"><p>El vector unitario <span class="math inline">\(\ls{r}\hat{x}\)</span> puede representarse en coordenadas polares como</p>
 <p><span class="math display">\[
       \ls{r}\hat{x}
       =
@@ -2982,11 +2996,6 @@ R_z(-60^\circ)=
       \sin(\nu)\ls{p}\hat{y}
   \]</span></p>
 <p>donde <span class="math inline">\(\nu\)</span> es el ángulo entre <span class="math inline">\(\ls{p}\hat{x}\)</span> y <span class="math inline">\(\ls{r}\hat{x}\)</span>.</p></li>
-</ul>
-<div class="vspace-3">
-
-</div>
-<ul>
 <li class="fragment"><p>De manera similar,</p>
 <p><span class="math display">\[
       \ls{r}\hat{y}
@@ -2999,8 +3008,16 @@ R_z(-60^\circ)=
 <div class="vspace-3">
 
 </div>
+</div></div>
+</section>
+<section id="section-32" class="slide level2">
+<h2></h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<p><img data-src=".\Figures/c2/central_force.svg" style="width:100.0%"></p>
+</div><div class="column" style="width:50%;">
 <ul>
-<li class="fragment"><p>La derivada de estos vectores unitarios es</p>
+<li><p>La derivada de estos vectores unitarios es</p>
 <p><span class="math display">\[
       \begin{aligned}
           \ls{r}\dot{\hat{x}}
@@ -3012,16 +3029,8 @@ R_z(-60^\circ)=
       \end{aligned}
   \]</span></p></li>
 </ul>
-</div></div>
-</section>
-<section id="section-32" class="slide level2">
-<h2></h2>
-<div class="columns">
-<div class="column" style="width:50%;">
-<p><img data-src=".\Figures/c2/central_force.svg" style="width:100.0%"></p>
-</div><div class="column" style="width:50%;">
 <ul>
-<li><p>El vector de posición en el marco de referencia <span class="math inline">\(\ls{p}\mathcal{F}\)</span> está dado por</p>
+<li class="fragment"><p>El vector de posición en el marco de referencia <span class="math inline">\(\ls{p}\mathcal{F}\)</span> está dado por</p>
 <p><span class="math display">\[
       \ls{p}\vec{r}
       =
@@ -3037,10 +3046,7 @@ R_z(-60^\circ)=
       +
       r\frac{\mathrm{d}\nu}{\mathrm{d}t}\ls{r}\hat{y}.
   \]</span></p></li>
-</ul>
-<div class="fragment">
-<ul>
-<li><p>El vector de aceleración es</p>
+<li class="fragment"><p>El vector de aceleración es</p>
 <p><span id="eq-acc_polar"><span class="math display">\[
       \begin{aligned}
           \ls{p}\vec{a}
@@ -3061,7 +3067,6 @@ R_z(-60^\circ)=
       \end{aligned}
    \tag{5}\]</span></span></p></li>
 </ul>
-</div>
 </div></div>
 </section>
 <section id="section-33" class="slide level2">
@@ -3070,7 +3075,7 @@ R_z(-60^\circ)=
 <div class="column" style="width:50%;">
 <p><img data-src=".\Figures/c2/central_force.svg" style="width:100.0%"></p>
 </div><div class="column" style="width:50%;">
-<p><span style="color:red"><strong>A partir de aquí, vamos a considerar que la partícula <span class="math inline">\(m\)</span> tiene masa unitaria (<span class="math inline">\(m=1\)</span>), y definiremos a las variables bajo esta consideración como <em>específicas</em>.</strong></span></p>
+<p><span style="color:red"><strong>A partir de aquí, vamos a considerar que la partícula <span class="math inline">\(m\)</span> tiene masa unitaria (<span class="math inline">\(m=1\)</span> kg), y definiremos a las variables bajo esta consideración como <em>específicas</em>.</strong></span></p>
 <ul>
 <li class="fragment"><p>La fuerza de atracción gravitacional bajo las anteriores suposiciones es</p>
 <p><span id="eq-gravity_force"><span class="math display">\[
