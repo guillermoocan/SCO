@@ -3523,50 +3523,7 @@ Anomalías
 
 ::: {.column width="45%"}
 
-- Con ello, podemos definir la \textcolor{blue}{anomalía media $M \in [0, 2\pi)$} como
-
-    $$
-    M = \omega_0 (t-t_0)+M_0,
-    $$ {#eq-mean_anomaly}
-
-    donde $t_0$ es la *época* y $M_0$ es la *anomalía media acumulada en la época $t_0$*. Si se asume que $t_0=t_p$, donde $t_p=nT$,$n \in \mathbb{N}$, entonces $M_0=0$ (el satélite se encuentra en el periapsis).
-
-<div class="vspace-3"></div>
-
-:::{.incremental}
-
-- En este caso, la anomalía media es
-
-    $$
-    M = \omega_0 (t-t_p),
-    $$
-
-<div class="vspace-3"></div>
-
-- Una interpretación geométrica de la anomalía media es que es el ángulo que barrería un cuerpo si se moviera con velocidad angular constante $\omega_0$ en una órbita circular de radio $a$.
-
-:::
-
-:::
-
-::: {.column width="55%"}
-
-![](/Figures/c2/ellipse_orbit.svg){width=100%}
-
-:::
-
-:::
-
----
-
-##
-
-::: columns
-
-::: {.column width="45%"}
-
-- Para encontrar una relación entre la anomalía media $M$ y la anomalía excéntrica $\psi$, considere lo siguiente:
-Sea $S(AFC')$ el área del sector $AFC'$, y sea $S(AFC)$ el área del sector $AFC$. 
+- Sea $S(AFC')$ el área del sector $AFC'$, y sea $S(AFC)$ el área del sector $AFC$. 
 <div class="vspace-3"></div>
 
 :::{.incremental}
@@ -3626,13 +3583,16 @@ Sea $S(AFC')$ el área del sector $AFC'$, y sea $S(AFC)$ el área del sector $AF
 
     $$
         \begin{split}
-            \frac{t-t_0}{\frac{ab}{2}(\psi - e\sin(\psi))} & =\frac{T}{\pi ab},\\
-            \Rightarrow \quad t-t_0                        & = \frac{T}{2\pi}(\psi - e\sin(\psi)),\\
-            \Rightarrow \quad M                            & = \psi - e\sin(\psi).
+            \frac{t-t_p}{\frac{ab}{2}(\psi - e\sin(\psi))} & =\frac{T}{\pi ab},\\
+            \Rightarrow \quad \eta_e (t-t_p)                        & =\psi - e\sin(\psi),\\
         \end{split}
     $$
 
 - La última ecuación se conoce como **Ecuación de Kepler**.
+
+- La importancia de la ecuación de Kepler radica en que **relaciona el tiempo con la posición del cuerpo en su órbita**, a través de la anomalía excéntrica $\psi$.
+
+- Esta ecuación es trascendental, por lo que no puede resolverse de forma analítica. Sin embargo, puede resolverse de forma numérica mediante métodos iterativos.
 
 :::
 
@@ -3647,6 +3607,49 @@ Sea $S(AFC')$ el área del sector $AFC'$, y sea $S(AFC)$ el área del sector $AF
 :::
 
 ---
+
+##
+
+::: columns
+
+::: {.column width="45%"}
+
+- Con ello, podemos definir la \textcolor{blue}{anomalía media $M \in [0, 2\pi)$} como
+
+    $$
+    M = \eta_e (t-t_p),
+    $$ {#eq-mean_anomaly}
+
+
+:::{.incremental}
+
+- Considere el instante de tiempo $t_0$, durante el cual se conocen las condiones iniciales de posición y velocidad del cuerpo en órbita. En este caso, la anomalía media acumulada en ese instante de tiempo es 
+
+    $$
+    M_0 = \eta_e (t_0-t_p),
+    $$ {#eq-mean_anomaly2}
+
+- Restando las ecuaciones @eq-mean_anomaly y @eq-mean_anomaly2, se obtiene
+
+    $$
+    M(t)=\eta_e (t-t_0)+M_0,
+    $$
+
+    donde a $t_0$ se le conoce como *época* y $M_0$ es la *anomalía media acumulada en la época $t_0$*. Si se asume que $t_0=t_p$, donde $t_p=nT$,$n \in \mathbb{N}$, entonces $M_0=0$ (el satélite se encuentra en el periapsis).
+
+- Una interpretación geométrica de la anomalía media es que es el ángulo que barrería un cuerpo si se moviera con velocidad angular constante $\eta_e$ en una órbita circular de radio $a$.
+
+:::
+
+:::
+
+::: {.column width="55%"}
+
+![](/Figures/c2/ellipse_orbit.svg){width=100%}
+
+:::
+
+:::
 
 
 
@@ -3767,8 +3770,10 @@ Esto nos remite a lo visto en anteriores diapositivas.
 - El primer paso para resolver el Problema 2.1 es determinar la anomalía excéntrica $\psi(t)$ en el instante $t$. Para ello, hacemos uso de la ecuación de Kepler:
 
     $$
-    M(t) = \psi(t) - e\sin(\psi(t)),
+    M(t) = \omega_0(t-t_0)+M_0,
     $$ {#eq-kepler}
+
+    donde $\omega_0=\sqrt{\mu/a^3}$.
 
 ::: {.incremental}
 
@@ -3778,7 +3783,7 @@ Esto nos remite a lo visto en anteriores diapositivas.
     \psi(t) - e\sin(\psi(t))-M(t) = 0,
     $$
 
-    donde $\omega_0=\sqrt{\mu/a^3}$.
+    
 
 - Definiendo la función real
 

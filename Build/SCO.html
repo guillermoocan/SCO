@@ -3888,7 +3888,7 @@ Secciones cónicas
 <tr class="odd">
 <td style="text-align: left;">Parábola</td>
 <td style="text-align: center;"><span class="math inline">\(e=1\)</span></td>
-<td style="text-align: center;"><span class="math inline">\(p=2r_p\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(p=2f\)</span></td>
 <td style="text-align: left;">Órbita límite</td>
 </tr>
 <tr class="even">
@@ -4138,37 +4138,7 @@ Secciones cónicas
 <div class="columns">
 <div class="column" style="width:45%;">
 <ul>
-<li><p>Con ello, podemos definir la como</p>
-<p><span id="eq-mean_anomaly"><span class="math display">\[
-  M = \omega_0 (t-t_0)+M_0,
-   \tag{17}\]</span></span></p>
-<p>donde <span class="math inline">\(t_0\)</span> es la <em>época</em> y <span class="math inline">\(M_0\)</span> es la <em>anomalía media acumulada en la época <span class="math inline">\(t_0\)</span></em>. Si se asume que <span class="math inline">\(t_0=t_p\)</span>, donde <span class="math inline">\(t_p=nT\)</span>,<span class="math inline">\(n \in \mathbb{N}\)</span>, entonces <span class="math inline">\(M_0=0\)</span> (el satélite se encuentra en el periapsis).</p></li>
-</ul>
-<div class="vspace-3">
-
-</div>
-<ul>
-<li class="fragment"><p>En este caso, la anomalía media es</p>
-<p><span class="math display">\[
-  M = \omega_0 (t-t_p),
-  \]</span></p></li>
-</ul>
-<div class="vspace-3">
-
-</div>
-<ul>
-<li class="fragment">Una interpretación geométrica de la anomalía media es que es el ángulo que barrería un cuerpo si se moviera con velocidad angular constante <span class="math inline">\(\omega_0\)</span> en una órbita circular de radio <span class="math inline">\(a\)</span>.</li>
-</ul>
-</div><div class="column" style="width:55%;">
-<p><img data-src=".\Figures/c2/ellipse_orbit.svg" style="width:100.0%"></p>
-</div></div>
-</section>
-<section id="section-47" class="slide level2">
-<h2></h2>
-<div class="columns">
-<div class="column" style="width:45%;">
-<ul>
-<li>Para encontrar una relación entre la anomalía media <span class="math inline">\(M\)</span> y la anomalía excéntrica <span class="math inline">\(\psi\)</span>, considere lo siguiente: Sea <span class="math inline">\(S(AFC')\)</span> el área del sector <span class="math inline">\(AFC'\)</span>, y sea <span class="math inline">\(S(AFC)\)</span> el área del sector <span class="math inline">\(AFC\)</span>.
+<li>Sea <span class="math inline">\(S(AFC')\)</span> el área del sector <span class="math inline">\(AFC'\)</span>, y sea <span class="math inline">\(S(AFC)\)</span> el área del sector <span class="math inline">\(AFC\)</span>.
 <div class="vspace-3">
 
 </div></li>
@@ -4179,7 +4149,7 @@ Secciones cónicas
       \begin{split}
           \frac{t-t_p}{S(AFC')} &amp; =\frac{T}{\pi ab}.
       \end{split}
-   \tag{18}\]</span></span></p></li>
+   \tag{17}\]</span></span></p></li>
 </ul>
 <div class="vspace-3">
 
@@ -4198,7 +4168,7 @@ Secciones cónicas
 <p><img data-src=".\Figures/c2/ellipse_orbit.svg" style="width:100.0%"></p>
 </div></div>
 </section>
-<section id="section-48" class="slide level2">
+<section id="section-47" class="slide level2">
 <h2></h2>
 <div class="columns">
 <div class="column" style="width:45%;">
@@ -4213,15 +4183,42 @@ Secciones cónicas
   \]</span></p></li>
 </ul>
 <ul>
-<li class="fragment"><p>Sustituyendo en <a href="#/eq-areatime2" class="quarto-xref">Ecuación&nbsp;18</a> se obtiene</p>
+<li class="fragment"><p>Sustituyendo en <a href="#/eq-areatime2" class="quarto-xref">Ecuación&nbsp;17</a> se obtiene</p>
 <p><span class="math display">\[
       \begin{split}
-          \frac{t-t_0}{\frac{ab}{2}(\psi - e\sin(\psi))} &amp; =\frac{T}{\pi ab},\\
-          \Rightarrow \quad t-t_0                        &amp; = \frac{T}{2\pi}(\psi - e\sin(\psi)),\\
-          \Rightarrow \quad M                            &amp; = \psi - e\sin(\psi).
+          \frac{t-t_p}{\frac{ab}{2}(\psi - e\sin(\psi))} &amp; =\frac{T}{\pi ab},\\
+          \Rightarrow \quad \eta_e (t-t_p)                        &amp; =\psi - e\sin(\psi),\\
       \end{split}
   \]</span></p></li>
 <li class="fragment"><p>La última ecuación se conoce como <strong>Ecuación de Kepler</strong>.</p></li>
+<li class="fragment"><p>La importancia de la ecuación de Kepler radica en que <strong>relaciona el tiempo con la posición del cuerpo en su órbita</strong>, a través de la anomalía excéntrica <span class="math inline">\(\psi\)</span>.</p></li>
+<li class="fragment"><p>Esta ecuación es trascendental, por lo que no puede resolverse de forma analítica. Sin embargo, puede resolverse de forma numérica mediante métodos iterativos.</p></li>
+</ul>
+</div><div class="column" style="width:55%;">
+<p><img data-src=".\Figures/c2/ellipse_orbit.svg" style="width:100.0%"></p>
+</div></div>
+</section>
+<section id="section-48" class="slide level2">
+<h2></h2>
+<div class="columns">
+<div class="column" style="width:45%;">
+<ul>
+<li><p>Con ello, podemos definir la como</p>
+<p><span id="eq-mean_anomaly"><span class="math display">\[
+  M = \eta_e (t-t_p),
+   \tag{18}\]</span></span></p></li>
+</ul>
+<ul>
+<li class="fragment"><p>Considere el instante de tiempo <span class="math inline">\(t_0\)</span>, durante el cual se conocen las condiones iniciales de posición y velocidad del cuerpo en órbita. En este caso, la anomalía media acumulada en ese instante de tiempo es</p>
+<p><span id="eq-mean_anomaly2"><span class="math display">\[
+  M_0 = \eta_e (t_0-t_p),
+   \tag{19}\]</span></span></p></li>
+<li class="fragment"><p>Restando las ecuaciones <a href="#/eq-mean_anomaly" class="quarto-xref">Ecuación&nbsp;18</a> y <a href="#/eq-mean_anomaly2" class="quarto-xref">Ecuación&nbsp;19</a>, se obtiene</p>
+<p><span class="math display">\[
+  M(t)=\eta_e (t-t_0)+M_0,
+  \]</span></p>
+<p>donde a <span class="math inline">\(t_0\)</span> se le conoce como <em>época</em> y <span class="math inline">\(M_0\)</span> es la <em>anomalía media acumulada en la época <span class="math inline">\(t_0\)</span></em>. Si se asume que <span class="math inline">\(t_0=t_p\)</span>, donde <span class="math inline">\(t_p=nT\)</span>,<span class="math inline">\(n \in \mathbb{N}\)</span>, entonces <span class="math inline">\(M_0=0\)</span> (el satélite se encuentra en el periapsis).</p></li>
+<li class="fragment"><p>Una interpretación geométrica de la anomalía media es que es el ángulo que barrería un cuerpo si se moviera con velocidad angular constante <span class="math inline">\(\eta_e\)</span> en una órbita circular de radio <span class="math inline">\(a\)</span>.</p></li>
 </ul>
 </div><div class="column" style="width:55%;">
 <p><img data-src=".\Figures/c2/ellipse_orbit.svg" style="width:100.0%"></p>
@@ -4306,19 +4303,19 @@ r=\frac{p}{1+e\cos(\nu-\nu_0)}
 <ul>
 <li><p>El primer paso para resolver el Problema 2.1 es determinar la anomalía excéntrica <span class="math inline">\(\psi(t)\)</span> en el instante <span class="math inline">\(t\)</span>. Para ello, hacemos uso de la ecuación de Kepler:</p>
 <p><span id="eq-kepler"><span class="math display">\[
-  M(t) = \psi(t) - e\sin(\psi(t)),
-   \tag{19}\]</span></span></p></li>
+  M(t) = \omega_0(t-t_0)+M_0,
+   \tag{20}\]</span></span></p>
+<p>donde <span class="math inline">\(\omega_0=\sqrt{\mu/a^3}\)</span>.</p></li>
 </ul>
 <ul>
-<li class="fragment"><p>Sustituyendo <a href="#/eq-mean_anomaly" class="quarto-xref">Ecuación&nbsp;17</a> en <a href="#/eq-kepler" class="quarto-xref">Ecuación&nbsp;19</a> se obtiene</p>
+<li class="fragment"><p>Sustituyendo <a href="#/eq-mean_anomaly" class="quarto-xref">Ecuación&nbsp;18</a> en <a href="#/eq-kepler" class="quarto-xref">Ecuación&nbsp;20</a> se obtiene</p>
 <p><span class="math display">\[
   \psi(t) - e\sin(\psi(t))-M(t) = 0,
-  \]</span></p>
-<p>donde <span class="math inline">\(\omega_0=\sqrt{\mu/a^3}\)</span>.</p></li>
+  \]</span></p></li>
 <li class="fragment"><p>Definiendo la función real</p>
 <p><span id="eq-g_root"><span class="math display">\[
   g(\uppsi,t) = \uppsi - e\sin(\uppsi) - M(t)
-   \tag{20}\]</span></span></p></li>
+   \tag{21}\]</span></span></p></li>
 <li class="fragment"><p>El objetivo es encontrar la raíz de la función <span class="math inline">\(g(\uppsi^\star,t)\)</span>=0, que corresponde a la anomalía excéntrica <span class="math inline">\(\psi(t)\)</span> en el instante <span class="math inline">\(t\)</span> (<span class="math inline">\(\uppsi^\star=\psi(t)\)</span>). Esto puede lograrse mediante métodos numéricos clásicos.</p></li>
 </ul>
 </section>
@@ -4332,7 +4329,7 @@ r=\frac{p}{1+e\cos(\nu-\nu_0)}
       r(t)\sin(\nu(t)) \\
       0
       \end{bmatrix}.
-   \tag{21}\]</span></span></p></li>
+   \tag{22}\]</span></span></p></li>
 </ul>
 <ul>
 <li class="fragment"><p>Sustituyendo <a href="#/eq-r_psi" class="quarto-xref">Ecuación&nbsp;15</a> y <a href="#/eq-cos_sin_nu" class="quarto-xref">Ecuación&nbsp;14</a> se obtiene</p>
@@ -4342,12 +4339,12 @@ r=\frac{p}{1+e\cos(\nu-\nu_0)}
       \sqrt{1-e^2}\sin(\psi(t)) \\
       0
       \end{bmatrix}.
-   \tag{22}\]</span></span></p></li>
+   \tag{23}\]</span></span></p></li>
 <li class="fragment"><p>Para calcular el vector de velocidad <span class="math inline">\(\ls{p}\vec{v}(t)\)</span>, podemos derivar el vector de posición <span class="math inline">\(\ls{p}\vec{r}(t)\)</span> con respecto al tiempo</p>
 <p><span class="math display">\[
   \ls{p}\vec{v}(t) = \frac{\text{d}\ls{p}\vec{r}(t)}{\text{d}t} = \frac{\partial\ls{p}\vec{r}(t)}{\partial \psi(t)}\cdot\frac{\text{d}\psi(t)}{\text{d}t}.
   \]</span></p></li>
-<li class="fragment"><p>Derivando <a href="#/eq-kepler" class="quarto-xref">Ecuación&nbsp;19</a> se obtiene</p>
+<li class="fragment"><p>Derivando <a href="#/eq-kepler" class="quarto-xref">Ecuación&nbsp;20</a> se obtiene</p>
 <p><span class="math display">\[
   \frac{\text{d}\psi(t)}{\text{d}t} = \frac{\omega_0}{1-e\cos(\psi(t))}.
   \]</span></p></li>
@@ -4373,7 +4370,7 @@ r=\frac{p}{1+e\cos(\nu-\nu_0)}
       \sqrt{1-e^2}\cos(\psi(t)) \\
       0
       \end{bmatrix}.
-   \tag{23}\]</span></span></p></li>
+   \tag{24}\]</span></span></p></li>
 <li class="fragment"><p>Finalmente, para obtener los vectores de posición y velocidad en el marco de referencia inercial geocéntrico <span class="math inline">\(\ls{i}\vec{r}(t)\)</span> y <span class="math inline">\(\ls{i}\vec{v}(t)\)</span>, es necesario realizar una transformación de coordenadas desde el marco <span class="math inline">\(\ls{p}\mathcal{F}\)</span> al <span class="math inline">\(\ls{i}\mathcal{F}\)</span>. Esto se logra mediante la matriz de rotación <span class="math inline">\(\ls{i}R_p=\ls{p}R_i^\top\)</span> definida en <a href="#/eq-Ri2Rp" class="quarto-xref">Ecuación&nbsp;3</a>.</p>
 <p><span class="math display">\[
       \begin{split}
@@ -4404,16 +4401,16 @@ Algoritmo 1: Propagador Kepleriano
 Calcular <span class="math inline">\(\omega_0=2\pi/T\)</span>.
 </li>
 <li>
-Calcular <span class="math inline">\(M(t)\)</span> mediante <a href="#/eq-mean_anomaly" class="quarto-xref">Ecuación&nbsp;17</a>.
+Calcular <span class="math inline">\(M(t)\)</span> mediante <a href="#/eq-mean_anomaly" class="quarto-xref">Ecuación&nbsp;18</a>.
 </li>
 <li>
-Encontrar la raíz <span class="math inline">\(\uppsi^\star\)</span> de <a href="#/eq-g_root" class="quarto-xref">Ecuación&nbsp;20</a> y asignar <span class="math inline">\(\psi(t)=\uppsi^\star\)</span>.
+Encontrar la raíz <span class="math inline">\(\uppsi^\star\)</span> de <a href="#/eq-g_root" class="quarto-xref">Ecuación&nbsp;21</a> y asignar <span class="math inline">\(\psi(t)=\uppsi^\star\)</span>.
 </li>
 <li>
-Calcular <span class="math inline">\(\ls{p}\vec{r}(t)\)</span> mediante <a href="#/eq-p_r" class="quarto-xref">Ecuación&nbsp;21</a>.
+Calcular <span class="math inline">\(\ls{p}\vec{r}(t)\)</span> mediante <a href="#/eq-p_r" class="quarto-xref">Ecuación&nbsp;22</a>.
 </li>
 <li>
-Calcular <span class="math inline">\(\ls{p}\vec{v}(t)\)</span> mediante <a href="#/eq-p_v" class="quarto-xref">Ecuación&nbsp;23</a>.
+Calcular <span class="math inline">\(\ls{p}\vec{v}(t)\)</span> mediante <a href="#/eq-p_v" class="quarto-xref">Ecuación&nbsp;24</a>.
 </li>
 <li>
 Calcular <span class="math inline">\(\ls{i}R_p\)</span> mediante <a href="#/eq-Ri2Rp" class="quarto-xref">Ecuación&nbsp;3</a>.
@@ -4692,7 +4689,7 @@ Movimiento de cuerpo rígido
 <li class="fragment"><p>Utilizando la definición de producto cruz, se puede reescribir la ecuación anterior como:</p>
 <p><span id="eq-derivative_vector"><span class="math display">\[
 \frac{\text{d}}{\text{d}t}(\ls{i}\vec{u}) = \ls{i}\vec{\omega} \times \ls{i}\vec{u}.
-\tag{24}\]</span></span></p></li>
+\tag{25}\]</span></span></p></li>
 </ul>
 </div></div>
 </section>
@@ -4705,19 +4702,19 @@ Movimiento de cuerpo rígido
 \end{bmatrix}.
 \]</span></p>
 <ul>
-<li class="fragment"><p>Dada la <a href="#/eq-derivative_vector" class="quarto-xref">Ecuación&nbsp;24</a>, la derivada de cada uno de los vectores unitarios que componen la matriz de rotación está dada por:</p>
+<li class="fragment"><p>Dada la <a href="#/eq-derivative_vector" class="quarto-xref">Ecuación&nbsp;25</a>, la derivada de cada uno de los vectores unitarios que componen la matriz de rotación está dada por:</p>
 <p><span id="eq-derivative_rotation_matrix"><span class="math display">\[
 \frac{\text{d}}{\text{d}t}(\ls{h}\hat{x}_b) = \ls{h}\vec{\omega} \times \ls{h}\hat{x}_b, \quad
 \frac{\text{d}}{\text{d}t}(\ls{h}\hat{y}_b) = \ls{h}\vec{\omega} \times \ls{h}\hat{y}_b, \quad
 \frac{\text{d}}{\text{d}t}(\ls{h}\hat{z}_b) = \ls{h}\vec{\omega} \times \ls{h}\hat{z}_b.
-\tag{25}\]</span></span></p></li>
+\tag{26}\]</span></span></p></li>
 <li class="fragment"><p>La derivada de la matriz de rotación está dada por:</p>
 <p><span class="math display">\[
 \frac{\text{d}}{\text{d}t}(\ls{h}R_b) = \begin{bmatrix}
 \frac{\text{d}}{\text{d}t}(\ls{h}\hat{x}_b) &amp; \frac{\text{d}}{\text{d}t}(\ls{h}\hat{y}_b) &amp; \frac{\text{d}}{\text{d}t}(\ls{h}\hat{z}_b)
 \end{bmatrix}.
 \]</span></p></li>
-<li class="fragment"><p>Sustituyendo la <a href="#/eq-derivative_rotation_matrix" class="quarto-xref">Ecuación&nbsp;25</a> en la ecuación anterior se tiene:</p>
+<li class="fragment"><p>Sustituyendo la <a href="#/eq-derivative_rotation_matrix" class="quarto-xref">Ecuación&nbsp;26</a> en la ecuación anterior se tiene:</p>
 <p><span class="math display">\[
 \frac{\text{d}}{\text{d}t}(\ls{h}R_b) = \begin{bmatrix}
 \ls{h}\vec{\omega} \times \ls{h}\hat{x}_b &amp; \ls{h}\vec{\omega} \times \ls{h}\hat{y}_b &amp; \ls{h}\vec{\omega} \times \ls{h}\hat{z}_b
@@ -4748,7 +4745,7 @@ S(\ls{h}\vec{\omega})\ls{h}\hat{x}_b &amp; S(\ls{h}\vec{\omega})\ls{h}\hat{y}_b 
 <p><span class="math display">\[
 \ls{h}\vec{\omega}_{h,b} = \ls{h}R_b \ls{b}\vec{\omega}_{h,b}.
 \]</span></p></li>
-<li class="fragment"><p>Sustituyendo en la <a href="#/eq-derivative_rotation_matrix" class="quarto-xref">Ecuación&nbsp;25</a> se tiene:</p>
+<li class="fragment"><p>Sustituyendo en la <a href="#/eq-derivative_rotation_matrix" class="quarto-xref">Ecuación&nbsp;26</a> se tiene:</p>
 <p><span class="math display">\[
 \frac{\text{d}}{\text{d}t}(\ls{h}R_b) = S(\ls{h}R_b \ls{b}\vec{\omega}_{h,b}) \ls{h}R_b.
 \]</span></p></li>
@@ -4766,12 +4763,12 @@ S(\ls{h}\vec{\omega})\ls{h}\hat{x}_b &amp; S(\ls{h}\vec{\omega})\ls{h}\hat{y}_b 
 <li class="fragment"><p>Transponiendo ambos lados de la ecuación se obtiene:</p>
 <p><span id="eq-kinematics_rotation_matrix"><span class="math display">\[
 \frac{\text{d}}{\text{d}t}(\ls{b}R_h) = -S(\ls{b}\vec{\omega}_{h,b}) \ls{b}R_h.
-\tag{26}\]</span></span></p></li>
-<li class="fragment"><p>A la <a href="#/eq-kinematics_rotation_matrix" class="quarto-xref">Ecuación&nbsp;26</a> se le conoce como <strong>modelo cinemático rotacional de un cuerpo rígido</strong>.</p>
+\tag{27}\]</span></span></p></li>
+<li class="fragment"><p>A la <a href="#/eq-kinematics_rotation_matrix" class="quarto-xref">Ecuación&nbsp;27</a> se le conoce como <strong>modelo cinemático rotacional de un cuerpo rígido</strong>.</p>
 <ul>
 <li class="fragment">La <strong>cinemática</strong> se refiere al estudio del movimiento de los cuerpos sin considerar las fuerzas que lo causan.</li>
-<li class="fragment">Las soluciones de la ecuación diferencial <a href="#/eq-kinematics_rotation_matrix" class="quarto-xref">Ecuación&nbsp;26</a> proporcionan la orientación del cuerpo rígido en función del tiempo. Es decir, obtenemos <span class="math inline">\(\ls{b}R_h(t)\)</span> para cada instante de tiempo <span class="math inline">\(t\)</span>.</li>
-<li class="fragment">Sin embargo, la representación de la ecuación <a href="#/eq-kinematics_rotation_matrix" class="quarto-xref">Ecuación&nbsp;26</a> no es única, ya que existen múltiples formas de describir la orientación de un cuerpo rígido en el espacio tridimensional.</li>
+<li class="fragment">Las soluciones de la ecuación diferencial <a href="#/eq-kinematics_rotation_matrix" class="quarto-xref">Ecuación&nbsp;27</a> proporcionan la orientación del cuerpo rígido en función del tiempo. Es decir, obtenemos <span class="math inline">\(\ls{b}R_h(t)\)</span> para cada instante de tiempo <span class="math inline">\(t\)</span>.</li>
+<li class="fragment">Sin embargo, la representación de la ecuación <a href="#/eq-kinematics_rotation_matrix" class="quarto-xref">Ecuación&nbsp;27</a> no es única, ya que existen múltiples formas de describir la orientación de un cuerpo rígido en el espacio tridimensional.</li>
 </ul></li>
 </ul>
 </section>
@@ -4837,7 +4834,7 @@ S(\ls{h}\vec{\omega})\ls{h}\hat{x}_b &amp; S(\ls{h}\vec{\omega})\ls{h}\hat{y}_b 
 <p>Común en robótica, aeronáutica y sistemas de navegación.</p>
 <p><span id="eq-rpy"><span class="math display">\[
 \ls{b}R_h=R_z(\psi)R_y(\theta)R_x(\phi).
-\tag{27}\]</span></span></p>
+\tag{28}\]</span></span></p>
 </div>
 </section>
 <section id="section-56" class="slide level2">
@@ -4847,7 +4844,7 @@ S(\ls{h}\vec{\omega})\ls{h}\hat{x}_b &amp; S(\ls{h}\vec{\omega})\ls{h}\hat{y}_b 
 <section class="slide level2">
 
 <ul>
-<li>Debido a la aplicación que estamos estudiando, pondremos especial atención a los ángulos de Tait-Bryan a lo largo del curso. Partiendo de la <a href="#/eq-rpy" class="quarto-xref">Ecuación&nbsp;27</a>, se obtiene:</li>
+<li>Debido a la aplicación que estamos estudiando, pondremos especial atención a los ángulos de Tait-Bryan a lo largo del curso. Partiendo de la <a href="#/eq-rpy" class="quarto-xref">Ecuación&nbsp;28</a>, se obtiene:</li>
 </ul>
 <p><span class="math display">\[
 \ls{b}\dot{R}_h=\dot{R}_z(\psi)R_y(\theta)R_x(\phi)+R_z(\psi)\dot{R}_y(\theta)R_x(\phi)+R_z(\psi)R_y(\theta)\dot{R}_x(\phi).
@@ -4872,13 +4869,13 @@ S(\ls{h}\vec{\omega})\ls{h}\hat{x}_b &amp; S(\ls{h}\vec{\omega})\ls{h}\hat{y}_b 
 \ls{b}\dot{R}_h \ls{h}R_b &amp; =-S(\ls{b}z\cdot\dot{\psi})-R_z(\psi)S(\ls{2}y\cdot\dot{\theta})R_z^\top(\psi)-R_z(\psi)R_y(\theta)S(\ls{h}x\cdot\dot{\phi})R_y^{\top}(\theta)R_z^\top(\psi) \\
 &amp; =-S(\ls{b}z\cdot\dot{\psi})-S(R_z(\psi)\ls{2}y\cdot\dot{\theta})-S(R_z(\psi)R_y(\theta)\ls{1}x\cdot\dot{\phi})                                               \\
 \end{split}
-\tag{28}\]</span></span></p></li>
+\tag{29}\]</span></span></p></li>
 </ul>
 </section>
 <section id="section-57" class="slide level2">
 <h2></h2>
 <ul>
-<li><p>El lado derecho de la anterior ecuación puede ser reescrito mediante la <a href="#/eq-derivative_rotation_matrix" class="quarto-xref">Ecuación&nbsp;25</a> como:</p>
+<li><p>El lado derecho de la anterior ecuación puede ser reescrito mediante la <a href="#/eq-derivative_rotation_matrix" class="quarto-xref">Ecuación&nbsp;26</a> como:</p>
 <p><span class="math display">\[
 \begin{split}
 \ls{b}\dot{R}_h \ls{h}R_b &amp; =-S(\ls{b}\omega_{h,b})
@@ -4931,7 +4928,7 @@ R_z(\psi)R_y(\theta)\ls{1}x=\begin{bmatrix}
 <section class="slide level2">
 
 <ul>
-<li><p>Sustituyendo las anteriores ecuaciones en la <a href="#/eq-auxiliary_rpy_dynamics" class="quarto-xref">Ecuación&nbsp;28</a> obtenemos:</p>
+<li><p>Sustituyendo las anteriores ecuaciones en la <a href="#/eq-auxiliary_rpy_dynamics" class="quarto-xref">Ecuación&nbsp;29</a> obtenemos:</p>
 <p><span class="math display">\[
 \begin{split}
 S(\ls{b}\omega_{h,b}) &amp; =S\left(\begin{bmatrix}
@@ -4976,8 +4973,8 @@ S(\ls{b}\omega_{h,b}) &amp; =S\left(\begin{bmatrix}
 \sin(\psi)              &amp; \cos(\psi)              &amp; 0 \\
 -\cos(\psi)\tan(\theta) &amp; \sin(\psi)\tan(\theta)  &amp; 1
 \end{bmatrix}\ls{b}\omega_{h,b}.
-\tag{29}\]</span></span></p></li>
-<li><p>La <a href="#/eq-rpy_dynamics" class="quarto-xref">Ecuación&nbsp;29</a> es el modelo cinemático de un cuerpo rígido utilizando los ángulos de Tait-Bryan. <span style="color:red">¿Qué pasa cuando <span class="math inline">\(\theta=\frac{\pi}{2}\)</span>? </span></p></li>
+\tag{30}\]</span></span></p></li>
+<li><p>La <a href="#/eq-rpy_dynamics" class="quarto-xref">Ecuación&nbsp;30</a> es el modelo cinemático de un cuerpo rígido utilizando los ángulos de Tait-Bryan. <span style="color:red">¿Qué pasa cuando <span class="math inline">\(\theta=\frac{\pi}{2}\)</span>? </span></p></li>
 </ul>
 </div>
 </section>
@@ -4992,7 +4989,7 @@ S(\ls{b}\omega_{h,b}) &amp; =S\left(\begin{bmatrix}
 </div>
 </div><div class="column" style="width:45%;">
 <ul>
-<li>El bloqueo de cardán (<em>gimbal-lock</em>) es una condición de singularidad en la <a href="#/eq-rpy_dynamics" class="quarto-xref">Ecuación&nbsp;29</a>, que se produce cuando <span class="math inline">\(\theta=\frac{\pi}{2}\)</span>.</li>
+<li>El bloqueo de cardán (<em>gimbal-lock</em>) es una condición de singularidad en la <a href="#/eq-rpy_dynamics" class="quarto-xref">Ecuación&nbsp;30</a>, que se produce cuando <span class="math inline">\(\theta=\frac{\pi}{2}\)</span>.</li>
 </ul>
 <ul>
 <li class="fragment">Físicamente, esto significa que la rotación en el eje <span class="math inline">\(\ls{2}z\)</span> es igual a la rotación en el eje <span class="math inline">\(\ls{h}x\)</span>.</li>
@@ -5005,7 +5002,7 @@ S(\ls{b}\omega_{h,b}) &amp; =S\left(\begin{bmatrix}
 <section id="section-58" class="slide level2">
 <h2></h2>
 <ul>
-<li><p>Si desarrollamos la <a href="#/eq-rpy_dynamics" class="quarto-xref">Ecuación&nbsp;29</a> obtenemos:</p>
+<li><p>Si desarrollamos la <a href="#/eq-rpy_dynamics" class="quarto-xref">Ecuación&nbsp;30</a> obtenemos:</p>
 <p><span class="math display">\[
 \begin{split}
 \ls{b}R_{h} &amp; =
@@ -5163,7 +5160,7 @@ e^{\mathbf{i}\theta_{1}}e^{i\theta_{2}}=e^{\mathbf{i}(\theta_{1}+\theta_{2})}.
       \mathbf{k}\mathbf{j} &amp; =-\mathbf{i}                                                 \\
       \mathbf{i}\mathbf{k} &amp; =-\mathbf{j}
 \end{split}          
-\tag{30}\]</span></span></p>
+\tag{31}\]</span></span></p>
 <ul>
 <li class="fragment"><p>Bajo esta definición la base axiomática de los complejos se mantiene en cuatro dimensiones en su mayor parte. Sin embargo, el precio a pagar es la conmutatividad en su multiplicación (<em>e.g</em>, <span class="math inline">\(\mathbf{ij}\neq \mathbf{ji}\)</span>).</p></li>
 <li class="fragment"><p>El espacio de los cuaterniones se define como</p>
@@ -5353,7 +5350,7 @@ q_0 \\
 <li class="fragment"><p>Considere la siguiente operación</p>
 <p><span id="eq-quaternion_rotation"><span class="math display">\[
 \ls{b}\mathbf{p}=\ls{b}\mathbf{q}_h \otimes \ls{h}\mathbf{p} \otimes \ls{b}\mathbf{q}_h^{\star}
-\tag{31}\]</span></span></p>
+\tag{32}\]</span></span></p>
 <p>donde <span class="math inline">\(\ls{b}\mathbf{q}_h \in \mathbb{H}_1\)</span> y <span class="math inline">\(\ls{b}\mathbf{p}, \ls{h}\mathbf{p} \in \mathbb{H}\)</span> son cuaterniones puros construidos de la siguiente manera:</p>
 <p><span class="math display">\[
 \ls{b}\mathbf{p}=
@@ -5367,7 +5364,7 @@ q_0 \\
 \ls{h}\vec{\rho}
 \end{bmatrix}.
 \]</span></p></li>
-<li class="fragment"><p>Sustituyendo en la <a href="#/eq-quaternion_rotation" class="quarto-xref">Ecuación&nbsp;31</a> se tiene: <span class="math display">\[
+<li class="fragment"><p>Sustituyendo en la <a href="#/eq-quaternion_rotation" class="quarto-xref">Ecuación&nbsp;32</a> se tiene: <span class="math display">\[
 \ls{b}\mathbf{p}=\begin{bmatrix}
 0 &amp; 0                                                                          \\
 0 &amp; (q_0^2-\vec{q}^\top \vec{q})\mathbb{I}+2q_0S(\vec{q})+2\vec{q}\vec{q}^\top \\
@@ -5375,7 +5372,7 @@ q_0 \\
 \]</span></p>
 <p><span id="eq-quaternion2rotationmatrix"><span class="math display">\[
 \Rightarrow \; \ls{b}R_h=(q_0^2-\vec{q}^\top \vec{q})\mathbb{I}+2q_0S(\vec{q})+2\vec{q}\vec{q}^\top
-\tag{32}\]</span></span></p></li>
+\tag{33}\]</span></span></p></li>
 </ul>
 </section>
 <section id="otras-operaciones-equivalentes" class="slide level2">
@@ -5407,7 +5404,7 @@ q_0 \\
 <section id="matriz-de-rotación-a-cuaternión" class="slide level2">
 <h2>Matriz de rotación a cuaternión</h2>
 <ul>
-<li>Desarrollando la <a href="#/eq-quaternion2rotationmatrix" class="quarto-xref">Ecuación&nbsp;32</a> se tiene:</li>
+<li>Desarrollando la <a href="#/eq-quaternion2rotationmatrix" class="quarto-xref">Ecuación&nbsp;33</a> se tiene:</li>
 </ul>
 <p><span class="math display">\[
 \begin{split}
@@ -5493,7 +5490,7 @@ q_2 &amp; = \dfrac{r_{23} + r_{32}}{4q_3}.
 <section class="slide level2">
 
 <ul>
-<li>Una propiedad importante que tienen los cuaterniones frente a la parametrización por ángulos de Euler es la siguiente. Reemplace <span class="math inline">\(\mathbf{q}\)</span> por <span class="math inline">\(-\mathbf{q}\)</span> en <a href="#/eq-quaternion2rotationmatrix" class="quarto-xref">Ecuación&nbsp;32</a>:</li>
+<li>Una propiedad importante que tienen los cuaterniones frente a la parametrización por ángulos de Euler es la siguiente. Reemplace <span class="math inline">\(\mathbf{q}\)</span> por <span class="math inline">\(-\mathbf{q}\)</span> en <a href="#/eq-quaternion2rotationmatrix" class="quarto-xref">Ecuación&nbsp;33</a>:</li>
 </ul>
 <p><span class="math display">\[
 \begin{split}
@@ -5521,7 +5518,7 @@ q_2 &amp; = \dfrac{r_{23} + r_{32}}{4q_3}.
 <p>tal que</p>
 <p><span id="eq-quaternion_incremental"><span class="math display">\[
 \ls{b}\mathbf{q}_h(t+\Delta t)= \mathbf{p} \otimes \ls{b}\mathbf{q}_h(t).
-\tag{33}\]</span></span></p></li>
+\tag{34}\]</span></span></p></li>
 </ul>
 <div class="fragment">
 <ul>
@@ -5536,7 +5533,7 @@ q_2 &amp; = \dfrac{r_{23} + r_{32}}{4q_3}.
 </div>
 <div class="fragment">
 <ul>
-<li><p>Desarrollando <a href="#/eq-quaternion_incremental" class="quarto-xref">Ecuación&nbsp;33</a> obtenemos:</p>
+<li><p>Desarrollando <a href="#/eq-quaternion_incremental" class="quarto-xref">Ecuación&nbsp;34</a> obtenemos:</p>
 <p><span class="math display">\[
 \ls{b}\mathbf{q}_h(t+\Delta t)= \begin{bmatrix}
 q_0+\frac{\Delta \theta }{2}\hat{u}^{\top}\vec{q} \\
@@ -5580,7 +5577,7 @@ q_0+\frac{\Delta \theta }{2}\hat{u}^{\top}\vec{q} \\
 \]</span></p>
 <p>donde <span class="math inline">\(\ls{b}\boldsymbol{\omega}_{h,b}\)</span> es un cuaternión puro con parte vectorial <span class="math inline">\(\ls{b}\vec{\omega}_{h,b}\)</span>.</p>
 <ul>
-<li>La <a href="#/eq-kinematics_quaternion" class="quarto-xref">Ecuación&nbsp;38</a> es el modelo cinemático de un cuerpo rígido utilizando cuaterniones.</li>
+<li>La <a href="#/eq-kinematics_quaternion" class="quarto-xref">Ecuación&nbsp;39</a> es el modelo cinemático de un cuerpo rígido utilizando cuaterniones.</li>
 </ul>
 </div>
 </div>
@@ -5737,7 +5734,7 @@ q_0+\frac{\Delta \theta }{2}\hat{u}^{\top}\vec{q} \\
 <li><p>El momento lineal total del sistema es:</p>
 <p><span id="eq-particle_linear_momentum"><span class="math display">\[
 \ls{i}\vec{\rho} = \sum_{j=1}^a\ls{i}\vec{\rho}_j=\sum_{j=1}^a m_j\ls{i}\vec{v}_j,
-\tag{34}\]</span></span></p>
+\tag{35}\]</span></span></p>
 <p>donde <span class="math inline">\(\ls{i}\vec{v}_j\)</span> es la velocidad de la partícula <span class="math inline">\(j\)</span>.</p></li>
 </ul>
 </div></div>
@@ -5753,7 +5750,7 @@ q_0+\frac{\Delta \theta }{2}\hat{u}^{\top}\vec{q} \\
 </div>
 </div><div class="column" style="width:45%;">
 <ul>
-<li><p>Derivando <a href="#/eq-particle_linear_momentum" class="quarto-xref">Ecuación&nbsp;34</a> obtenemos:</p>
+<li><p>Derivando <a href="#/eq-particle_linear_momentum" class="quarto-xref">Ecuación&nbsp;35</a> obtenemos:</p>
 <p><span class="math display">\[
 \ls{i}\dot{\vec{\rho}} = \sum_{j=1}^a m_j\ls{i}\dot{\vec{v}}_j = m\ls{i}\dot{\vec{v}}_c=\ls{i}f,
 \]</span></p>
@@ -5761,7 +5758,7 @@ q_0+\frac{\Delta \theta }{2}\hat{u}^{\top}\vec{q} \\
 <li><p>De forma similar, el momento angular total del sistema puede calcularse como:</p>
 <p><span id="eq-particle_angular_momentum"><span class="math display">\[
 \ls{i}\vec{h} = \sum_{j=1}^a \ls{i}\vec{r}_j\times\ls{i}\vec{\rho}_j=\sum_{j=1}^a m_j\ls{i}\vec{r}_j\times\ls{i}\vec{v}_j.
-\tag{35}\]</span></span></p></li>
+\tag{36}\]</span></span></p></li>
 <li><p>Del diagrama podemos deducir que</p>
 <p><span class="math display">\[
 \begin{split}
@@ -5785,7 +5782,7 @@ q_0+\frac{\Delta \theta }{2}\hat{u}^{\top}\vec{q} \\
 </div>
 </div><div class="column" style="width:45%;">
 <ul>
-<li><p>Sustituyendo en la <a href="#/eq-particle_angular_momentum" class="quarto-xref">Ecuación&nbsp;35</a> obtenemos:</p>
+<li><p>Sustituyendo en la <a href="#/eq-particle_angular_momentum" class="quarto-xref">Ecuación&nbsp;36</a> obtenemos:</p>
 <p><span class="math display">\[
 \ls{i}\vec{h} = \sum_{j=1}^a m_j(\ls{i}\vec{r}_c+\ls{i}\vec{r}_{cj}) \times (\ls{i}\vec{v}_c+\ls{i}\vec{v}_{cj}),
 \]</span></p></li>
@@ -5944,7 +5941,7 @@ q_0+\frac{\Delta \theta }{2}\hat{u}^{\top}\vec{q} \\
 &amp; =m \ls{i}\vec{r}_c\times\ls{i}\vec{v}_c+ J_i(t)\ls{i}\vec{\omega}_{i,b} \\
 &amp; + \ls{i}R_b\sum_{j=1}^a J_{b,j}(t)\ls{b}\vec{\omega}_{b,j}.
 \end{split}
-\tag{36}\]</span></span></p>
+\tag{37}\]</span></span></p>
 <p>donde <span class="math inline">\(J_{b,j}(t)\)</span> es el tensor de inercia del dispositivo <span class="math inline">\(j\)</span> visto del marco de referencia <span class="math inline">\(\ls{b} \mathcal{F}\)</span> y <span class="math inline">\(a\)</span> es el número de dispositivos.</p></li>
 </ul>
 </div></div>
@@ -6125,7 +6122,7 @@ I_b = \frac{1}{12}m \begin{bmatrix}
 <li>Un detalle importante antes de deducir el modelo dinámico es que <span class="math inline">\(\ls{i}\dot{\vec{h}}(t)\neq \ls{i}R_b(t)\ls{b}\dot{\vec{h}}(t)\)</span>. Esto de debe a que la matriz <span class="math inline">\(\ls{i}R_b(t)\)</span> cambia con el tiempo.</li>
 <li>Este último detalle es el porqué se usa el marco de referencia inercial.</li>
 </ul>
-<p>Para encontrar el modelo dinámico podemos comenzar derivando <a href="#/eq-angular_momentum_internal" class="quarto-xref">Ecuación&nbsp;36</a>:</p>
+<p>Para encontrar el modelo dinámico podemos comenzar derivando <a href="#/eq-angular_momentum_internal" class="quarto-xref">Ecuación&nbsp;37</a>:</p>
 <p><span class="math display">\[
 \begin{split}
 \ls{i}\dot{\vec{h}}(t) &amp; = \ls{i}\dot{\vec{h}}_0(t) + \ls{i}\dot{\vec{h}}_s(t) + \ls{i}\dot{\vec{h}}_w(t),                                                                                                                                                  \\
@@ -6167,7 +6164,7 @@ I_b = \frac{1}{12}m \begin{bmatrix}
 \begin{split}
 I_b\ls{b}\dot{\vec{\omega}}_{i,b}(t) &amp; =-S(\ls{b}\vec{\omega}_{i,b}(t))I_b\ls{b}\vec{\omega}_{i,b}(t)+\ls{b}\vec{\tau}_c(t)-\ls{b}\vec{r}_c(t)\times\ls{b}\vec{f}_{c}(t)-\ls{b}R_i(t)\ls{i}\dot{\vec{h}}_w(t).
 \end{split}
-\tag{37}\]</span></span></p>
+\tag{38}\]</span></span></p>
 <p>donde</p>
 <ul>
 <li><span class="math inline">\(-S(\ls{b}\vec{\omega}_{i,b}(t))I_b\ls{b}\vec{\omega}_{i,b}(t)\)</span> es el par giroscópico. Modela la conservación de la cantidad de momento angular.</li>
@@ -6175,7 +6172,7 @@ I_b\ls{b}\dot{\vec{\omega}}_{i,b}(t) &amp; =-S(\ls{b}\vec{\omega}_{i,b}(t))I_b\l
 <li><span class="math inline">\(-\ls{b}\vec{r}_c(t)\times\ls{b}\vec{f}_{c}(t)\)</span> es la suma de pares externos aplicados desde el centro del marco de referencia inercial.</li>
 <li><span class="math inline">\(-\ls{b}R_i(t)\ls{i}\dot{\vec{h}}_w(t)\)</span> es la suma de pares internos generados por cambios en el momento angular de dispositivos internos.</li>
 </ul></li>
-<li><p>La <a href="#/eq-rigid_body_dynamics_general" class="quarto-xref">Ecuación&nbsp;37</a> se conoce como <strong>modelo dinámico de un cuerpo rígido en el marco de referencia inercial</strong>. Sin embargo, el modelo dinámico aún no se encuentra en función de variables de estado de nuestro interés.</p></li>
+<li><p>La <a href="#/eq-rigid_body_dynamics_general" class="quarto-xref">Ecuación&nbsp;38</a> se conoce como <strong>modelo dinámico de un cuerpo rígido en el marco de referencia inercial</strong>. Sin embargo, el modelo dinámico aún no se encuentra en función de variables de estado de nuestro interés.</p></li>
 <li><p>La velocidad angular <span class="math inline">\(\ls{i}\vec{\omega}_{i,b}(t)\)</span> puede descomponerse de la siguiente manera:</p>
 <p><span class="math display">\[
 \begin{split}
@@ -6214,13 +6211,13 @@ I_b\ls{b}\dot{\vec{\omega}}_{i,b}(t) &amp; =-S(\ls{b}\vec{\omega}_{i,b}(t))I_b\l
 \begin{split}
 \ls{b}\dot{\vec{\omega}}_{i,b}(t) &amp; =\ls{b}R_i (t)\ls{i}\dot{\vec{\omega}}_{i,h}(t)+S(\ls{b}R_i (t)\ls{i}\vec{\omega}_{i,h}(t))\ls{b}\vec{\omega}_{h,b}(t)+\ls{b}\dot{\vec{\omega}}_{h,b}(t).
 \end{split}
-\tag{38}\]</span></span></p></li>
+\tag{39}\]</span></span></p></li>
 </ul>
 </section>
 <section id="section-79" class="slide level2">
 <h2></h2>
 <ul>
-<li><p>Sustituyendo <span class="math inline">\(\ls{b}\vec{\omega}_{i,b}(t)\)</span> y <span class="math inline">\(\ls{b}\dot{\vec{\omega}}_{i,b}(t)\)</span> en la <a href="#/eq-rigid_body_dynamics_general" class="quarto-xref">Ecuación&nbsp;37</a>, obtenemos:</p>
+<li><p>Sustituyendo <span class="math inline">\(\ls{b}\vec{\omega}_{i,b}(t)\)</span> y <span class="math inline">\(\ls{b}\dot{\vec{\omega}}_{i,b}(t)\)</span> en la <a href="#/eq-rigid_body_dynamics_general" class="quarto-xref">Ecuación&nbsp;38</a>, obtenemos:</p>
 <p><span class="math display">\[
 \begin{split}
 &amp; I_b(\ls{b}R_i (t)\ls{i}\dot{\vec{\omega}}_{i,h}(t)+S(\ls{b}R_i (t)\ls{i}\vec{\omega}_{i,h}(t))\ls{b}\vec{\omega}_{h,b}(t)+\ls{b}\dot{\vec{\omega}}_{h,b}(t)) \\
@@ -6234,8 +6231,8 @@ I_b\ls{b}\dot{\vec{\omega}}_{i,b}(t) &amp; =-S(\ls{b}\vec{\omega}_{i,b}(t))I_b\l
 I_b\ls{b}\dot{\vec{\omega}}_{h,b}(t)= &amp; -S(\ls{b}R_i (t)\ls{i}\vec{\omega}_{i,h}(t)+\ls{b}\vec{\omega}_{h,b}(t))I_b(\ls{b}R_i (t)\ls{i}\vec{\omega}_{i,h}(t)+\ls{b}\vec{\omega}_{h,b}(t))                                                                                       \\
 &amp; -I_b\ls{b}R_i (t)\ls{i}\dot{\vec{\omega}}_{i,h}(t)-I_bS(\ls{b}R_i (t)\ls{i}\vec{\omega}_{i,h}(t))\ls{b}\vec{\omega}_{h,b}(t)+\ls{b}\vec{\tau}_c(t)-\ls{b}\vec{r}_c(t)\times\ls{b}\vec{f}_{c}(t)-\ls{b}R_i(t)\ls{i}\dot{\vec{h}}_w(t).
 \end{split}
-\tag{39}\]</span></span></p></li>
-<li><p>La <a href="#/eq-rigid_body_dynamics_body_frame" class="quarto-xref">Ecuación&nbsp;39</a> es el <strong>modelo dinámico de un cuerpo rígido en el marco de referencia orbital</strong>. Este modelo es importante por dos motivos:</p>
+\tag{40}\]</span></span></p></li>
+<li><p>La <a href="#/eq-rigid_body_dynamics_body_frame" class="quarto-xref">Ecuación&nbsp;40</a> es el <strong>modelo dinámico de un cuerpo rígido en el marco de referencia orbital</strong>. Este modelo es importante por dos motivos:</p>
 <ul>
 <li>Utiliza como variable de estado la velocidad angular en el marco de referencia de un cuerpo rígido <span class="math inline">\(\ls{b}\dot{\vec{\omega}}_{h,b}(t)\)</span>, <em>i.e.</em>, la velocidad angular del cuerpo alrededor de su centro de masa.</li>
 <li>Nos permite identificar con claridad la influencia del movimiento traslacional sobre la orientación del cuerpo rígido (<span class="math inline">\(\ls{i}\vec{\omega}_{i,h}(t)\)</span>, <span class="math inline">\(\ls{i}\dot{\vec{\omega}}_{i,h}(t)\)</span>,<span class="math inline">\(\ls{b}\vec{r}_c\)</span>, <span class="math inline">\(\ls{b}\vec{f}_{c}\)</span>).</li>
@@ -6275,14 +6272,14 @@ J_{b,j}(t)                                  &amp; =\ls{b}R_j(t)I_j\ls{j}R_b(t), 
 \ls{b}R_i \ls{i}\dot{\vec{h}}_w(t)=\sum_{j=1}^{a} \left[ S(\ls{b}\vec{\omega}_{i,b}(t))\ls{b}R_j(t)I_j\ls{j}\vec{\omega}_{b,j}(t)+\ls{b}R_j(t)S(\ls{j}\vec{\omega}_{b,j}(t))I_j\ls{j}\vec{\omega}_{b,j}(t)+\ls{b}R_j(t)I_j\ls{j}\dot{\vec{\omega}}_{b,j}(t)\right].
 \end{split}
 \]</span></p></li>
-<li><p>Con ello, la <a href="#/eq-rigid_body_dynamics_body_frame" class="quarto-xref">Ecuación&nbsp;39</a> se transforma en:</p>
+<li><p>Con ello, la <a href="#/eq-rigid_body_dynamics_body_frame" class="quarto-xref">Ecuación&nbsp;40</a> se transforma en:</p>
 <p><span id="eq-rigid_body_dynamics_body_frame_full"><span class="math display">\[
 \begin{split}
 I_b\ls{b}\dot{\vec{\omega}}_{h,b}(t)= &amp; -S(\ls{b}R_i (t)\ls{i}\vec{\omega}_{i,h}(t)+\ls{b}\vec{\omega}_{h,b}(t))\left(I_b(\ls{b}R_i (t)\ls{i}\vec{\omega}_{i,h}(t)+\ls{b}\vec{\omega}_{h,b}(t))+\sum_{j=1}^{a}\ls{b}R_j(t)I_j\ls{j}\vec{\omega}_{b,j}(t)\right) \\
 &amp; -I_b\ls{b}R_i (t)\ls{i}\dot{\vec{\omega}}_{i,h}(t)-I_bS(\ls{b}R_i (t)\ls{i}\vec{\omega}_{i,h}(t))\ls{b}\vec{\omega}_{h,b}(t)+\ls{b}\vec{\tau}_c(t)-\ls{b}\vec{r}_c(t)\times\ls{b}\vec{f}_{c}(t)                       \\
 &amp; -\sum_{j=1}^{a}\ls{b}R_j(t)S(\ls{j}\vec{\omega}_{b,j}(t))I_j\ls{j}\vec{\omega}_{b,j}(t)-\sum_{j=1}^{a} \ls{b}R_j(t)I_j\ls{j}\dot{\vec{\omega}}_{b,j}(t).
 \end{split}
-\tag{40}\]</span></span></p></li>
+\tag{41}\]</span></span></p></li>
 </ul>
 </section>
 <section class="slide level2">
@@ -6311,7 +6308,7 @@ I_b\ls{b}\dot{\vec{\omega}}_{h,b}(t)= &amp; -S(\ls{b}R_i (t)\ls{i}\vec{\omega}_{
 <li><strong>Modelo cinemático rotacional</strong>: Dicta cómo es el movimiento, <em>i.e.</em>, la trayectoria a lo largo del tiempo de la variable de parametrización que se utiliza para describir el movimiento.</li>
 </ul></li>
 </ul>
-<p>Por ejemplo, si decidimos trabajar con cuaterniones, el modelo rotacional del satélite se compone de la <a href="#/eq-kinematics_quaternion" class="quarto-xref">Ecuación&nbsp;38</a> y la <a href="#/eq-rigid_body_dynamics_body_frame_full" class="quarto-xref">Ecuación&nbsp;40</a>,</p>
+<p>Por ejemplo, si decidimos trabajar con cuaterniones, el modelo rotacional del satélite se compone de la <a href="#/eq-kinematics_quaternion" class="quarto-xref">Ecuación&nbsp;39</a> y la <a href="#/eq-rigid_body_dynamics_body_frame_full" class="quarto-xref">Ecuación&nbsp;41</a>,</p>
 <div class="definition-block">
 <p><strong>Modelo rotacional de un satélite</strong> <span id="eq-rotational_satellite_model"><span class="math display">\[
 \begin{split}
@@ -6320,11 +6317,11 @@ I_b\ls{b}\dot{\vec{\omega}}_{h,b}(t)= &amp; -S(\ls{b}R_i (t)\ls{i}\vec{\omega}_{
 &amp; -\sum_{j=1}^{a}\ls{b}R_j(t)S(\ls{j}\vec{\omega}_{b,j}(t))I_j\ls{j}\vec{\omega}_{b,j}(t)-\sum_{j=1}^{a} \ls{b}R_j(t)I_j\ls{j}\dot{\vec{\omega}}_{b,j}(t),\\
 \ls{b}\dot{\mathbf{q}}_h(t)&amp;=-\frac{1}{2}\ls{b}\boldsymbol{\omega}_{h,b} \otimes \ls{b}\mathbf{q}_h.
 \end{split}
-\tag{41}\]</span></span></p>
-<p>La <a href="#/eq-rotational_satellite_model" class="quarto-xref">Ecuación&nbsp;41</a> decribe totalmente el movimiento rotacional del satélite bajo las suposiciones que realizamos.</p>
+\tag{42}\]</span></span></p>
+<p>La <a href="#/eq-rotational_satellite_model" class="quarto-xref">Ecuación&nbsp;42</a> decribe totalmente el movimiento rotacional del satélite bajo las suposiciones que realizamos.</p>
 </div>
 <ul>
-<li><span style="color:red">Antes de que decidamos pasar a mejor vida, vamos a darle un sentido físico a cada termino de la <a href="#/eq-rotational_satellite_model" class="quarto-xref">Ecuación&nbsp;41</a>.</span></li>
+<li><span style="color:red">Antes de que decidamos pasar a mejor vida, vamos a darle un sentido físico a cada termino de la <a href="#/eq-rotational_satellite_model" class="quarto-xref">Ecuación&nbsp;42</a>.</span></li>
 </ul>
 </section>
 <section id="section-83" class="slide level2">
@@ -6555,13 +6552,13 @@ I_b\ls{b}\dot{\vec{\omega}}_{h,b}(t) &amp; =\vec{\tau}_\alpha(t)+\vec{\tau}_\bet
 \begin{split}
 ^b\vec{\tau}_g=\frac{3\mu}{\|\:^{b}\vec{r}_c\|^5}\:^{b}\vec{r}_c \times I_s\:^{b}\vec{r}_c
 \end{split}
-\tag{42}\]</span></span></p>
+\tag{43}\]</span></span></p>
 <p>donde:</p>
 <ul>
 <li><span class="math inline">\(\:^{b}\vec{r}_c\)</span> es el vector de posición del centro de masa relativo al origen del marco de referencia inercial <span class="math inline">\(i\)</span>, representado en el marco de referencia <span class="math inline">\(b\)</span>.</li>
 <li><span class="math inline">\(\mu=3.986\times 10^{14} m^3s^{-2}\)</span> es el parámetro gravitacional estándar.</li>
 </ul></li>
-<li><p>El desglose de la <a href="#/eq-tau_g" class="quarto-xref">Ecuación&nbsp;42</a> es muy similar al desglose que hicimos para el tensor de inercia.</p></li>
+<li><p>El desglose de la <a href="#/eq-tau_g" class="quarto-xref">Ecuación&nbsp;43</a> es muy similar al desglose que hicimos para el tensor de inercia.</p></li>
 </ul>
 </section>
 <section id="arrastre-aerodinámico" class="slide level2">
@@ -9485,9 +9482,9 @@ y_k=h(x_k,\xi_k)
 <p><span id="eq-linear_estimator"><span class="math display">\[
 \hat{x}_k=
 a_k+D_k y_k
-\tag{43}\]</span></span></p>
+\tag{44}\]</span></span></p>
 <p>donde <span class="math inline">\(a_k \in \mathbb{R}^{n}\)</span> y <span class="math inline">\(D_k \in \mathbb{R}^{n \times m}\)</span> son parámetros constantes en el instante de tiempo <span class="math inline">\(t_k\)</span>.</p></li>
-<li><p>Para decir que el estimador descriot en la <a href="#/eq-linear_estimator" class="quarto-xref">Ecuación&nbsp;43</a> es óptimo, se puede proponer el siguiente problema de optimización:</p>
+<li><p>Para decir que el estimador descriot en la <a href="#/eq-linear_estimator" class="quarto-xref">Ecuación&nbsp;44</a> es óptimo, se puede proponer el siguiente problema de optimización:</p>
 <p><span class="math display">\[
 \min_{a_k,D_k}
 Tr(P_k)
@@ -9996,7 +9993,7 @@ L_{k-1}=\frac{\partial f_{k-1}}{\partial \zeta_{k-1}}\bigg|_{\hat{x}_{k-1}^{+}}
 \begin{split}
 x_k &amp; =F_{k-1}x_{k-1}+\tilde{u}_{k-1}+\tilde{w}_{k-1}
 \end{split}
-\tag{44}\]</span></span></p>
+\tag{45}\]</span></span></p>
 <p>donde</p>
 <p><span class="math display">\[
 \begin{split}
@@ -10025,14 +10022,14 @@ H_k=\frac{\partial h_k}{\partial x_k}\bigg|_{\hat{x}_k^{-}},\quad M_k=\frac{\par
 \begin{split}
 y_k=H_kx_k+z_k+\tilde{\xi}_k
 \end{split}
-\tag{45}\]</span></span></p>
+\tag{46}\]</span></span></p>
 <p>donde</p>
 <p><span class="math display">\[
 \begin{split}
 z_k=h_k(\hat{x}_k^{-},0)-H_k\hat{x}_k^{-},\quad \tilde{\xi}_k=M_k\xi_k,\qquad \text{Var}[\tilde{\xi}_{k}]=M_{k}QM_{k}^\top
 \end{split}
 \]</span></p></li>
-<li><p>Las ecuaciones <a href="#/eq-ekf_lineal_state" class="quarto-xref">Ecuación&nbsp;44</a> y <a href="#/eq-ekf_lineal_measurement" class="quarto-xref">Ecuación&nbsp;45</a> representan un sistema lineal equivalente al sistema no lineal original. Esto permite aplicar el filtro de Kalman clásico para obtener una estimación del estado, aunque esta estimación ya no es óptima debido a las aproximaciones realizadas en la linealización.</p></li>
+<li><p>Las ecuaciones <a href="#/eq-ekf_lineal_state" class="quarto-xref">Ecuación&nbsp;45</a> y <a href="#/eq-ekf_lineal_measurement" class="quarto-xref">Ecuación&nbsp;46</a> representan un sistema lineal equivalente al sistema no lineal original. Esto permite aplicar el filtro de Kalman clásico para obtener una estimación del estado, aunque esta estimación ya no es óptima debido a las aproximaciones realizadas en la linealización.</p></li>
 </ul>
 </section>
 <section id="section-144" class="slide level2">
@@ -12498,7 +12495,7 @@ D=\left[\begin{matrix}
 <p>Todo sistema físico puede representarse mediante un conjunto de ecuaciones que describen su comportamiento dinámico. Dicho conjunto se denomina <strong>ecuaciones de estado</strong>, y se puede representar de la siguiente manera:</p>
 <p><span id="eq-state_equations"><span class="math display">\[
 \dot{x}\td  = f(x\td , u\td , d\td , t)
-\tag{46}\]</span></span></p>
+\tag{47}\]</span></span></p>
 <p><span class="math display">\[
 y\td  = g(x\td , u\td , t)
 \]</span></p>
@@ -12686,7 +12683,7 @@ x\td  = x^\star, \quad \forall t \ge T(x_0)
 
 </div>
 <p>Es común que en la práctica no se cuente con las mediciones de los estados internos. Es por ello que es conveniente definir la estabilidad mediante la entrada y la salida del sistema. La <strong>estabilidad entrada–salida</strong> analiza la relación entre las señales externas del sistema.</p>
-<p><strong>Definición:</strong> Un sistema de la forma <a href="#/eq-state_equations" class="quarto-xref">Ecuación&nbsp;46</a> es <strong>estable E/S</strong> si:</p>
+<p><strong>Definición:</strong> Un sistema de la forma <a href="#/eq-state_equations" class="quarto-xref">Ecuación&nbsp;47</a> es <strong>estable E/S</strong> si:</p>
 <p><span class="math display">\[
 \|u\td \| &lt; \infty \Rightarrow \|y\td \| &lt; \infty
 \]</span></p>
@@ -13224,7 +13221,7 @@ u\td = f(\tx\td)
 \dtqc\td  &amp; =\frac{1}{2}\tqv^{\top}\td\tw\td,                                                                               \\
 \dtqv\td  &amp; =-\frac{1}{2}\tqc\td\tw\td-\frac{1}{2}S(\tqv\td)\tw\td+S(\tqv\td)\vwref\td.
 \end{split}
-\tag{47}\]</span></span></p>
+\tag{48}\]</span></span></p>
 <p><span class="math display">\[
 \uptau_{\feed}\td=S(\vwref\td)\left(\J\vw\td+\h_{\inte}\td\right)+\J\dvwref\td.
 \]</span></p>
@@ -13329,7 +13326,7 @@ S(\tw\td)
 \dtqc\td &amp; =\frac{1}{2}\tqv^{\top}\td\tw\td,                                           \\
 \dtqv\td &amp; =-\frac{1}{2}\tqc\td\tw\td-\frac{1}{2}S(\tqv\td)\tw\td+S(\tqv\td)\vwref\td.
 \end{split}
-\tag{48}\]</span></span></p>
+\tag{49}\]</span></span></p>
 <p><span class="math display">\[
 \uptau_{\feed}\td=
 S(\vwref\td+\vwh\td)
@@ -13588,7 +13585,7 @@ a=a^{\top},
 <section id="section-190" class="slide level2">
 <h2></h2>
 <ul>
-<li><p>Sustituyendo la dinámica de <span class="math inline">\(\tqv\td\)</span> y <span class="math inline">\(\tqc\td\)</span> de la <a href="#/eq-dyn_error_iner" class="quarto-xref">Ecuación&nbsp;47</a>:</p>
+<li><p>Sustituyendo la dinámica de <span class="math inline">\(\tqv\td\)</span> y <span class="math inline">\(\tqc\td\)</span> de la <a href="#/eq-dyn_error_iner" class="quarto-xref">Ecuación&nbsp;48</a>:</p>
 <p><span class="math display">\[
 \dot{V}(\tx)  =\tw^{\top}\td\J\dtw\td+2\gamma_{1}\tqv^{\top}\td\left(-\frac{1}{2}\tqc\td\tw\td-\frac{1}{2}S(\tqv\td)\tw\td+S(\tqv\td)\vwref\td\right)-2\gamma_{1}(1-\tqc\td)\left(\frac{1}{2}\tqv^{\top}\td\tw\td\right).
 \]</span></p></li>
@@ -13600,7 +13597,7 @@ a=a^{\top},
 <p><span class="math display">\[
 \dot{V}(\tx)=\tw^{\top}\td\J\dtw\td-\gamma_{1}\tqv^{\top}\td\tw\td.
 \]</span></p></li>
-<li><p>Sustituyendo la dinámica de <span class="math inline">\(\J\tw\td\)</span> de la <a href="#/eq-dyn_error_iner" class="quarto-xref">Ecuación&nbsp;47</a>:</p>
+<li><p>Sustituyendo la dinámica de <span class="math inline">\(\J\tw\td\)</span> de la <a href="#/eq-dyn_error_iner" class="quarto-xref">Ecuación&nbsp;48</a>:</p>
 <p><span class="math display">\[
 \dot{V}(\tx)  =\tw^{\top}\td\left[S(\tw\td)\left(\J\tw\td-\h_{\inte}\td-\J\vwref\td\right)-\uptau_{\inte}\td-\uptau_{\ext}\td+\uptau_{\feed}\td\right]-\gamma_{1}\tqv^{\top}\td\tw\td.
 \]</span></p></li>
@@ -13640,7 +13637,7 @@ u\td=\gamma_{2}\tw\td-\gamma_{1}\tqv\td+\uptau_{\feed}\td.
 <li><p>Finalmente,</p>
 <p><span id="eq-dV_iner"><span class="math display">\[
 \dot{V}(\tx)=-\gamma_{2}\|\tw\td\|^{2}-\tw^{\top}\td\uptau_{\per}\td.
-\tag{49}\]</span></span></p></li>
+\tag{50}\]</span></span></p></li>
 </ul>
 </section>
 <section id="análisis-de-estabilidad-caso-orbital" class="slide level2">
@@ -13654,7 +13651,7 @@ V(\tx)=\frac{1}{2}\tw^{\top}\td\J\tw\td+\gamma_{1}\tqv^{\top}\td\tqv\td+\gamma_{
 <p><span class="math display">\[
 \dot{V}(\tx)=\tw^{\top}\td\J\dtw\td+2\gamma_{1}\tqv^{\top}\td\dtqv\td-2\gamma_{1}(1-\tqc\td)\dtqc\td.
 \]</span></p></li>
-<li><p>Sustituyendo la dinámica de <span class="math inline">\(\tqv\td\)</span> y <span class="math inline">\(\tqc\td\)</span> de la <a href="#/eq-dyn_error_orb" class="quarto-xref">Ecuación&nbsp;48</a>:</p>
+<li><p>Sustituyendo la dinámica de <span class="math inline">\(\tqv\td\)</span> y <span class="math inline">\(\tqc\td\)</span> de la <a href="#/eq-dyn_error_orb" class="quarto-xref">Ecuación&nbsp;49</a>:</p>
 <p><span class="math display">\[
 \dot{V}(\tx) =\tw^{\top}\td\J\dtw\td+2\gamma_{1}\tqv^{\top}\td\left(-\frac{1}{2}\tqc\td\tw\td-\frac{1}{2}S(\tqv\td)\tw\td+S(\tqv\td)\vwref\td\right)-2\gamma_{1}(1-\tqc\td)\left(\frac{1}{2}\tqv^{\top}\td\tw\td\right).
 \]</span></p></li>
@@ -13674,7 +13671,7 @@ V(\tx)=\frac{1}{2}\tw^{\top}\td\J\tw\td+\gamma_{1}\tqv^{\top}\td\tqv\td+\gamma_{
 
 </div>
 <ul>
-<li><p>Sustituyendo la dinámica de <span class="math inline">\(\tw\td\)</span> de la <a href="#/eq-dyn_error_orb" class="quarto-xref">Ecuación&nbsp;48</a>:</p>
+<li><p>Sustituyendo la dinámica de <span class="math inline">\(\tw\td\)</span> de la <a href="#/eq-dyn_error_orb" class="quarto-xref">Ecuación&nbsp;49</a>:</p>
 <p><span class="math display">\[
 \dot{V}(\tx) =\tw^{\top}\td\Big[S(\tw\td)\left(\J\tw\td-\h_{\inte}\td-\J(\vwref\td+\vwh\td)\right)-\J S(\vwh\td)\tw\td-\uptau_{\inte}\td-\uptau_{\ext}\td+\uptau_{\feed}\td\Big]-\gamma_{1}\tqv^{\top}\td\tw\td.
 \]</span></p></li>
@@ -13716,7 +13713,7 @@ u\td=\gamma_{2}\tw\td-\gamma_{1}\tqv\td+\uptau_{\feed}\td.
 <li><p>Finalmente,</p>
 <p><span id="eq-dV_orb"><span class="math display">\[
 \dot{V}(\tx)=-\tw^{\top}\td\Gamma\tw\td-\tw^{\top}\td\uptau_{\per}\td.
-\tag{50}\]</span></span></p>
+\tag{51}\]</span></span></p>
 <p>donde</p>
 <p><span class="math display">\[
 \Gamma=\left[\gamma_{2}I+\J S(\vwh\td)\right]
@@ -13748,7 +13745,7 @@ u\td=\gamma_{2}\tw\td-\gamma_{1}\tqv\td+\uptau_{\feed}\td.
 <p><span class="math display">\[
 u\td=\gamma_{2}\tw\td-\gamma_{1}\tqv\td.
 \]</span></p></li>
-<li><p>Sustituyendo en la <a href="#/eq-dV_iner" class="quarto-xref">Ecuación&nbsp;49</a>:</p>
+<li><p>Sustituyendo en la <a href="#/eq-dV_iner" class="quarto-xref">Ecuación&nbsp;50</a>:</p>
 <p><span class="math display">\[
 \dot{V}(\tx)=-\gamma_{2}\|\tw\td\|^{2}.
 \]</span></p></li>
@@ -13912,7 +13909,7 @@ u\td=\gamma_{2}\tw\td-\gamma_{1}\tqv\td,
 \qquad
 \uptau_{\feed}\td=\mathbf{0}.
 \]</span></p></li>
-<li><p>Entonces, la derivada de Lyapunov <a href="#/eq-dV_orb" class="quarto-xref">Ecuación&nbsp;50</a> queda</p>
+<li><p>Entonces, la derivada de Lyapunov <a href="#/eq-dV_orb" class="quarto-xref">Ecuación&nbsp;51</a> queda</p>
 <p><span class="math display">\[
 \dot{V}(\tx)=-\tw^{\top}\td\Gamma\tw\td,
 \]</span></p>
