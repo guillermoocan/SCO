@@ -5598,7 +5598,7 @@ q_0+\frac{\Delta \theta }{2}\hat{u}^{\top}\vec{q} \\
 <ul>
 <li class="fragment"><p>Matrices de rotación</p>
 <p><span class="math display">\[
-\ls{b}\dot{R}_h=-S(\ls{b}\vec{\omega}_{h,b}) \ls{h}R_b.
+\ls{b}\dot{R}_h=-S(\ls{b}\vec{\omega}_{h,b}) \ls{b}R_h.
 \]</span></p></li>
 <li class="fragment"><p>Ángulos de Euler ( Convención de Tait-Bryan)</p>
 <p><span class="math display">\[
@@ -6326,6 +6326,12 @@ I_b\ls{b}\dot{\vec{\omega}}_{h,b}(t)= &amp; -S(\ls{b}R_i (t)\ls{i}\vec{\omega}_{
 </section>
 <section id="section-83" class="slide level2">
 <h2></h2>
+<div class="vspace-3">
+
+</div>
+<div class="vspace-3">
+
+</div>
 <table class="caption-top">
 <colgroup>
 <col style="width: 50%">
@@ -6387,6 +6393,12 @@ I_b\ls{b}\dot{\vec{\omega}}_{h,b}(t)= &amp; -S(\ls{b}R_i (t)\ls{i}\vec{\omega}_{
 </section>
 <section id="section-84" class="slide level2">
 <h2></h2>
+<div class="vspace-3">
+
+</div>
+<div class="vspace-3">
+
+</div>
 <p>Ahora, para estudiar las entradas del modelo dinámico, considere la siguiente notación:</p>
 <p><span class="math display">\[
 \begin{split}
@@ -6406,6 +6418,12 @@ I_b\ls{b}\dot{\vec{\omega}}_{h,b}(t) &amp; =\vec{\tau}_\alpha(t)+\vec{\tau}_\bet
 </section>
 <section class="slide level2">
 
+<div class="vspace-3">
+
+</div>
+<div class="vspace-3">
+
+</div>
 <table class="caption-top">
 <colgroup>
 <col style="width: 25%">
@@ -6470,6 +6488,328 @@ I_b\ls{b}\dot{\vec{\omega}}_{h,b}(t) &amp; =\vec{\tau}_\alpha(t)+\vec{\tau}_\bet
 \frac{\ls{i}\vec{r}_c(t) \times \ls{i}\dot{\vec{v}}_c(t)}
 {\|\ls{i}\vec{r}_c(t)\|^2}.
 \]</span> —</p>
+</section>
+<section id="ejemplo" class="slide level2">
+<h2>Ejemplo</h2>
+<ul>
+<li><p>Calcule el tensor de inercia de los siguientes cuerpos, suponiendo una distribución uniforme de masa y masa máxima:</p>
+<ul>
+<li>CubeSat 1U.</li>
+<li>CubeSat 3U.</li>
+<li>CubeSat 6U.</li>
+</ul>
+<p>Para cada caso, indique las dimensiones del cuerpo y el tensor de inercia resultante, expresado en el sistema de referencia situado en el centro de masa y alineado con los ejes principales de inercia.</p>
+<p>Para determinar las dimensiones, consulte la especificación <a href="https://static1.squarespace.com/static/5418c831e4b0fa4ecac1bacd/t/62193b7fc9e72e0053f00910/1645820809779/CDS+REV14_1+2022-02-09.pdf"><em>CubeSat Design Specification</em></a>.</p>
+<div class="vspace-3">
+
+</div>
+<div id="tbl-u-config" class="quarto-float quarto-figure quarto-figure-center">
+<figure class="quarto-float quarto-float-tbl">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-u-config-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Tabla&nbsp;1: Configuraciones de <span class="math inline">\(U\)</span> y masa
+</figcaption>
+<div aria-describedby="tbl-u-config-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th style="text-align: center;">Configuración de <span class="math inline">\(U\)</span></th>
+<th style="text-align: right;">Masa máxima [kg]</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"><span class="math inline">\(1U\)</span></td>
+<td style="text-align: right;">2.00</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><span class="math inline">\(1.5U\)</span></td>
+<td style="text-align: right;">3.00</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><span class="math inline">\(2U\)</span></td>
+<td style="text-align: right;">4.00</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><span class="math inline">\(3U\)</span></td>
+<td style="text-align: right;">6.00</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><span class="math inline">\(6U\)</span></td>
+<td style="text-align: right;">12.00</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><span class="math inline">\(12U\)</span></td>
+<td style="text-align: right;">24.00</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div></li>
+</ul>
+</section>
+<section class="slide level2">
+
+
+<img data-src="Figures/c3/cubesat1.svg" class="quarto-figure quarto-figure-center r-stretch" style="width:100.0%"></section>
+<section class="slide level2">
+
+
+<img data-src="Figures/c3/cubesat3.svg" class="quarto-figure quarto-figure-center r-stretch" style="width:100.0%"></section>
+<section class="slide level2">
+
+
+<img data-src="Figures/c3/cubesat6.svg" class="quarto-figure quarto-figure-center r-stretch" style="width:100.0%"></section>
+<section class="slide level2">
+
+<ul>
+<li><p>Considere una órbita con los siguientes elementos orbitales: <span class="math inline">\(a=17000\)</span> km, <span class="math inline">\(\Omega=250^\circ\)</span>, <span class="math inline">\(i=63.4^\circ\)</span> y <span class="math inline">\(\omega=270^\circ\)</span>, con época inicial <span class="math inline">\(t_0=0\)</span> seg.</p></li>
+<li><p>Simule los casos de estudio presentados en la Tabla <a href="#/tbl-cases" class="quarto-xref">Tabla&nbsp;2</a>. Para todos los casos, considere como condición inicial del modelo cinemático el cuaternión <span class="math inline">\({}^{b}\mathbf{q}_h(0)=[1,0,0,0]^\top\)</span>.</p></li>
+<li><p>Para cada caso, reporte las gráficas de la velocidad angular <span class="math inline">\({}^{b}\vec{\omega}_{h,b}\)</span> y del cuaternión <span class="math inline">\({}^{b}\mathbf{q}_h\)</span> a lo largo del tiempo. Asimismo, incluya las gráficas de cada uno de los pares que afectan al modelo dinámico.</p></li>
+<li><p><strong>Interprete las gráficas y describa brevemente el movimiento rotacional del satélite en cada caso.</strong></p></li>
+</ul>
+<div id="tbl-cases" class="quarto-float quarto-figure quarto-figure-center">
+<figure class="quarto-float quarto-float-tbl">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-cases-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Tabla&nbsp;2: Casos de estudio
+</figcaption>
+<div aria-describedby="tbl-cases-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="caption-top" style="width:100%;">
+<colgroup>
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: center;">Caso</th>
+<th style="text-align: center;"><span class="math inline">\(t_f\)</span> [s]</th>
+<th style="text-align: center;"><span class="math inline">\({}^{b}\vec{\omega}_{h,b}^{\top}(0)\)</span> [rad/s]</th>
+<th style="text-align: center;"><span class="math inline">\(e\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(I_b\)</span> [kg<span class="math inline">\(\cdot\)</span>m<span class="math inline">\(^2\)</span>]</th>
+<th style="text-align: center;"><span class="math inline">\({}^{b}\vec{\uptau}_c^{\top}\)</span> [N<span class="math inline">\(\cdot\)</span>m]</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">1</td>
+<td style="text-align: center;"><span class="math inline">\(2T\)</span></td>
+<td style="text-align: center;"><span class="math inline">\([0,0,0]\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(0\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(1U\)</span></td>
+<td style="text-align: center;"><span class="math inline">\([0,0,0]\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">2</td>
+<td style="text-align: center;"><span class="math inline">\(2T\)</span></td>
+<td style="text-align: center;"><span class="math inline">\([0,0,0]\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(0.6\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(1U\)</span></td>
+<td style="text-align: center;"><span class="math inline">\([0,0,0]\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">3</td>
+<td style="text-align: center;"><span class="math inline">\(T\)</span></td>
+<td style="text-align: center;"><span class="math inline">\([0.01,0,0]\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(0.6\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(1U\)</span></td>
+<td style="text-align: center;"><span class="math inline">\([0,0,0]\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">4</td>
+<td style="text-align: center;"><span class="math inline">\(T\)</span></td>
+<td style="text-align: center;"><span class="math inline">\([0.01,0,0]\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(0.6\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(3U\)</span></td>
+<td style="text-align: center;"><span class="math inline">\([0,0,0]\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">5</td>
+<td style="text-align: center;"><span class="math inline">\(T\)</span></td>
+<td style="text-align: center;"><span class="math inline">\([0.01,0,0]\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(0.6\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(6U\)</span></td>
+<td style="text-align: center;"><span class="math inline">\([0,0,0]\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">6</td>
+<td style="text-align: center;"><span class="math inline">\(T\)</span></td>
+<td style="text-align: center;"><span class="math inline">\([0,0,0]\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(0.6\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(3U\)</span></td>
+<td style="text-align: center;"><span class="math inline">\([0,0,5\times10^{-9}]\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">7</td>
+<td style="text-align: center;"><span class="math inline">\(T\)</span></td>
+<td style="text-align: center;"><span class="math inline">\([0,0,0]\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(0.6\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(3U\)</span></td>
+<td style="text-align: center;"><span class="math inline">\([0,5\times10^{-9},0]\)</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+</section>
+<section class="slide level2">
+
+
+<img data-src="Figures/c3/simulation.svg" class="quarto-figure quarto-figure-center r-stretch" style="width:100.0%"></section>
+<section id="caso-1" class="slide level2">
+<h2>Caso 1</h2>
+
+<img data-src="Figures/c3/tarea5_case_1.svg" class="quarto-figure quarto-figure-center r-stretch" style="width:100.0%"></section>
+<section class="slide level2">
+
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><video data-src="Figures/c3/tarea5_case_1.mp4" class="quarto-figure quarto-figure-center" style="width:86.0%" data-autoplay="true" controls=""><a href="Figures/c3/tarea5_case_1.mp4">Video</a></video></p>
+</figure>
+</div>
+</section>
+<section id="caso-2" class="slide level2">
+<h2>Caso 2</h2>
+
+<img data-src="Figures/c3/tarea5_case_2.svg" class="quarto-figure quarto-figure-center r-stretch" style="width:100.0%"></section>
+<section class="slide level2">
+
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><video data-src="Figures/c3/tarea5_case_2.mp4" class="quarto-figure quarto-figure-center" style="width:50.0%" data-autoplay="true" controls=""><a href="Figures/c3/tarea5_case_2.mp4">Video</a></video></p>
+</figure>
+</div>
+</section>
+<section id="caso-3" class="slide level2">
+<h2>Caso 3</h2>
+
+<img data-src="Figures/c3/tarea5_case_3.svg" class="quarto-figure quarto-figure-center r-stretch" style="width:100.0%"></section>
+<section class="slide level2">
+
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><video data-src="Figures/c3/tarea5_case_3.mp4" class="quarto-figure quarto-figure-center" style="width:86.0%" data-autoplay="true" controls=""><a href="Figures/c3/tarea5_case_3.mp4">Video</a></video></p>
+</figure>
+</div>
+</section>
+<section id="caso-4" class="slide level2">
+<h2>Caso 4</h2>
+
+<img data-src="Figures/c3/tarea5_case_4.svg" class="quarto-figure quarto-figure-center r-stretch" style="width:100.0%"></section>
+<section class="slide level2">
+
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><video data-src="Figures/c3/tarea5_case_4.mp4" class="quarto-figure quarto-figure-center" style="width:86.0%" data-autoplay="true" controls=""><a href="Figures/c3/tarea5_case_4.mp4">Video</a></video></p>
+</figure>
+</div>
+</section>
+<section id="caso-5" class="slide level2">
+<h2>Caso 5</h2>
+
+<img data-src="Figures/c3/tarea5_case_5.svg" class="quarto-figure quarto-figure-center r-stretch" style="width:100.0%"></section>
+<section class="slide level2">
+
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><video data-src="Figures/c3/tarea5_case_5.mp4" class="quarto-figure quarto-figure-center" style="width:86.0%" data-autoplay="true" controls=""><a href="Figures/c3/tarea5_case_5.mp4">Video</a></video></p>
+</figure>
+</div>
+</section>
+<section id="caso-6" class="slide level2">
+<h2>Caso 6</h2>
+
+<img data-src="Figures/c3/tarea5_case_6.svg" class="quarto-figure quarto-figure-center r-stretch" style="width:100.0%"></section>
+<section class="slide level2">
+
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><video data-src="Figures/c3/tarea5_case_6.mp4" class="quarto-figure quarto-figure-center" style="width:86.0%" data-autoplay="true" controls=""><a href="Figures/c3/tarea5_case_6.mp4">Video</a></video></p>
+</figure>
+</div>
+</section>
+<section id="caso-7" class="slide level2">
+<h2>Caso 7</h2>
+
+<img data-src="Figures/c3/tarea5_case_7.svg" class="quarto-figure quarto-figure-center r-stretch" style="width:100.0%"></section>
+<section class="slide level2">
+
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><video data-src="Figures/c3/tarea5_case_7.mp4" class="quarto-figure quarto-figure-center" style="width:86.0%" data-autoplay="true" controls=""><a href="Figures/c3/tarea5_case_7.mp4">Video</a></video></p>
+</figure>
+</div>
+</section>
+<section id="caso-sin-control" class="slide level2">
+<h2>Caso sin control</h2>
+
+<img data-src="Figures/c3/tarea5_wocontrol.svg" class="quarto-figure quarto-figure-center r-stretch" style="width:100.0%"></section>
+<section class="slide level2">
+
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><video data-src="Figures/c3/tarea5_case_wocotrol.mp4" class="quarto-figure quarto-figure-center" style="width:86.0%" data-autoplay="true" controls=""><a href="Figures/c3/tarea5_case_wocotrol.mp4">Video</a></video></p>
+</figure>
+</div>
+</section>
+<section id="caso-con-control" class="slide level2">
+<h2>Caso con control</h2>
+
+<img data-src="Figures/c3/tarea5_control.svg" class="quarto-figure quarto-figure-center r-stretch" style="width:100.0%"></section>
+<section class="slide level2">
+
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><video data-src="Figures/c3/tarea5_case_cotrol.mp4" class="quarto-figure quarto-figure-center" style="width:86.0%" data-autoplay="true" controls=""><a href="Figures/c3/tarea5_case_cotrol.mp4">Video</a></video></p>
+</figure>
+</div>
+</section>
+<section class="slide level2">
+
+<!-- ## Caso 2
+
+![](Figures/c3/tarea5_case_2.svg){width=100% fig-align="center"}
+
+---
+
+## Caso 3
+
+![](Figures/c3/tarea5_case_3a.svg){width=100% fig-align="center"}
+
+---
+
+![](Figures/c3/tarea5_case_3b.svg){width=100% fig-align="center"}
+
+---
+
+## Caso 4
+
+![](Figures/c3/tarea5_case_4a.svg){width=100% fig-align="center"}
+
+---
+
+![](Figures/c3/tarea5_case_4b.svg){width=100% fig-align="center"}
+
+---
+## Caso 5
+
+![](Figures/c3/tarea5_case_5.svg){width=100% fig-align="center"}
+
+
+## Caso 6
+
+![](Figures/c3/tarea5_case_6.svg){width=100% fig-align="center"}
+
+
+## Caso 7
+
+![](Figures/c3/tarea5_case_7.svg){width=100% fig-align="center"}
+
+--- -->
 </section>
 <section id="section-85" class="slide level2">
 <h2></h2>
@@ -7085,7 +7425,7 @@ J(x) = \sum_{i=1}^{N} \ell_i(x)
 <li>La elección de <span class="math inline">\(J\)</span> no es única. Diferentes costos producen soluciones distintas.</li>
 </ul>
 </section>
-<section id="ejemplo" class="slide level2">
+<section id="ejemplo-1" class="slide level2">
 <h2>Ejemplo</h2>
 <p><strong>Problema</strong> Dado un conjunto de <span class="math inline">\(n\)</span> estados y salidas <span class="math inline">\(x_i, y_i \in \mathbb{R}\)</span>, y la función de medición <span class="math inline">\(\bar{y}_i= \alpha_1 x_i + \alpha_2\)</span>, se busca resolver el siguiente problema de optimización:</p>
 <p><span class="math display">\[
@@ -9647,7 +9987,7 @@ P_k^{-}
 </ul>
 <p>Generalmente <span class="math inline">\(\hat{x}_0\)</span> proviene de una estimación inicial y <span class="math inline">\(P_0\)</span> se selecciona según el nivel de incertidumbre inicial.</p>
 </section>
-<section id="ejemplo-1" class="slide level2">
+<section id="ejemplo-2" class="slide level2">
 <h2>Ejemplo</h2>
 <ul>
 <li><p>Considere el modelo cinemático que utilizamos para el filtro complementario:</p>

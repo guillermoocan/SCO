@@ -1380,7 +1380,7 @@ donde $\ls{b}\boldsymbol{\omega}_{h,b}$ es un cuaternión puro con parte vectori
   - Matrices de rotación
 
     $$
-    \ls{b}\dot{R}_h=-S(\ls{b}\vec{\omega}_{h,b}) \ls{h}R_b.
+    \ls{b}\dot{R}_h=-S(\ls{b}\vec{\omega}_{h,b}) \ls{b}R_h.
     $$
 
   - Ángulos de Euler ( Convención de Tait-Bryan)
@@ -2199,6 +2199,8 @@ La @eq-rotational_satellite_model decribe totalmente el movimiento rotacional de
 
 ##
 
+<div class="vspace-3"></div>
+<div class="vspace-3"></div>
 
 |**Símbolo** | **Descripción** |
 |:---:|:---:|
@@ -2218,6 +2220,9 @@ La @eq-rotational_satellite_model decribe totalmente el movimiento rotacional de
 ---
 
 ##
+<div class="vspace-3"></div>
+<div class="vspace-3"></div>
+
 Ahora, para estudiar las entradas del modelo dinámico, considere la siguiente notación:
 
 $$
@@ -2237,6 +2242,9 @@ donde
 - $\vec{\tau}_\eta(t)=-\sum_{j=1}^{a} \ls{b}R_j(t)I_j\ls{j}\dot{\vec{\omega}}_{b,j}(t)$.
 
 ---
+
+<div class="vspace-3"></div>
+<div class="vspace-3"></div>
 
 | **Par** | **Interpretación física** |
 |:-:|:--------|
@@ -2269,6 +2277,203 @@ $$
 {\|\ls{i}\vec{r}_c(t)\|^2}.
 $$
 ---
+
+## Ejemplo 
+
+
+- Calcule el tensor de inercia de los siguientes cuerpos, suponiendo una distribución uniforme de masa y masa máxima:
+
+  - CubeSat 1U.
+  - CubeSat 3U.
+  - CubeSat 6U.
+
+  Para cada caso, indique las dimensiones del cuerpo y el tensor de inercia resultante, expresado en el sistema de referencia situado en el centro de masa y alineado con los ejes principales de inercia.
+
+  Para determinar las dimensiones, consulte la especificación [*CubeSat Design Specification*](https://static1.squarespace.com/static/5418c831e4b0fa4ecac1bacd/t/62193b7fc9e72e0053f00910/1645820809779/CDS+REV14_1+2022-02-09.pdf).
+
+  <div class="vspace-3"></div>
+ 
+  | Configuración de $U$ | Masa máxima [kg] |
+  |:---:|---:|
+  | $1U$ | 2.00 |
+  | $1.5U$ | 3.00 |
+  | $2U$ | 4.00 |
+  | $3U$ | 6.00 |
+  | $6U$ | 12.00 |
+  | $12U$ | 24.00 |
+
+  : Configuraciones de $U$ y masa {#tbl-u-config}
+
+---
+
+![](Figures/c3/cubesat1.svg){width=100% fig-align="center"}
+
+---
+
+![](Figures/c3/cubesat3.svg){width=100% fig-align="center"}
+
+---
+
+![](Figures/c3/cubesat6.svg){width=100% fig-align="center"}
+
+---
+
+- Considere una órbita con los siguientes elementos orbitales: $a=17000$ km, $\Omega=250^\circ$, $i=63.4^\circ$ y $\omega=270^\circ$, con época inicial $t_0=0$ seg.
+
+- Simule los casos de estudio presentados en la Tabla @tbl-cases. Para todos los casos, considere como condición inicial del modelo cinemático el cuaternión ${}^{b}\mathbf{q}_h(0)=[1,0,0,0]^\top$.
+
+- Para cada caso, reporte las gráficas de la velocidad angular ${}^{b}\vec{\omega}_{h,b}$ y del cuaternión ${}^{b}\mathbf{q}_h$ a lo largo del tiempo. Asimismo, incluya las gráficas de cada uno de los pares que afectan al modelo dinámico.
+
+- **Interprete las gráficas y describa brevemente el movimiento rotacional del satélite en cada caso.**
+
+| Caso | $t_f$ [s] | ${}^{b}\vec{\omega}_{h,b}^{\top}(0)$ [rad/s] | $e$ | $I_b$ [kg$\cdot$m$^2$] | ${}^{b}\vec{\uptau}_c^{\top}$ [N$\cdot$m] |
+|:---:|:---:|:---:|:---:|:---:|:---:|
+| 1 | $2T$ | $[0,0,0]$ | $0$ | $1U$ | $[0,0,0]$ |
+| 2 | $2T$ | $[0,0,0]$ | $0.6$ | $1U$ | $[0,0,0]$ |
+| 3 | $T$ | $[0.01,0,0]$ | $0.6$ | $1U$ | $[0,0,0]$ |
+| 4 | $T$  | $[0.01,0,0]$ | $0.6$ | $3U$ | $[0,0,0]$ |
+| 5 | $T$ | $[0.01,0,0]$ | $0.6$ | $6U$ | $[0,0,0]$ |
+| 6 | $T$ | $[0,0,0]$ | $0.6$ | $3U$ | $[0,0,5\times10^{-9}]$ |
+| 7 | $T$ | $[0,0,0]$ | $0.6$ | $3U$ | $[0,5\times10^{-9},0]$ |
+
+: Casos de estudio {#tbl-cases}
+
+---
+
+![](Figures/c3/simulation.svg){width=100% fig-align="center"}
+
+## Caso 1
+
+![](Figures/c3/tarea5_case_1.svg){width=100% fig-align="center"}
+
+---
+
+![](Figures/c3/tarea5_case_1.mp4){width=86% fig-align="center" data-autoplay=true}
+
+---
+
+## Caso 2
+
+![](Figures/c3/tarea5_case_2.svg){width=100% fig-align="center"}
+
+---
+
+![](Figures/c3/tarea5_case_2.mp4){width=50% fig-align="center" data-autoplay=true}
+
+---
+
+## Caso 3
+
+![](Figures/c3/tarea5_case_3.svg){width=100% fig-align="center"}
+
+---
+
+![](Figures/c3/tarea5_case_3.mp4){width=86% fig-align="center" data-autoplay=true}
+
+---
+
+## Caso 4
+
+![](Figures/c3/tarea5_case_4.svg){width=100% fig-align="center"}
+
+---
+
+![](Figures/c3/tarea5_case_4.mp4){width=86% fig-align="center" data-autoplay=true}
+
+---
+
+## Caso 5
+
+![](Figures/c3/tarea5_case_5.svg){width=100% fig-align="center"}
+
+---
+
+![](Figures/c3/tarea5_case_5.mp4){width=86% fig-align="center" data-autoplay=true}
+
+---
+
+## Caso 6
+
+![](Figures/c3/tarea5_case_6.svg){width=100% fig-align="center"}
+
+---
+
+![](Figures/c3/tarea5_case_6.mp4){width=86% fig-align="center" data-autoplay=true}
+
+---
+
+## Caso 7
+
+![](Figures/c3/tarea5_case_7.svg){width=100% fig-align="center"}
+
+---
+
+![](Figures/c3/tarea5_case_7.mp4){width=86% fig-align="center" data-autoplay=true}
+
+---
+
+## Caso sin control
+
+![](Figures/c3/tarea5_wocontrol.svg){width=100% fig-align="center"}
+
+---
+
+![](Figures/c3/tarea5_case_wocotrol.mp4){width=86% fig-align="center" data-autoplay=true}
+
+---
+
+## Caso con control
+
+![](Figures/c3/tarea5_control.svg){width=100% fig-align="center"}
+
+---
+
+![](Figures/c3/tarea5_case_cotrol.mp4){width=86% fig-align="center" data-autoplay=true}
+
+---
+
+
+<!-- ## Caso 2
+
+![](Figures/c3/tarea5_case_2.svg){width=100% fig-align="center"}
+
+---
+
+## Caso 3
+
+![](Figures/c3/tarea5_case_3a.svg){width=100% fig-align="center"}
+
+---
+
+![](Figures/c3/tarea5_case_3b.svg){width=100% fig-align="center"}
+
+---
+
+## Caso 4
+
+![](Figures/c3/tarea5_case_4a.svg){width=100% fig-align="center"}
+
+---
+
+![](Figures/c3/tarea5_case_4b.svg){width=100% fig-align="center"}
+
+---
+## Caso 5
+
+![](Figures/c3/tarea5_case_5.svg){width=100% fig-align="center"}
+
+
+## Caso 6
+
+![](Figures/c3/tarea5_case_6.svg){width=100% fig-align="center"}
+
+
+## Caso 7
+
+![](Figures/c3/tarea5_case_7.svg){width=100% fig-align="center"}
+
+--- -->
+
 
 ##
 ::: {.center-vertical}
